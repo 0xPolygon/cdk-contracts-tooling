@@ -13,11 +13,10 @@ import (
 )
 
 const (
-	contractsVersionFlag = "contracts-version"
-	contractsAliasFlag   = "contracts-alias"
-	repoName             = "cdk-contracts-tooling"
-	pathToFetchContracts = "zkevm-contracts/artifacts/contracts"
-	readmeTemplate       = `# %s contracts
+	contractsVersionFlagName = "contracts-version"
+	contractsAliasFlagName   = "contracts-alias"
+	pathToFetchContracts     = "zkevm-contracts/artifacts/contracts"
+	readmeTemplate           = `# %s contracts
 
 All the files and directories within this directory have been generated using the import-contracts command of the CLI in this repo.
 The ABI and the binnaries of the smart contracts have been extracted from [zkevm-contracts repo](https://github.com/0xPolygonHermez/zkevm-contracts), using the version %s (commit %s)
@@ -27,18 +26,18 @@ The ABI and the binnaries of the smart contracts have been extracted from [zkevm
 var (
 	importContractsCommand = &cli.Command{
 		Name:    "import-contracts",
-		Aliases: []string{},
+		Aliases: []string{"import-c"},
 		Usage:   "Import the smart contracts from zkevm-contracts repo and generate Go bindings",
 		Action:  importContracts,
 		Flags: []cli.Flag{
 			&cli.StringFlag{
-				Name:     contractsVersionFlag,
+				Name:     contractsVersionFlagName,
 				Aliases:  []string{"cv"},
 				Usage:    "Version of the smart contracts (git tag or branch)",
 				Required: true,
 			},
 			&cli.StringFlag{
-				Name:     contractsAliasFlag,
+				Name:     contractsAliasFlagName,
 				Aliases:  []string{"alias"},
 				Usage:    "Name that will be used to store the contracts (name of directory under contracts)",
 				Required: true,
@@ -48,14 +47,7 @@ var (
 )
 
 func importContracts(cliCtx *cli.Context) error {
-	baseDir, err := os.Getwd()
-	if err != nil {
-		return err
-	}
-	_, f := path.Split(baseDir)
-	if f != repoName {
-		return fmt.Errorf("run the command from the root of the (%s)", repoName)
-	}
+	baseDir, err := checkWorkingDir()
 
 	// clone repo in tmp
 	tmpDir, err := os.MkdirTemp("", "")
@@ -85,7 +77,7 @@ func importContracts(cliCtx *cli.Context) error {
 		return err
 	}
 
-	checkoutVersion := cliCtx.String(contractsVersionFlag)
+	checkoutVersion := cliCtx.String(contractsVersionFlagName)
 	fmt.Println("checking out version ", checkoutVersion)
 	err = exec.Command("git", "checkout", checkoutVersion).Run()
 	if err != nil {
@@ -106,7 +98,7 @@ func importContracts(cliCtx *cli.Context) error {
 	}
 
 	fmt.Println("creating target directory and abi and bin subdirectories")
-	alias := cliCtx.String(contractsAliasFlag)
+	alias := cliCtx.String(contractsAliasFlagName)
 	contractsPath := baseDir + "/contracts/" + alias
 	err = os.Mkdir(contractsPath, 0744)
 	if err != nil {
