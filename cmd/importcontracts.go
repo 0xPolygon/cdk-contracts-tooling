@@ -6,6 +6,7 @@ import (
 	"io/fs"
 	"os"
 	"os/exec"
+	"path"
 	"strings"
 
 	"github.com/urfave/cli/v2"
@@ -15,7 +16,7 @@ const (
 	contractsVersionFlag = "contracts-version"
 	contractsAliasFlag   = "contracts-alias"
 	repoName             = "cdk-contracts-tooling"
-	pathToFetchContracts = "/tmp/zkevm-contracts/artifacts/contracts"
+	pathToFetchContracts = "zkevm-contracts/artifacts/contracts"
 	readmeTemplate       = `# %s contracts
 
 All the files and directories within this directory have been generated using the import-contracts command of the CLI in this repo.
@@ -51,20 +52,24 @@ func importContracts(cliCtx *cli.Context) error {
 	if err != nil {
 		return err
 	}
-	separated := strings.Split(baseDir, "/")
-	if separated[len(separated)-1] != repoName {
+	_, f := path.Split(baseDir)
+	if f != repoName {
 		return fmt.Errorf("run the command from the root of the (%s)", repoName)
 	}
 
 	// clone repo in tmp
-	err = os.Chdir("/tmp")
+	tmpDir, err := os.MkdirTemp("", "")
+	if err != nil {
+		return err
+	}
+	err = os.Chdir(tmpDir)
 	if err != nil {
 		return err
 	}
 	err = exec.Command("ls", "zkevm-contracts").Run()
 	if err != nil {
 		if err.Error() == "exit status 2" {
-			fmt.Println("cloning contracts repo into /tmp")
+			fmt.Println("cloning contracts repo into temporary directory")
 			err = exec.Command("git", "clone", "https://github.com/0xPolygonHermez/zkevm-contracts.git").Run()
 			if err != nil {
 				fmt.Println("error cloning zkevm-contracts repo")
@@ -75,7 +80,7 @@ func importContracts(cliCtx *cli.Context) error {
 			return err
 		}
 	}
-	err = os.Chdir("/tmp/zkevm-contracts")
+	err = os.Chdir(path.Join(tmpDir, "zkevm-contracts"))
 	if err != nil {
 		return err
 	}
@@ -103,25 +108,25 @@ func importContracts(cliCtx *cli.Context) error {
 	fmt.Println("creating target directory and abi and bin subdirectories")
 	alias := cliCtx.String(contractsAliasFlag)
 	contractsPath := baseDir + "/contracts/" + alias
-	err = exec.Command("mkdir", contractsPath).Run()
+	err = os.Mkdir(contractsPath, 0744)
 	if err != nil {
 		fmt.Println("error creating directory ", contractsPath)
 		fmt.Println("remove the directory or use another alias for this contracts")
 		return err
 	}
-	err = exec.Command("mkdir", contractsPath+"/bin").Run()
+	err = os.Mkdir(path.Join(contractsPath, "/bin"), 0744)
 	if err != nil {
-		fmt.Println("error creating directory ", contractsPath+"/bin")
+		fmt.Println("error creating directory ", path.Join(contractsPath, "/bin"))
 		return err
 	}
-	err = exec.Command("mkdir", contractsPath+"/abi").Run()
+	err = os.Mkdir(path.Join(contractsPath, "/abi"), 0744)
 	if err != nil {
-		fmt.Println("error creating directory ", contractsPath+"/abi")
+		fmt.Println("error creating directory ", path.Join(contractsPath, "/abi"))
 		return err
 	}
 
 	fmt.Println("scrapping files to find contracts to compile")
-	contractPaths, err := getContractJSONFilePaths()
+	contractPaths, err := getContractJSONFilePaths(path.Join(tmpDir, pathToFetchContracts))
 	if err != nil {
 		return err
 	}
@@ -195,7 +200,7 @@ func importContract(contractPath, storingPath string) error {
 
 	// create directory for Go binding
 	goName := strings.ToLower(name)
-	err = exec.Command("mkdir", storingPath+"/"+goName).Run()
+	err = os.Mkdir(path.Join(storingPath, goName), 0744)
 	if err != nil {
 		fmt.Println("error creating directory ", storingPath+"/"+goName)
 		return err
@@ -216,7 +221,7 @@ func importContract(contractPath, storingPath string) error {
 	return nil
 }
 
-func getContractJSONFilePaths() ([]string, error) {
+func getContractJSONFilePaths(pathToFetchContracts string) ([]string, error) {
 	dirItems, err := os.ReadDir(pathToFetchContracts)
 	if err != nil {
 		return nil, err
