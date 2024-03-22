@@ -19,6 +19,8 @@ func main() {
 	app.Commands = []*cli.Command{
 		importContractsCommand,
 		importRollupManagerCommand,
+		importRollupCommand,
+		nodeGenesisCommand,
 	}
 
 	err := app.Run(os.Args)

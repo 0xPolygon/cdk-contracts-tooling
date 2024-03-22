@@ -48,6 +48,9 @@ var (
 
 func importContracts(cliCtx *cli.Context) error {
 	baseDir, err := checkWorkingDir()
+	if err != nil {
+		return err
+	}
 
 	// clone repo in tmp
 	tmpDir, err := os.MkdirTemp("", "")

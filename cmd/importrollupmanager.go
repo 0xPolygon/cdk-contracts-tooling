@@ -13,13 +13,14 @@ import (
 )
 
 const (
-	rollupManagerAliasFlagName   = "rollup-manager-alias"
-	rollupManagerAddressFlagName = "rollup-manager-address"
+	rollupManagerAliasFlagName     = "rollup-manager-alias"
+	rollupManagerAddressFlagName   = "rollup-manager-address"
+	importRollupManagerCommandName = "import-rollup-manager"
 )
 
 var (
 	importRollupManagerCommand = &cli.Command{
-		Name:    "import-rollup-manager",
+		Name:    importRollupManagerCommandName,
 		Aliases: []string{"import-rm"},
 		Usage:   "Import a rollup manager smart contract, adding a new uLxLy into the network files",
 		Action:  importRollupManager,
@@ -43,6 +44,9 @@ var (
 
 func importRollupManager(cliCtx *cli.Context) error {
 	baseDir, err := checkWorkingDir()
+	if err != nil {
+		return err
+	}
 
 	fmt.Println("loading RPC")
 	rpcs, err := config.LoadRPCs()
@@ -58,7 +62,7 @@ func importRollupManager(cliCtx *cli.Context) error {
 	fmt.Println("fetching on-chain info for the rollup manager")
 	addrStr := cliCtx.String(rollupManagerAddressFlagName)
 	addr := common.HexToAddress(addrStr)
-	rm, err := rollupmanager.GetRollupManager(client, addr)
+	rm, err := rollupmanager.LoadFromL1(client, addr)
 	if err != nil {
 		return err
 	}
