@@ -4,11 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-	"path"
 
 	"github.com/0xPolygon/cdk-contracts-tooling/config"
-	"github.com/0xPolygon/cdk-contracts-tooling/rollup"
-	"github.com/0xPolygon/cdk-contracts-tooling/rollupmanager"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/urfave/cli/v2"
 )
@@ -49,41 +46,15 @@ func nodeGenesis(cliCtx *cli.Context) error {
 	if err != nil {
 		return err
 	}
-
-	fmt.Println("loading the rollup manager info from file")
 	l1Network := cliCtx.String(l1FlagName)
 	rmAlias := cliCtx.String(rollupManagerAliasFlagName)
-	rollupManagerPath := path.Join(baseDir, "networks", l1Network, rmAlias)
-	rm, err := rollupmanager.LoadFromFile(nil, path.Join(rollupManagerPath, "rollupManager.json"))
-	if err != nil {
-		return err
-	}
-
-	fmt.Println("loading RPC info")
-	rpcs, err := config.LoadRPCs()
+	rAlias := cliCtx.String(rollupAliasFlagName)
+	outputFilePath := cliCtx.String(outputFileFlagName)
+	rpcs, rm, r, genesis, err := config.Load(l1Network, rmAlias, rAlias, baseDir)
 	if err != nil {
 		return err
 	}
 	l1ChainID, err := rpcs.GetChainID(l1Network)
-	if err != nil {
-		return err
-	}
-
-	fmt.Println("loading the rollup info from file")
-	rAlias := cliCtx.String(rollupAliasFlagName)
-	rollupPath := path.Join(rollupManagerPath, "rollups")
-	r, err := rollup.LoadFromFile(nil, path.Join(rollupPath, rAlias+".json"))
-	if err != nil {
-		return err
-	}
-
-	fmt.Println("loading genesis file")
-	genesisData, err := os.ReadFile(path.Join(baseDir, "genesis", r.GenesisRoot.Hex()+".json"))
-	if err != nil {
-		return err
-	}
-	var genesis interface{}
-	err = json.Unmarshal(genesisData, &genesis)
 	if err != nil {
 		return err
 	}
@@ -118,7 +89,6 @@ func nodeGenesis(cliCtx *cli.Context) error {
 		Genesis:                                 genesis,
 		Root:                                    r.GenesisRoot,
 	}
-	outputFilePath := cliCtx.String(outputFileFlagName)
 	data, err := json.MarshalIndent(&ng, "", " ")
 	if err != nil {
 		return err

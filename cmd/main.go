@@ -21,6 +21,7 @@ func main() {
 		importRollupManagerCommand,
 		importRollupCommand,
 		nodeGenesisCommand,
+		bridgeConfigCommand,
 	}
 
 	err := app.Run(os.Args)
