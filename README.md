@@ -30,7 +30,7 @@ Some commands require using RPC endpoints. There are multiple ways to import thi
 
 ### Examples
 
-#### Generate genesis file for a node (`cdk-validium-node` or `zkevm-node`)
+#### Generate genesis file for a node (`cdk-validium-node` or `zkevm-node`) and the config for a Bridge service (`zkevm-bridge-service`)
 
 1. Import the rollup manager: `go run ./cmd import-rm -l1 sepolia -addr 0x32d33d5137a7cffb54c5bf8371172bcec5f310ff -alias cardona`. In this example:
     - `-l1 sepolia` is the L1 network, make sure that your `wallets.toml` file contains a valid RPC for the L1 network this CDK belongs to
