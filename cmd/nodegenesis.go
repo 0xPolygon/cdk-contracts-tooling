@@ -6,6 +6,7 @@ import (
 	"os"
 	"path"
 
+	"github.com/0xPolygon/cdk-contracts-tooling/config"
 	"github.com/0xPolygon/cdk-contracts-tooling/rollup"
 	"github.com/0xPolygon/cdk-contracts-tooling/rollupmanager"
 	"github.com/ethereum/go-ethereum/common"
@@ -20,6 +21,7 @@ var (
 		Action:  nodeGenesis,
 		Flags: []cli.Flag{
 			l1Flag,
+			outputFlag,
 			&cli.StringFlag{
 				Name:    rollupManagerAliasFlagName,
 				Aliases: []string{"rm"},
@@ -57,6 +59,16 @@ func nodeGenesis(cliCtx *cli.Context) error {
 		return err
 	}
 
+	fmt.Println("loading RPC info")
+	rpcs, err := config.LoadRPCs()
+	if err != nil {
+		return err
+	}
+	l1ChainID, err := rpcs.GetChainID(l1Network)
+	if err != nil {
+		return err
+	}
+
 	fmt.Println("loading the rollup info from file")
 	rAlias := cliCtx.String(rollupAliasFlagName)
 	rollupPath := path.Join(rollupManagerPath, "rollups")
@@ -78,27 +90,38 @@ func nodeGenesis(cliCtx *cli.Context) error {
 
 	fmt.Println("creating genesis file")
 	type l1Config struct {
-		chainId                           uint64
-		polygonZkEVMAddress               common.Address
-		polygonRollupManagerAddress       common.Address
-		polTokenAddress                   common.Address
-		polygonZkEVMGlobalExitRootAddress common.Address
+		ChainId       uint64         `json:"chainId"`
+		Rollup        common.Address `json:"polygonZkEVMAddress"`
+		RollupManager common.Address `json:"polygonRollupManagerAddress"`
+		POL           common.Address `json:"polTokenAddress"`
+		GER           common.Address `json:"polygonZkEVMGlobalExitRootAddress"`
 	}
 	type nodeGenesis struct {
-		l1Config           l1Config
-		genesisBlockNumber uint64
-		genesis            interface{}
-		root               common.Hash
+		L1Config                                l1Config    `json:"l1Config"`
+		RollupCreationBlockNumberUsedByRollup   uint64      `json:"genesisBlockNumber"`
+		RollupCreationBlockNumberUsedByValidium uint64      `json:"rollupCreationBlockNumber"`
+		UpdateToULxLyBlockNumber                uint64      `json:"rollupManagerCreationBlockNumber"`
+		Genesis                                 interface{} `json:"genesis"`
+		Root                                    common.Hash `json:"root"`
 	}
-	// alias := cliCtx.String(rollupAliasFlagName)
-	// rollupPath := path.Join(rollupManagerPath, "rollups")
-	// err = os.MkdirAll(rollupPath, 0744)
-	// if err != nil {
-	// 	return err
-	// }
-	// rData, err := json.MarshalIndent(r, "", " ")
-	// if err != nil {
-	// 	return err
-	// }
-	// return os.WriteFile(path.Join(rollupPath, alias+".json"), rData, 0644)
+	ng := nodeGenesis{
+		L1Config: l1Config{
+			ChainId:       l1ChainID,
+			Rollup:        r.Address,
+			RollupManager: rm.Address,
+			POL:           rm.POLAddr,
+			GER:           rm.GERAddr,
+		},
+		RollupCreationBlockNumberUsedByRollup:   r.CreationBlock,
+		RollupCreationBlockNumberUsedByValidium: r.CreationBlock,
+		UpdateToULxLyBlockNumber:                rm.UpdateToULxLyBlock,
+		Genesis:                                 genesis,
+		Root:                                    r.GenesisRoot,
+	}
+	outputFilePath := cliCtx.String(outputFileFlagName)
+	data, err := json.MarshalIndent(&ng, "", " ")
+	if err != nil {
+		return err
+	}
+	return os.WriteFile(outputFilePath, data, 0644)
 }

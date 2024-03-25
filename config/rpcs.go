@@ -27,3 +27,11 @@ func (r *RPCs) GetClient(network string) (*ethclient.Client, error) {
 	}
 	return ethclient.Dial(rpcConfig.URL)
 }
+
+func (r *RPCs) GetChainID(network string) (uint64, error) {
+	rpcConfig, ok := r.Networks[network]
+	if !ok {
+		return 0, fmt.Errorf("there is no RPC config for network %s. Please add it to rpcs.toml", network)
+	}
+	return rpcConfig.ChainID, nil
+}
