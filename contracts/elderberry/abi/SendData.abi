@@ -1,0 +1,20 @@
+[
+ {
+  "inputs": [
+   {
+    "internalType": "address",
+    "name": "destination",
+    "type": "address"
+   },
+   {
+    "internalType": "bytes",
+    "name": "data",
+    "type": "bytes"
+   }
+  ],
+  "name": "sendData",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ }
+]

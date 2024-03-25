@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/exec"
 	"path"
+	"path/filepath"
 	"strings"
 
 	"github.com/urfave/cli/v2"
@@ -222,41 +223,12 @@ func importContract(contractPath, storingPath string) error {
 }
 
 func getContractJSONFilePaths(pathToFetchContracts string) ([]string, error) {
-	dirItems, err := os.ReadDir(pathToFetchContracts)
-	if err != nil {
-		return nil, err
-	}
-	filePaths, directoriesToExplore, err := exploreDirectory(pathToFetchContracts, dirItems)
-	if err != nil {
-		return nil, err
-	}
-	for len(directoriesToExplore) > 0 {
-		itePath := directoriesToExplore[0]
-		dirItems, err = os.ReadDir(itePath)
-		if err != nil {
-			return nil, err
+	filePaths := []string{}
+	err := filepath.Walk(pathToFetchContracts, func(path string, info fs.FileInfo, err error) error {
+		if strings.Contains(path, ".sol") && strings.HasSuffix(path, ".json") && !strings.Contains(path, ".dbg") {
+			filePaths = append(filePaths, path)
 		}
-		iteFilePaths, iteDirectoriesToExplore, err := exploreDirectory(itePath, dirItems)
-		if err != nil {
-			return nil, err
-		}
-		filePaths = append(filePaths, iteFilePaths...)
-		directoriesToExplore = append(directoriesToExplore[1:], iteDirectoriesToExplore...)
-	}
-
-	return filePaths, nil
-}
-
-func exploreDirectory(path string, dirItems []fs.DirEntry) (contractJSONPaths, directoriesToExplore []string, err error) {
-	for _, i := range dirItems {
-		name := i.Name()
-		if i.IsDir() {
-			if strings.HasSuffix(name, ".sol") {
-				contractJSONPaths = append(contractJSONPaths, path+"/"+name+"/"+strings.ReplaceAll(name, ".sol", ".json"))
-			} else {
-				directoriesToExplore = append(directoriesToExplore, path+"/"+name)
-			}
-		}
-	}
-	return
+		return nil
+	})
+	return filePaths, err
 }
