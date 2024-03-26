@@ -40,7 +40,7 @@ Unfortunately the base genesis file cannot be retrieved from L1. Therefore they 
     - `-l1 sepolia` is the L1 network, make sure that your `wallets.toml` file contains a valid RPC for the L1 network this CDK belongs to
     - `-addr 0x32d33d5137a7cffb54c5bf8371172bcec5f310ff` is the L1 address where the rollup manager is deployed
     - `-alias cardona` is an arbitrary name. You can really name this however you want, but this is going to be used later to reference this rollup manager deployment
-2. Import the rollup: `go run ./cmd import-r -l1 sepolia -rm cardona -r API3 -chainid 879490799`. In this example:
+2. (OPTIONAL) After first step, all the attached rollups are imported using their name as alias, and defaulting to chainID for name if the name has the default value `networkName`. It's possible to manually import a rollup using a custom alias: `go run ./cmd import-r -l1 sepolia -rm cardona -r API3 -chainid 879490799`. In this example:
     - `-rm cardona` rollup manager referenced by the alias used in the previous step
     - `-chainid 879490799` is the chain ID of the rollup (L2 Chain ID)
     - `-alias API3` is an arbitrary name. You can really name this however you want, but this is going to be used later to reference this rollup deployment

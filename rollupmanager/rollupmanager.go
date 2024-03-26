@@ -7,12 +7,14 @@ import (
 	"os"
 
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/etrog/polygonrollupmanager"
+	"github.com/0xPolygon/cdk-contracts-tooling/contracts/etrog/polygonzkevm"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
 )
 
 type RollupManager struct {
+	Client             *ethclient.Client
 	Contract           *polygonrollupmanager.Polygonrollupmanager `json:"-"`
 	Address            common.Address
 	BridgeAddress      common.Address
@@ -28,6 +30,7 @@ func LoadFromL1(client *ethclient.Client, address common.Address) (*RollupManage
 		return nil, err
 	}
 	rm := RollupManager{
+		Client:   client,
 		Address:  address,
 		Contract: contract,
 	}
@@ -67,6 +70,26 @@ func LoadFromL1(client *ethclient.Client, address common.Address) (*RollupManage
 	return &rm, nil
 }
 
+func LoadFromFile(client *ethclient.Client, filePath string) (*RollupManager, error) {
+	data, err := os.ReadFile(filePath)
+	if err != nil {
+		return nil, err
+	}
+	var rm RollupManager
+	err = json.Unmarshal(data, &rm)
+	if err != nil {
+		return nil, err
+	}
+	if client != nil {
+		contract, err := polygonrollupmanager.NewPolygonrollupmanager(rm.Address, client)
+		if err != nil {
+			return nil, err
+		}
+		rm.Contract = contract
+	}
+	return &rm, nil
+}
+
 // GetUpgradeBlocks returns a mapping of version => block number of the rollup manager
 func (rm *RollupManager) GetUpgradeBlocks(ctx context.Context) (map[uint8]uint64, error) {
 	it, err := rm.Contract.FilterInitialized(&bind.FilterOpts{
@@ -102,22 +125,26 @@ func (rm *RollupManager) GetRollupCreationInfo(ctx context.Context, rollupID uin
 	return common.Hash{}, 0, fmt.Errorf("no create new rollup event for ID %d", rollupID)
 }
 
-func LoadFromFile(client *ethclient.Client, filePath string) (*RollupManager, error) {
-	data, err := os.ReadFile(filePath)
+// GetAttachedRollups returns a list of attached rollups
+func (rm *RollupManager) GetAttachedRollups(ctx context.Context) (map[uint64]string, error) {
+	it, err := rm.Contract.FilterCreateNewRollup(&bind.FilterOpts{
+		Start:   rm.CreationBlock,
+		Context: ctx,
+	}, nil)
 	if err != nil {
 		return nil, err
 	}
-	var rm RollupManager
-	err = json.Unmarshal(data, &rm)
-	if err != nil {
-		return nil, err
-	}
-	if client != nil {
-		contract, err := polygonrollupmanager.NewPolygonrollupmanager(rm.Address, client)
+	res := make(map[uint64]string)
+	for it.Next() {
+		rollup, err := polygonzkevm.NewPolygonzkevm(it.Event.RollupAddress, rm.Client)
 		if err != nil {
 			return nil, err
 		}
-		rm.Contract = contract
+		name, err := rollup.NetworkName(nil)
+		if err != nil {
+			return nil, err
+		}
+		res[it.Event.ChainID] = name
 	}
-	return &rm, nil
+	return res, nil
 }

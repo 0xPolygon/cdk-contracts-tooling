@@ -1,12 +1,15 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"os"
 	"path"
+	"strconv"
 
 	"github.com/0xPolygon/cdk-contracts-tooling/config"
+	"github.com/0xPolygon/cdk-contracts-tooling/rollup"
 	"github.com/0xPolygon/cdk-contracts-tooling/rollupmanager"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/urfave/cli/v2"
@@ -78,5 +81,38 @@ func importRollupManager(cliCtx *cli.Context) error {
 	if err != nil {
 		return err
 	}
-	return os.WriteFile(path.Join(rollupManagerPath, "rollupManager.json"), rmData, 0644)
+	err = os.WriteFile(path.Join(rollupManagerPath, "rollupManager.json"), rmData, 0644)
+	if err != nil {
+		return err
+	}
+
+	fmt.Println("importing attached rollups")
+	rollups, err := rm.GetAttachedRollups(context.TODO())
+	if err != nil {
+		return err
+	}
+	rollupPath := path.Join(rollupManagerPath, "rollups")
+	err = os.MkdirAll(rollupPath, 0744)
+	if err != nil {
+		return err
+	}
+	for chainID, name := range rollups {
+		fmt.Println("importing rollup ", name, " with chainID ", chainID)
+		r, err := rollup.LoadFromL1ByChainID(client, rm, chainID)
+		if err != nil {
+			return err
+		}
+		rData, err := json.MarshalIndent(r, "", " ")
+		if err != nil {
+			return err
+		}
+		if name == "networkName" {
+			name = strconv.Itoa(int(chainID))
+		}
+		err = os.WriteFile(path.Join(rollupPath, name+".json"), rData, 0644)
+		if err != nil {
+			return err
+		}
+	}
+	return nil
 }
