@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"math/big"
 	"os"
 
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/etrog/polygonrollupmanager"
@@ -108,6 +109,22 @@ func (rm *RollupManager) GetUpgradeBlocks(ctx context.Context) (map[uint8]uint64
 
 // GetRollupCreation returns genesis root and the block number in which the rollup was created
 func (rm *RollupManager) GetRollupCreationInfo(ctx context.Context, rollupID uint32) (common.Hash, uint64, error) {
+	if rollupID == 1 {
+		rollup, err := polygonzkevm.NewPolygonzkevm(rm.Address, rm.Client)
+		if err != nil {
+			return common.Hash{}, 0, err
+		}
+		root, err := rollup.BatchNumToStateRoot(
+			&bind.CallOpts{BlockNumber: big.NewInt(int64(rm.UpdateToULxLyBlock - 1))},
+			0,
+		)
+		if err != nil {
+			fmt.Println("couldn't found genesis for batch 0 of the rollup 1")
+			return common.Hash{}, 0, err
+		}
+
+		return common.Hash(root), rm.CreationBlock, nil
+	}
 	it, err := rm.Contract.FilterCreateNewRollup(&bind.FilterOpts{
 		Start:   rm.UpdateToULxLyBlock,
 		Context: ctx,
@@ -127,6 +144,23 @@ func (rm *RollupManager) GetRollupCreationInfo(ctx context.Context, rollupID uin
 
 // GetAttachedRollups returns a list of attached rollups
 func (rm *RollupManager) GetAttachedRollups(ctx context.Context) (map[uint64]string, error) {
+	res := make(map[uint64]string)
+	// Original rollup
+	data, err := rm.Contract.RollupIDToRollupData(nil, 1)
+	if err != nil {
+		return nil, err
+	}
+	rollup, err := polygonzkevm.NewPolygonzkevm(data.RollupContract, rm.Client)
+	if err != nil {
+		return nil, err
+	}
+	name, err := rollup.NetworkName(nil)
+	if err != nil {
+		return nil, err
+	}
+	res[data.ChainID] = name
+
+	// Attached rollups
 	it, err := rm.Contract.FilterCreateNewRollup(&bind.FilterOpts{
 		Start:   rm.CreationBlock,
 		Context: ctx,
@@ -134,7 +168,6 @@ func (rm *RollupManager) GetAttachedRollups(ctx context.Context) (map[uint64]str
 	if err != nil {
 		return nil, err
 	}
-	res := make(map[uint64]string)
 	for it.Next() {
 		rollup, err := polygonzkevm.NewPolygonzkevm(it.Event.RollupAddress, rm.Client)
 		if err != nil {

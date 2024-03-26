@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"os"
 	"path"
@@ -112,6 +113,12 @@ func importRollupManager(cliCtx *cli.Context) error {
 		err = os.WriteFile(path.Join(rollupPath, name+".json"), rData, 0644)
 		if err != nil {
 			return err
+		}
+		if _, err := os.Stat(path.Join(baseDir, "genesis", r.GenesisRoot.Hex()+".json")); errors.Is(err, os.ErrNotExist) {
+			fmt.Printf(
+				"WARNING: the rollup %s with chainID %d uses a genesis with root %s. But there is no such genesis file. PLease manually import it into ./genesis directory.\n",
+				name, chainID, r.GenesisRoot.Hex(),
+			)
 		}
 	}
 	return nil

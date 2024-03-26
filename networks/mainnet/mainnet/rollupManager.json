@@ -1,0 +1,9 @@
+{
+ "Client": {},
+ "Address": "0x5132a183e9f3cb7c848b0aac5ae0c4f0491b7ab2",
+ "BridgeAddress": "0x2a3dd3eb832af982ec71669e178424b10dca2ede",
+ "GERAddr": "0x580bda1e7a0cfae92fa7f6c20a3794f169ce3cfb",
+ "POLAddr": "0x455e53cbb86018ac2b8092fdcd39d8444affc3f6",
+ "CreationBlock": 16896721,
+ "UpdateToULxLyBlock": 19218658
+}
