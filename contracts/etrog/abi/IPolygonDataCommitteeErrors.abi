@@ -1,0 +1,37 @@
+[
+ {
+  "inputs": [],
+  "name": "CommitteeAddressDoesNotExist",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "EmptyURLNotAllowed",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "TooManyRequiredSignatures",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "UnexpectedAddrsAndSignaturesSize",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "UnexpectedAddrsBytesLength",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "UnexpectedCommitteeHash",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "WrongAddrOrder",
+  "type": "error"
+ }
+]
