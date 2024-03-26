@@ -22,6 +22,8 @@ func main() {
 		importRollupCommand,
 		nodeGenesisCommand,
 		bridgeConfigCommand,
+		deployDACCommand,
+		setupDACCommand,
 	}
 
 	err := app.Run(os.Args)
