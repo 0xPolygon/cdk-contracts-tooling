@@ -107,12 +107,20 @@ func (rm *RollupManager) GetUpgradeBlocks(ctx context.Context) (map[uint8]uint64
 	return res, nil
 }
 
+type CreateRollupInfo struct {
+	Root     common.Hash
+	Block    uint64
+	ChainID  uint64
+	RollupID uint32
+	GasToken common.Address
+}
+
 // GetRollupCreation returns genesis root and the block number in which the rollup was created
-func (rm *RollupManager) GetRollupCreationInfo(ctx context.Context, rollupID uint32) (common.Hash, uint64, error) {
+func (rm *RollupManager) GetRollupCreationInfo(ctx context.Context, rollupID uint32) (CreateRollupInfo, error) {
 	if rollupID == 1 {
 		rollup, err := polygonzkevm.NewPolygonzkevm(rm.Address, rm.Client)
 		if err != nil {
-			return common.Hash{}, 0, err
+			return CreateRollupInfo{}, err
 		}
 		root, err := rollup.BatchNumToStateRoot(
 			&bind.CallOpts{BlockNumber: big.NewInt(int64(rm.UpdateToULxLyBlock - 1))},
@@ -120,26 +128,44 @@ func (rm *RollupManager) GetRollupCreationInfo(ctx context.Context, rollupID uin
 		)
 		if err != nil {
 			fmt.Println("couldn't found genesis for batch 0 of the rollup 1")
-			return common.Hash{}, 0, err
+			return CreateRollupInfo{}, err
+		}
+		chainID, err := rollup.ChainID(
+			&bind.CallOpts{BlockNumber: big.NewInt(int64(rm.UpdateToULxLyBlock - 1))},
+		)
+		if err != nil {
+			return CreateRollupInfo{}, err
 		}
 
-		return common.Hash(root), rm.CreationBlock, nil
+		return CreateRollupInfo{
+			Root:     common.Hash(root),
+			Block:    rm.CreationBlock,
+			ChainID:  chainID,
+			RollupID: rollupID,
+			GasToken: common.Address{},
+		}, nil
 	}
 	it, err := rm.Contract.FilterCreateNewRollup(&bind.FilterOpts{
 		Start:   rm.UpdateToULxLyBlock,
 		Context: ctx,
 	}, []uint32{rollupID})
 	if err != nil {
-		return common.Hash{}, 0, err
+		return CreateRollupInfo{}, err
 	}
 	for it.Next() {
 		rollupType, err := rm.Contract.RollupTypeMap(nil, it.Event.RollupTypeID)
 		if err != nil {
-			return common.Hash{}, 0, err
+			return CreateRollupInfo{}, err
 		}
-		return common.Hash(rollupType.Genesis), it.Event.Raw.BlockNumber, nil
+		return CreateRollupInfo{
+			Root:     common.Hash(rollupType.Genesis),
+			Block:    it.Event.Raw.BlockNumber,
+			ChainID:  it.Event.ChainID,
+			RollupID: rollupID,
+			GasToken: it.Event.GasTokenAddress,
+		}, nil
 	}
-	return common.Hash{}, 0, fmt.Errorf("no create new rollup event for ID %d", rollupID)
+	return CreateRollupInfo{}, fmt.Errorf("no create new rollup event for ID %d", rollupID)
 }
 
 // GetAttachedRollups returns a list of attached rollups

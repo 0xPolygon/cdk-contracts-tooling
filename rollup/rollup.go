@@ -17,6 +17,9 @@ type Rollup struct {
 	GenesisRoot   common.Hash
 	CreationBlock uint64
 	ChainID       uint64
+	Name          string
+	RollupID      uint32
+	GasToken      common.Address
 }
 
 func LoadFromL1ByChainID(client *ethclient.Client, rm *rollupmanager.RollupManager, chainID uint64) (*Rollup, error) {
@@ -28,7 +31,7 @@ func LoadFromL1ByChainID(client *ethclient.Client, rm *rollupmanager.RollupManag
 	if err != nil {
 		return nil, err
 	}
-	genesisRoot, creationBlock, err := rm.GetRollupCreationInfo(context.TODO(), rID)
+	info, err := rm.GetRollupCreationInfo(context.TODO(), rID)
 	if err != nil {
 		return nil, err
 	}
@@ -37,12 +40,19 @@ func LoadFromL1ByChainID(client *ethclient.Client, rm *rollupmanager.RollupManag
 	if err != nil {
 		return nil, err
 	}
+	name, err := rollup.NetworkName(nil)
+	if err != nil {
+		return nil, err
+	}
 	return &Rollup{
 		Contract:      rollup,
 		Address:       rData.RollupContract,
-		CreationBlock: creationBlock,
-		GenesisRoot:   genesisRoot,
+		CreationBlock: info.Block,
+		GenesisRoot:   info.Root,
 		ChainID:       chainID,
+		Name:          name,
+		RollupID:      info.RollupID,
+		GasToken:      info.GasToken,
 	}, nil
 }
 
