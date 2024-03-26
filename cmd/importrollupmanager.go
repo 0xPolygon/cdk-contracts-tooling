@@ -107,7 +107,7 @@ func importRollupManager(cliCtx *cli.Context) error {
 		if err != nil {
 			return err
 		}
-		if name == "networkName" {
+		if name == "networkName" || name == "" {
 			name = strconv.Itoa(int(chainID))
 		}
 		err = os.WriteFile(path.Join(rollupPath, name+".json"), rData, 0644)

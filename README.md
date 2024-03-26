@@ -23,7 +23,7 @@ Some commands require using private keys. There are multiple ways to import priv
 
 ### RPCs
 
-Some commands require using RPC endpoints. There are multiple ways to import this endpoints, but all of them require to:
+Some commands require using RPC endpoints. There are multiple ways to import these endpoints, but all of them require to:
 
 1. Copy paste `rpcs.example.toml` into `rpcs.toml`
 2. Edit the new file to include your RPC configurations (the file has comments to make the needed changes comprehensible)

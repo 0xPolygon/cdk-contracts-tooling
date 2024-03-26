@@ -127,7 +127,7 @@ func (rm *RollupManager) GetRollupCreationInfo(ctx context.Context, rollupID uin
 			0,
 		)
 		if err != nil {
-			fmt.Println("couldn't found genesis for batch 0 of the rollup 1")
+			fmt.Println("couldn't find genesis for batch 0 of the rollup 1")
 			return CreateRollupInfo{}, err
 		}
 		chainID, err := rollup.ChainID(
