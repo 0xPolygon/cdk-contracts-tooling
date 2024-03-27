@@ -1,0 +1,29 @@
+version: "3.3"
+services:
+    cdk-mock-l1:
+        container_name: cdk-mock-l1
+        image: ethereum/client-go:latest
+        environment:
+            - DEV_PERIOD
+        ports:
+            - "8545:8545"
+        entrypoint:
+            - geth
+            - --rpc.allow-unprotected-txs
+            - --http
+            - --http.addr
+            - "0.0.0.0"
+            - --dev
+            - --dev.period
+            - "1"
+            
+    cdk-l1-funder:
+        network_mode: host
+        container_name: cdk-l1-funder
+        image: node:16
+        depends_on:
+          - cdk-mock-l1
+        volumes:
+            - ${PWD}/fundAccount:/home/node/project
+        working_dir: /home/node/project
+        command: node fundAccounts.js
