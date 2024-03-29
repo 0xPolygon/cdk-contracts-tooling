@@ -1,11 +1,23 @@
 package main
 
 import (
+	"encoding/json"
+	"errors"
 	"fmt"
+	"math/big"
+	"os"
+	"sort"
+	"strings"
 
-	"github.com/0xPolygon/cdk-contracts-tooling/config"
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/elderberry/polygondatacommittee"
+	"github.com/0xPolygon/cdk-contracts-tooling/contracts/etrog/polygontransparentproxy"
+	"github.com/ethereum/go-ethereum/common"
 	"github.com/urfave/cli/v2"
+)
+
+const (
+	setupDACFilePathFlagName      = "setup-file"
+	implementationAddressFlagName = "implementation-address"
 )
 
 var (
@@ -17,6 +29,15 @@ var (
 		Flags: []cli.Flag{
 			l1Flag,
 			walletFlag,
+			walletPasswordFlag,
+			skipConfirmationFlag,
+			timeoutFlag,
+			&cli.StringFlag{
+				Name:     implementationAddressFlagName,
+				Aliases:  []string{"implementation", "impl"},
+				Usage:    `TODO`,
+				Required: false,
+			},
 		},
 	}
 	setupDACCommand = &cli.Command{
@@ -28,47 +49,158 @@ var (
 			l1Flag,
 			addressFlag,
 			walletFlag,
+			walletPasswordFlag,
+			skipConfirmationFlag,
+			timeoutFlag,
+			&cli.PathFlag{
+				Name:     setupDACFilePathFlagName,
+				Aliases:  []string{"f"},
+				Usage:    `File path of a JSON that looks like {"requiredSingatures": X, "members": [{"address": "0x...", "url": "http://..."}]}`,
+				Required: true,
+			},
 		},
 	}
 )
 
 func deployDAC(cliCtx *cli.Context) error {
-	fmt.Println("loading RPC")
-	rpcs, err := config.LoadRPCs()
+	_, err := checkWorkingDir()
 	if err != nil {
 		return err
 	}
-	l1Network := cliCtx.String(l1FlagName)
-	client, err := rpcs.GetClient(l1Network)
-	if err != nil {
-		return err
-	}
-	chainID, err := rpcs.GetChainID(l1Network)
+	walletAddr, auth, client, err := loadAuthAndClient(cliCtx)
 	if err != nil {
 		return err
 	}
 
-	fmt.Println("loading wallet")
-	wallets, err := config.LoadWallets()
+	err = askForConfirmation(cliCtx, fmt.Sprintf(
+		"Do you want to send the tx that will deploy the DAC from the address %s?",
+		walletAddr,
+	))
 	if err != nil {
 		return err
 	}
-	walletAddr := cliCtx.String(walletFlagName)
-	pk, err := wallets.GetAuth(walletAddr, chainID)
+	fmt.Println("deploying DAC implementaiton")
+	dacAddr, tx, _, err := polygondatacommittee.DeployPolygondatacommittee(auth, client)
 	if err != nil {
 		return err
+	}
+	fmt.Printf("DAC implementation will be deployed at %s with the tx %s\n", dacAddr.Hex(), tx.Hash())
+	timeout := getTimeout(cliCtx)
+	fmt.Printf("Waiting for the tx to be mined, this will timeout after %s\n", timeout)
+	ok, err := waitTxToBeMined(cliCtx.Context, client, tx, timeout)
+	if err != nil {
+		return err
+	}
+	if !ok {
+		return errors.New("the transaction was mined, but it was not executed successfuly")
 	}
 
-	fmt.Println("sending tx")
-	addr, tx, _, err := polygondatacommittee.DeployPolygondatacommittee(pk, client)
+	fmt.Println("deploying proxy")
+	proxyAddr, tx, _, err := polygontransparentproxy.DeployPolygontransparentproxy( // TODO: use OZ instead
+		auth,
+		client,
+		dacAddr,
+		auth.From,
+		common.Hex2Bytes("8129fc1c00000000000000000000000000000000000000000000000000000000"), // initialize() signature
+	)
 	if err != nil {
 		return err
 	}
-	fmt.Printf("DAC will be deployed at %s with the tx %s", addr.Hex(), tx.Hash())
+	fmt.Printf("DAC proxy will be deployed at %s with the tx %s\n", proxyAddr.Hex(), tx.Hash())
+	fmt.Printf("Waiting for the tx to be mined, this will timeout after %s\n", timeout)
+	ok, err = waitTxToBeMined(cliCtx.Context, client, tx, timeout)
+	if err != nil {
+		return err
+	}
+	if !ok {
+		return errors.New("the transaction was mined, but it was not executed successfuly")
+	}
 
 	return nil
 }
 
 func setupDAC(cliCtx *cli.Context) error {
+	_, err := checkWorkingDir()
+	if err != nil {
+		return err
+	}
+	walletAddr, auth, client, err := loadAuthAndClient(cliCtx)
+	if err != nil {
+		return err
+	}
+
+	fmt.Println("loading setup file")
+	setupDACFilePath := cliCtx.String(setupDACFilePathFlagName)
+	data, err := os.ReadFile(setupDACFilePath)
+	if err != nil {
+		return err
+	}
+	var setup DACSetup
+	err = json.Unmarshal(data, &setup)
+	if err != nil {
+		return err
+	}
+	fmt.Printf(`
+DAC Configuration:
+required signatures %d / %d.
+Members: %+v		
+
+`, setup.RequiredSingatures, len(setup.Members), setup.Members,
+	)
+	dacAddr := cliCtx.String(addressFlagName)
+	err = askForConfirmation(cliCtx, fmt.Sprintf(
+		"Do you want to send the tx that will setup the DAC deployed at %s from the address %s with the configuration shown above?",
+		dacAddr, walletAddr,
+	))
+	if err != nil {
+		return err
+	}
+
+	fmt.Println("sending tx")
+	dac, err := polygondatacommittee.NewPolygondatacommittee(common.HexToAddress(dacAddr), client)
+	if err != nil {
+		return err
+	}
+	addrs, urls := setup.MembersAndAddrsForSetup()
+	tx, err := dac.SetupCommittee(auth, big.NewInt(setup.RequiredSingatures), urls, addrs)
+	if err != nil {
+		return err
+	}
+	fmt.Printf("DAC will be setup with the tx %s\n", tx.Hash())
+	timeout := getTimeout(cliCtx)
+	fmt.Printf("Waiting for the tx to be mined, this will timeout after %s\n", timeout)
+	ok, err := waitTxToBeMined(cliCtx.Context, client, tx, timeout)
+	if err != nil {
+		return err
+	}
+	if !ok {
+		return errors.New("the transaction was mined, but it was not executed successfuly")
+	}
+
 	return nil
+}
+
+type DACMember struct {
+	Address common.Address `json:"address"`
+	URL     string         `json:"url"`
+}
+
+type DACSetup struct {
+	RequiredSingatures int64       `json:"requiredSingatures"`
+	Members            []DACMember `json:"members"`
+}
+
+func (s DACSetup) Len() int { return len(s.Members) }
+func (s DACSetup) Less(i, j int) bool {
+	return strings.ToUpper(s.Members[i].Address.Hex()) < strings.ToUpper(s.Members[j].Address.Hex())
+}
+func (s DACSetup) Swap(i, j int) { s.Members[i], s.Members[j] = s.Members[j], s.Members[i] }
+
+func (d *DACSetup) MembersAndAddrsForSetup() (addrsBytes []byte, urls []string) {
+	sort.Sort(d)
+	for _, m := range d.Members {
+		addrsBytes = append(addrsBytes, m.Address.Bytes()...)
+		urls = append(urls, m.URL)
+	}
+	return
 }

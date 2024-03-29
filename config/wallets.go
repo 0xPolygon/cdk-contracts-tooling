@@ -36,7 +36,7 @@ func LoadWallets() (*Wallets, error) {
 	return &w, LoadFromFile("./wallets.toml", &w)
 }
 
-func (w *Wallets) GetPrivateKey(address string) (*ecdsa.PrivateKey, error) {
+func (w *Wallets) GetPrivateKey(address, pass string) (*ecdsa.PrivateKey, error) {
 	wallet, ok := w.Wallets[address]
 	if !ok {
 		return nil, fmt.Errorf("there is no wallet config for address %s. Please add it to wallets.toml", address)
@@ -45,14 +45,14 @@ func (w *Wallets) GetPrivateKey(address string) (*ecdsa.PrivateKey, error) {
 	case wtText:
 		return crypto.HexToECDSA(strings.TrimPrefix(wallet.PrivateKey, "0x"))
 	case wtFile:
-		return loadKeyFromFile(wallet.FilePath)
+		return loadKeyFromFile(wallet.FilePath, pass)
 	default:
 		return nil, fmt.Errorf("unsupported wallet type: %s. Should be one of [%s, %s]", wallet.Type, wtText, wtFile)
 	}
 }
 
-func (w *Wallets) GetAuth(address string, chainID uint64) (*bind.TransactOpts, error) {
-	pk, err := w.GetPrivateKey(address)
+func (w *Wallets) GetAuth(address, pass string, chainID uint64) (*bind.TransactOpts, error) {
+	pk, err := w.GetPrivateKey(address, pass)
 	if err != nil {
 		return nil, err
 	}
@@ -60,19 +60,21 @@ func (w *Wallets) GetAuth(address string, chainID uint64) (*bind.TransactOpts, e
 }
 
 // loadKeyFromFile creates an instance of a keystore key from a keystore file
-func loadKeyFromFile(path string) (*ecdsa.PrivateKey, error) {
+func loadKeyFromFile(path, pass string) (*ecdsa.PrivateKey, error) {
 	keystoreEncrypted, err := os.ReadFile(filepath.Clean(path))
 	if err != nil {
 		return nil, err
 	}
-	reader := bufio.NewReader(os.Stdin)
-	fmt.Printf("Enter password for the encrypted private key at: %s\n\nINPUT PASSWORD:", path)
-	password, err := reader.ReadString('\n')
-	if err != nil {
-		return nil, err
+	if pass == "" {
+		reader := bufio.NewReader(os.Stdin)
+		fmt.Printf("Enter password for the encrypted private key at: %s\n\nINPUT PASSWORD:", path)
+		pass, err = reader.ReadString('\n')
+		if err != nil {
+			return nil, err
+		}
+		pass = strings.TrimSuffix(pass, "\n")
 	}
-	password = strings.TrimSuffix(password, "\n")
-	key, err := keystore.DecryptKey(keystoreEncrypted, password)
+	key, err := keystore.DecryptKey(keystoreEncrypted, pass)
 	if err != nil {
 		return nil, err
 	}

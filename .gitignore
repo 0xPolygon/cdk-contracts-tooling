@@ -22,3 +22,7 @@ wallets.toml
 
 # Go workspace file
 go.work
+docker/gethData
+
+# Node
+node_modules
