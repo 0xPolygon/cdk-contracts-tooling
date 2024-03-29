@@ -116,7 +116,7 @@ func importRollupManager(cliCtx *cli.Context) error {
 		}
 		if _, err := os.Stat(path.Join(baseDir, "genesis", r.GenesisRoot.Hex()+".json")); errors.Is(err, os.ErrNotExist) {
 			fmt.Printf(
-				"WARNING: the rollup %s with chainID %d uses a genesis with root %s. But there is no such genesis file. PLease manually import it into ./genesis directory.\n",
+				"WARNING: the rollup %s with chainID %d uses a genesis with root %s. But there is no such genesis file. please manually import it into ./genesis directory.\n",
 				name, chainID, r.GenesisRoot.Hex(),
 			)
 		}

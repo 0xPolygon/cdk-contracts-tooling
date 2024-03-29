@@ -102,7 +102,7 @@ func importContracts(cliCtx *cli.Context) error {
 
 	fmt.Println("creating target directory and abi and bin subdirectories")
 	alias := cliCtx.String(contractsAliasFlagName)
-	contractsPath := baseDir + "/contracts/" + alias
+	contractsPath := path.Join(baseDir, "contracts", alias)
 	err = os.Mkdir(contractsPath, 0744)
 	if err != nil {
 		fmt.Println("error creating directory ", contractsPath)

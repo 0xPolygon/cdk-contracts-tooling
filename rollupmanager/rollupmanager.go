@@ -122,17 +122,13 @@ func (rm *RollupManager) GetRollupCreationInfo(ctx context.Context, rollupID uin
 		if err != nil {
 			return CreateRollupInfo{}, err
 		}
-		root, err := rollup.BatchNumToStateRoot(
-			&bind.CallOpts{BlockNumber: big.NewInt(int64(rm.UpdateToULxLyBlock - 1))},
-			0,
-		)
+		callOpts := &bind.CallOpts{BlockNumber: big.NewInt(int64(rm.UpdateToULxLyBlock - 1))}
+		root, err := rollup.BatchNumToStateRoot(callOpts, 0)
 		if err != nil {
 			fmt.Println("couldn't find genesis for batch 0 of the rollup 1")
 			return CreateRollupInfo{}, err
 		}
-		chainID, err := rollup.ChainID(
-			&bind.CallOpts{BlockNumber: big.NewInt(int64(rm.UpdateToULxLyBlock - 1))},
-		)
+		chainID, err := rollup.ChainID(callOpts)
 		if err != nil {
 			return CreateRollupInfo{}, err
 		}

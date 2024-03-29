@@ -53,7 +53,7 @@ func bridgeConfig(cliCtx *cli.Context) error {
 		return err
 	}
 
-	fmt.Println("creating nridge service config file")
+	fmt.Println("creating bridge service config file")
 	bridgeConfigTemplate := `
 [NetworkConfig]
 GenBlockNumber = %d
