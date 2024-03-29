@@ -8,7 +8,6 @@ import (
 	"os/exec"
 	"strings"
 	"testing"
-	"time"
 
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/elderberry/polygondatacommittee"
 	"github.com/ethereum/go-ethereum/common"
@@ -17,17 +16,19 @@ import (
 
 func TestSetupDAC(t *testing.T) {
 	// Deploy DAC
-	out, err := exec.Command(
-		"go", "run", "./cmd", "deploy-dac",
+	deployCmdArgs := []string{
+		"run", "./cmd", "deploy-dac",
 		"-l1", "local",
 		"-w", walletAddr,
 		"-wp", walletPass,
 		"-skip-confirmation",
-	).CombinedOutput()
+	}
+	out, err := exec.Command("go", deployCmdArgs...).CombinedOutput()
 	require.NoError(t, err, string(out))
+	_, msgImpl, _ := strings.Cut(string(out), "DAC implementation will be deployed at ")
+	implementationAddr, _, _ := strings.Cut(msgImpl, " with the tx ")
 	_, msg, _ := strings.Cut(string(out), "DAC proxy will be deployed at ")
 	dacAddr, _, _ := strings.Cut(msg, " with the tx ")
-	time.Sleep(3 * time.Second) // TODO: wait for tx to be mined
 	fmt.Println(string(out))
 	client, err := getClient()
 	require.NoError(t, err)
@@ -57,17 +58,45 @@ func TestSetupDAC(t *testing.T) {
 	require.NoError(t, err)
 	err = os.WriteFile(setupFile.Name(), setupData, 0644)
 	require.NoError(t, err)
-	out, err = exec.Command(
-		"go", "run", "./cmd", "setup-dac",
+	setupCmdArgs := []string{
+		"run", "./cmd", "setup-dac",
 		"-l1", "local",
 		"-w", walletAddr,
 		"-wp", walletPass,
 		"-a", dacAddr,
 		"-f", setupFile.Name(),
 		"-skip-confirmation",
-	).CombinedOutput()
+	}
+	out, err = exec.Command("go", setupCmdArgs...).CombinedOutput()
 	require.NoError(t, err, string(out))
+	assertDACSetup(t, setup, dac)
 
+	// Deploy new DAC with existing implementation
+	deployCmdArgs = append(deployCmdArgs, "-implementation", implementationAddr)
+	out, err = exec.Command("go", deployCmdArgs...).CombinedOutput()
+	require.NoError(t, err, string(out))
+	_, msg, _ = strings.Cut(string(out), "DAC proxy will be deployed at ")
+	dacAddr2, _, _ := strings.Cut(msg, " with the tx ")
+	require.NotEqual(t, dacAddr, dacAddr2)
+
+	// Setup new DAC
+	var found bool
+	for i := 0; i < len(setupCmdArgs); i++ {
+		if setupCmdArgs[i] == dacAddr {
+			setupCmdArgs[i] = dacAddr2
+			found = true
+			break
+		}
+	}
+	require.True(t, found)
+	out, err = exec.Command("go", setupCmdArgs...).CombinedOutput()
+	require.NoError(t, err, string(out))
+	dac, err = polygondatacommittee.NewPolygondatacommittee(common.HexToAddress(dacAddr2), client)
+	require.NoError(t, err)
+	assertDACSetup(t, setup, dac)
+}
+
+func assertDACSetup(t *testing.T, setup DACSetup, dac *polygondatacommittee.Polygondatacommittee) {
 	reqSigsSC, err := dac.RequiredAmountOfSignatures(nil)
 	require.NoError(t, err)
 	require.Equal(t, setup.RequiredSingatures, reqSigsSC.Int64())

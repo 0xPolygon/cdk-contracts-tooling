@@ -56,7 +56,7 @@ var (
 		Required: false,
 	}
 	timeoutFlag = &cli.DurationFlag{
-		Name:     skipConfirmationFlagName,
+		Name:     timeoutFlagName,
 		Aliases:  []string{"to"},
 		Usage:    fmt.Sprintf("Time after which a given operation within a command will fail. Defaults to %s", defaultTimeout),
 		Required: false,

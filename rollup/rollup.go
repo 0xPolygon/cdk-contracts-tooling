@@ -22,7 +22,7 @@ type Rollup struct {
 	GasToken      common.Address
 }
 
-func LoadFromL1ByChainID(client *ethclient.Client, rm *rollupmanager.RollupManager, chainID uint64) (*Rollup, error) {
+func LoadFromL1ByChainID(ctx context.Context, client *ethclient.Client, rm *rollupmanager.RollupManager, chainID uint64) (*Rollup, error) {
 	rID, err := rm.Contract.ChainIDToRollupID(nil, chainID)
 	if err != nil {
 		return nil, err
@@ -31,7 +31,7 @@ func LoadFromL1ByChainID(client *ethclient.Client, rm *rollupmanager.RollupManag
 	if err != nil {
 		return nil, err
 	}
-	info, err := rm.GetRollupCreationInfo(context.TODO(), rID)
+	info, err := rm.GetRollupCreationInfo(ctx, rID)
 	if err != nil {
 		return nil, err
 	}

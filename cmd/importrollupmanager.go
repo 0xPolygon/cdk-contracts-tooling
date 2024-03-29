@@ -98,7 +98,7 @@ func importRollupManager(cliCtx *cli.Context) error {
 	}
 	for chainID, name := range rollups {
 		fmt.Println("importing rollup ", name, " with chainID ", chainID)
-		r, err := rollup.LoadFromL1ByChainID(client, rm, chainID)
+		r, err := rollup.LoadFromL1ByChainID(cliCtx.Context, client, rm, chainID)
 		if err != nil {
 			return err
 		}

@@ -9,9 +9,10 @@ import (
 	"sort"
 	"strings"
 
+	"github.com/0xPolygon/cdk-contracts-tooling/contracts/common/erc1967proxy"
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/elderberry/polygondatacommittee"
-	"github.com/0xPolygon/cdk-contracts-tooling/contracts/etrog/polygontransparentproxy"
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/urfave/cli/v2"
 )
 
@@ -35,7 +36,7 @@ var (
 			&cli.StringFlag{
 				Name:     implementationAddressFlagName,
 				Aliases:  []string{"implementation", "impl"},
-				Usage:    `TODO`,
+				Usage:    `Smart contract address of a DAC implementation. If provided, it will be used for the proxy implementation instead of deploying a new one`,
 				Required: false,
 			},
 		},
@@ -72,35 +73,42 @@ func deployDAC(cliCtx *cli.Context) error {
 		return err
 	}
 
-	err = askForConfirmation(cliCtx, fmt.Sprintf(
-		"Do you want to send the tx that will deploy the DAC from the address %s?",
-		walletAddr,
-	))
-	if err != nil {
-		return err
-	}
-	fmt.Println("deploying DAC implementaiton")
-	dacAddr, tx, _, err := polygondatacommittee.DeployPolygondatacommittee(auth, client)
-	if err != nil {
-		return err
-	}
-	fmt.Printf("DAC implementation will be deployed at %s with the tx %s\n", dacAddr.Hex(), tx.Hash())
 	timeout := getTimeout(cliCtx)
-	fmt.Printf("Waiting for the tx to be mined, this will timeout after %s\n", timeout)
-	ok, err := waitTxToBeMined(cliCtx.Context, client, tx, timeout)
-	if err != nil {
-		return err
-	}
-	if !ok {
-		return errors.New("the transaction was mined, but it was not executed successfuly")
+	dacAddrStr := cliCtx.String(implementationAddressFlagName)
+	var dacAddr common.Address
+	if dacAddrStr != "" {
+		dacAddr = common.HexToAddress(dacAddrStr)
+		fmt.Printf("Using %s as DAC implementation (previously deployed)\n", dacAddr)
+	} else {
+		err = askForConfirmation(cliCtx, fmt.Sprintf(
+			"Do you want to send the tx that will deploy the DAC from the address %s?",
+			walletAddr,
+		))
+		if err != nil {
+			return err
+		}
+		fmt.Println("deploying DAC implementaiton")
+		var tx *types.Transaction
+		dacAddr, tx, _, err = polygondatacommittee.DeployPolygondatacommittee(auth, client)
+		if err != nil {
+			return err
+		}
+		fmt.Printf("DAC implementation will be deployed at %s with the tx %s\n", dacAddr.Hex(), tx.Hash())
+		fmt.Printf("Waiting for the tx to be mined, this will timeout after %s\n", timeout)
+		ok, err := waitTxToBeMined(cliCtx.Context, client, tx, timeout)
+		if err != nil {
+			return err
+		}
+		if !ok {
+			return errors.New("the transaction was mined, but it was not executed successfuly")
+		}
 	}
 
 	fmt.Println("deploying proxy")
-	proxyAddr, tx, _, err := polygontransparentproxy.DeployPolygontransparentproxy( // TODO: use OZ instead
+	proxyAddr, tx, _, err := erc1967proxy.DeployErc1967proxy(
 		auth,
 		client,
 		dacAddr,
-		auth.From,
 		common.Hex2Bytes("8129fc1c00000000000000000000000000000000000000000000000000000000"), // initialize() signature
 	)
 	if err != nil {
@@ -108,7 +116,7 @@ func deployDAC(cliCtx *cli.Context) error {
 	}
 	fmt.Printf("DAC proxy will be deployed at %s with the tx %s\n", proxyAddr.Hex(), tx.Hash())
 	fmt.Printf("Waiting for the tx to be mined, this will timeout after %s\n", timeout)
-	ok, err = waitTxToBeMined(cliCtx.Context, client, tx, timeout)
+	ok, err := waitTxToBeMined(cliCtx.Context, client, tx, timeout)
 	if err != nil {
 		return err
 	}
