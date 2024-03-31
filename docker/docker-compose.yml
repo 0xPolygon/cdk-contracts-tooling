@@ -3,10 +3,13 @@ services:
     cdk-mock-l1:
         container_name: cdk-mock-l1
         image: ethereum/client-go:latest
+        user: "${UID}:${GID}"
         environment:
             - DEV_PERIOD
         ports:
             - "8545:8545"
+        volumes:
+            - ./gethData/geth_data:/geth_data
         entrypoint:
             - geth
             - --rpc.allow-unprotected-txs
@@ -16,6 +19,8 @@ services:
             - --dev
             - --dev.period
             - "1"
+            - --datadir
+            - /geth_data
             
     cdk-l1-funder:
         network_mode: host
@@ -26,4 +31,4 @@ services:
         volumes:
             - ${PWD}/fundAccount:/home/node/project
         working_dir: /home/node/project
-        command: node fundAccounts.js
+        command: /bin/sh -c "npm i && node fundAccounts.js"

@@ -1,10 +1,12 @@
 package main
 
 import (
+	"context"
 	"os"
 	"path"
 	"testing"
 
+	"github.com/0xPolygon/cdk-contracts-tooling/docker"
 	"github.com/ethereum/go-ethereum/ethclient"
 )
 
@@ -26,6 +28,15 @@ func TestMain(t *testing.M) {
 			panic(err)
 		}
 	}
+	ctx := context.Background()
+	if err := docker.StartMockL1Docker(ctx); err != nil {
+		panic(err)
+	}
+	defer func() {
+		if err := docker.StopMockL1Docker(); err != nil {
+			panic(err)
+		}
+	}()
 	t.Run()
 }
 
