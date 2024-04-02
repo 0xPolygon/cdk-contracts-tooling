@@ -1,0 +1,11 @@
+[Networks.sepolia]
+URL = "https://sepolia.infura.io/v3/******"
+ChainID = 11155111
+
+[Networks.mainnet]
+URL = "https://sepolia.infura.io/v3/******"
+ChainID = 1
+
+[Networks.local]
+URL = "http://localhost:8545"
+ChainID = 1337

@@ -1,0 +1,9 @@
+{
+ "Address": "0xcb9530e86d6e0183fcdbe74c74c5c0a3963393ce",
+ "GenesisRoot": "0xc8380fc07613572cabbc1a36d62077e2cd3b0e20bdb56ec521729e71f4c217d6",
+ "CreationBlock": 5368714,
+ "ChainID": 82286,
+ "Name": "cdk-validium-bali-04",
+ "RollupID": 4,
+ "GasToken": "0x0000000000000000000000000000000000000000"
+}

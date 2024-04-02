@@ -18,6 +18,10 @@ func main() {
 	app.Version = version
 	app.Commands = []*cli.Command{
 		importContractsCommand,
+		importRollupManagerCommand,
+		importRollupCommand,
+		nodeGenesisCommand,
+		bridgeConfigCommand,
 	}
 
 	err := app.Run(os.Args)

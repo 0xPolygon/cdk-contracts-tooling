@@ -1,0 +1,9 @@
+{
+ "Address": "0xf7af1811310201b4c96906625348b8db457c1902",
+ "GenesisRoot": "0xc012c41e4583a2e3b776aff34aea0b4fd235d098484a455956554dbf69b8235e",
+ "CreationBlock": 5335306,
+ "ChainID": 33303,
+ "Name": "cdk-validium-cardona-03",
+ "RollupID": 3,
+ "GasToken": "0x0000000000000000000000000000000000000000"
+}

@@ -1,0 +1,9 @@
+{
+ "Address": "0x4e79d5a9d58413a09fb850a23143888677a97d72",
+ "GenesisRoot": "0xc012c41e4583a2e3b776aff34aea0b4fd235d098484a455956554dbf69b8235e",
+ "CreationBlock": 5526149,
+ "ChainID": 879490799,
+ "Name": "networkName",
+ "RollupID": 6,
+ "GasToken": "0x0000000000000000000000000000000000000000"
+}

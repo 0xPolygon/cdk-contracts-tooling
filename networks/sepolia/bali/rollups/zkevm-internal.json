@@ -1,0 +1,9 @@
+{
+ "Address": "0x89ba0ed947a88fe43c22ae305c0713ec8a7eb361",
+ "GenesisRoot": "0xba1fbb6c11ba3abc9dbee98d8920b8bd832e531ce9360c6f427ef6bfacebe3d1",
+ "CreationBlock": 4794475,
+ "ChainID": 2440,
+ "Name": "zkevm-internal",
+ "RollupID": 1,
+ "GasToken": "0x0000000000000000000000000000000000000000"
+}

@@ -1,0 +1,9 @@
+{
+ "Address": "0x47193c28404c762e7e213a8099a8b3d72885cddc",
+ "GenesisRoot": "0xc012c41e4583a2e3b776aff34aea0b4fd235d098484a455956554dbf69b8235e",
+ "CreationBlock": 5330273,
+ "ChainID": 6038361,
+ "Name": "zKyoto",
+ "RollupID": 2,
+ "GasToken": "0x0000000000000000000000000000000000000000"
+}

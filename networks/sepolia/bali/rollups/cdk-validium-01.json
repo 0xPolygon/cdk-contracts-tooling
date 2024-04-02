@@ -1,0 +1,9 @@
+{
+ "Address": "0x0270df078bdaefd6191bea3fa110ded09ec6d239",
+ "GenesisRoot": "0xc8380fc07613572cabbc1a36d62077e2cd3b0e20bdb56ec521729e71f4c217d6",
+ "CreationBlock": 5329690,
+ "ChainID": 99902,
+ "Name": "cdk-validium-01",
+ "RollupID": 3,
+ "GasToken": "0x0000000000000000000000000000000000000000"
+}
