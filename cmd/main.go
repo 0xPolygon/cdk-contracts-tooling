@@ -24,6 +24,9 @@ func main() {
 		bridgeConfigCommand,
 		deployDACCommand,
 		setupDACCommand,
+		startMockL1Command,
+		stopMockL1Command,
+		exportMockL1Command,
 	}
 
 	err := app.Run(os.Args)

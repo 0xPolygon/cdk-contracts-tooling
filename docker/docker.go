@@ -8,6 +8,7 @@ import (
 	"os"
 	"os/exec"
 	"path"
+	"strconv"
 	"time"
 
 	"github.com/ethereum/go-ethereum/common"
@@ -26,7 +27,18 @@ func StartMockL1Docker(ctx context.Context) error {
 	if err != nil {
 		return err
 	}
-	err = os.MkdirAll(path.Join("gethData", "geth_data", "geth"), 0744)
+	err = os.MkdirAll(path.Join("gethData", "geth_data"), 0744)
+	if err != nil {
+		return err
+	}
+	os.Geteuid()
+	gid := os.Getegid()
+	uid := os.Geteuid()
+	err = os.Setenv("GID", strconv.Itoa(gid))
+	if err != nil {
+		return err
+	}
+	err = os.Setenv("UID", strconv.Itoa(uid))
 	if err != nil {
 		return err
 	}
@@ -57,11 +69,10 @@ func StartMockL1Docker(ctx context.Context) error {
 		return err
 	}
 	fundCmd.Dir = currentDir
-	out, err := fundCmd.CombinedOutput()
+	err = fundCmd.Run()
 	if err != nil {
 		return fmt.Errorf("error running funding script: %s", err)
 	}
-	fmt.Println(string(out))
 	var accountHasBalance bool
 	for i := 0; i < 10; i++ {
 		balance, err := client.BalanceAt(ctx, common.HexToAddress("0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266"), nil)
@@ -92,7 +103,7 @@ func StopMockL1Docker() error {
 	return exec.Command("docker", "compose", "down").Run()
 }
 
-func BuildL1FromMock() error {
+func BuildL1FromMock(imageName string) error {
 	var err error
 	err = os.Chdir("./docker")
 	if err != nil {
@@ -100,9 +111,14 @@ func BuildL1FromMock() error {
 	}
 	defer func() { err = os.Chdir("..") }()
 
-	err = exec.Command("docker", "compose", "up", "-d", "cdk-mock-l1").Run()
+	err = exec.Command("docker", "compose", "down").Run()
 	if err != nil {
-		return fmt.Errorf("error running dockerized geth: %s", err)
+		return err
+	}
+
+	err = exec.Command("docker", "build", "-t", imageName, ".").Run()
+	if err != nil {
+		return err
 	}
 
 	return err

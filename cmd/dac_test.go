@@ -2,7 +2,6 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
 	"math/big"
 	"os"
 	"os/exec"
@@ -29,7 +28,6 @@ func TestSetupDAC(t *testing.T) {
 	implementationAddr, _, _ := strings.Cut(msgImpl, " with the tx ")
 	_, msg, _ := strings.Cut(string(out), "DAC proxy will be deployed at ")
 	dacAddr, _, _ := strings.Cut(msg, " with the tx ")
-	fmt.Println(string(out))
 	client, err := getClient()
 	require.NoError(t, err)
 	dac, err := polygondatacommittee.NewPolygondatacommittee(common.HexToAddress(dacAddr), client)
