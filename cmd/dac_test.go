@@ -24,10 +24,10 @@ func TestSetupDAC(t *testing.T) {
 	}
 	out, err := exec.Command("go", deployCmdArgs...).CombinedOutput()
 	require.NoError(t, err, string(out))
-	_, msgImpl, _ := strings.Cut(string(out), "DAC implementation will be deployed at ")
-	implementationAddr, _, _ := strings.Cut(msgImpl, " with the tx ")
-	_, msg, _ := strings.Cut(string(out), "DAC proxy will be deployed at ")
-	dacAddr, _, _ := strings.Cut(msg, " with the tx ")
+	_, msgImpl, _ := strings.Cut(string(out), "DAC implementation deployed at ")
+	implementationAddr, _, _ := strings.Cut(msgImpl, "\n")
+	_, dacAddr, _ := strings.Cut(string(out), "DAC proxy deployed at ")
+	dacAddr, _, _ = strings.Cut(dacAddr, "\n")
 	client, err := getClient()
 	require.NoError(t, err)
 	dac, err := polygondatacommittee.NewPolygondatacommittee(common.HexToAddress(dacAddr), client)
@@ -73,8 +73,8 @@ func TestSetupDAC(t *testing.T) {
 	deployCmdArgs = append(deployCmdArgs, "-implementation", implementationAddr)
 	out, err = exec.Command("go", deployCmdArgs...).CombinedOutput()
 	require.NoError(t, err, string(out))
-	_, msg, _ = strings.Cut(string(out), "DAC proxy will be deployed at ")
-	dacAddr2, _, _ := strings.Cut(msg, " with the tx ")
+	_, dacAddr2, _ := strings.Cut(string(out), "DAC proxy deployed at ")
+	dacAddr2, _, _ = strings.Cut(dacAddr2, "\n")
 	require.NotEqual(t, dacAddr, dacAddr2)
 
 	// Setup new DAC

@@ -87,9 +87,10 @@ func deployDAC(cliCtx *cli.Context) error {
 		if err != nil {
 			return err
 		}
+		fmt.Println("DAC implementation deployed at", dacAddr)
 	}
 
-	return deployProxy(
+	proxyAddr, err := deployProxy(
 		cliCtx,
 		auth,
 		client,
@@ -97,6 +98,11 @@ func deployDAC(cliCtx *cli.Context) error {
 		common.Hex2Bytes("8129fc1c00000000000000000000000000000000000000000000000000000000"), // initialize() signature, timeout
 		timeout,
 	)
+	if err != nil {
+		return err
+	}
+	fmt.Println("DAC proxy deployed at", proxyAddr)
+	return nil
 }
 
 func setupDAC(cliCtx *cli.Context) error {

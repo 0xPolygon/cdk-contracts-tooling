@@ -110,8 +110,8 @@ func deployProxy(
 	implementationAddr common.Address,
 	initializeParams []byte,
 	timeout time.Duration,
-) error {
-	_, err := sendTxWithConfirmation(
+) (common.Address, error) {
+	return sendTxWithConfirmation(
 		cliCtx, client,
 		"Do you want to send the tx that will deploy the proxy?",
 		func() (*types.Transaction, common.Address, error) {
@@ -124,7 +124,6 @@ func deployProxy(
 			return tx, proxyAddr, err
 		},
 	)
-	return err
 }
 
 func sendTxWithConfirmation(
