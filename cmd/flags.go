@@ -8,14 +8,20 @@ import (
 )
 
 const (
-	l1FlagName               = "l1-network"
-	outputFileFlagName       = "output"
-	walletFlagName           = "wallet"
-	walletPasswordFlagName   = "wallet-password"
-	addressFlagName          = "address"
-	skipConfirmationFlagName = "skip-confirmation"
-	timeoutFlagName          = "timeout"
-	defaultTimeout           = time.Minute * 10
+	l1FlagName                    = "l1-network"
+	outputFileFlagName            = "output"
+	walletFlagName                = "wallet"
+	walletPasswordFlagName        = "wallet-password"
+	addressFlagName               = "address"
+	skipConfirmationFlagName      = "skip-confirmation"
+	timeoutFlagName               = "timeout"
+	setupFilePathFlagName         = "setup-file"
+	implementationAddressFlagName = "implementation-address"
+	smartContractVersionFlagName  = "smart-contract-version"
+
+	defaultTimeout = time.Minute * 10
+	etrog          = "etrog"
+	elderbeerry    = "elderberry"
 )
 
 var (
@@ -60,5 +66,27 @@ var (
 		Aliases:  []string{"to"},
 		Usage:    fmt.Sprintf("Time after which a given operation within a command will fail. Defaults to %s", defaultTimeout),
 		Required: false,
+	}
+	smartContractVersionFlag = &cli.StringFlag{
+		Name:    walletPasswordFlagName,
+		Aliases: []string{"scv", "contract-version"},
+		Usage: fmt.Sprintf(
+			`Version of the smart contracts to be used. Supported options: ["%s", "%s"]`,
+			etrog, elderbeerry,
+		),
+		Required: false,
+		Action: func(ctx *cli.Context, input string) error {
+			switch input {
+			case "etrog":
+				return nil
+			case "elderberry":
+				return nil
+			default:
+				return fmt.Errorf(
+					`unsupported %s value. Supported options are: ["%s", "%s"]`,
+					walletPasswordFlagName, etrog, elderbeerry,
+				)
+			}
+		},
 	}
 )

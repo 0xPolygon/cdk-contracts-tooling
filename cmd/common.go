@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"github.com/0xPolygon/cdk-contracts-tooling/config"
+	"github.com/0xPolygon/cdk-contracts-tooling/contracts/common/erc1967proxy"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
@@ -34,12 +35,13 @@ func checkWorkingDir() (string, error) {
 }
 
 func askForConfirmation(cliCtx *cli.Context, msg string) error {
+	fmt.Println(msg, " (yes / no): ")
 	skip := cliCtx.Bool(skipConfirmationFlagName)
 	if skip {
+		fmt.Println("(CONFIRMATION SKIPPED)")
 		return nil
 	}
 	reader := bufio.NewReader(os.Stdin)
-	fmt.Println(msg, " (yes / no): ")
 	answer, err := reader.ReadString('\n')
 	if err != nil {
 		return err
@@ -99,4 +101,65 @@ func getTimeout(cliCtx *cli.Context) time.Duration {
 		return defaultTimeout
 	}
 	return timeout
+}
+
+func deployProxy(
+	cliCtx *cli.Context,
+	auth *bind.TransactOpts,
+	client *ethclient.Client,
+	implementationAddr common.Address,
+	initializeParams []byte,
+	timeout time.Duration,
+) error {
+	_, err := sendTxWithConfirmation(
+		cliCtx, client,
+		"Do you want to send the tx that will deploy the proxy?",
+		func() (*types.Transaction, common.Address, error) {
+			proxyAddr, tx, _, err := erc1967proxy.DeployErc1967proxy(
+				auth,
+				client,
+				implementationAddr,
+				initializeParams,
+			)
+			return tx, proxyAddr, err
+		},
+	)
+	return err
+}
+
+func sendTxWithConfirmation(
+	cliCtx *cli.Context,
+	client *ethclient.Client,
+	confirmationQuestion string,
+	sendTx func() (*types.Transaction, common.Address, error),
+) (common.Address, error) {
+	err := askForConfirmation(cliCtx, confirmationQuestion)
+	if err != nil {
+		return common.Address{}, err
+	}
+	fmt.Println("sending tx")
+	tx, deployAddr, err := sendTx()
+	if err != nil {
+		return common.Address{}, err
+	}
+
+	zeroAddr := common.Address{}
+	if zeroAddr != deployAddr {
+		fmt.Printf(
+			"Tx sent %s, smart contract will be deployed at %s\n",
+			tx.Hash(), deployAddr,
+		)
+	} else {
+		fmt.Printf("Tx %s sent", tx.Hash())
+	}
+	timeout := getTimeout(cliCtx)
+	fmt.Printf("Waiting for the tx to be mined, this will timeout after %s\n", timeout)
+	ok, err := waitTxToBeMined(cliCtx.Context, client, tx, timeout)
+	if err != nil {
+		return common.Address{}, err
+	}
+	if !ok {
+		return common.Address{}, errors.New("the transaction was mined, but it was not executed successfuly")
+	}
+	return deployAddr, nil
 }
