@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"math/big"
 	"sync"
 
@@ -73,9 +74,13 @@ func (fs scalableSigner) Hash(tx *types.Transaction) common.Hash {
 	})
 }
 
+func (fs scalableSigner) SignerFn(addr common.Address, tx *types.Transaction) (*types.Transaction, error) {
+	return tx.WithSignature(scalableSigner{}, nil)
+}
+
 func hardcodedSignature() (r, s, v *big.Int) {
-	r = new(big.Int).SetBytes(common.Hex2Bytes("0x00000000000000000000000000000000000000000000000000000005ca1ab1e0"))
-	s = new(big.Int).SetBytes(common.Hex2Bytes("0x00000000000000000000000000000000000000000000000000000005ca1ab1e0"))
+	r = big.NewInt(24865583584) // new(big.Int).SetBytes(common.Hex2Bytes("0x00000000000000000000000000000000000000000000000000000005ca1ab1e0"))
+	s = big.NewInt(1554098974)  // new(big.Int).SetBytes(common.Hex2Bytes("0x000000000000000000000000000000000000000000000000000000005ca1ab1e"))
 	v = new(big.Int).SetBytes([]byte{27})
 	return r, s, v
 }
@@ -128,17 +133,18 @@ func create2Deployment(
 		return common.Address{}, err
 	}
 	if len(code) > 0 {
+		fmt.Println("already deployed")
 		return precalculatedAddressDeployed, nil
 	}
 
 	// Deploy
 	if len(dataCall) > 0 {
 		// Using create2 and call
-		_, err := sendTxWithConfirmation(
+		_, err = sendTxWithConfirmation(
 			cliCtx, client, confirmationQuestion,
-			func() (*types.Transaction, common.Address, error) {
-				tx, err := polgonZKEVMDeployerContract.DeployDeterministicAndCall(auth, nil, salt, deployTransaction, dataCall)
-				return tx, common.Address{}, err
+			func() (*types.Transaction, error) {
+				tx, err := polgonZKEVMDeployerContract.DeployDeterministicAndCall(auth, big.NewInt(0), salt, deployTransaction, dataCall)
+				return tx, err
 			},
 		)
 		if err != nil {
@@ -146,16 +152,25 @@ func create2Deployment(
 		}
 	} else {
 		// Using create2
-		_, err := sendTxWithConfirmation(
+		_, err = sendTxWithConfirmation(
 			cliCtx, client, confirmationQuestion,
-			func() (*types.Transaction, common.Address, error) {
-				tx, err := polgonZKEVMDeployerContract.DeployDeterministic(auth, nil, salt, deployTransaction)
-				return tx, common.Address{}, err
+			func() (*types.Transaction, error) {
+				tx, err := polgonZKEVMDeployerContract.DeployDeterministic(auth, big.NewInt(0), salt, deployTransaction)
+				return tx, err
 			},
 		)
 		if err != nil {
 			return common.Address{}, err
 		}
+	}
+
+	// Check if already deployed
+	code, err = client.CodeAt(cliCtx.Context, precalculatedAddressDeployed, nil)
+	if err != nil {
+		return common.Address{}, err
+	}
+	if len(code) == 0 {
+		return common.Address{}, fmt.Errorf("no code at the precalculated addr %s after sending the tx", precalculatedAddressDeployed)
 	}
 
 	return precalculatedAddressDeployed, nil

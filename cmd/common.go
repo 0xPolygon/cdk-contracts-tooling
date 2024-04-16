@@ -27,7 +27,11 @@ func checkWorkingDir() (string, error) {
 	if err != nil {
 		return "", err
 	}
-	_, f := path.Split(baseDir)
+	dir, f := path.Split(baseDir)
+	if f == "cmd" {
+		os.Chdir(dir)
+		return checkWorkingDir()
+	}
 	if f != repoName {
 		return "", fmt.Errorf("run the command from the root of the (%s)", repoName)
 	}
@@ -109,19 +113,18 @@ func deployProxy(
 	client *ethclient.Client,
 	implementationAddr common.Address,
 	initializeParams []byte,
-	timeout time.Duration,
 ) (common.Address, error) {
 	return sendTxWithConfirmation(
 		cliCtx, client,
 		"Do you want to send the tx that will deploy the proxy?",
-		func() (*types.Transaction, common.Address, error) {
-			proxyAddr, tx, _, err := erc1967proxy.DeployErc1967proxy(
+		func() (*types.Transaction, error) {
+			_, tx, _, err := erc1967proxy.DeployErc1967proxy(
 				auth,
 				client,
 				implementationAddr,
 				initializeParams,
 			)
-			return tx, proxyAddr, err
+			return tx, err
 		},
 	)
 }
@@ -130,27 +133,19 @@ func sendTxWithConfirmation(
 	cliCtx *cli.Context,
 	client *ethclient.Client,
 	confirmationQuestion string,
-	sendTx func() (*types.Transaction, common.Address, error),
+	sendTx func() (*types.Transaction, error),
 ) (common.Address, error) {
 	err := askForConfirmation(cliCtx, confirmationQuestion)
 	if err != nil {
 		return common.Address{}, err
 	}
 	fmt.Println("sending tx")
-	tx, deployAddr, err := sendTx()
+	tx, err := sendTx()
 	if err != nil {
 		return common.Address{}, err
 	}
 
-	zeroAddr := common.Address{}
-	if zeroAddr != deployAddr {
-		fmt.Printf(
-			"Tx sent %s, smart contract will be deployed at %s\n",
-			tx.Hash(), deployAddr,
-		)
-	} else {
-		fmt.Printf("Tx %s sent", tx.Hash())
-	}
+	fmt.Printf("Tx %s sent\n", tx.Hash())
 	timeout := getTimeout(cliCtx)
 	fmt.Printf("Waiting for the tx to be mined, this will timeout after %s\n", timeout)
 	ok, err := waitTxToBeMined(cliCtx.Context, client, tx, timeout)
@@ -160,5 +155,9 @@ func sendTxWithConfirmation(
 	if !ok {
 		return common.Address{}, errors.New("the transaction was mined, but it was not executed successfuly")
 	}
-	return deployAddr, nil
+	receipt, err := client.TransactionReceipt(cliCtx.Context, tx.Hash())
+	if err != nil {
+		return common.Address{}, err
+	}
+	return receipt.ContractAddress, nil
 }

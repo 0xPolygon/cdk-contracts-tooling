@@ -66,7 +66,6 @@ func deployDAC(cliCtx *cli.Context) error {
 		return err
 	}
 
-	timeout := getTimeout(cliCtx)
 	dacAddrStr := cliCtx.String(implementationAddressFlagName)
 	var dacAddr common.Address
 	if dacAddrStr != "" {
@@ -79,9 +78,9 @@ func deployDAC(cliCtx *cli.Context) error {
 				"Do you want to send the tx that will deploy the DAC from the address %s?",
 				walletAddr,
 			),
-			func() (*types.Transaction, common.Address, error) {
-				dacAddr, tx, _, err := polygondatacommittee.DeployPolygondatacommittee(auth, client)
-				return tx, dacAddr, err
+			func() (*types.Transaction, error) {
+				_, tx, _, err := polygondatacommittee.DeployPolygondatacommittee(auth, client)
+				return tx, err
 			},
 		)
 		if err != nil {
@@ -96,7 +95,6 @@ func deployDAC(cliCtx *cli.Context) error {
 		client,
 		dacAddr,
 		common.Hex2Bytes("8129fc1c00000000000000000000000000000000000000000000000000000000"), // initialize() signature, timeout
-		timeout,
 	)
 	if err != nil {
 		return err
@@ -140,14 +138,14 @@ Members: %+v
 			"Do you want to send the tx that will setup the DAC deployed at %s from the address %s with the configuration shown above?",
 			dacAddr, walletAddr,
 		),
-		func() (*types.Transaction, common.Address, error) {
+		func() (*types.Transaction, error) {
 			dac, err := polygondatacommittee.NewPolygondatacommittee(common.HexToAddress(dacAddr), client)
 			if err != nil {
-				return nil, common.Address{}, err
+				return nil, err
 			}
 			addrs, urls := setup.MembersAndAddrsForSetup()
 			tx, err := dac.SetupCommittee(auth, big.NewInt(setup.RequiredSingatures), urls, addrs)
-			return tx, common.Address{}, err
+			return tx, err
 		},
 	)
 

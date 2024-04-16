@@ -68,7 +68,7 @@ var (
 		Required: false,
 	}
 	smartContractVersionFlag = &cli.StringFlag{
-		Name:    walletPasswordFlagName,
+		Name:    smartContractVersionFlagName,
 		Aliases: []string{"scv", "contract-version"},
 		Usage: fmt.Sprintf(
 			`Version of the smart contracts to be used. Supported options: ["%s", "%s"]`,
