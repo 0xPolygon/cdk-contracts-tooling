@@ -47,6 +47,12 @@ var (
 				Required: true,
 			},
 			outputFlag,
+			&cli.StringFlag{
+				Name:     rollupManagerAliasFlagName,
+				Aliases:  []string{"alias"},
+				Usage:    "Name that will be used to store the rollup manager info once deployed, alias of the uLxLy being imported",
+				Required: true,
+			},
 		},
 	}
 )
@@ -625,7 +631,9 @@ func deployRollupManager(cliCtx *cli.Context) error {
 	// TODO: checks, a lot of checks and asserts https://github.com/0xPolygonHermez/zkevm-contracts/blob/main/deployment/v2/3_deployContracts.ts#L488
 
 	output.DeploymentCompleted = true
-	return nil
+	l1Network := cliCtx.String(l1FlagName)
+	alias := cliCtx.String(rollupManagerAliasFlagName)
+	return importRollupManager(cliCtx.Context, l1Network, output.PolygonRollupManager.Hex(), alias)
 }
 
 type DeployRollupManagerParams struct {

@@ -79,8 +79,9 @@ func (fs scalableSigner) SignerFn(addr common.Address, tx *types.Transaction) (*
 }
 
 func hardcodedSignature() (r, s, v *big.Int) {
-	r = big.NewInt(24865583584) // new(big.Int).SetBytes(common.Hex2Bytes("0x00000000000000000000000000000000000000000000000000000005ca1ab1e0"))
-	s = big.NewInt(1554098974)  // new(big.Int).SetBytes(common.Hex2Bytes("0x000000000000000000000000000000000000000000000000000000005ca1ab1e"))
+	// values from https://github.com/0xPolygonHermez/zkevm-contracts/blob/main/deployment/helpers/deployment-helpers.ts#L36
+	r = big.NewInt(24865583584) // 0x00000000000000000000000000000000000000000000000000000005ca1ab1e0
+	s = big.NewInt(1554098974)  // 0x000000000000000000000000000000000000000000000000000000005ca1ab1e
 	v = new(big.Int).SetBytes([]byte{27})
 	return r, s, v
 }

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"errors"
 	"fmt"
@@ -26,7 +27,7 @@ var (
 		Name:    importRollupManagerCommandName,
 		Aliases: []string{"import-rm"},
 		Usage:   "Import a rollup manager smart contract, adding a new uLxLy into the network files",
-		Action:  importRollupManager,
+		Action:  importRollupManagerCmd,
 		Flags: []cli.Flag{
 			l1Flag,
 			&cli.StringFlag{
@@ -45,7 +46,15 @@ var (
 	}
 )
 
-func importRollupManager(cliCtx *cli.Context) error {
+func importRollupManagerCmd(cliCtx *cli.Context) error {
+	l1Network := cliCtx.String(l1FlagName)
+	addrStr := cliCtx.String(rollupManagerAddressFlagName)
+	alias := cliCtx.String(rollupManagerAliasFlagName)
+
+	return importRollupManager(cliCtx.Context, l1Network, addrStr, alias)
+}
+
+func importRollupManager(ctx context.Context, l1Network, addrStr, alias string) error {
 	baseDir, err := checkWorkingDir()
 	if err != nil {
 		return err
@@ -56,22 +65,19 @@ func importRollupManager(cliCtx *cli.Context) error {
 	if err != nil {
 		return err
 	}
-	l1Network := cliCtx.String(l1FlagName)
 	client, err := rpcs.GetClient(l1Network)
 	if err != nil {
 		return err
 	}
 
 	fmt.Println("fetching on-chain info for the rollup manager")
-	addrStr := cliCtx.String(rollupManagerAddressFlagName)
 	addr := common.HexToAddress(addrStr)
-	rm, err := rollupmanager.LoadFromL1(cliCtx.Context, client, addr)
+	rm, err := rollupmanager.LoadFromL1(ctx, client, addr)
 	if err != nil {
 		return err
 	}
 
 	fmt.Println("storing info for the rollup manager")
-	alias := cliCtx.String(rollupManagerAliasFlagName)
 	rollupManagerPath := path.Join(baseDir, "networks", l1Network, alias)
 	err = os.MkdirAll(rollupManagerPath, 0744)
 	if err != nil {
@@ -87,7 +93,7 @@ func importRollupManager(cliCtx *cli.Context) error {
 	}
 
 	fmt.Println("importing attached rollups")
-	rollups, err := rm.GetAttachedRollups(cliCtx.Context)
+	rollups, err := rm.GetAttachedRollups(ctx)
 	if err != nil {
 		return err
 	}
@@ -98,7 +104,7 @@ func importRollupManager(cliCtx *cli.Context) error {
 	}
 	for chainID, name := range rollups {
 		fmt.Println("importing rollup ", name, " with chainID ", chainID)
-		r, err := rollup.LoadFromL1ByChainID(cliCtx.Context, client, rm, chainID)
+		r, err := rollup.LoadFromL1ByChainID(ctx, client, rm, chainID)
 		if err != nil {
 			return err
 		}

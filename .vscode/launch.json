@@ -17,6 +17,7 @@
                 "-skip-confirmation",
                 "-parameters-file", "${workspaceFolder}/createRollupManagerParams.example.json",
                 "-o", "${workspaceFolder}/createRollupManagerOutput.example.json",
+                "-alias", "test",
             ]
         }
     ]

@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"os"
 	"os/exec"
+	"path"
 	"testing"
 
 	"github.com/0xPolygon/cdk-contracts-tooling/docker"
@@ -13,6 +14,11 @@ import (
 )
 
 func TestDeployRollupManagerEtrog(t *testing.T) {
+	const (
+		inputFile  = "./createRollupManagerParams.example.json"
+		outputFile = "./createRollupManagerOutput.example.json"
+		alias      = "test_etrog"
+	)
 	// Clean before start. This test needs a fresh L1 so the addressess used have deterministic nonces
 	ctx := context.Background()
 	if err := docker.StopMockL1Docker(); err != nil {
@@ -21,7 +27,8 @@ func TestDeployRollupManagerEtrog(t *testing.T) {
 	if err := docker.StartMockL1Docker(ctx); err != nil {
 		panic(err)
 	}
-	require.NoError(t, os.RemoveAll("./createRollupManagerOutput.example.json"))
+	require.NoError(t, os.RemoveAll(outputFile))
+	require.NoError(t, os.RemoveAll(path.Join("networks", "local", alias)))
 
 	// Deploy DAC
 	deployCmdArgs := []string{
@@ -30,8 +37,9 @@ func TestDeployRollupManagerEtrog(t *testing.T) {
 		"-w", walletAddr,
 		"-wp", walletPass,
 		"-skip-confirmation",
-		"-parameters-file", "./createRollupManagerParams.example.json",
-		"-o", "./createRollupManagerOutput.example.json",
+		"-parameters-file", inputFile,
+		"-o", outputFile,
+		"-alias", alias,
 	}
 	out, err := exec.Command("go", deployCmdArgs...).CombinedOutput()
 	require.NoError(t, err, string(out))
@@ -62,7 +70,7 @@ func TestDeployRollupManagerEtrog(t *testing.T) {
 	require.NoError(t, json.Unmarshal(
 		[]byte(deployOutputFromContractsRepo), &expectedOutpu,
 	))
-	actualOutput, err := loadRollupManagerOutput("createRollupManagerOutput.example.json")
+	actualOutput, err := loadRollupManagerOutput(outputFile)
 	require.NoError(t, err)
 
 	// DeploymentCompleted doesn't exist on the contracts repo

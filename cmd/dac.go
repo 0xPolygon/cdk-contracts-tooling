@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"math/big"
 	"os"
@@ -89,12 +90,23 @@ func deployDAC(cliCtx *cli.Context) error {
 		fmt.Println("DAC implementation deployed at", dacAddr)
 	}
 
+	dacABI, err := polygondatacommittee.PolygondatacommitteeMetaData.GetAbi()
+	if err != nil {
+		return err
+	}
+	if dacABI == nil {
+		return errors.New("GetABI returned nil")
+	}
+	initializeCallData, err := dacABI.Pack("initialize")
+	if err != nil {
+		return err
+	}
 	proxyAddr, err := deployProxy(
 		cliCtx,
 		auth,
 		client,
 		dacAddr,
-		common.Hex2Bytes("8129fc1c00000000000000000000000000000000000000000000000000000000"), // initialize() signature, timeout
+		initializeCallData,
 	)
 	if err != nil {
 		return err
