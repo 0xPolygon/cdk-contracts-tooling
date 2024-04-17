@@ -18,6 +18,7 @@ const (
 	setupFilePathFlagName         = "setup-file"
 	implementationAddressFlagName = "implementation-address"
 	smartContractVersionFlagName  = "smart-contract-version"
+	amountFlagName                = "amount"
 
 	defaultTimeout = time.Minute * 10
 	etrog          = "etrog"
@@ -96,6 +97,12 @@ var (
 			"Name of the rollup manager to which the rollup belongs. Needs to match an already imported rollup manager (can be done by running the %s command)",
 			importRollupManagerCommandName,
 		),
+		Required: true,
+	}
+	amountFlag = &cli.StringFlag{
+		Name:     amountFlagName,
+		Aliases:  []string{"a"},
+		Usage:    "Amount of tokens expressed in base 10 string",
 		Required: true,
 	}
 )

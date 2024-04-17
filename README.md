@@ -85,11 +85,27 @@ go run ./cmd create-r \
     -alias test_etrog \
     -scv etrog
 ```
-5. Export L1 container
+5. Deploy and setup DAC
 ```bash
-go run ./cmd export-l1 -image validium-fork7
+go run ./cmd deployset-dac \
+    -l1 local \
+    -w 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 -wp testonly \
+    -skip-confirmation \
+    -rm-alias test_etrog \
+    -r-alias zkevm \
+    -init
 ```
-6. Generate genesis config:
+6. Mint POL tokens for the sequencer
+```bash
+go run ./cmd mint \
+    -l1 local \
+    -w 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 -wp testonly \
+    -skip-confirmation \
+    -token 0x5fbdb2315678afecb367f032d93f642f64180aa3 \
+    -amount 99999999999999999999999999999999999999999
+```
+7. Export L1 container `go run ./cmd export-l1 -image validium-fork7`
+8. Generate genesis config:
 ```bash
 go run ./cmd genesis -l1 local -rm test_etrog -r zkevm -output localtest.genesis.json
 ```

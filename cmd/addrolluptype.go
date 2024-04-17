@@ -41,7 +41,7 @@ var (
 			&cli.StringFlag{
 				Name:     rollupManagerAliasFlagName,
 				Aliases:  []string{"alias"},
-				Usage:    "Name that will be used to store the rollup manager info once deployed, alias of the uLxLy being imported",
+				Usage:    "Name of the rollup manager where the rollup type will be added to",
 				Required: true,
 			},
 			&cli.PathFlag{
@@ -112,7 +112,7 @@ func addRollupTypeCmd(cliCtx *cli.Context) error {
 	} else {
 		fmt.Println("deploying verifier")
 		var deployFn func(auth *bind.TransactOpts, backend bind.ContractBackend) (*types.Transaction, error)
-		if cliCtx.Bool(mockVerifierFlagName) {
+		if params.UseMockVerifier {
 			deployFn = func(auth *bind.TransactOpts, backend bind.ContractBackend) (*types.Transaction, error) {
 				_, tx, _, err := verifierrolluphelpermock.DeployVerifierrolluphelpermock(auth, client)
 				return tx, err

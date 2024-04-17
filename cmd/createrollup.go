@@ -32,7 +32,7 @@ var (
 			&cli.StringFlag{
 				Name:     rollupManagerAliasFlagName,
 				Aliases:  []string{"alias"},
-				Usage:    "Name that will be used to store the rollup manager info once deployed, alias of the uLxLy being imported",
+				Usage:    "Name of the rollup manager that the rollup to be created will be attached to",
 				Required: true,
 			},
 			&cli.PathFlag{
@@ -55,7 +55,7 @@ func createRollupCmd(cliCtx *cli.Context) error {
 	if err != nil {
 		return err
 	}
-	params, err := createRollupRollupTypeParams(cliCtx.String(createRollupFileFlagName))
+	params, err := loadCreateRollupRollupTypeParams(cliCtx.String(createRollupFileFlagName))
 	if err != nil {
 		return err
 	}
@@ -148,7 +148,7 @@ type CreateRollupParams struct {
 	ConsensusType string `json:"consensusType"`
 }
 
-func createRollupRollupTypeParams(file string) (*CreateRollupParams, error) {
+func loadCreateRollupRollupTypeParams(file string) (*CreateRollupParams, error) {
 	data, err := os.ReadFile(file)
 	if err != nil {
 		return nil, err

@@ -10,8 +10,10 @@ import (
 	"strings"
 
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/elderberry/polygondatacommittee"
+	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
+	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/urfave/cli/v2"
 )
 
@@ -20,7 +22,7 @@ var (
 		Name:    "deploy-dac",
 		Aliases: []string{},
 		Usage:   "Deploy the Data Availability smart contract",
-		Action:  deployDAC,
+		Action:  deployDACCmd,
 		Flags: []cli.Flag{
 			l1Flag,
 			walletFlag,
@@ -57,62 +59,81 @@ var (
 	}
 )
 
-func deployDAC(cliCtx *cli.Context) error {
+func deployDACCmd(cliCtx *cli.Context) error {
 	_, err := checkWorkingDir()
 	if err != nil {
 		return err
 	}
-	walletAddr, auth, client, err := loadAuthAndClient(cliCtx)
+	_, auth, client, err := loadAuthAndClient(cliCtx)
 	if err != nil {
 		return err
 	}
 
 	dacAddrStr := cliCtx.String(implementationAddressFlagName)
-	var dacAddr common.Address
+	var dacImpl common.Address
 	if dacAddrStr != "" {
-		dacAddr = common.HexToAddress(dacAddrStr)
-		fmt.Printf("Using %s as DAC implementation (previously deployed)\n", dacAddr)
+		dacImpl = common.HexToAddress(dacAddrStr)
+		fmt.Printf("Using %s as DAC implementation (previously deployed)\n", dacImpl)
 	} else {
-		dacAddr, err = sendTxWithConfirmation(
-			cliCtx, client,
-			fmt.Sprintf(
-				"Do you want to send the tx that will deploy the DAC from the address %s?",
-				walletAddr,
-			),
-			func() (*types.Transaction, error) {
-				_, tx, _, err := polygondatacommittee.DeployPolygondatacommittee(auth, client)
-				return tx, err
-			},
-		)
+		dacImpl, err = deployDACImpl(cliCtx, auth, client)
 		if err != nil {
 			return err
 		}
-		fmt.Println("DAC implementation deployed at", dacAddr)
+		fmt.Println("DAC implementation deployed at", dacImpl)
 	}
+	_, err = deployDACProxy(cliCtx, auth, client, dacImpl)
+	return err
+}
 
+func deployDACImpl(
+	cliCtx *cli.Context,
+	auth *bind.TransactOpts,
+	client *ethclient.Client,
+) (common.Address, error) {
+	return sendTxWithConfirmation(
+		cliCtx, client,
+		fmt.Sprintf(
+			"Do you want to send the tx that will deploy the DAC from the address %s?",
+			auth.From,
+		),
+		func() (*types.Transaction, error) {
+			_, tx, _, err := polygondatacommittee.DeployPolygondatacommittee(auth, client)
+			return tx, err
+		},
+	)
+}
+
+func deployDACProxy(
+	cliCtx *cli.Context,
+	auth *bind.TransactOpts,
+	client *ethclient.Client,
+	dacImpl common.Address,
+) (common.Address, error) {
+	// Deploy proxy
 	dacABI, err := polygondatacommittee.PolygondatacommitteeMetaData.GetAbi()
 	if err != nil {
-		return err
+		return common.Address{}, err
 	}
 	if dacABI == nil {
-		return errors.New("GetABI returned nil")
+		return common.Address{}, errors.New("GetABI returned nil")
 	}
 	initializeCallData, err := dacABI.Pack("initialize")
 	if err != nil {
-		return err
+		return common.Address{}, err
 	}
 	proxyAddr, err := deployProxy(
 		cliCtx,
 		auth,
 		client,
-		dacAddr,
+		dacImpl,
 		initializeCallData,
 	)
 	if err != nil {
-		return err
+		return common.Address{}, err
 	}
 	fmt.Println("DAC proxy deployed at", proxyAddr)
-	return nil
+	return proxyAddr, nil
+
 }
 
 func setupDAC(cliCtx *cli.Context) error {
