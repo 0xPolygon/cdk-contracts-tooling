@@ -1,5 +1,7 @@
 rpcs.toml
 wallets.toml
+createRollupManagerOutput.example.json
+networks/local/test*
 
 # If you prefer the allow list template instead of the deny list, see community template:
 # https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore

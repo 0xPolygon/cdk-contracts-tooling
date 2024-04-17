@@ -16,3 +16,4 @@ genNoBin() {
 
 gen proxyadmin
 gen erc1967proxy
+gen transparentupgradableproxy
