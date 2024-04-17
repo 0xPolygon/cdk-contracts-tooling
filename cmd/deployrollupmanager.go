@@ -24,7 +24,7 @@ import (
 )
 
 const (
-	deployParametersFileFlagName = "parameters-file"
+	deployParametersFileFlagName = "rollup-manager-parameters-file"
 )
 
 var (
@@ -531,6 +531,11 @@ func deployRollupManager(cliCtx *cli.Context) error {
 		output.PolygonZkEVMGlobalExitRootAddress = GERProxyAddr
 	}
 
+	if params.UseDeployerAsAdminForRollupManager {
+		fmt.Println("Using deployer as admin of the rollup manager insetad of the timelock!")
+		timelockAddr = walletAddr
+	}
+
 	// Deploy PolygonRollupManagerNotUpgraded proxy
 	fmt.Println("Deploying PolygonRollupManagerNotUpgraded proxy...")
 	if output.PolygonRollupManager != zeroAddr {
@@ -637,16 +642,17 @@ func deployRollupManager(cliCtx *cli.Context) error {
 }
 
 type DeployRollupManagerParams struct {
-	TimelockAdminAddress      common.Address `json:"timelockAdminAddress"`
-	MinDelayTimelock          int64          `json:"minDelayTimelock"`
-	Salt                      common.Hash    `json:"salt"`
-	InitialZkEVMDeployerOwner common.Address `json:"initialZkEVMDeployerOwner"`
-	Admin                     common.Address `json:"admin"`
-	TrustedAggregator         common.Address `json:"trustedAggregator"`
-	TrustedAggregatorTimeout  uint64         `json:"trustedAggregatorTimeout"`
-	PendingStateTimeout       uint64         `json:"pendingStateTimeout"`
-	EmergencyCouncilAddress   common.Address `json:"emergencyCouncilAddress"`
-	PolTokenAddress           common.Address `json:"polTokenAddress"`
+	UseDeployerAsAdminForRollupManager bool           `json:"useDeployerAsAdminForRollupManager"`
+	TimelockAdminAddress               common.Address `json:"timelockAdminAddress"`
+	MinDelayTimelock                   int64          `json:"minDelayTimelock"`
+	Salt                               common.Hash    `json:"salt"`
+	InitialZkEVMDeployerOwner          common.Address `json:"initialZkEVMDeployerOwner"`
+	Admin                              common.Address `json:"admin"`
+	TrustedAggregator                  common.Address `json:"trustedAggregator"`
+	TrustedAggregatorTimeout           uint64         `json:"trustedAggregatorTimeout"`
+	PendingStateTimeout                uint64         `json:"pendingStateTimeout"`
+	EmergencyCouncilAddress            common.Address `json:"emergencyCouncilAddress"`
+	PolTokenAddress                    common.Address `json:"polTokenAddress"`
 }
 
 type DeployRollupManagerOutput struct {

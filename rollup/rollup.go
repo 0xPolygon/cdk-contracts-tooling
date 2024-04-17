@@ -5,9 +5,12 @@ import (
 	"encoding/json"
 	"os"
 
+	"github.com/0xPolygon/cdk-contracts-tooling/contracts/elderberry/polygonvalidiumetrog"
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/etrog/polygonzkevm"
 	"github.com/0xPolygon/cdk-contracts-tooling/rollupmanager"
+	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/ethclient"
 )
 
@@ -20,6 +23,7 @@ type Rollup struct {
 	Name          string
 	RollupID      uint32
 	GasToken      common.Address
+	client        *ethclient.Client
 }
 
 func LoadFromL1ByChainID(ctx context.Context, client *ethclient.Client, rm *rollupmanager.RollupManager, chainID uint64) (*Rollup, error) {
@@ -53,6 +57,7 @@ func LoadFromL1ByChainID(ctx context.Context, client *ethclient.Client, rm *roll
 		Name:          name,
 		RollupID:      info.RollupID,
 		GasToken:      info.GasToken,
+		client:        client,
 	}, nil
 }
 
@@ -72,6 +77,17 @@ func LoadFromFile(client *ethclient.Client, filePath string) (*Rollup, error) {
 			return nil, err
 		}
 		r.Contract = contract
+		r.client = client
 	}
 	return &r, nil
+}
+
+func (r *Rollup) SetDataAvailabilityProtocol(
+	auth *bind.TransactOpts, dap common.Address,
+) (*types.Transaction, error) {
+	v, err := polygonvalidiumetrog.NewPolygonvalidiumetrog(r.Address, r.client)
+	if err != nil {
+		return nil, err
+	}
+	return v.SetDataAvailabilityProtocol(auth, dap)
 }

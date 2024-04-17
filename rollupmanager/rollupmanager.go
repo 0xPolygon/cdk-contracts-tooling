@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"math/big"
 	"os"
 
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/elderberry/polygonrollupmanagernotupgraded"
@@ -14,6 +13,11 @@ import (
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
+)
+
+var (
+	ADD_ROLLUP_TYPE_ROLE = common.HexToHash("0xac75d24dbb35ea80e25fab167da4dea46c1915260426570db84f184891f5f590")
+	CREATE_ROLLUP_ROLE   = common.HexToHash("0xa0fab074aba36a6fa69f1a83ee86e5abfb8433966eb57efb13dc2fc2f24ddd08")
 )
 
 type RollupManager struct {
@@ -145,34 +149,42 @@ type CreateRollupInfo struct {
 
 // GetRollupCreation returns genesis root and the block number in which the rollup was created
 func (rm *RollupManager) GetRollupCreationInfo(ctx context.Context, rollupID uint32) (CreateRollupInfo, error) {
-	if rollupID == 1 {
-		rollup, err := polygonzkevm.NewPolygonzkevm(rm.Address, rm.Client)
-		if err != nil {
-			return CreateRollupInfo{}, err
-		}
-		root, err := rollup.BatchNumToStateRoot(
-			&bind.CallOpts{BlockNumber: big.NewInt(int64(rm.UpdateToULxLyBlock - 1))},
-			0,
-		)
-		if err != nil {
-			fmt.Println("couldn't find genesis for batch 0 of the rollup 1")
-			return CreateRollupInfo{}, err
-		}
-		chainID, err := rollup.ChainID(
-			&bind.CallOpts{BlockNumber: big.NewInt(int64(rm.UpdateToULxLyBlock - 1))},
-		)
-		if err != nil {
-			return CreateRollupInfo{}, err
-		}
+	// // WARNING: leaving this commented as it breaks my test.
+	// // Comenting this code will make it work when rollup 1 was attached in already uLxLy
+	// // But will break wen rollup 1 was created before uLxLt
+	// if rollupID == 1 {
+	// 	// TODO: this assumes that the first rollup is always created in unified bridge mode
+	// 	// but this is not the case!
+	// 	rollup, err := polygonzkevm.NewPolygonzkevm(rm.Address, rm.Client)
+	// 	if err != nil {
+	// 		return CreateRollupInfo{}, err
+	// 	}
+	// 	root, err := rollup.BatchNumToStateRoot(
+	// 		&bind.CallOpts{BlockNumber: big.NewInt(int64(rm.UpdateToULxLyBlock - 1))},
+	// 		0,
+	// 	)
+	// 	if err != nil {
+	// 		if strings.Contains(err.Error(), "missing trie node") {
+	// 			fmt.Println("your L1 node does not support this query. Probably need an archival node")
+	// 		}
+	// 		fmt.Println("couldn't find genesis for batch 0 of the rollup 1")
+	// 		return CreateRollupInfo{}, err
+	// 	}
+	// 	chainID, err := rollup.ChainID(
+	// 		&bind.CallOpts{BlockNumber: big.NewInt(int64(rm.UpdateToULxLyBlock - 1))},
+	// 	)
+	// 	if err != nil {
+	// 		return CreateRollupInfo{}, err
+	// 	}
 
-		return CreateRollupInfo{
-			Root:     common.Hash(root),
-			Block:    rm.CreationBlock,
-			ChainID:  chainID,
-			RollupID: rollupID,
-			GasToken: common.Address{},
-		}, nil
-	}
+	// 	return CreateRollupInfo{
+	// 		Root:     common.Hash(root),
+	// 		Block:    rm.CreationBlock,
+	// 		ChainID:  chainID,
+	// 		RollupID: rollupID,
+	// 		GasToken: common.Address{},
+	// 	}, nil
+	// }
 	it, err := rm.Contract.FilterCreateNewRollup(&bind.FilterOpts{
 		Start:   rm.UpdateToULxLyBlock,
 		Context: ctx,

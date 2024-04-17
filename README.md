@@ -50,3 +50,64 @@ Unfortunately the base genesis file cannot be retrieved from L1. Therefore they 
 4. Generate the network config section of the bridge service: `go run ./cmd bridge -l1 sepolia -rm cardona -r API3 -output API3Bridge.toml`
 
 Note that step 1 only needs to be done once, if there are multiple CDKs attaced to the same rollup manager, with a single run it will be enough
+
+#### Generate docker image for fork7
+
+1. Start the dimulated L1 `go run ./cmd start-l1`
+2. Deploy rollup manager
+```bash
+go run ./cmd deploy-rm \
+    -l1 local \
+    -w 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 -wp testonly \
+    -skip-confirmation \
+    -i ./createRollupManagerParams.example.json \
+    -o ./createRollupManagerOutput.example.json \
+    -alias test_etrog \
+    -scv etrog
+```
+3. Add rollup type
+```bash
+go run ./cmd add-rt \
+    -l1 local \
+    -w 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 -wp testonly \
+    -skip-confirmation \
+    -i ./addRollupTypeParams.example.json \
+    -alias test_etrog \
+    -scv etrog
+```
+4. Create rollup
+```bash
+go run ./cmd create-r \
+    -l1 local \
+    -w 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 -wp testonly \
+    -skip-confirmation \
+    -i ./createRollupParams.example.json \
+    -alias test_etrog \
+    -scv etrog
+```
+5. Deploy and setup DAC
+```bash
+go run ./cmd deployset-dac \
+    -l1 local \
+    -w 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 -wp testonly \
+    -skip-confirmation \
+    -rm-alias test_etrog \
+    -r-alias zkevm \
+    -init
+```
+6. Mint POL tokens for the sequencer
+```bash
+go run ./cmd mint \
+    -l1 local \
+    -w 0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266 -wp testonly \
+    -skip-confirmation \
+    -token 0x5fbdb2315678afecb367f032d93f642f64180aa3 \
+    -amount 99999999999999999999999999999999999999999
+```
+7. Export L1 container `go run ./cmd export-l1 -image validium-fork7`
+8. Generate genesis config:
+```bash
+go run ./cmd genesis -l1 local -rm test_etrog -r zkevm -output localtest.genesis.json
+```
+
+Now you can use the generated image `validium-fork7` and the genesis file `localtest.genesis.json` to test a cdk-validium-node using etrog

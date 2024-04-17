@@ -1,0 +1,7 @@
+{
+	"useMockVerifier": true,
+	"consensusType": "validium",
+	"forkID": 7,
+	"genesisRoot": "0x489e44072604e671274ea693d5309e797fb37a3e0d91e5b0f04639c251c05332",
+	"description": "This is a test. Validium_Etrog_Fork7"
+}

@@ -15,9 +15,11 @@ import (
 
 func TestDeployRollupManagerEtrog(t *testing.T) {
 	const (
-		inputFile  = "./createRollupManagerParams.example.json"
-		outputFile = "./createRollupManagerOutput.example.json"
-		alias      = "test_etrog"
+		inputFileDeployRM  = "./createRollupManagerParams.example.json"
+		outputFileDeployRM = "./createRollupManagerOutput.example.json"
+		inputFileAddRT     = "./addRollupTypeParams.example.json"
+		inputFileCreateR   = "./createRollupParams.example.json"
+		alias              = "test_etrog"
 	)
 	// Clean before start. This test needs a fresh L1 so the addressess used have deterministic nonces
 	ctx := context.Background()
@@ -27,19 +29,20 @@ func TestDeployRollupManagerEtrog(t *testing.T) {
 	if err := docker.StartMockL1Docker(ctx); err != nil {
 		panic(err)
 	}
-	require.NoError(t, os.RemoveAll(outputFile))
+	require.NoError(t, os.RemoveAll(outputFileDeployRM))
 	require.NoError(t, os.RemoveAll(path.Join("networks", "local", alias)))
 
-	// Deploy DAC
+	// Deploy RollupManager
 	deployCmdArgs := []string{
 		"run", "./cmd", "deploy-rm",
 		"-l1", "local",
 		"-w", walletAddr,
 		"-wp", walletPass,
 		"-skip-confirmation",
-		"-parameters-file", inputFile,
-		"-o", outputFile,
+		"-i", inputFileDeployRM,
+		"-o", outputFileDeployRM,
 		"-alias", alias,
+		"-scv", "etrog",
 	}
 	out, err := exec.Command("go", deployCmdArgs...).CombinedOutput()
 	require.NoError(t, err, string(out))
@@ -70,7 +73,7 @@ func TestDeployRollupManagerEtrog(t *testing.T) {
 	require.NoError(t, json.Unmarshal(
 		[]byte(deployOutputFromContractsRepo), &expectedOutpu,
 	))
-	actualOutput, err := loadRollupManagerOutput(outputFile)
+	actualOutput, err := loadRollupManagerOutput(outputFileDeployRM)
 	require.NoError(t, err)
 
 	// DeploymentCompleted doesn't exist on the contracts repo
@@ -81,4 +84,32 @@ func TestDeployRollupManagerEtrog(t *testing.T) {
 	actualOutput.DeploymentBlockNumber = expectedOutpu.DeploymentBlockNumber
 	// Check all the other fields
 	assert.Equal(t, expectedOutpu, *actualOutput)
+
+	// Add rollup type
+	addCmdArgs := []string{
+		"run", "./cmd", "add-rt",
+		"-l1", "local",
+		"-w", walletAddr,
+		"-wp", walletPass,
+		"-skip-confirmation",
+		"-i", inputFileAddRT,
+		"-scv", "etrog",
+		"-alias", alias,
+	}
+	out, err = exec.Command("go", addCmdArgs...).CombinedOutput()
+	require.NoError(t, err, string(out))
+
+	// Create rollup
+	createCmdArgs := []string{
+		"run", "./cmd", "create-r",
+		"-l1", "local",
+		"-w", walletAddr,
+		"-wp", walletPass,
+		"-skip-confirmation",
+		"-i", inputFileCreateR,
+		"-scv", "etrog",
+		"-alias", alias,
+	}
+	out, err = exec.Command("go", createCmdArgs...).CombinedOutput()
+	require.NoError(t, err, string(out))
 }

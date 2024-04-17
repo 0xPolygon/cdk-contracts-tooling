@@ -1,0 +1,10 @@
+{
+    "rollupTypeID": 1,
+	"chainID": 1001,
+	"adminZkEVM": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+	"trustedSequencer": "0xf39fd6e51aad88f6f4ce6ab8827279cfffb92266",
+	"gasTokenAddress": "0x0000000000000000000000000000000000000000",
+	"trustedSequencerURL": "http://zkevm-json-rpc:8123",
+	"networkName": "zkevm",
+	"consensusType": "validium"
+}
