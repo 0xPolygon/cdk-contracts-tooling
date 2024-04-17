@@ -125,6 +125,7 @@ func create2Deployment(
 ) (common.Address, error) {
 	// Precalculate addr
 	initHash := crypto.Keccak256(deployTransaction)
+	fmt.Println("INIT HASH:", "0x"+common.Bytes2Hex(initHash))
 	precalculatedAddressDeployed := crypto.CreateAddress2(polgonZKEVMDeployerContractAddr, salt, initHash)
 
 	// Check if already deployed

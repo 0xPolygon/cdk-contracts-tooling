@@ -3,10 +3,12 @@ package rollupmanager
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
 	"math/big"
 	"os"
 
+	"github.com/0xPolygon/cdk-contracts-tooling/contracts/elderberry/polygonrollupmanagernotupgraded"
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/etrog/polygonrollupmanager"
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/etrog/polygonzkevm"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
@@ -58,15 +60,22 @@ func LoadFromL1(ctx context.Context, client *ethclient.Client, address common.Ad
 	if err != nil {
 		return nil, err
 	}
-	if block, ok := ub[1]; ok {
-		rm.CreationBlock = block
+	var creationBlock, upgradeBlock uint64
+	var creationBlockFound, upgradeBlockFound bool
+	creationBlock, creationBlockFound = ub[1]
+	upgradeBlock, upgradeBlockFound = ub[1]
+	if creationBlockFound && upgradeBlockFound {
+		// Rollup Manager used to be a isolated LxLy and upgraded to uLxLy
+		rm.CreationBlock = creationBlock
+		rm.UpdateToULxLyBlock = upgradeBlock
 	} else {
-		return nil, fmt.Errorf("creation block not found")
-	}
-	if block, ok := ub[2]; ok {
-		rm.UpdateToULxLyBlock = block
-	} else {
-		return nil, fmt.Errorf("upgrade to uLxLy block not found")
+		// Rollup Manager deployed directly on uLxLy mode
+		initBlock, err := rm.GetInitializedBlock(ctx)
+		if err != nil {
+			return nil, err
+		}
+		rm.CreationBlock = initBlock
+		rm.UpdateToULxLyBlock = initBlock
 	}
 	return &rm, nil
 }
@@ -105,6 +114,25 @@ func (rm *RollupManager) GetUpgradeBlocks(ctx context.Context) (map[uint8]uint64
 		res[it.Event.Version] = it.Event.Raw.BlockNumber
 	}
 	return res, nil
+}
+
+// GetInitializedBlock returns the block in which the contract was initialized
+func (rm *RollupManager) GetInitializedBlock(ctx context.Context) (uint64, error) {
+	notUpgraded, err := polygonrollupmanagernotupgraded.NewPolygonrollupmanagernotupgraded(rm.Address, rm.Client)
+	if err != nil {
+		return 0, err
+	}
+	it, err := notUpgraded.FilterInitialized(&bind.FilterOpts{
+		Start:   1,
+		Context: ctx,
+	})
+	if err != nil {
+		return 0, err
+	}
+	for it.Next() {
+		return it.Event.Raw.BlockNumber, nil
+	}
+	return 0, errors.New("initialized event not found")
 }
 
 type CreateRollupInfo struct {

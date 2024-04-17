@@ -22,6 +22,10 @@ const (
 	repoName = "cdk-contracts-tooling"
 )
 
+var (
+	zeroAddr = common.Address{}
+)
+
 func checkWorkingDir() (string, error) {
 	baseDir, err := os.Getwd()
 	if err != nil {
