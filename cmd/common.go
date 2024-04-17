@@ -165,3 +165,24 @@ func sendTxWithConfirmation(
 	}
 	return receipt.ContractAddress, nil
 }
+
+func deploy(
+	cliCtx *cli.Context,
+	auth *bind.TransactOpts,
+	client *ethclient.Client,
+	deploy func(auth *bind.TransactOpts, backend bind.ContractBackend) (*types.Transaction, error),
+	confirmationQuestion string,
+) (common.Address, error) {
+	// Deploy verifier implementation
+	verifierImplAddr, err := sendTxWithConfirmation(
+		cliCtx, client, confirmationQuestion,
+		func() (*types.Transaction, error) {
+			return deploy(auth, client)
+		},
+	)
+	if err != nil {
+		return common.Address{}, err
+	}
+
+	return verifierImplAddr, nil
+}

@@ -28,6 +28,8 @@ func main() {
 		stopMockL1Command,
 		exportMockL1Command,
 		deployRollupManagerCommand,
+		addRollupTypeCommand,
+		createRollupCommand,
 	}
 
 	err := app.Run(os.Args)
