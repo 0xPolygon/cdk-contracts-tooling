@@ -352,25 +352,6 @@
    {
     "indexed": true,
     "internalType": "uint64",
-    "name": "targetBatch",
-    "type": "uint64"
-   },
-   {
-    "indexed": false,
-    "internalType": "bytes32",
-    "name": "accInputHashToRollback",
-    "type": "bytes32"
-   }
-  ],
-  "name": "RollbackBatches",
-  "type": "event"
- },
- {
-  "anonymous": false,
-  "inputs": [
-   {
-    "indexed": true,
-    "internalType": "uint64",
     "name": "numBatch",
     "type": "uint64"
    },
@@ -978,24 +959,6 @@
   "type": "function"
  },
  {
-  "inputs": [
-   {
-    "internalType": "uint64",
-    "name": "targetBatch",
-    "type": "uint64"
-   },
-   {
-    "internalType": "bytes32",
-    "name": "accInputHashToRollback",
-    "type": "bytes32"
-   }
-  ],
-  "name": "rollbackBatches",
-  "outputs": [],
-  "stateMutability": "nonpayable",
-  "type": "function"
- },
- {
   "inputs": [],
   "name": "rollupManager",
   "outputs": [
@@ -1033,14 +996,9 @@
       "type": "bytes32"
      }
     ],
-    "internalType": "struct PolygonRollupBaseEtrog.BatchData[]",
+    "internalType": "struct PolygonRollupBaseEtrogPrevious.BatchData[]",
     "name": "batches",
     "type": "tuple[]"
-   },
-   {
-    "internalType": "uint32",
-    "name": "indexL1InfoRoot",
-    "type": "uint32"
    },
    {
     "internalType": "uint64",
@@ -1048,9 +1006,9 @@
     "type": "uint64"
    },
    {
-    "internalType": "bytes32",
-    "name": "expectedFinalAccInputHash",
-    "type": "bytes32"
+    "internalType": "uint64",
+    "name": "initSequencedBatch",
+    "type": "uint64"
    },
    {
     "internalType": "address",
@@ -1088,7 +1046,7 @@
       "type": "bytes32"
      }
     ],
-    "internalType": "struct PolygonRollupBaseEtrog.BatchData[]",
+    "internalType": "struct PolygonRollupBaseEtrogPrevious.BatchData[]",
     "name": "batches",
     "type": "tuple[]"
    }

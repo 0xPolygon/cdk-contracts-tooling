@@ -658,31 +658,6 @@
   "anonymous": false,
   "inputs": [
    {
-    "indexed": true,
-    "internalType": "uint32",
-    "name": "rollupID",
-    "type": "uint32"
-   },
-   {
-    "indexed": true,
-    "internalType": "uint64",
-    "name": "targetBatch",
-    "type": "uint64"
-   },
-   {
-    "indexed": false,
-    "internalType": "bytes32",
-    "name": "accInputHashToRollback",
-    "type": "bytes32"
-   }
-  ],
-  "name": "RollbackBatches",
-  "type": "event"
- },
- {
-  "anonymous": false,
-  "inputs": [
-   {
     "indexed": false,
     "internalType": "uint256",
     "name": "newBatchFee",
@@ -1383,9 +1358,29 @@
     "internalType": "address",
     "name": "emergencyCouncil",
     "type": "address"
+   },
+   {
+    "internalType": "contract PolygonZkEVMExistentEtrog",
+    "name": "polygonZkEVM",
+    "type": "address"
+   },
+   {
+    "internalType": "contract IVerifierRollup",
+    "name": "zkEVMVerifier",
+    "type": "address"
+   },
+   {
+    "internalType": "uint64",
+    "name": "zkEVMForkID",
+    "type": "uint64"
+   },
+   {
+    "internalType": "uint64",
+    "name": "zkEVMChainID",
+    "type": "uint64"
    }
   ],
-  "name": "initializeMock",
+  "name": "initialize",
   "outputs": [],
   "stateMutability": "nonpayable",
   "type": "function"
@@ -1580,19 +1575,6 @@
  {
   "inputs": [
    {
-    "internalType": "bytes32[]",
-    "name": "localExitRoots",
-    "type": "bytes32[]"
-   }
-  ],
-  "name": "prepareMockCalculateRoot",
-  "outputs": [],
-  "stateMutability": "nonpayable",
-  "type": "function"
- },
- {
-  "inputs": [
-   {
     "internalType": "uint32",
     "name": "rollupID",
     "type": "uint32"
@@ -1670,24 +1652,6 @@
    }
   ],
   "name": "revokeRole",
-  "outputs": [],
-  "stateMutability": "nonpayable",
-  "type": "function"
- },
- {
-  "inputs": [
-   {
-    "internalType": "contract IPolygonRollupBase",
-    "name": "rollupContract",
-    "type": "address"
-   },
-   {
-    "internalType": "uint64",
-    "name": "targetBatch",
-    "type": "uint64"
-   }
-  ],
-  "name": "rollbackBatches",
   "outputs": [],
   "stateMutability": "nonpayable",
   "type": "function"
@@ -1978,24 +1942,6 @@
    }
   ],
   "name": "updateRollup",
-  "outputs": [],
-  "stateMutability": "nonpayable",
-  "type": "function"
- },
- {
-  "inputs": [
-   {
-    "internalType": "contract ITransparentUpgradeableProxy",
-    "name": "rollupContract",
-    "type": "address"
-   },
-   {
-    "internalType": "uint32",
-    "name": "newRollupTypeID",
-    "type": "uint32"
-   }
-  ],
-  "name": "updateRollupByRollupAdmin",
   "outputs": [],
   "stateMutability": "nonpayable",
   "type": "function"

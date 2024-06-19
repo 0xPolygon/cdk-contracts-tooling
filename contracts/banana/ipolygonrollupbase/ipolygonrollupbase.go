@@ -31,7 +31,7 @@ var (
 
 // IpolygonrollupbaseMetaData contains all meta data concerning the Ipolygonrollupbase contract.
 var IpolygonrollupbaseMetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[],\"name\":\"admin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_admin\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"sequencer\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"networkID\",\"type\":\"uint32\"},{\"internalType\":\"address\",\"name\":\"gasTokenAddress\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"sequencerURL\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_networkName\",\"type\":\"string\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"lastVerifiedBatch\",\"type\":\"uint64\"},{\"internalType\":\"bytes32\",\"name\":\"newStateRoot\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"aggregator\",\"type\":\"address\"}],\"name\":\"onVerifyBatches\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"batchToRollback\",\"type\":\"uint64\"},{\"internalType\":\"bytes32\",\"name\":\"accInputHashToRollback\",\"type\":\"bytes32\"}],\"name\":\"rollbackBatches\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
+	ABI: "[{\"inputs\":[],\"name\":\"admin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_admin\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"sequencer\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"networkID\",\"type\":\"uint32\"},{\"internalType\":\"address\",\"name\":\"gasTokenAddress\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"sequencerURL\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_networkName\",\"type\":\"string\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"lastVerifiedBatch\",\"type\":\"uint64\"},{\"internalType\":\"bytes32\",\"name\":\"newStateRoot\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"aggregator\",\"type\":\"address\"}],\"name\":\"onVerifyBatches\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"targetBatch\",\"type\":\"uint64\"},{\"internalType\":\"bytes32\",\"name\":\"accInputHashToRollback\",\"type\":\"bytes32\"}],\"name\":\"rollbackBatches\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
 }
 
 // IpolygonrollupbaseABI is the input ABI used to generate the binding from.
@@ -245,21 +245,21 @@ func (_Ipolygonrollupbase *IpolygonrollupbaseTransactorSession) OnVerifyBatches(
 
 // RollbackBatches is a paid mutator transaction binding the contract method 0x669adece.
 //
-// Solidity: function rollbackBatches(uint64 batchToRollback, bytes32 accInputHashToRollback) returns()
-func (_Ipolygonrollupbase *IpolygonrollupbaseTransactor) RollbackBatches(opts *bind.TransactOpts, batchToRollback uint64, accInputHashToRollback [32]byte) (*types.Transaction, error) {
-	return _Ipolygonrollupbase.contract.Transact(opts, "rollbackBatches", batchToRollback, accInputHashToRollback)
+// Solidity: function rollbackBatches(uint64 targetBatch, bytes32 accInputHashToRollback) returns()
+func (_Ipolygonrollupbase *IpolygonrollupbaseTransactor) RollbackBatches(opts *bind.TransactOpts, targetBatch uint64, accInputHashToRollback [32]byte) (*types.Transaction, error) {
+	return _Ipolygonrollupbase.contract.Transact(opts, "rollbackBatches", targetBatch, accInputHashToRollback)
 }
 
 // RollbackBatches is a paid mutator transaction binding the contract method 0x669adece.
 //
-// Solidity: function rollbackBatches(uint64 batchToRollback, bytes32 accInputHashToRollback) returns()
-func (_Ipolygonrollupbase *IpolygonrollupbaseSession) RollbackBatches(batchToRollback uint64, accInputHashToRollback [32]byte) (*types.Transaction, error) {
-	return _Ipolygonrollupbase.Contract.RollbackBatches(&_Ipolygonrollupbase.TransactOpts, batchToRollback, accInputHashToRollback)
+// Solidity: function rollbackBatches(uint64 targetBatch, bytes32 accInputHashToRollback) returns()
+func (_Ipolygonrollupbase *IpolygonrollupbaseSession) RollbackBatches(targetBatch uint64, accInputHashToRollback [32]byte) (*types.Transaction, error) {
+	return _Ipolygonrollupbase.Contract.RollbackBatches(&_Ipolygonrollupbase.TransactOpts, targetBatch, accInputHashToRollback)
 }
 
 // RollbackBatches is a paid mutator transaction binding the contract method 0x669adece.
 //
-// Solidity: function rollbackBatches(uint64 batchToRollback, bytes32 accInputHashToRollback) returns()
-func (_Ipolygonrollupbase *IpolygonrollupbaseTransactorSession) RollbackBatches(batchToRollback uint64, accInputHashToRollback [32]byte) (*types.Transaction, error) {
-	return _Ipolygonrollupbase.Contract.RollbackBatches(&_Ipolygonrollupbase.TransactOpts, batchToRollback, accInputHashToRollback)
+// Solidity: function rollbackBatches(uint64 targetBatch, bytes32 accInputHashToRollback) returns()
+func (_Ipolygonrollupbase *IpolygonrollupbaseTransactorSession) RollbackBatches(targetBatch uint64, accInputHashToRollback [32]byte) (*types.Transaction, error) {
+	return _Ipolygonrollupbase.Contract.RollbackBatches(&_Ipolygonrollupbase.TransactOpts, targetBatch, accInputHashToRollback)
 }

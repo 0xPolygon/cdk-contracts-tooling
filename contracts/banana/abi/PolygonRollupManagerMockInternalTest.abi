@@ -666,7 +666,7 @@
    {
     "indexed": true,
     "internalType": "uint64",
-    "name": "batchToRollback",
+    "name": "targetBatch",
     "type": "uint64"
    },
    {
@@ -1690,7 +1690,7 @@
    },
    {
     "internalType": "uint64",
-    "name": "batchToRollback",
+    "name": "targetBatch",
     "type": "uint64"
    }
   ],

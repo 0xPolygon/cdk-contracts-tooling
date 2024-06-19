@@ -1,5 +1,31 @@
 [
  {
+  "inputs": [
+   {
+    "internalType": "contract IPolygonZkEVMGlobalExitRootV2",
+    "name": "_globalExitRootManager",
+    "type": "address"
+   },
+   {
+    "internalType": "contract IERC20Upgradeable",
+    "name": "_pol",
+    "type": "address"
+   },
+   {
+    "internalType": "contract IPolygonZkEVMBridgeV2",
+    "name": "_bridgeAddress",
+    "type": "address"
+   },
+   {
+    "internalType": "contract PolygonRollupManager",
+    "name": "_rollupManager",
+    "type": "address"
+   }
+  ],
+  "stateMutability": "nonpayable",
+  "type": "constructor"
+ },
+ {
   "inputs": [],
   "name": "BatchAlreadyVerified",
   "type": "error"
@@ -231,6 +257,11 @@
  },
  {
   "inputs": [],
+  "name": "SequenceWithDataAvailabilityNotAllowed",
+  "type": "error"
+ },
+ {
+  "inputs": [],
   "name": "SequenceZeroBatches",
   "type": "error"
  },
@@ -247,6 +278,11 @@
  {
   "inputs": [],
   "name": "StoredRootMustBeDifferentThanNewRoot",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "SwitchToSameValue",
   "type": "error"
  },
  {
@@ -352,25 +388,6 @@
    {
     "indexed": true,
     "internalType": "uint64",
-    "name": "targetBatch",
-    "type": "uint64"
-   },
-   {
-    "indexed": false,
-    "internalType": "bytes32",
-    "name": "accInputHashToRollback",
-    "type": "bytes32"
-   }
-  ],
-  "name": "RollbackBatches",
-  "type": "event"
- },
- {
-  "anonymous": false,
-  "inputs": [
-   {
-    "indexed": true,
-    "internalType": "uint64",
     "name": "numBatch",
     "type": "uint64"
    },
@@ -395,6 +412,19 @@
    }
   ],
   "name": "SequenceForceBatches",
+  "type": "event"
+ },
+ {
+  "anonymous": false,
+  "inputs": [
+   {
+    "indexed": false,
+    "internalType": "address",
+    "name": "newDataAvailabilityProtocol",
+    "type": "address"
+   }
+  ],
+  "name": "SetDataAvailabilityProtocol",
   "type": "event"
  },
  {
@@ -447,6 +477,12 @@
    }
   ],
   "name": "SetTrustedSequencerURL",
+  "type": "event"
+ },
+ {
+  "anonymous": false,
+  "inputs": [],
+  "name": "SwitchSequenceWithDataAvailability",
   "type": "event"
  },
  {
@@ -703,6 +739,19 @@
   "type": "function"
  },
  {
+  "inputs": [],
+  "name": "dataAvailabilityProtocol",
+  "outputs": [
+   {
+    "internalType": "contract IDataAvailabilityProtocol",
+    "name": "",
+    "type": "address"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
   "inputs": [
    {
     "internalType": "bytes",
@@ -878,6 +927,19 @@
  },
  {
   "inputs": [],
+  "name": "isSequenceWithDataAvailabilityAllowed",
+  "outputs": [
+   {
+    "internalType": "bool",
+    "name": "",
+    "type": "bool"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [],
   "name": "lastAccInputHash",
   "outputs": [
    {
@@ -978,24 +1040,6 @@
   "type": "function"
  },
  {
-  "inputs": [
-   {
-    "internalType": "uint64",
-    "name": "targetBatch",
-    "type": "uint64"
-   },
-   {
-    "internalType": "bytes32",
-    "name": "accInputHashToRollback",
-    "type": "bytes32"
-   }
-  ],
-  "name": "rollbackBatches",
-  "outputs": [],
-  "stateMutability": "nonpayable",
-  "type": "function"
- },
- {
   "inputs": [],
   "name": "rollupManager",
   "outputs": [
@@ -1033,14 +1077,9 @@
       "type": "bytes32"
      }
     ],
-    "internalType": "struct PolygonRollupBaseEtrog.BatchData[]",
+    "internalType": "struct PolygonRollupBaseEtrogPrevious.BatchData[]",
     "name": "batches",
     "type": "tuple[]"
-   },
-   {
-    "internalType": "uint32",
-    "name": "indexL1InfoRoot",
-    "type": "uint32"
    },
    {
     "internalType": "uint64",
@@ -1048,9 +1087,9 @@
     "type": "uint64"
    },
    {
-    "internalType": "bytes32",
-    "name": "expectedFinalAccInputHash",
-    "type": "bytes32"
+    "internalType": "uint64",
+    "name": "initSequencedBatch",
+    "type": "uint64"
    },
    {
     "internalType": "address",
@@ -1059,6 +1098,61 @@
    }
   ],
   "name": "sequenceBatches",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "components": [
+     {
+      "internalType": "bytes32",
+      "name": "transactionsHash",
+      "type": "bytes32"
+     },
+     {
+      "internalType": "bytes32",
+      "name": "forcedGlobalExitRoot",
+      "type": "bytes32"
+     },
+     {
+      "internalType": "uint64",
+      "name": "forcedTimestamp",
+      "type": "uint64"
+     },
+     {
+      "internalType": "bytes32",
+      "name": "forcedBlockHashL1",
+      "type": "bytes32"
+     }
+    ],
+    "internalType": "struct PolygonValidiumEtrogPrevious.ValidiumBatchData[]",
+    "name": "batches",
+    "type": "tuple[]"
+   },
+   {
+    "internalType": "uint64",
+    "name": "maxSequenceTimestamp",
+    "type": "uint64"
+   },
+   {
+    "internalType": "uint64",
+    "name": "initSequencedBatch",
+    "type": "uint64"
+   },
+   {
+    "internalType": "address",
+    "name": "l2Coinbase",
+    "type": "address"
+   },
+   {
+    "internalType": "bytes",
+    "name": "dataAvailabilityMessage",
+    "type": "bytes"
+   }
+  ],
+  "name": "sequenceBatchesValidium",
   "outputs": [],
   "stateMutability": "nonpayable",
   "type": "function"
@@ -1088,12 +1182,25 @@
       "type": "bytes32"
      }
     ],
-    "internalType": "struct PolygonRollupBaseEtrog.BatchData[]",
+    "internalType": "struct PolygonRollupBaseEtrogPrevious.BatchData[]",
     "name": "batches",
     "type": "tuple[]"
    }
   ],
   "name": "sequenceForceBatches",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "contract IDataAvailabilityProtocol",
+    "name": "newDataAvailabilityProtocol",
+    "type": "address"
+   }
+  ],
+  "name": "setDataAvailabilityProtocol",
   "outputs": [],
   "stateMutability": "nonpayable",
   "type": "function"
@@ -1146,6 +1253,19 @@
    }
   ],
   "name": "setTrustedSequencerURL",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "bool",
+    "name": "newIsSequenceWithDataAvailabilityAllowed",
+    "type": "bool"
+   }
+  ],
+  "name": "switchSequenceWithDataAvailability",
   "outputs": [],
   "stateMutability": "nonpayable",
   "type": "function"

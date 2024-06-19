@@ -1,5 +1,31 @@
 [
  {
+  "inputs": [
+   {
+    "internalType": "contract IPolygonZkEVMGlobalExitRootV2",
+    "name": "_globalExitRootManager",
+    "type": "address"
+   },
+   {
+    "internalType": "contract IERC20Upgradeable",
+    "name": "_pol",
+    "type": "address"
+   },
+   {
+    "internalType": "contract IPolygonZkEVMBridgeV2",
+    "name": "_bridgeAddress",
+    "type": "address"
+   },
+   {
+    "internalType": "contract PolygonRollupManager",
+    "name": "_rollupManager",
+    "type": "address"
+   }
+  ],
+  "stateMutability": "nonpayable",
+  "type": "constructor"
+ },
+ {
   "inputs": [],
   "name": "BatchAlreadyVerified",
   "type": "error"
@@ -344,25 +370,6 @@
    }
   ],
   "name": "Initialized",
-  "type": "event"
- },
- {
-  "anonymous": false,
-  "inputs": [
-   {
-    "indexed": true,
-    "internalType": "uint64",
-    "name": "targetBatch",
-    "type": "uint64"
-   },
-   {
-    "indexed": false,
-    "internalType": "bytes32",
-    "name": "accInputHashToRollback",
-    "type": "bytes32"
-   }
-  ],
-  "name": "RollbackBatches",
   "type": "event"
  },
  {
@@ -978,24 +985,6 @@
   "type": "function"
  },
  {
-  "inputs": [
-   {
-    "internalType": "uint64",
-    "name": "targetBatch",
-    "type": "uint64"
-   },
-   {
-    "internalType": "bytes32",
-    "name": "accInputHashToRollback",
-    "type": "bytes32"
-   }
-  ],
-  "name": "rollbackBatches",
-  "outputs": [],
-  "stateMutability": "nonpayable",
-  "type": "function"
- },
- {
   "inputs": [],
   "name": "rollupManager",
   "outputs": [
@@ -1033,14 +1022,9 @@
       "type": "bytes32"
      }
     ],
-    "internalType": "struct PolygonRollupBaseEtrog.BatchData[]",
+    "internalType": "struct PolygonRollupBaseEtrogPrevious.BatchData[]",
     "name": "batches",
     "type": "tuple[]"
-   },
-   {
-    "internalType": "uint32",
-    "name": "indexL1InfoRoot",
-    "type": "uint32"
    },
    {
     "internalType": "uint64",
@@ -1048,9 +1032,9 @@
     "type": "uint64"
    },
    {
-    "internalType": "bytes32",
-    "name": "expectedFinalAccInputHash",
-    "type": "bytes32"
+    "internalType": "uint64",
+    "name": "initSequencedBatch",
+    "type": "uint64"
    },
    {
     "internalType": "address",
@@ -1088,7 +1072,7 @@
       "type": "bytes32"
      }
     ],
-    "internalType": "struct PolygonRollupBaseEtrog.BatchData[]",
+    "internalType": "struct PolygonRollupBaseEtrogPrevious.BatchData[]",
     "name": "batches",
     "type": "tuple[]"
    }
