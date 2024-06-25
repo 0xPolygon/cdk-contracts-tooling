@@ -1,0 +1,262 @@
+[
+ {
+  "inputs": [],
+  "name": "AllBatchesMustBeVerified",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "AllSequencedMustBeVerified",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "AllzkEVMSequencedBatchesMustBeVerified",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "BatchFeeOutOfRange",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "CannotUpdateWithUnconsolidatedPendingState",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "ChainIDAlreadyExist",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "ChainIDOutOfRange",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "EmptyVerifySequencesData",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "ExceedMaxVerifyBatches",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "FinalNumBatchBelowLastVerifiedBatch",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "FinalNumBatchDoesNotMatchPendingState",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "FinalNumSequenceBelowLastVerifiedSequence",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "FinalNumSequenceDoesNotMatchPendingState",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "FinalPendingStateNumInvalid",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "HaltTimeoutNotExpired",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "InitBatchMustMatchCurrentForkID",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "InitNumBatchAboveLastVerifiedBatch",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "InitNumBatchDoesNotMatchPendingState",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "InitSequenceMustMatchCurrentForkID",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "InitSequenceNumDoesNotMatchPendingState",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "InvalidProof",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "InvalidRangeBatchTimeTarget",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "InvalidRangeMultiplierBatchFee",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "InvalidRangeMultiplierZkGasPrice",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "InvalidRangeSequenceTimeTarget",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "MustSequenceSomeBatch",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "MustSequenceSomeBlob",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "NewAccInputHashDoesNotExist",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "NewPendingStateTimeoutMustBeLower",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "NewStateRootNotInsidePrime",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "NewTrustedAggregatorTimeoutMustBeLower",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "NotAllowedAddress",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "OldAccInputHashDoesNotExist",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "OldStateRootDoesNotExist",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "OnlyRollupAdmin",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "PendingStateDoesNotExist",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "PendingStateInvalid",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "PendingStateNotConsolidable",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "RollbackBatchIsNotEndOfSequence",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "RollbackBatchIsNotValid",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "RollupAddressAlreadyExist",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "RollupIDNotAscendingOrder",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "RollupMustExist",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "RollupTypeDoesNotExist",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "RollupTypeObsolete",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "SenderMustBeRollup",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "StoredRootMustBeDifferentThanNewRoot",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "TrustedAggregatorTimeoutNotExpired",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "UpdateNotCompatible",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "UpdateToOldRollupTypeID",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "UpdateToSameRollupTypeID",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "zkGasPriceOfRange",
+  "type": "error"
+ }
+]
