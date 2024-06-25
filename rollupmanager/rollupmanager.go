@@ -15,7 +15,7 @@ import (
 )
 
 type RollupManager struct {
-	Client             *ethclient.Client
+	Client             *ethclient.Client                          `json:"-"`
 	Contract           *polygonrollupmanager.Polygonrollupmanager `json:"-"`
 	Address            common.Address
 	BridgeAddress      common.Address
@@ -25,7 +25,7 @@ type RollupManager struct {
 	UpdateToULxLyBlock uint64
 }
 
-func LoadFromL1(client *ethclient.Client, address common.Address) (*RollupManager, error) {
+func LoadFromL1(ctx context.Context, client *ethclient.Client, address common.Address) (*RollupManager, error) {
 	contract, err := polygonrollupmanager.NewPolygonrollupmanager(address, client)
 	if err != nil {
 		return nil, err
@@ -54,7 +54,7 @@ func LoadFromL1(client *ethclient.Client, address common.Address) (*RollupManage
 	}
 	rm.POLAddr = polAddr
 
-	ub, err := rm.GetUpgradeBlocks(context.TODO())
+	ub, err := rm.GetUpgradeBlocks(ctx)
 	if err != nil {
 		return nil, err
 	}

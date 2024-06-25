@@ -1,0 +1,8 @@
+[Wallets.0x617b3a3528F9cDd6630fd3301B9c8911F7Bf063D]
+Type = "PlainTextPrivateKey"
+PrivateKey = "0x28b2b0318721be8c8339199172cd7cc8f5e273800a35616ec893083a4b32c02e"
+
+[Wallets.0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266]
+Type = "EncryptedFile"
+FilePath = "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266.keystore"
+# The password is testonly

@@ -1,0 +1,14 @@
+{
+  "name": "fundaccount",
+  "version": "1.0.0",
+  "description": "",
+  "main": "fundAccounts.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ethers": "^6.11.1"
+  }
+}
