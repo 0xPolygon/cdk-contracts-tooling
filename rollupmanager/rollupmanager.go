@@ -223,7 +223,7 @@ func (rm *RollupManager) InitContract(ctx context.Context, client bind.ContractB
 // GetConsensusDescription returns the description of the consensus for a given rollup ID
 func (rm *RollupManager) GetConsensusDescription(ctx context.Context, rollupID uint32) (string, error) {
 	it, err := rm.Contract.FilterAddNewRollupType(&bind.FilterOpts{
-		Start:   rm.UpdateToULxLyBlock,
+		Start:   rm.CreationBlock,
 		Context: ctx,
 	}, []uint32{rollupID})
 	if err != nil {
