@@ -222,7 +222,7 @@ func (rm *RollupManager) InitContract(ctx context.Context, client bind.ContractB
 
 // GetConsensusDescription returns the description of the consensus for a given rollup ID
 func (rm *RollupManager) GetConsensusDescription(ctx context.Context, rollupID uint32) (string, error) {
-	it, err := rm.Contract.FilterAddNewRollupType(&bind.FilterOpts{
+	createNewRollupIt, err := rm.Contract.FilterCreateNewRollup(&bind.FilterOpts{
 		Start:   rm.CreationBlock,
 		Context: ctx,
 	}, []uint32{rollupID})
@@ -230,9 +230,28 @@ func (rm *RollupManager) GetConsensusDescription(ctx context.Context, rollupID u
 		return "", err
 	}
 
-	for it.Next() {
-		if it.Event.RollupTypeID == rollupID {
-			return it.Event.Description, nil
+	rollupTypeID := -1
+	for createNewRollupIt.Next() {
+		rollupTypeID = (int)(createNewRollupIt.Event.RollupTypeID)
+		break
+	}
+
+	if rollupTypeID == -1 {
+		return "", nil
+	}
+
+	rtID := uint32(rollupTypeID)
+	addNewRollupTypeIt, err := rm.Contract.FilterAddNewRollupType(&bind.FilterOpts{
+		Start:   rm.CreationBlock,
+		Context: ctx,
+	}, []uint32{rtID})
+	if err != nil {
+		return "", err
+	}
+
+	for addNewRollupTypeIt.Next() {
+		if createNewRollupIt.Event.RollupTypeID == rtID {
+			return addNewRollupTypeIt.Event.Description, nil
 		}
 	}
 
