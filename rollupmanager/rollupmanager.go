@@ -203,3 +203,57 @@ func (rm *RollupManager) GetAttachedRollups(ctx context.Context) (map[uint64]str
 	}
 	return res, nil
 }
+
+// InitContract initializes the rollup manager contract if not already initialized
+func (rm *RollupManager) InitContract(ctx context.Context, client bind.ContractBackend) error {
+	if rm.Contract != nil {
+		return nil
+	}
+
+	contract, err := polygonrollupmanager.NewPolygonrollupmanager(rm.Address, client)
+	if err != nil {
+		return err
+	}
+
+	rm.Contract = contract
+
+	return nil
+}
+
+// GetConsensusDescription returns the description of the consensus for a given rollup ID
+func (rm *RollupManager) GetConsensusDescription(ctx context.Context, rollupID uint32) (string, error) {
+	createNewRollupIt, err := rm.Contract.FilterCreateNewRollup(&bind.FilterOpts{
+		Start:   rm.CreationBlock,
+		Context: ctx,
+	}, []uint32{rollupID})
+	if err != nil {
+		return "", err
+	}
+
+	rollupTypeID := -1
+	for createNewRollupIt.Next() {
+		rollupTypeID = (int)(createNewRollupIt.Event.RollupTypeID)
+		break
+	}
+
+	if rollupTypeID == -1 {
+		return "", nil
+	}
+
+	rtID := uint32(rollupTypeID)
+	addNewRollupTypeIt, err := rm.Contract.FilterAddNewRollupType(&bind.FilterOpts{
+		Start:   rm.CreationBlock,
+		Context: ctx,
+	}, []uint32{rtID})
+	if err != nil {
+		return "", err
+	}
+
+	for addNewRollupTypeIt.Next() {
+		if createNewRollupIt.Event.RollupTypeID == rtID {
+			return addNewRollupTypeIt.Event.Description, nil
+		}
+	}
+
+	return "", nil
+}

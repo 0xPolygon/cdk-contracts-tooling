@@ -22,6 +22,7 @@ func main() {
 		importRollupCommand,
 		nodeGenesisCommand,
 		bridgeConfigCommand,
+		importCombinedJsonCmd,
 	}
 
 	err := app.Run(os.Args)
