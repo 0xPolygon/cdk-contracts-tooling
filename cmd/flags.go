@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/urfave/cli/v2"
 )
 
@@ -20,6 +22,24 @@ var (
 		Name:     outputFileFlagName,
 		Aliases:  []string{"o"},
 		Usage:    "Output file",
+		Required: true,
+	}
+	rollupManagerAliasFlag = &cli.StringFlag{
+		Name:    rollupManagerAliasFlagName,
+		Aliases: []string{"rm"},
+		Usage: fmt.Sprintf(
+			"Name of the rollup manager to which the rollup belongs. Needs to match an already imported rollup manager (can be done by running the %s command)",
+			importRollupManagerCommandName,
+		),
+		Required: true,
+	}
+	rollupAliasFlag = &cli.StringFlag{
+		Name:    rollupAliasFlagName,
+		Aliases: []string{"r"},
+		Usage: fmt.Sprintf(
+			"Name of the rollup. Needs to match an already imported rollup (can be done by running the %s command)",
+			importRollupCommandName,
+		),
 		Required: true,
 	}
 )

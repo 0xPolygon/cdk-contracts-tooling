@@ -5,14 +5,15 @@ import (
 	"encoding/json"
 	"os"
 
-	"github.com/0xPolygon/cdk-contracts-tooling/contracts/etrog/polygonzkevm"
+	"github.com/0xPolygon/cdk-contracts-tooling/contracts/elderberry/polygonvalidiumetrog"
 	"github.com/0xPolygon/cdk-contracts-tooling/rollupmanager"
+	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
 )
 
 type Rollup struct {
-	Contract      *polygonzkevm.Polygonzkevm `json:"-"`
+	Contract      *polygonvalidiumetrog.Polygonvalidiumetrog `json:"-"`
 	Address       common.Address
 	GenesisRoot   common.Hash
 	CreationBlock uint64
@@ -36,7 +37,7 @@ func LoadFromL1ByChainID(client *ethclient.Client, rm *rollupmanager.RollupManag
 		return nil, err
 	}
 
-	rollup, err := polygonzkevm.NewPolygonzkevm(rData.RollupContract, client)
+	rollup, err := polygonvalidiumetrog.NewPolygonvalidiumetrog(rData.RollupContract, client)
 	if err != nil {
 		return nil, err
 	}
@@ -67,11 +68,27 @@ func LoadFromFile(client *ethclient.Client, filePath string) (*Rollup, error) {
 		return nil, err
 	}
 	if client != nil {
-		contract, err := polygonzkevm.NewPolygonzkevm(r.Address, client)
+		contract, err := polygonvalidiumetrog.NewPolygonvalidiumetrog(r.Address, client)
 		if err != nil {
 			return nil, err
 		}
 		r.Contract = contract
 	}
 	return &r, nil
+}
+
+// InitContract initializes the rollup contract if not already initialized
+func (r *Rollup) InitContract(ctx context.Context, client bind.ContractBackend) error {
+	if r.Contract != nil {
+		return nil
+	}
+
+	contract, err := polygonvalidiumetrog.NewPolygonvalidiumetrog(r.Address, client)
+	if err != nil {
+		return err
+	}
+
+	r.Contract = contract
+
+	return nil
 }

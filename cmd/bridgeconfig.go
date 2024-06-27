@@ -17,24 +17,8 @@ var (
 		Flags: []cli.Flag{
 			l1Flag,
 			outputFlag,
-			&cli.StringFlag{
-				Name:    rollupManagerAliasFlagName,
-				Aliases: []string{"rm"},
-				Usage: fmt.Sprintf(
-					"Name of the rollup manager to which the rollup belongs. Needs to match an already imported rollup manager (can be done by running the %s command)",
-					importRollupManagerCommandName,
-				),
-				Required: true,
-			},
-			&cli.StringFlag{
-				Name:    rollupAliasFlagName,
-				Aliases: []string{"r"},
-				Usage: fmt.Sprintf(
-					"Name of the rollup. Needs to match an already imported rollup (can be done by running the %s command)",
-					importRollupCommandName,
-				),
-				Required: true,
-			},
+			rollupManagerAliasFlag,
+			rollupAliasFlag,
 		},
 	}
 )

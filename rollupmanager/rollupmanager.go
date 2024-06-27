@@ -203,3 +203,38 @@ func (rm *RollupManager) GetAttachedRollups(ctx context.Context) (map[uint64]str
 	}
 	return res, nil
 }
+
+// InitContract initializes the rollup manager contract if not already initialized
+func (rm *RollupManager) InitContract(ctx context.Context, client bind.ContractBackend) error {
+	if rm.Contract != nil {
+		return nil
+	}
+
+	contract, err := polygonrollupmanager.NewPolygonrollupmanager(rm.Address, client)
+	if err != nil {
+		return err
+	}
+
+	rm.Contract = contract
+
+	return nil
+}
+
+// GetConsensusDescription returns the description of the consensus for a given rollup ID
+func (rm *RollupManager) GetConsensusDescription(ctx context.Context, rollupID uint32) (string, error) {
+	it, err := rm.Contract.FilterAddNewRollupType(&bind.FilterOpts{
+		Start:   rm.UpdateToULxLyBlock,
+		Context: ctx,
+	}, []uint32{rollupID})
+	if err != nil {
+		return "", err
+	}
+
+	for it.Next() {
+		if it.Event.RollupTypeID == rollupID {
+			return it.Event.Description, nil
+		}
+	}
+
+	return "", nil
+}
