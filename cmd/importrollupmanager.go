@@ -66,7 +66,7 @@ func importRollupManager(cliCtx *cli.Context) error {
 	fmt.Println("fetching on-chain info for the rollup manager")
 	addrStr := cliCtx.String(rollupManagerAddressFlagName)
 	addr := common.HexToAddress(addrStr)
-	rm, err := rollupmanager.LoadFromL1(client, addr)
+	rm, err := rollupmanager.LoadFromL1(cliCtx.Context, client, addr)
 	if err != nil {
 		return err
 	}
