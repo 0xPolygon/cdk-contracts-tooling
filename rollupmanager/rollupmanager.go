@@ -181,6 +181,11 @@ func (rm *RollupManager) GetAttachedRollups(ctx context.Context) (map[uint64]str
 	if err != nil {
 		return nil, err
 	}
+	zeroAddr := common.Address{}
+	if data.RollupContract == zeroAddr {
+		fmt.Println("rollup manager has no attached rollups")
+		return res, nil
+	}
 	rollup, err := polygonzkevm.NewPolygonzkevm(data.RollupContract, rm.Client)
 	if err != nil {
 		return nil, err
