@@ -126,7 +126,8 @@ type CreateRollupInfo struct {
 
 // GetRollupCreation returns genesis root and the block number in which the rollup was created
 func (rm *RollupManager) GetRollupCreationInfo(ctx context.Context, rollupID uint32) (CreateRollupInfo, error) {
-	if rollupID == 1 {
+	if rollupID == 1 && rm.UpdateToULxLyBlock != rm.CreationBlock {
+		// Original rollup, created before the upgrade
 		rollup, err := polygonzkevm.NewPolygonzkevm(rm.Address, rm.Client)
 		if err != nil {
 			return CreateRollupInfo{}, err
