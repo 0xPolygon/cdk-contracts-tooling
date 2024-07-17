@@ -50,3 +50,7 @@ Unfortunately the base genesis file cannot be retrieved from L1. Therefore they 
 4. Generate the network config section of the bridge service: `go run ./cmd bridge -l1 sepolia -rm cardona -r API3 -output API3Bridge.toml`
 
 Note that step 1 only needs to be done once, if there are multiple CDKs attached to the same rollup manager, with a single run it will be enough
+
+## Contact
+
+For more discussions, please head to the [R&D Discord](https://discord.gg/0xPolygonRnD)
