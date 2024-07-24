@@ -8,5 +8,5 @@ gen() {
     abigen --bin bin/${package}.bin --abi abi/${package}.abi --pkg=${package} --out=${package}/${package}.go
 }
 
-gen globalExitRootNoPush0
-gen pessimisticGlobalExitRoot
+gen globalexitRootnopush0
+gen pessimisticglobalexitroot
