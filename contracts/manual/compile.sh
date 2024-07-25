@@ -10,3 +10,4 @@ gen() {
 
 gen globalexitrootnopush0
 gen pessimisticglobalexitroot
+gen pessimisticglobalexitrootnopush0
