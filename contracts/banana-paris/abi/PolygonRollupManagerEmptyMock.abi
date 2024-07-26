@@ -1,0 +1,156 @@
+[
+ {
+  "inputs": [],
+  "name": "OnlyEmergencyState",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "OnlyNotEmergencyState",
+  "type": "error"
+ },
+ {
+  "anonymous": false,
+  "inputs": [],
+  "name": "EmergencyStateActivated",
+  "type": "event"
+ },
+ {
+  "anonymous": false,
+  "inputs": [],
+  "name": "EmergencyStateDeactivated",
+  "type": "event"
+ },
+ {
+  "inputs": [],
+  "name": "activateEmergencyState",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [],
+  "name": "deactivateEmergencyState",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [],
+  "name": "getBatchFee",
+  "outputs": [
+   {
+    "internalType": "uint256",
+    "name": "",
+    "type": "uint256"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [],
+  "name": "getForcedBatchFee",
+  "outputs": [
+   {
+    "internalType": "uint256",
+    "name": "",
+    "type": "uint256"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [],
+  "name": "isEmergencyState",
+  "outputs": [
+   {
+    "internalType": "bool",
+    "name": "",
+    "type": "bool"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [],
+  "name": "lastDeactivatedEmergencyStateTimestamp",
+  "outputs": [
+   {
+    "internalType": "uint256",
+    "name": "",
+    "type": "uint256"
+   }
+  ],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint64",
+    "name": "newSequencedBatches",
+    "type": "uint64"
+   },
+   {
+    "internalType": "bytes32",
+    "name": "newAccInputHash",
+    "type": "bytes32"
+   }
+  ],
+  "name": "onSequenceBatches",
+  "outputs": [
+   {
+    "internalType": "uint64",
+    "name": "",
+    "type": "uint64"
+   }
+  ],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint64",
+    "name": "finalNewBatch",
+    "type": "uint64"
+   },
+   {
+    "internalType": "bytes32",
+    "name": "newStateRoot",
+    "type": "bytes32"
+   },
+   {
+    "internalType": "contract IPolygonRollupBase",
+    "name": "rollup",
+    "type": "address"
+   }
+  ],
+  "name": "onVerifyBatches",
+  "outputs": [
+   {
+    "internalType": "uint64",
+    "name": "",
+    "type": "uint64"
+   }
+  ],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "bool",
+    "name": "newAcceptSequenceBatches",
+    "type": "bool"
+   }
+  ],
+  "name": "setAcceptSequenceBatches",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ }
+]

@@ -1,0 +1,207 @@
+[
+ {
+  "inputs": [],
+  "name": "BatchAlreadyVerified",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "BatchNotSequencedOrNotSequenceEnd",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "ExceedMaxVerifyBatches",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "FinalNumBatchBelowLastVerifiedBatch",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "FinalNumBatchDoesNotMatchPendingState",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "FinalPendingStateNumInvalid",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "ForceBatchNotAllowed",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "ForceBatchTimeoutNotExpired",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "ForceBatchesAlreadyActive",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "ForceBatchesOverflow",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "ForcedDataDoesNotMatch",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "GlobalExitRootNotExist",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "HaltTimeoutNotExpired",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "InitNumBatchAboveLastVerifiedBatch",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "InitNumBatchDoesNotMatchPendingState",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "InvalidProof",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "InvalidRangeBatchTimeTarget",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "InvalidRangeForceBatchTimeout",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "InvalidRangeMultiplierBatchFee",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "NewAccInputHashDoesNotExist",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "NewPendingStateTimeoutMustBeLower",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "NewStateRootNotInsidePrime",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "NewTrustedAggregatorTimeoutMustBeLower",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "NotEnoughMaticAmount",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "OldAccInputHashDoesNotExist",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "OldStateRootDoesNotExist",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "OnlyAdmin",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "OnlyPendingAdmin",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "OnlyTrustedAggregator",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "OnlyTrustedSequencer",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "PendingStateDoesNotExist",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "PendingStateInvalid",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "PendingStateNotConsolidable",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "PendingStateTimeoutExceedHaltAggregationTimeout",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "SequenceZeroBatches",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "SequencedTimestampBelowForcedTimestamp",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "SequencedTimestampInvalid",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "StoredRootMustBeDifferentThanNewRoot",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "TransactionsLengthAboveMax",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "TrustedAggregatorTimeoutExceedHaltAggregationTimeout",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "TrustedAggregatorTimeoutNotExpired",
+  "type": "error"
+ }
+]
