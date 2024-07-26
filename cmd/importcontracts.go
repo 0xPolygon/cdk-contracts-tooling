@@ -16,6 +16,8 @@ import (
 const (
 	contractsVersionFlagName = "contracts-version"
 	contractsAliasFlagName   = "contracts-alias"
+	nodeVersionFlagName      = "node-version"
+	buildParisFlagName       = "build-paris"
 	pathToFetchContracts     = "zkevm-contracts/artifacts/contracts"
 	readmeTemplate           = `# %s contracts
 
@@ -42,6 +44,20 @@ var (
 				Aliases:  []string{"alias"},
 				Usage:    "Name that will be used to store the contracts (name of directory under contracts)",
 				Required: true,
+			},
+			&cli.StringFlag{
+				Name:     nodeVersionFlagName,
+				Aliases:  []string{"node"},
+				Usage:    "Version of Node to use",
+				Required: false,
+				Value:    "16",
+			},
+			&cli.BoolFlag{
+				Name:     buildParisFlagName,
+				Aliases:  []string{"paris"},
+				Usage:    "Build targe PARIS to avoid PUSH0",
+				Required: false,
+				Value:    false,
 			},
 		},
 	}
@@ -93,9 +109,17 @@ func importContracts(cliCtx *cli.Context) error {
 		fmt.Println("error checking out to: ", checkoutVersion)
 		return err
 	}
+	nodeVersion := cliCtx.String(nodeVersionFlagName)
+	flagParis := cliCtx.Bool(buildParisFlagName)
+	if flagParis {
+		err = prepareParisMode()
+		if err != nil {
+			return err
+		}
+	}
+	fmt.Println("compiling contracts node version ", nodeVersion)
 
-	fmt.Println("compiling contracts")
-	err = exec.Command("bash", "-l", "-c", "NODE_VERSION=16 $NVM_DIR/nvm-exec npm i && npm run compile").Run()
+	err = exec.Command("bash", "-l", "-c", "NODE_VERSION="+nodeVersion+" $NVM_DIR/nvm-exec npm i && npm run compile").Run()
 	if err != nil {
 		fmt.Println("error compiling contracts")
 		return err
@@ -160,6 +184,15 @@ func importContracts(cliCtx *cli.Context) error {
 		return err
 	}
 	return nil
+}
+
+func prepareParisMode() error {
+	fmt.Println("preparing PARIS mode...")
+	err := exec.Command("bash", "-l", "-c", "cp docker/scripts/v2/hardhat.example.paris hardhat.config.ts").Run()
+	if err != nil {
+		fmt.Println("error copying hardhat.example.paris")
+	}
+	return err
 }
 
 func importContract(contractPath, storingPath string) error {

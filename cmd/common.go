@@ -16,8 +16,8 @@ func checkWorkingDir() (string, error) {
 		return "", err
 	}
 	_, f := path.Split(baseDir)
-	if f != repoName {
-		return "", fmt.Errorf("run the command from the root of the (%s)", repoName)
+	if f == "cmd" {
+		return "", fmt.Errorf("run the command from the root of the (%s), not from (%s)", repoName, baseDir)
 	}
 	return baseDir, nil
 }
