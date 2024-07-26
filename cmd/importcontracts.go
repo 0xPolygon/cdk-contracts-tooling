@@ -23,6 +23,9 @@ const (
 
 All the files and directories within this directory have been generated using the import-contracts command of the CLI in this repo.
 The ABI and the binnaries of the smart contracts have been extracted from [zkevm-contracts repo](https://github.com/0xPolygonHermez/zkevm-contracts), using the version %s (commit %s)
+
+Commandline used: ` + "` $ go run ./cmd %s `" + `
+
 `
 )
 
@@ -173,10 +176,11 @@ func importContracts(cliCtx *cli.Context) error {
 	}
 
 	fmt.Println("generating README.md")
+	commandlineParams := strings.Join(os.Args[1:], " ")
 	err = os.WriteFile(
 		contractsPath+"/README.md",
 		[]byte(fmt.Sprintf(
-			readmeTemplate, alias, checkoutVersion, strings.TrimSuffix(string(gitCommit), "\n"),
+			readmeTemplate, alias, checkoutVersion, strings.TrimSuffix(string(gitCommit), "\n"), commandlineParams,
 		)),
 		0644,
 	)
