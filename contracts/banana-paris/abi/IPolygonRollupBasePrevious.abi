@@ -1,0 +1,76 @@
+[
+ {
+  "inputs": [],
+  "name": "admin",
+  "outputs": [
+   {
+    "internalType": "address",
+    "name": "",
+    "type": "address"
+   }
+  ],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "address",
+    "name": "_admin",
+    "type": "address"
+   },
+   {
+    "internalType": "address",
+    "name": "sequencer",
+    "type": "address"
+   },
+   {
+    "internalType": "uint32",
+    "name": "networkID",
+    "type": "uint32"
+   },
+   {
+    "internalType": "address",
+    "name": "gasTokenAddress",
+    "type": "address"
+   },
+   {
+    "internalType": "string",
+    "name": "sequencerURL",
+    "type": "string"
+   },
+   {
+    "internalType": "string",
+    "name": "_networkName",
+    "type": "string"
+   }
+  ],
+  "name": "initialize",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint64",
+    "name": "lastVerifiedBatch",
+    "type": "uint64"
+   },
+   {
+    "internalType": "bytes32",
+    "name": "newStateRoot",
+    "type": "bytes32"
+   },
+   {
+    "internalType": "address",
+    "name": "aggregator",
+    "type": "address"
+   }
+  ],
+  "name": "onVerifyBatches",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ }
+]
