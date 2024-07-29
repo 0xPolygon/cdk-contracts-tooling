@@ -31,7 +31,7 @@
    {
     "indexed": false,
     "internalType": "uint32",
-    "name": "depositCount",
+    "name": "leafIndex",
     "type": "uint32"
    },
    {
@@ -222,7 +222,7 @@
   "inputs": [
    {
     "internalType": "uint32",
-    "name": "depositCount",
+    "name": "leafIndex",
     "type": "uint32"
    }
   ],

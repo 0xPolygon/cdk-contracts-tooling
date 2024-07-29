@@ -1,0 +1,158 @@
+[
+ {
+  "inputs": [],
+  "name": "MerkleTreeFull",
+  "type": "error"
+ },
+ {
+  "anonymous": false,
+  "inputs": [
+   {
+    "indexed": false,
+    "internalType": "uint8",
+    "name": "version",
+    "type": "uint8"
+   }
+  ],
+  "name": "Initialized",
+  "type": "event"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "bytes32",
+    "name": "leafHash",
+    "type": "bytes32"
+   },
+   {
+    "internalType": "bytes32[32]",
+    "name": "smtProof",
+    "type": "bytes32[32]"
+   },
+   {
+    "internalType": "uint32",
+    "name": "index",
+    "type": "uint32"
+   }
+  ],
+  "name": "calculateRoot",
+  "outputs": [
+   {
+    "internalType": "bytes32",
+    "name": "",
+    "type": "bytes32"
+   }
+  ],
+  "stateMutability": "pure",
+  "type": "function"
+ },
+ {
+  "inputs": [],
+  "name": "depositCount",
+  "outputs": [
+   {
+    "internalType": "uint256",
+    "name": "",
+    "type": "uint256"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint8",
+    "name": "leafType",
+    "type": "uint8"
+   },
+   {
+    "internalType": "uint32",
+    "name": "originNetwork",
+    "type": "uint32"
+   },
+   {
+    "internalType": "address",
+    "name": "originAddress",
+    "type": "address"
+   },
+   {
+    "internalType": "uint32",
+    "name": "destinationNetwork",
+    "type": "uint32"
+   },
+   {
+    "internalType": "address",
+    "name": "destinationAddress",
+    "type": "address"
+   },
+   {
+    "internalType": "uint256",
+    "name": "amount",
+    "type": "uint256"
+   },
+   {
+    "internalType": "bytes32",
+    "name": "metadataHash",
+    "type": "bytes32"
+   }
+  ],
+  "name": "getLeafValue",
+  "outputs": [
+   {
+    "internalType": "bytes32",
+    "name": "",
+    "type": "bytes32"
+   }
+  ],
+  "stateMutability": "pure",
+  "type": "function"
+ },
+ {
+  "inputs": [],
+  "name": "getRoot",
+  "outputs": [
+   {
+    "internalType": "bytes32",
+    "name": "",
+    "type": "bytes32"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "bytes32",
+    "name": "leafHash",
+    "type": "bytes32"
+   },
+   {
+    "internalType": "bytes32[32]",
+    "name": "smtProof",
+    "type": "bytes32[32]"
+   },
+   {
+    "internalType": "uint32",
+    "name": "index",
+    "type": "uint32"
+   },
+   {
+    "internalType": "bytes32",
+    "name": "root",
+    "type": "bytes32"
+   }
+  ],
+  "name": "verifyMerkleProof",
+  "outputs": [
+   {
+    "internalType": "bool",
+    "name": "",
+    "type": "bool"
+   }
+  ],
+  "stateMutability": "pure",
+  "type": "function"
+ }
+]
