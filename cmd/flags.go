@@ -18,6 +18,7 @@ const (
 	setupFilePathFlagName         = "setup-file"
 	implementationAddressFlagName = "implementation-address"
 	smartContractVersionFlagName  = "smart-contract-version"
+	amountFlagName                = "amount"
 
 	defaultTimeout = time.Minute * 10
 	etrog          = "etrog"
@@ -74,7 +75,7 @@ var (
 			`Version of the smart contracts to be used. Supported options: ["%s", "%s"]`,
 			etrog, elderbeerry,
 		),
-		Required: false,
+		Required: true,
 		Action: func(ctx *cli.Context, input string) error {
 			switch input {
 			case "etrog":
@@ -83,10 +84,25 @@ var (
 				return nil
 			default:
 				return fmt.Errorf(
-					`unsupported %s value. Supported options are: ["%s", "%s"]`,
-					walletPasswordFlagName, etrog, elderbeerry,
+					`unsupported %s flag value. Supported options are: ["%s", "%s"]`,
+					smartContractVersionFlagName, etrog, elderbeerry,
 				)
 			}
 		},
+	}
+	rollupManagerFlag = &cli.StringFlag{
+		Name:    rollupManagerAliasFlagName,
+		Aliases: []string{"rm"},
+		Usage: fmt.Sprintf(
+			"Name of the rollup manager to which the rollup belongs. Needs to match an already imported rollup manager (can be done by running the %s command)",
+			importRollupManagerCommandName,
+		),
+		Required: true,
+	}
+	amountFlag = &cli.StringFlag{
+		Name:     amountFlagName,
+		Aliases:  []string{"a"},
+		Usage:    "Amount of tokens expressed in base 10 string",
+		Required: true,
 	}
 )
