@@ -8,14 +8,21 @@ import (
 )
 
 const (
-	l1FlagName               = "l1-network"
-	outputFileFlagName       = "output"
-	walletFlagName           = "wallet"
-	walletPasswordFlagName   = "wallet-password"
-	addressFlagName          = "address"
-	skipConfirmationFlagName = "skip-confirmation"
-	timeoutFlagName          = "timeout"
-	defaultTimeout           = time.Minute * 10
+	l1FlagName                    = "l1-network"
+	outputFileFlagName            = "output"
+	walletFlagName                = "wallet"
+	walletPasswordFlagName        = "wallet-password"
+	addressFlagName               = "address"
+	skipConfirmationFlagName      = "skip-confirmation"
+	timeoutFlagName               = "timeout"
+	setupFilePathFlagName         = "setup-file"
+	implementationAddressFlagName = "implementation-address"
+	smartContractVersionFlagName  = "smart-contract-version"
+	amountFlagName                = "amount"
+
+	defaultTimeout = time.Minute * 10
+	etrog          = "etrog"
+	elderbeerry    = "elderberry"
 )
 
 var (
@@ -60,5 +67,42 @@ var (
 		Aliases:  []string{"to"},
 		Usage:    fmt.Sprintf("Time after which a given operation within a command will fail. Defaults to %s", defaultTimeout),
 		Required: false,
+	}
+	smartContractVersionFlag = &cli.StringFlag{
+		Name:    smartContractVersionFlagName,
+		Aliases: []string{"scv", "contract-version"},
+		Usage: fmt.Sprintf(
+			`Version of the smart contracts to be used. Supported options: ["%s", "%s"]`,
+			etrog, elderbeerry,
+		),
+		Required: true,
+		Action: func(ctx *cli.Context, input string) error {
+			switch input {
+			case "etrog":
+				return nil
+			case "elderberry":
+				return nil
+			default:
+				return fmt.Errorf(
+					`unsupported %s flag value. Supported options are: ["%s", "%s"]`,
+					smartContractVersionFlagName, etrog, elderbeerry,
+				)
+			}
+		},
+	}
+	rollupManagerFlag = &cli.StringFlag{
+		Name:    rollupManagerAliasFlagName,
+		Aliases: []string{"rm"},
+		Usage: fmt.Sprintf(
+			"Name of the rollup manager to which the rollup belongs. Needs to match an already imported rollup manager (can be done by running the %s command)",
+			importRollupManagerCommandName,
+		),
+		Required: true,
+	}
+	amountFlag = &cli.StringFlag{
+		Name:     amountFlagName,
+		Aliases:  []string{"a"},
+		Usage:    "Amount of tokens expressed in base 10 string",
+		Required: true,
 	}
 )
