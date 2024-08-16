@@ -31,7 +31,7 @@
    {
     "indexed": false,
     "internalType": "uint32",
-    "name": "leafIndex",
+    "name": "leafCount",
     "type": "uint32"
    },
    {
@@ -71,15 +71,40 @@
     "internalType": "bytes32",
     "name": "rollupExitRoot",
     "type": "bytes32"
-   },
+   }
+  ],
+  "name": "UpdateL1InfoTree",
+  "type": "event"
+ },
+ {
+  "anonymous": false,
+  "inputs": [
    {
     "indexed": false,
     "internalType": "bytes32",
     "name": "currentL1InfoRoot",
     "type": "bytes32"
+   },
+   {
+    "indexed": true,
+    "internalType": "uint32",
+    "name": "leafCount",
+    "type": "uint32"
+   },
+   {
+    "indexed": false,
+    "internalType": "uint256",
+    "name": "blockhash",
+    "type": "uint256"
+   },
+   {
+    "indexed": false,
+    "internalType": "uint64",
+    "name": "minTimestamp",
+    "type": "uint64"
    }
   ],
-  "name": "UpdateL1InfoTree",
+  "name": "UpdateL1InfoTreeV2",
   "type": "event"
  },
  {
@@ -222,7 +247,7 @@
   "inputs": [
    {
     "internalType": "uint32",
-    "name": "leafIndex",
+    "name": "leafCount",
     "type": "uint32"
    }
   ],
