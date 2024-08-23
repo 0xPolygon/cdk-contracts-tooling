@@ -33,6 +33,7 @@ type CombinedJSON struct {
 	RollupManagerCreationBlock uint64         `json:"deploymentRollupManagerBlockNumber"`
 	UpdateToULxLyBlock         uint64         `json:"upgradeToULxLyBlockNumber"`
 	Genesis                    common.Hash    `json:"genesis"`
+	RollupCreationTimestamp    uint64         `json:"createRollupTimestamp"`
 	RollupCreationBlock        uint64         `json:"createRollupBlockNumber"`
 	RollupAddress              common.Address `json:"rollupAddress"`
 	ConsensusContract          string         `json:"consensusContract"`
@@ -89,6 +90,7 @@ func importCombinedJson(cliCtx *cli.Context) error {
 		UpdateToULxLyBlock:         rollupManager.UpdateToULxLyBlock,
 		Genesis:                    rollup.GenesisRoot,
 		RollupCreationBlock:        rollup.CreationBlock,
+		RollupCreationTimestamp:    rollup.CreationTimestamp,
 		RollupAddress:              rollup.Address,
 		ConsensusContract:          consensusDesc,
 		RollupID:                   rollup.RollupID,
