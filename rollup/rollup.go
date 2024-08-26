@@ -50,7 +50,7 @@ func LoadFromL1ByChainID(client *ethclient.Client, rm *rollupmanager.RollupManag
 		Contract:          rollup,
 		Address:           rData.RollupContract,
 		CreationBlock:     info.Block,
-		CreationTimestamp: info.Block,
+		CreationTimestamp: info.Timestamp,
 		GenesisRoot:       info.Root,
 		ChainID:           chainID,
 		Name:              name,
