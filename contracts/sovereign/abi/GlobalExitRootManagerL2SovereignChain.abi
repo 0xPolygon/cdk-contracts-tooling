@@ -1,0 +1,186 @@
+[
+ {
+  "inputs": [
+   {
+    "internalType": "address",
+    "name": "_bridgeAddress",
+    "type": "address"
+   }
+  ],
+  "stateMutability": "nonpayable",
+  "type": "constructor"
+ },
+ {
+  "inputs": [],
+  "name": "GlobalExitRootAlreadySet",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "OnlyAllowedContracts",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "OnlyCoinbase",
+  "type": "error"
+ },
+ {
+  "anonymous": false,
+  "inputs": [
+   {
+    "indexed": true,
+    "internalType": "bytes32",
+    "name": "newGlobalExitRoot",
+    "type": "bytes32"
+   }
+  ],
+  "name": "InsertGlobalExitRoot",
+  "type": "event"
+ },
+ {
+  "inputs": [],
+  "name": "bridgeAddress",
+  "outputs": [
+   {
+    "internalType": "address",
+    "name": "",
+    "type": "address"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "bytes32[]",
+    "name": "globalExitRoots",
+    "type": "bytes32[]"
+   }
+  ],
+  "name": "checkGERsExistance",
+  "outputs": [
+   {
+    "internalType": "bool",
+    "name": "success",
+    "type": "bool"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "uint256",
+    "name": "previousInjectedGERCount",
+    "type": "uint256"
+   },
+   {
+    "internalType": "bytes32[]",
+    "name": "injectedGERs",
+    "type": "bytes32[]"
+   }
+  ],
+  "name": "checkInjectedGERsAndReturnLER",
+  "outputs": [
+   {
+    "internalType": "bool",
+    "name": "success",
+    "type": "bool"
+   },
+   {
+    "internalType": "bytes32",
+    "name": "localExitRoot",
+    "type": "bytes32"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "bytes32",
+    "name": "",
+    "type": "bytes32"
+   }
+  ],
+  "name": "globalExitRootMap",
+  "outputs": [
+   {
+    "internalType": "uint256",
+    "name": "",
+    "type": "uint256"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [],
+  "name": "injectedGERCount",
+  "outputs": [
+   {
+    "internalType": "uint256",
+    "name": "",
+    "type": "uint256"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "bytes32",
+    "name": "_newRoot",
+    "type": "bytes32"
+   }
+  ],
+  "name": "insertGlobalExitRoot",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "bytes32",
+    "name": "_newRoot",
+    "type": "bytes32"
+   }
+  ],
+  "name": "insertGlobalExitRoot_cheat",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ },
+ {
+  "inputs": [],
+  "name": "lastRollupExitRoot",
+  "outputs": [
+   {
+    "internalType": "bytes32",
+    "name": "",
+    "type": "bytes32"
+   }
+  ],
+  "stateMutability": "view",
+  "type": "function"
+ },
+ {
+  "inputs": [
+   {
+    "internalType": "bytes32",
+    "name": "newRoot",
+    "type": "bytes32"
+   }
+  ],
+  "name": "updateExitRoot",
+  "outputs": [],
+  "stateMutability": "nonpayable",
+  "type": "function"
+ }
+]
