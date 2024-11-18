@@ -24,7 +24,7 @@ const (
 All the files and directories within this directory have been generated using the import-contracts command of the CLI in this repo.
 The ABI and the binnaries of the smart contracts have been extracted from [zkevm-contracts repo](https://github.com/0xPolygonHermez/zkevm-contracts), using the version %s (commit %s)
 
-Commandline used: ` + "` $ go run ./cmd %s `" + `
+The CLI command used to generate the contracts: ` + "`$ go run ./cmd %s`" + `
 
 `
 )
@@ -58,7 +58,7 @@ var (
 			&cli.BoolFlag{
 				Name:     buildParisFlagName,
 				Aliases:  []string{"paris"},
-				Usage:    "Build targe PARIS to avoid PUSH0",
+				Usage:    "Build target PARIS to avoid PUSH0",
 				Required: false,
 				Value:    false,
 			},
