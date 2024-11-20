@@ -117,12 +117,14 @@ func (rm *RollupManager) GetUpgradeBlocks(ctx context.Context) (map[uint8]uint64
 }
 
 type CreateRollupInfo struct {
-	Root      common.Hash
-	Block     uint64
-	Timestamp uint64
-	ChainID   uint64
-	RollupID  uint32
-	GasToken  common.Address
+	Root            common.Hash
+	Block           uint64
+	BlockHash       common.Hash
+	ParentBlockHash common.Hash
+	Timestamp       uint64
+	ChainID         uint64
+	RollupID        uint32
+	GasToken        common.Address
 }
 
 // GetRollupCreation returns genesis root and the block number in which the rollup was created
@@ -147,15 +149,16 @@ func (rm *RollupManager) GetRollupCreationInfo(ctx context.Context, rollupID uin
 		if err != nil {
 			return CreateRollupInfo{}, err
 		}
-		timestamp := b.Time()
 
 		return CreateRollupInfo{
-			Root:      common.Hash(root),
-			Block:     rm.CreationBlock,
-			Timestamp: timestamp,
-			ChainID:   chainID,
-			RollupID:  rollupID,
-			GasToken:  common.Address{},
+			Root:            common.Hash(root),
+			Block:           rm.CreationBlock,
+			BlockHash:       b.Hash(),
+			ParentBlockHash: b.ParentHash(),
+			Timestamp:       b.Time(),
+			ChainID:         chainID,
+			RollupID:        rollupID,
+			GasToken:        common.Address{},
 		}, nil
 	}
 	it, err := rm.Contract.FilterCreateNewRollup(&bind.FilterOpts{
@@ -174,15 +177,19 @@ func (rm *RollupManager) GetRollupCreationInfo(ctx context.Context, rollupID uin
 		if err != nil {
 			return CreateRollupInfo{}, err
 		}
-		timestamp := b.Time()
-		return CreateRollupInfo{
-			Root:      common.Hash(rollupType.Genesis),
-			Block:     it.Event.Raw.BlockNumber,
-			Timestamp: timestamp,
-			ChainID:   it.Event.ChainID,
-			RollupID:  rollupID,
-			GasToken:  it.Event.GasTokenAddress,
-		}, nil
+
+		if b != nil {
+			return CreateRollupInfo{
+				Root:            common.Hash(rollupType.Genesis),
+				Block:           it.Event.Raw.BlockNumber,
+				BlockHash:       b.Hash(),
+				ParentBlockHash: b.ParentHash(),
+				Timestamp:       b.Time(),
+				ChainID:         it.Event.ChainID,
+				RollupID:        rollupID,
+				GasToken:        it.Event.GasTokenAddress,
+			}, nil
+		}
 	}
 	return CreateRollupInfo{}, fmt.Errorf("no create new rollup event for ID %d", rollupID)
 }

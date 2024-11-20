@@ -13,15 +13,17 @@ import (
 )
 
 type Rollup struct {
-	Contract          *polygonvalidiumetrog.Polygonvalidiumetrog `json:"-"`
-	Address           common.Address
-	GenesisRoot       common.Hash
-	CreationBlock     uint64
-	CreationTimestamp uint64
-	ChainID           uint64
-	Name              string
-	RollupID          uint32
-	GasToken          common.Address
+	Contract                *polygonvalidiumetrog.Polygonvalidiumetrog `json:"-"`
+	Address                 common.Address
+	GenesisRoot             common.Hash
+	CreationBlock           uint64
+	CreationBlockHash       common.Hash
+	CreationParentBlockHash common.Hash
+	CreationTimestamp       uint64
+	ChainID                 uint64
+	Name                    string
+	RollupID                uint32
+	GasToken                common.Address
 }
 
 func LoadFromL1ByChainID(client *ethclient.Client, rm *rollupmanager.RollupManager, chainID uint64) (*Rollup, error) {
@@ -47,15 +49,17 @@ func LoadFromL1ByChainID(client *ethclient.Client, rm *rollupmanager.RollupManag
 		return nil, err
 	}
 	return &Rollup{
-		Contract:          rollup,
-		Address:           rData.RollupContract,
-		CreationBlock:     info.Block,
-		CreationTimestamp: info.Timestamp,
-		GenesisRoot:       info.Root,
-		ChainID:           chainID,
-		Name:              name,
-		RollupID:          info.RollupID,
-		GasToken:          info.GasToken,
+		Contract:                rollup,
+		Address:                 rData.RollupContract,
+		CreationBlock:           info.Block,
+		CreationBlockHash:       info.BlockHash,
+		CreationParentBlockHash: info.ParentBlockHash,
+		CreationTimestamp:       info.Timestamp,
+		GenesisRoot:             info.Root,
+		ChainID:                 chainID,
+		Name:                    name,
+		RollupID:                info.RollupID,
+		GasToken:                info.GasToken,
 	}, nil
 }
 
