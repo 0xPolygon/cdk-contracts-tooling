@@ -14,6 +14,9 @@ import (
 	"github.com/ethereum/go-ethereum/core/types"
 )
 
+// https://github.com/0xPolygonHermez/zkevm-commonjs/blob/bb0e77e9158a0fc3d06eb5de53b458bb87f77bc7/src/constants.js#L58
+var L2GERManager = common.HexToAddress("0xa40D5f56745a118D0906a34E69aeC8C0Db1cB8fA")
+
 type RollupPessimisticProofs struct {
 	*RollupMetadata
 
@@ -64,7 +67,13 @@ func (r *RollupPessimisticProofs) GetBatchL2Data(rm *rollupmanager.RollupManager
 		return "", err
 	}
 
-	bridgeInitTxData, err := bridgeABI.Pack("initialize", r.RollupID, r.GasToken, gasTokenNetwork, rm.GERAddr, common.Address{}, gasTokenMetadata)
+	bridgeInitTxData, err := bridgeABI.Pack("initialize",
+		r.RollupID,
+		r.GasToken,
+		gasTokenNetwork,
+		L2GERManager,
+		common.Address{}, // rollup manager does not exist on L2
+		gasTokenMetadata)
 	if err != nil {
 		return "", err
 	}
