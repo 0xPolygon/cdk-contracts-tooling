@@ -7,6 +7,8 @@ import (
 	"path"
 
 	"github.com/0xPolygon/cdk-contracts-tooling/config"
+	"github.com/0xPolygon/cdk-contracts-tooling/rollup"
+	"github.com/0xPolygon/cdk-contracts-tooling/rollupmanager"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/urfave/cli/v2"
 )
@@ -41,6 +43,7 @@ type CombinedJSON struct {
 	L2ChainID                  uint64         `json:"L2ChainID"`
 	RollupGasTokenAddress      common.Address `json:"gasTokenAddress"`
 	DACAddress                 common.Address `json:"polygonDataCommitteeAddress"`
+	BatchL2Data                string         `json:"batchL2Data,omitempty"`
 }
 
 func importCombinedJson(cliCtx *cli.Context) error {
@@ -53,7 +56,7 @@ func importCombinedJson(cliCtx *cli.Context) error {
 	rmAlias := cliCtx.String(rollupManagerAliasFlagName)
 	rAlias := cliCtx.String(rollupAliasFlagName)
 
-	rpcs, rollupManager, rollup, _, err := config.Load(l1Network, rmAlias, rAlias, baseDir)
+	rpcs, rollupManager, rollupMetadata, _, err := config.Load(l1Network, rmAlias, rAlias, baseDir, false)
 	if err != nil {
 		return err
 	}
@@ -67,18 +70,37 @@ func importCombinedJson(cliCtx *cli.Context) error {
 		return err
 	}
 
-	if err := rollup.InitContract(cliCtx.Context, client); err != nil {
-		return err
-	}
-
-	consensusDesc, err := rollupManager.GetConsensusDescription(cliCtx.Context, rollup.RollupID)
+	consensusDesc, err := rollupManager.GetConsensusDescription(cliCtx.Context, rollupMetadata.RollupID)
 	if err != nil {
 		return err
 	}
 
-	dac, err := rollup.Contract.DataAvailabilityProtocol(nil)
-	if err != nil {
-		fmt.Println("")
+	var (
+		dac         common.Address
+		batchL2Data string
+	)
+
+	switch rollupMetadata.VerifierType {
+	case rollupmanager.Pessimistic:
+		r := &rollup.RollupPessimisticProofs{RollupMetadata: rollupMetadata}
+		if err := r.InitContract(cliCtx.Context, client); err != nil {
+			return err
+		}
+
+		batchL2Data, err = r.GetBatchL2Data(rollupManager, client)
+		if err != nil {
+			return fmt.Errorf("failed to retrieve batch l2 data %w", err)
+		}
+	default:
+		r := &rollup.RollupValidium{RollupMetadata: rollupMetadata}
+		if err := r.InitContract(cliCtx.Context, client); err != nil {
+			return err
+		}
+
+		dac, err = r.Contract.DataAvailabilityProtocol(nil)
+		if err != nil {
+			fmt.Println("failed to retrieve data availability protocol address", "reason:", err)
+		}
 	}
 
 	combinedJson := &CombinedJSON{
@@ -88,15 +110,16 @@ func importCombinedJson(cliCtx *cli.Context) error {
 		PolTokenAddress:            rollupManager.POLAddr,
 		RollupManagerCreationBlock: rollupManager.CreationBlock,
 		UpdateToULxLyBlock:         rollupManager.UpdateToULxLyBlock,
-		Genesis:                    rollup.GenesisRoot,
-		RollupCreationBlock:        rollup.CreationBlock,
-		RollupCreationTimestamp:    rollup.CreationTimestamp,
-		RollupAddress:              rollup.Address,
+		Genesis:                    rollupMetadata.GenesisRoot,
+		RollupCreationBlock:        rollupMetadata.CreationBlock,
+		RollupCreationTimestamp:    rollupMetadata.CreationTimestamp,
+		RollupAddress:              rollupMetadata.Address,
 		ConsensusContract:          consensusDesc,
-		RollupID:                   rollup.RollupID,
-		L2ChainID:                  rollup.ChainID,
-		RollupGasTokenAddress:      rollup.GasToken,
+		RollupID:                   rollupMetadata.RollupID,
+		L2ChainID:                  rollupMetadata.ChainID,
+		RollupGasTokenAddress:      rollupMetadata.GasToken,
 		DACAddress:                 dac,
+		BatchL2Data:                batchL2Data,
 	}
 
 	raw, err := json.MarshalIndent(combinedJson, "", " ")

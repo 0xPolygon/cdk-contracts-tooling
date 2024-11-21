@@ -7,7 +7,6 @@ import (
 	"fmt"
 	"os"
 	"path"
-	"strconv"
 
 	"github.com/0xPolygon/cdk-contracts-tooling/config"
 	"github.com/0xPolygon/cdk-contracts-tooling/rollup"
@@ -99,7 +98,7 @@ func importRollupManager(cliCtx *cli.Context) error {
 	}
 	for chainID, name := range rollups {
 		fmt.Println("importing rollup ", name, " with chainID ", chainID)
-		r, err := rollup.LoadFromL1ByChainID(client, rm, chainID)
+		r, err := rollup.LoadMetadataFromL1ByChainID(client, rm, chainID)
 		if err != nil {
 			return err
 		}
@@ -108,17 +107,22 @@ func importRollupManager(cliCtx *cli.Context) error {
 			return err
 		}
 		if name == "networkName" || name == "" {
-			name = strconv.Itoa(int(chainID))
+			name = fmt.Sprintf("%d", chainID)
 		}
 		err = os.WriteFile(path.Join(rollupPath, name+".json"), rData, 0644)
 		if err != nil {
 			return err
 		}
-		if _, err := os.Stat(path.Join(baseDir, "genesis", r.GenesisRoot.Hex()+".json")); errors.Is(err, os.ErrNotExist) {
-			fmt.Printf(
-				"WARNING: the rollup %s with chain id %d uses a genesis with root %s. But there is no such genesis file. Please manually import it into the ./genesis directory.\n",
-				name, chainID, r.GenesisRoot.Hex(),
-			)
+
+		if r.VerifierType != rollupmanager.Pessimistic {
+			// for pessimistic proofs, the genesis root should be an empty hash
+			// (https://github.com/0xPolygonHermez/zkevm-contracts/blob/c8659e6282340de7bdb8fdbf7924a9bd2996bc98/contracts/v2/PolygonRollupManager.sol#L443-L446)
+			if _, err := os.Stat(path.Join(baseDir, "genesis", r.GenesisRoot.Hex()+".json")); errors.Is(err, os.ErrNotExist) {
+				fmt.Printf(
+					"WARNING: the rollup %s with chain id %d uses a genesis with root %s. But there is no such genesis file. Please manually import it into the ./genesis directory.\n",
+					name, chainID, r.GenesisRoot.Hex(),
+				)
+			}
 		}
 	}
 	return nil

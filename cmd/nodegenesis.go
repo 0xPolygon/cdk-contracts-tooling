@@ -50,7 +50,7 @@ func nodeGenesis(cliCtx *cli.Context) error {
 	rmAlias := cliCtx.String(rollupManagerAliasFlagName)
 	rAlias := cliCtx.String(rollupAliasFlagName)
 	outputFilePath := cliCtx.String(outputFileFlagName)
-	rpcs, rm, r, genesis, err := config.Load(l1Network, rmAlias, rAlias, baseDir)
+	rpcs, rm, r, genesis, err := config.Load(l1Network, rmAlias, rAlias, baseDir, true)
 	if err != nil {
 		return err
 	}
