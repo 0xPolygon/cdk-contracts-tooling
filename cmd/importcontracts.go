@@ -24,7 +24,7 @@ const (
 All the files and directories within this directory have been generated using the import-contracts command of the CLI in this repo.
 The ABI and the binnaries of the smart contracts have been extracted from [zkevm-contracts repo](https://github.com/0xPolygonHermez/zkevm-contracts), using the version %s (commit %s)
 
-Commandline used: ` + "` $ go run ./cmd %s `" + `
+The CLI command used to generate the contracts: ` + "`$ go run ./cmd %s`" + `
 
 `
 )
@@ -58,7 +58,7 @@ var (
 			&cli.BoolFlag{
 				Name:     buildParisFlagName,
 				Aliases:  []string{"paris"},
-				Usage:    "Build targe PARIS to avoid PUSH0",
+				Usage:    "Build target PARIS to avoid PUSH0",
 				Required: false,
 				Value:    false,
 			},
@@ -81,11 +81,11 @@ func importContracts(cliCtx *cli.Context) error {
 	if err != nil {
 		return err
 	}
-	err = exec.Command("ls", "zkevm-contracts").Run()
+	err = runCommand("ls", "zkevm-contracts")
 	if err != nil {
-		if err.Error() == "exit status 2" {
+		if strings.Contains(err.Error(), "exit status 2") {
 			fmt.Println("cloning contracts repo into temporary directory")
-			err = exec.Command("git", "clone", "https://github.com/0xPolygonHermez/zkevm-contracts.git").Run()
+			err = runCommand("git", "clone", "https://github.com/0xPolygonHermez/zkevm-contracts.git")
 			if err != nil {
 				fmt.Println("error cloning zkevm-contracts repo")
 				return err
@@ -102,7 +102,7 @@ func importContracts(cliCtx *cli.Context) error {
 
 	checkoutVersion := cliCtx.String(contractsVersionFlagName)
 	fmt.Println("checking out version ", checkoutVersion)
-	err = exec.Command("git", "checkout", checkoutVersion).Run()
+	err = runCommand("git", "checkout", checkoutVersion)
 	if err != nil {
 		fmt.Println("error checking out to: ", checkoutVersion)
 		return err
@@ -122,7 +122,7 @@ func importContracts(cliCtx *cli.Context) error {
 	}
 	fmt.Println("compiling contracts node version ", nodeVersion)
 
-	err = exec.Command("bash", "-l", "-c", "NODE_VERSION="+nodeVersion+" $NVM_DIR/nvm-exec npm i && npm run compile").Run()
+	err = runCommand("bash", "-l", "-c", "NODE_VERSION="+nodeVersion+" $NVM_DIR/nvm-exec npm i && npm run compile")
 	if err != nil {
 		fmt.Println("error compiling contracts")
 		return err
@@ -169,7 +169,7 @@ func importContracts(cliCtx *cli.Context) error {
 	fmt.Printf("%d / %d contracts compiled successfuly\n", contractsFound-compilationFailures, contractsFound)
 
 	fmt.Println("running go mod tidy to fix potential dependency issues related to generated Go code")
-	err = exec.Command("go", "mod", "tidy").Run()
+	err = runCommand("go", "mod", "tidy")
 	if err != nil {
 		fmt.Println("error running go mod tidy")
 		return err
@@ -192,9 +192,9 @@ func importContracts(cliCtx *cli.Context) error {
 
 func prepareParisMode() error {
 	fmt.Println("preparing PARIS mode...")
-	err := exec.Command("bash", "-l", "-c", "cp docker/scripts/v2/hardhat.example.paris hardhat.config.ts").Run()
+	err := runCommand("bash", "-l", "-c", "cp docker/scripts/v2/hardhat.example.paris hardhat.config.ts")
 	if err != nil {
-		fmt.Println("error copying hardhat.example.paris")
+		fmt.Println("error copying hardhat.example.paris", "reason", err)
 	}
 	return err
 }
@@ -239,15 +239,15 @@ func importContract(contractPath, storingPath string) error {
 		return err
 	}
 	// generate Go binding
-	err = exec.Command(
+	err = runCommand(
 		"bash", "-l", "-c",
 		fmt.Sprintf(
 			"abigen --bin bin/%s.bin --abi abi/%s.abi --pkg=%s --out=%s/%s.go",
 			name, name, goName, goName, goName,
 		),
-	).Run()
+	)
 	if err != nil {
-		fmt.Println("error compiling contracts")
+		fmt.Println("error generating go bindings for smart contracts")
 		return err
 	}
 	// generate errors mapping

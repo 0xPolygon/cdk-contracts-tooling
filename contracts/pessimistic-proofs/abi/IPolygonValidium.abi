@@ -1,0 +1,12 @@
+[
+ {
+  "inputs": [],
+  "name": "SequenceWithDataAvailabilityNotAllowed",
+  "type": "error"
+ },
+ {
+  "inputs": [],
+  "name": "SwitchToSameValue",
+  "type": "error"
+ }
+]
