@@ -56,7 +56,7 @@ func importCombinedJson(cliCtx *cli.Context) error {
 	rmAlias := cliCtx.String(rollupManagerAliasFlagName)
 	rAlias := cliCtx.String(rollupAliasFlagName)
 
-	rpcs, rollupManager, rollupMetadata, _, err := config.Load(l1Network, rmAlias, rAlias, baseDir, false)
+	rpcs, rollupManager, rollupMetadata, err := config.Load(l1Network, rmAlias, rAlias, baseDir)
 	if err != nil {
 		return err
 	}

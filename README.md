@@ -30,14 +30,25 @@ Some commands require using RPC endpoints. There are multiple ways to import the
 
 ### Genesis
 
-Unfortunately the base genesis file cannot be retrieved from L1. Therefore they must be imported manually at `./genesis/<root>.json`
+Unfortunately the base genesis file cannot be retrieved from L1. Therefore they must be imported manually.
+#### Full execution proofs rollups
+For the full execution proofs rollups, the location that should contain the genesis allocations is `./genesis/fep/<root>.json`
+
+#### Pessimistic proofs rollups
+For the pessimistic proofs rollups (since they are initialized with an empty genesis root), the location that should contain the genesis allocations is constructed following the pattern `./genesis/pp/<l1_network_alias>/<rollup_manager_alias>/<rollup_alias>/allocs.json`. 
+
+**Example**
+
+Let's assume that we have a pessimistic proofs rollup named `cdk-pp-1` running on the `cardona`, that is pointing to `sepolia` l1 network.
+
+The genesis file should be named as `allocs.json` and placed in the `./genesis/pp/sepolia/cardona/cdk-pp-1/`, so the full path is `./genesis/pp/sepolia/cardona/cdk-pp-1/allocs.json`.
 
 ### Examples
 
 #### Generate genesis file for a node (`cdk-validium-node` or `zkevm-node`) and the config for a Bridge service (`zkevm-bridge-service`)
 
 1. Import the rollup manager: `go run ./cmd import-rm -l1 sepolia -addr 0x32d33d5137a7cffb54c5bf8371172bcec5f310ff -alias cardona`. In this example:
-    - `-l1 sepolia` is the L1 network, make sure that your `wallets.toml` file contains a valid RPC for the L1 network this CDK belongs to
+    - `-l1 sepolia` is the L1 network, make sure that your `rpcs.toml` file contains a valid RPC for the L1 network this CDK belongs to
     - `-addr 0x32d33d5137a7cffb54c5bf8371172bcec5f310ff` is the L1 address where the rollup manager is deployed
     - `-alias cardona` is an arbitrary name. You can really name this however you want, but this is going to be used later to reference this rollup manager deployment
 2. (OPTIONAL) After first step, all the attached rollups are imported using their name as alias, and defaulting to chainID for name if the name has the default value `networkName`. It's possible to manually import a rollup using a custom alias: `go run ./cmd import-r -l1 sepolia -rm cardona -r API3 -chainid 879490799`. In this example:
@@ -45,6 +56,8 @@ Unfortunately the base genesis file cannot be retrieved from L1. Therefore they 
     - `-chainid 879490799` is the chain ID of the rollup (L2 Chain ID)
     - `-alias API3` is an arbitrary name. You can really name this however you want, but this is going to be used later to reference this rollup deployment
 3. Generate the genesis file for the node: `go run ./cmd genesis -l1 sepolia -rm cardona -r API3 -output API3.json`. In this example:
+    - `-l1 sepolia` is the L1 network
+    - `-rm cardona` rollup manager referenced by the alias used in the step 1 (import rollup manager)
     - `-r API3` rollup referenced by the alias used in the previous step
     - `-output API3.json` file where the genesis will be stored
 4. Generate the network config section of the bridge service: `go run ./cmd bridge -l1 sepolia -rm cardona -r API3 -output API3Bridge.toml`
