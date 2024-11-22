@@ -1,0 +1,13 @@
+{
+   "Address": "0x4d5421a70c12161e188a0f0e047ece386f883b7e",
+   "GenesisRoot": "0xc8380fc07613572cabbc1a36d62077e2cd3b0e20bdb56ec521729e71f4c217d6",
+   "CreationBlock": 6125289,
+   "CreationBlockHash": "0x1a4cd0e4c2cb35d8e761fbcca6ef17cfb2346c1f3afdadee9ca0f3962466d653",
+   "CreationParentBlockHash": "0x40b8b5d6e58a9c13dca889ff31037ab46e99d53b17d40c92f1dcc6db39a7e094",
+   "CreationTimestamp": 1718609220,
+   "ChainID": 419202691,
+   "Name": "witnesschain-devnet",
+   "RollupID": 9,
+   "GasToken": "0x0000000000000000000000000000000000000000",
+   "VerifierType": 0
+}

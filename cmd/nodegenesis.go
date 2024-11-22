@@ -4,10 +4,18 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"path/filepath"
 
 	"github.com/0xPolygon/cdk-contracts-tooling/config"
+	"github.com/0xPolygon/cdk-contracts-tooling/rollupmanager"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/urfave/cli/v2"
+)
+
+const (
+	genesisAllocsFileName = "allocs.json"
+	fepDirName            = "fep"
+	ppDirName             = "pp"
 )
 
 var (
@@ -15,33 +23,34 @@ var (
 		Name:    "generate-node-genesis",
 		Aliases: []string{"node-genesis", "genesis"},
 		Usage:   "Create the genesis configuration file as expected by the node",
-		Action:  nodeGenesis,
+		Action:  createNodeGenesis,
 		Flags: []cli.Flag{
 			l1Flag,
 			outputFlag,
-			&cli.StringFlag{
-				Name:    rollupManagerAliasFlagName,
-				Aliases: []string{"rm"},
-				Usage: fmt.Sprintf(
-					"Name of the rollup manager to which the rollup belongs. Needs to match an already imported rollup manager (can be done by running the %s command)",
-					importRollupManagerCommandName,
-				),
-				Required: true,
-			},
-			&cli.StringFlag{
-				Name:    rollupAliasFlagName,
-				Aliases: []string{"r"},
-				Usage: fmt.Sprintf(
-					"Name of the rollup. Needs to match an already imported rollup (can be done by running the %s command)",
-					importRollupCommandName,
-				),
-				Required: true,
-			},
+			rollupManagerAliasFlag,
+			rollupAliasFlag,
 		},
 	}
 )
 
-func nodeGenesis(cliCtx *cli.Context) error {
+type l1Config struct {
+	ChainId       uint64         `json:"chainId"`
+	Rollup        common.Address `json:"polygonZkEVMAddress"`
+	RollupManager common.Address `json:"polygonRollupManagerAddress"`
+	POL           common.Address `json:"polTokenAddress"`
+	GER           common.Address `json:"polygonZkEVMGlobalExitRootAddress"`
+}
+
+type nodeGenesis struct {
+	L1Config                                l1Config    `json:"l1Config"`
+	RollupCreationBlockNumberUsedByRollup   uint64      `json:"genesisBlockNumber"`
+	RollupCreationBlockNumberUsedByValidium uint64      `json:"rollupCreationBlockNumber"`
+	UpdateToULxLyBlockNumber                uint64      `json:"rollupManagerCreationBlockNumber"`
+	Genesis                                 interface{} `json:"genesis"`
+	Root                                    common.Hash `json:"root"`
+}
+
+func createNodeGenesis(cliCtx *cli.Context) error {
 	baseDir, err := checkWorkingDir()
 	if err != nil {
 		return err
@@ -50,31 +59,35 @@ func nodeGenesis(cliCtx *cli.Context) error {
 	rmAlias := cliCtx.String(rollupManagerAliasFlagName)
 	rAlias := cliCtx.String(rollupAliasFlagName)
 	outputFilePath := cliCtx.String(outputFileFlagName)
-	rpcs, rm, r, genesis, err := config.Load(l1Network, rmAlias, rAlias, baseDir)
+
+	rpcs, rm, r, err := config.Load(l1Network, rmAlias, rAlias, baseDir)
 	if err != nil {
 		return err
 	}
+
 	l1ChainID, err := rpcs.GetChainID(l1Network)
 	if err != nil {
 		return err
 	}
 
+	var genesisPath string
+	switch r.VerifierType {
+	case rollupmanager.Pessimistic:
+		// The genesis allocations file is uniquelly identified by: l1 network alias, rollup manager alias, and rollup alias.
+		// This is the case, because for pessimistic consensus, rollup's genesis state root is an empty hash.
+		genesisPath = filepath.Join("genesis", ppDirName, l1Network, rmAlias, rAlias, genesisAllocsFileName)
+	default:
+		// The genesis allocations file is uniquelly identified by the genesis state root, written in the rollup
+		genesisPath = filepath.Join("genesis", fepDirName, fmt.Sprintf("%s.json", r.GenesisRoot.Hex()))
+	}
+
+	genesis, err := config.LoadGenesisAllocs(baseDir, genesisPath)
+	if err != nil {
+		return err
+	}
+
 	fmt.Println("creating genesis file")
-	type l1Config struct {
-		ChainId       uint64         `json:"chainId"`
-		Rollup        common.Address `json:"polygonZkEVMAddress"`
-		RollupManager common.Address `json:"polygonRollupManagerAddress"`
-		POL           common.Address `json:"polTokenAddress"`
-		GER           common.Address `json:"polygonZkEVMGlobalExitRootAddress"`
-	}
-	type nodeGenesis struct {
-		L1Config                                l1Config    `json:"l1Config"`
-		RollupCreationBlockNumberUsedByRollup   uint64      `json:"genesisBlockNumber"`
-		RollupCreationBlockNumberUsedByValidium uint64      `json:"rollupCreationBlockNumber"`
-		UpdateToULxLyBlockNumber                uint64      `json:"rollupManagerCreationBlockNumber"`
-		Genesis                                 interface{} `json:"genesis"`
-		Root                                    common.Hash `json:"root"`
-	}
+
 	ng := nodeGenesis{
 		L1Config: l1Config{
 			ChainId:       l1ChainID,
@@ -89,7 +102,8 @@ func nodeGenesis(cliCtx *cli.Context) error {
 		Genesis:                                 genesis,
 		Root:                                    r.GenesisRoot,
 	}
-	data, err := json.MarshalIndent(&ng, "", " ")
+
+	data, err := json.MarshalIndent(&ng, "", "   ")
 	if err != nil {
 		return err
 	}

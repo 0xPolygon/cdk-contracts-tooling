@@ -32,7 +32,7 @@ func bridgeConfig(cliCtx *cli.Context) error {
 	rmAlias := cliCtx.String(rollupManagerAliasFlagName)
 	rAlias := cliCtx.String(rollupAliasFlagName)
 	outputFilePath := cliCtx.String(outputFileFlagName)
-	_, rm, r, _, err := config.Load(l1Network, rmAlias, rAlias, baseDir)
+	_, rm, r, err := config.Load(l1Network, rmAlias, rAlias, baseDir)
 	if err != nil {
 		return err
 	}

@@ -1,0 +1,13 @@
+{
+   "Address": "0x646d24e0c845c93beaa0a47df488842a1420943c",
+   "GenesisRoot": "0xc8380fc07613572cabbc1a36d62077e2cd3b0e20bdb56ec521729e71f4c217d6",
+   "CreationBlock": 5578121,
+   "CreationBlockHash": "0xf8cdfa40927495faeef7e198eb2334772effcec6dab37342c181dc5a6dba0c56",
+   "CreationParentBlockHash": "0x64e119992ab46fa0a111a1d34e69385c1af0d4b8973a94c7043ce7c25939912a",
+   "CreationTimestamp": 1711627416,
+   "ChainID": 1000197,
+   "Name": "BXK Bali",
+   "RollupID": 6,
+   "GasToken": "0xcde8a097b0406d51e99fc2a99a7ee6c656dd6288",
+   "VerifierType": 0
+}

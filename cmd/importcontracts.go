@@ -218,7 +218,7 @@ func importContract(contractPath, storingPath string) error {
 	// add abi and bin files
 	splitted := strings.Split(contractPath, "/")
 	name := strings.TrimSuffix(splitted[len(splitted)-1], ".json")
-	abiData, err := json.MarshalIndent(contract.ABI, "", " ")
+	abiData, err := json.MarshalIndent(contract.ABI, "", "   ")
 	if err != nil {
 		return err
 	}
