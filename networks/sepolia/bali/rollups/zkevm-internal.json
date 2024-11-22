@@ -1,9 +1,13 @@
 {
- "Address": "0x89ba0ed947a88fe43c22ae305c0713ec8a7eb361",
- "GenesisRoot": "0xba1fbb6c11ba3abc9dbee98d8920b8bd832e531ce9360c6f427ef6bfacebe3d1",
- "CreationBlock": 4794475,
- "ChainID": 2440,
- "Name": "zkevm-internal",
- "RollupID": 1,
- "GasToken": "0x0000000000000000000000000000000000000000"
+   "Address": "0x89ba0ed947a88fe43c22ae305c0713ec8a7eb361",
+   "GenesisRoot": "0xba1fbb6c11ba3abc9dbee98d8920b8bd832e531ce9360c6f427ef6bfacebe3d1",
+   "CreationBlock": 4794475,
+   "CreationBlockHash": "0x414513d65b39a58b1649aaa840007a84529c1f39c6765bf3a399777bc0f39fdd",
+   "CreationParentBlockHash": "0xf9a74e4ed075c4ace2a1916e10b661c688ea0007d30b2e4469e725a2a0b2acbc",
+   "CreationTimestamp": 1701336708,
+   "ChainID": 2440,
+   "Name": "zkevm-internal",
+   "RollupID": 1,
+   "GasToken": "0x0000000000000000000000000000000000000000",
+   "VerifierType": 0
 }

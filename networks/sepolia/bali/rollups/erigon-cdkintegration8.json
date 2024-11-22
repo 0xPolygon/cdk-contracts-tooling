@@ -1,0 +1,13 @@
+{
+   "Address": "0x12de9e76aa652b61468a5339fe05ee5fb3aa62a9",
+   "GenesisRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+   "CreationBlock": 7077135,
+   "CreationBlockHash": "0xe3b38591415dcc371baef58c2108224d88a34ddcb438c0a3f609ad794f5f92e4",
+   "CreationParentBlockHash": "0x91fe765f12d5cd71acc2875987579db379e55233f431bfcd0c71b02336ad21f9",
+   "CreationTimestamp": 1731611604,
+   "ChainID": 458,
+   "Name": "erigon-cdkintegration8",
+   "RollupID": 13,
+   "GasToken": "0x0000000000000000000000000000000000000000",
+   "VerifierType": 1
+}
