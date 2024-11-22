@@ -73,7 +73,7 @@ func nodeGenesis(cliCtx *cli.Context) error {
 		Genesis:                                 genesis,
 		Root:                                    r.GenesisRoot,
 	}
-	data, err := json.MarshalIndent(&ng, "", " ")
+	data, err := json.MarshalIndent(&ng, "", "   ")
 	if err != nil {
 		return err
 	}

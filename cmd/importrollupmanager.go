@@ -77,7 +77,7 @@ func importRollupManager(cliCtx *cli.Context) error {
 	if err != nil {
 		return err
 	}
-	rmData, err := json.MarshalIndent(rm, "", " ")
+	rmData, err := json.MarshalIndent(rm, "", "   ")
 	if err != nil {
 		return err
 	}
@@ -102,7 +102,7 @@ func importRollupManager(cliCtx *cli.Context) error {
 		if err != nil {
 			return err
 		}
-		rData, err := json.MarshalIndent(r, "", " ")
+		rData, err := json.MarshalIndent(r, "", "   ")
 		if err != nil {
 			return err
 		}

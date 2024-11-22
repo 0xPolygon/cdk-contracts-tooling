@@ -82,7 +82,7 @@ func importRollup(cliCtx *cli.Context) error {
 	if err != nil {
 		return err
 	}
-	rData, err := json.MarshalIndent(r, "", " ")
+	rData, err := json.MarshalIndent(r, "", "   ")
 	if err != nil {
 		return err
 	}

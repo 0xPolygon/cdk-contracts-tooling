@@ -122,7 +122,7 @@ func importCombinedJson(cliCtx *cli.Context) error {
 		BatchL2Data:                batchL2Data,
 	}
 
-	raw, err := json.MarshalIndent(combinedJson, "", " ")
+	raw, err := json.MarshalIndent(combinedJson, "", "   ")
 	if err != nil {
 		return err
 	}
