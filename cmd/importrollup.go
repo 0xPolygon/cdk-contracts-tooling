@@ -26,15 +26,7 @@ var (
 		Action:  importRollup,
 		Flags: []cli.Flag{
 			l1Flag,
-			&cli.StringFlag{
-				Name:    rollupManagerAliasFlagName,
-				Aliases: []string{"rm"},
-				Usage: fmt.Sprintf(
-					"Name of the rollup manager to which the rollup belongs. Needs to match an already imported rollup manager (can be done by running the %s command)",
-					importRollupManagerCommandName,
-				),
-				Required: true,
-			},
+			rollupManagerAliasFlag,
 			&cli.Uint64Flag{
 				Name:     chainIDFlagName,
 				Aliases:  []string{"id", "chainid", "chain-id"},
