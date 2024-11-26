@@ -3,6 +3,7 @@ package rollup
 import (
 	"bytes"
 	"context"
+	"fmt"
 	"math/big"
 
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/banana-paris/polygonzkevmbridgev2"
@@ -15,7 +16,7 @@ import (
 )
 
 // https://github.com/0xPolygonHermez/zkevm-commonjs/blob/bb0e77e9158a0fc3d06eb5de53b458bb87f77bc7/src/constants.js#L58
-var L2GERManager = common.HexToAddress("0xa40D5f56745a118D0906a34E69aeC8C0Db1cB8fA")
+var L2GERManager = common.HexToAddress("0xa40d5f56745a118d0906a34e69aec8c0db1cb8fa")
 
 type RollupPessimisticProofs struct {
 	*RollupMetadata
@@ -42,6 +43,8 @@ func (r *RollupPessimisticProofs) InitContract(ctx context.Context, client bind.
 // The logic is implemented according to the following snippet:
 // https://github.com/0xPolygonHermez/zkevm-contracts/blob/v9.0.0-rc.3-pp/deployment/v2/4_createRollup.ts#L404-L456
 func (r *RollupPessimisticProofs) GetBatchL2Data(rm *rollupmanager.RollupManager, client bind.ContractBackend) (string, error) {
+	const maxDataLength = 65535
+
 	bridgeAddr, err := r.Contract.BridgeAddress(nil)
 	if err != nil {
 		return "", err
@@ -78,24 +81,35 @@ func (r *RollupPessimisticProofs) GetBatchL2Data(rm *rollupmanager.RollupManager
 		return "", err
 	}
 
+	if len(bridgeInitTxData) > maxDataLength {
+		return "", fmt.Errorf("bridge init tx data length exceeds maximum allowed size (%d bytes)", maxDataLength)
+	}
+
+	V := big.NewInt(27)
+	R := common.BigToHash(big.NewInt(0x5ca1ab1e0))
+	S := common.BigToHash(big.NewInt(0x5ca1ab1e))
+
 	bridgeInitTx := types.NewTx(
 		&types.LegacyTx{
 			To:       &bridgeAddr,
-			Nonce:    0,
+			Value:    common.Big0,
 			GasPrice: common.Big0,
 			Gas:      30000000,
-			Value:    common.Big0,
+			Nonce:    0,
 			Data:     bridgeInitTxData,
-			V:        big.NewInt(0x1b),
-			R:        big.NewInt(0x5ca1ab1e0),
-			S:        big.NewInt(0x5ca1ab1e),
 		})
 
-	var buf bytes.Buffer
-	err = bridgeInitTx.EncodeRLP(&buf)
+	var rawBridgeInitTx bytes.Buffer
+	err = bridgeInitTx.EncodeRLP(&rawBridgeInitTx)
 	if err != nil {
 		return "", err
 	}
 
-	return hexutil.Encode(buf.Bytes()), nil
+	rawTxWithSignature := append(rawBridgeInitTx.Bytes(), encodeTxSignature(V, R, S)...)
+	return hexutil.Encode(rawTxWithSignature), nil
+}
+
+// encodeTxSignature combines the v, r and s into r, s and v byte array
+func encodeTxSignature(v *big.Int, r, s common.Hash) []byte {
+	return append(r.Bytes(), append(s.Bytes(), byte(v.Int64()))...)
 }
