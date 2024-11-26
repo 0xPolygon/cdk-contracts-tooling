@@ -40,7 +40,7 @@ type CombinedJSON struct {
 	RollupAddress              common.Address `json:"rollupAddress"`
 	ConsensusContract          string         `json:"consensusContract"`
 	RollupID                   uint32         `json:"rollupID"`
-	L2ChainID                  uint64         `json:"L2ChainID"`
+	L2ChainID                  uint64         `json:"l2ChainID"`
 	RollupGasTokenAddress      common.Address `json:"gasTokenAddress"`
 	DACAddress                 common.Address `json:"polygonDataCommitteeAddress"`
 	BatchL2Data                string         `json:"batchL2Data,omitempty"`
