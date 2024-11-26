@@ -106,6 +106,9 @@ func (r *RollupPessimisticProofs) GetBatchL2Data(rm *rollupmanager.RollupManager
 	}
 
 	rawTxWithSignature := append(rawBridgeInitTx.Bytes(), encodeTxSignature(V, R, S)...)
+	effectivePercentage := big.NewInt(0xff).Bytes() // effective percentage is custom transaction field, related to the zkevm
+	rawTxWithSignature = append(rawTxWithSignature, effectivePercentage...)
+
 	return hexutil.Encode(rawTxWithSignature), nil
 }
 
