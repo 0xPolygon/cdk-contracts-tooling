@@ -26,15 +26,7 @@ var (
 		Action:  importRollup,
 		Flags: []cli.Flag{
 			l1Flag,
-			&cli.StringFlag{
-				Name:    rollupManagerAliasFlagName,
-				Aliases: []string{"rm"},
-				Usage: fmt.Sprintf(
-					"Name of the rollup manager to which the rollup belongs. Needs to match an already imported rollup manager (can be done by running the %s command)",
-					importRollupManagerCommandName,
-				),
-				Required: true,
-			},
+			rollupManagerAliasFlag,
 			&cli.Uint64Flag{
 				Name:     chainIDFlagName,
 				Aliases:  []string{"id", "chainid", "chain-id"},
@@ -78,7 +70,7 @@ func importRollup(cliCtx *cli.Context) error {
 
 	fmt.Println("fetching on-chain info for the rollup")
 	chainID := cliCtx.Uint64(chainIDFlagName)
-	r, err := rollup.LoadFromL1ByChainID(client, rm, chainID)
+	r, err := rollup.LoadMetadataFromL1ByChainID(client, rm, chainID)
 	if err != nil {
 		return err
 	}
@@ -90,7 +82,7 @@ func importRollup(cliCtx *cli.Context) error {
 	if err != nil {
 		return err
 	}
-	rData, err := json.MarshalIndent(r, "", " ")
+	rData, err := json.MarshalIndent(r, "", "   ")
 	if err != nil {
 		return err
 	}

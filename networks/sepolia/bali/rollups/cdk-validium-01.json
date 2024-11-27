@@ -1,9 +1,13 @@
 {
- "Address": "0x0270df078bdaefd6191bea3fa110ded09ec6d239",
- "GenesisRoot": "0xc8380fc07613572cabbc1a36d62077e2cd3b0e20bdb56ec521729e71f4c217d6",
- "CreationBlock": 5329690,
- "ChainID": 99902,
- "Name": "cdk-validium-01",
- "RollupID": 3,
- "GasToken": "0x0000000000000000000000000000000000000000"
+   "Address": "0x0270df078bdaefd6191bea3fa110ded09ec6d239",
+   "GenesisRoot": "0xc8380fc07613572cabbc1a36d62077e2cd3b0e20bdb56ec521729e71f4c217d6",
+   "CreationBlock": 5329690,
+   "CreationBlockHash": "0x44e5d3fb60cf8c2b5fbcb02a2627ff27fc3064a90611224826c8d4cf14919758",
+   "CreationParentBlockHash": "0x51949c1e232a4aaca4341289d5f3e91e20f69a130dbdd13ac409f5d72da91834",
+   "CreationTimestamp": 1708462260,
+   "ChainID": 99902,
+   "Name": "cdk-validium-01",
+   "RollupID": 3,
+   "GasToken": "0x0000000000000000000000000000000000000000",
+   "VerifierType": 0
 }

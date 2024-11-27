@@ -7,6 +7,8 @@ import (
 	"path"
 
 	"github.com/0xPolygon/cdk-contracts-tooling/config"
+	"github.com/0xPolygon/cdk-contracts-tooling/rollup"
+	"github.com/0xPolygon/cdk-contracts-tooling/rollupmanager"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/urfave/cli/v2"
 )
@@ -38,9 +40,11 @@ type CombinedJSON struct {
 	RollupAddress              common.Address `json:"rollupAddress"`
 	ConsensusContract          string         `json:"consensusContract"`
 	RollupID                   uint32         `json:"rollupID"`
-	L2ChainID                  uint64         `json:"L2ChainID"`
+	L2ChainID                  uint64         `json:"l2ChainID"`
 	RollupGasTokenAddress      common.Address `json:"gasTokenAddress"`
 	DACAddress                 common.Address `json:"polygonDataCommitteeAddress"`
+	BatchL2Data                string         `json:"batchL2Data,omitempty"`
+	LastGlobalExitRoot         common.Hash    `json:"globalExitRoot,omitempty"`
 }
 
 func importCombinedJson(cliCtx *cli.Context) error {
@@ -53,7 +57,7 @@ func importCombinedJson(cliCtx *cli.Context) error {
 	rmAlias := cliCtx.String(rollupManagerAliasFlagName)
 	rAlias := cliCtx.String(rollupAliasFlagName)
 
-	rpcs, rollupManager, rollup, _, err := config.Load(l1Network, rmAlias, rAlias, baseDir)
+	rpcs, rollupManager, rollupMetadata, err := config.Load(l1Network, rmAlias, rAlias, baseDir)
 	if err != nil {
 		return err
 	}
@@ -67,18 +71,44 @@ func importCombinedJson(cliCtx *cli.Context) error {
 		return err
 	}
 
-	if err := rollup.InitContract(cliCtx.Context, client); err != nil {
-		return err
-	}
-
-	consensusDesc, err := rollupManager.GetConsensusDescription(cliCtx.Context, rollup.RollupID)
+	consensusDesc, err := rollupManager.GetConsensusDescription(cliCtx.Context, rollupMetadata.RollupID)
 	if err != nil {
 		return err
 	}
 
-	dac, err := rollup.Contract.DataAvailabilityProtocol(nil)
-	if err != nil {
-		fmt.Println("")
+	var (
+		dacAddr            common.Address
+		batchL2Data        string
+		lastGlobalExitRoot common.Hash
+	)
+
+	switch rollupMetadata.VerifierType {
+	case rollupmanager.Pessimistic:
+		r := &rollup.RollupPessimisticProofs{RollupMetadata: rollupMetadata}
+		if err := r.InitContract(cliCtx.Context, client); err != nil {
+			return err
+		}
+
+		batchL2Data, err = r.GetBatchL2Data(client)
+		if err != nil {
+			return fmt.Errorf("failed to retrieve batch l2 data %w", err)
+		}
+
+		lastGlobalExitRoot, err = r.GetLastGlobalExitRoot(rollupManager.GERAddr, client)
+		if err != nil {
+			return fmt.Errorf("failed to retrieve batch l2 data %w", err)
+		}
+
+	default:
+		r := &rollup.RollupValidium{RollupMetadata: rollupMetadata}
+		if err := r.InitContract(cliCtx.Context, client); err != nil {
+			return err
+		}
+
+		dacAddr, err = r.Contract.DataAvailabilityProtocol(nil)
+		if err != nil {
+			fmt.Println("failed to retrieve data availability protocol address", "reason:", err)
+		}
 	}
 
 	combinedJson := &CombinedJSON{
@@ -88,18 +118,20 @@ func importCombinedJson(cliCtx *cli.Context) error {
 		PolTokenAddress:            rollupManager.POLAddr,
 		RollupManagerCreationBlock: rollupManager.CreationBlock,
 		UpdateToULxLyBlock:         rollupManager.UpdateToULxLyBlock,
-		Genesis:                    rollup.GenesisRoot,
-		RollupCreationBlock:        rollup.CreationBlock,
-		RollupCreationTimestamp:    rollup.CreationTimestamp,
-		RollupAddress:              rollup.Address,
+		Genesis:                    rollupMetadata.GenesisRoot,
+		RollupCreationBlock:        rollupMetadata.CreationBlock,
+		RollupCreationTimestamp:    rollupMetadata.CreationTimestamp,
+		RollupAddress:              rollupMetadata.Address,
 		ConsensusContract:          consensusDesc,
-		RollupID:                   rollup.RollupID,
-		L2ChainID:                  rollup.ChainID,
-		RollupGasTokenAddress:      rollup.GasToken,
-		DACAddress:                 dac,
+		RollupID:                   rollupMetadata.RollupID,
+		L2ChainID:                  rollupMetadata.ChainID,
+		RollupGasTokenAddress:      rollupMetadata.GasToken,
+		DACAddress:                 dacAddr,
+		BatchL2Data:                batchL2Data,
+		LastGlobalExitRoot:         lastGlobalExitRoot,
 	}
 
-	raw, err := json.MarshalIndent(combinedJson, "", " ")
+	raw, err := json.MarshalIndent(combinedJson, "", "   ")
 	if err != nil {
 		return err
 	}

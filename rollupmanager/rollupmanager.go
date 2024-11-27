@@ -11,20 +11,29 @@ import (
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/etrog/polygonrollupmanager"
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/etrog/polygonrollupmanagernotupgraded"
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/etrog/polygonzkevm"
+	"github.com/0xPolygon/cdk-contracts-tooling/contracts/pessimistic-proofs/polygonconsensusbase"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
 )
 
+type VerifierType int
+
+const (
+	StateTransition VerifierType = iota
+	Pessimistic
+)
+
 type RollupManager struct {
-	Client             *ethclient.Client
-	Contract           *polygonrollupmanager.Polygonrollupmanager `json:"-"`
 	Address            common.Address
 	BridgeAddress      common.Address
 	GERAddr            common.Address
 	POLAddr            common.Address
 	CreationBlock      uint64
 	UpdateToULxLyBlock uint64
+
+	Client   *ethclient.Client                          `json:"-"`
+	Contract *polygonrollupmanager.Polygonrollupmanager `json:"-"`
 }
 
 func LoadFromL1(ctx context.Context, client *ethclient.Client, address common.Address) (*RollupManager, error) {
@@ -60,10 +69,9 @@ func LoadFromL1(ctx context.Context, client *ethclient.Client, address common.Ad
 	if err != nil {
 		return nil, err
 	}
-	var creationBlock, upgradeBlock uint64
-	var creationBlockFound, upgradeBlockFound bool
-	creationBlock, creationBlockFound = ub[1]
-	upgradeBlock, upgradeBlockFound = ub[2]
+
+	creationBlock, creationBlockFound := ub[1]
+	upgradeBlock, upgradeBlockFound := ub[2]
 	if creationBlockFound && upgradeBlockFound {
 		// Rollup Manager used to be a isolated LxLy and upgraded to uLxLy
 		rm.CreationBlock = creationBlock
@@ -125,6 +133,21 @@ type CreateRollupInfo struct {
 	ChainID         uint64
 	RollupID        uint32
 	GasToken        common.Address
+	VerifierType    VerifierType
+}
+
+// GetRollupIdentityData returns the rollup id and its address based on the provided chain id
+func (rm *RollupManager) GetRollupIdentityData(chainID uint64) (common.Address, uint32, error) {
+	rollupID, err := rm.Contract.ChainIDToRollupID(nil, chainID)
+	if err != nil {
+		return common.Address{}, 0, err
+	}
+	rollupData, err := rm.Contract.RollupIDToRollupData(nil, rollupID)
+	if err != nil {
+		return common.Address{}, 0, err
+	}
+
+	return rollupData.RollupContract, rollupID, nil
 }
 
 // GetRollupCreation returns genesis root and the block number in which the rollup was created
@@ -145,7 +168,7 @@ func (rm *RollupManager) GetRollupCreationInfo(ctx context.Context, rollupID uin
 		if err != nil {
 			return CreateRollupInfo{}, err
 		}
-		b, err := rm.Client.BlockByNumber(ctx, big.NewInt(int64(rm.CreationBlock)))
+		b, err := rm.Client.BlockByNumber(ctx, new(big.Int).SetUint64(rm.CreationBlock))
 		if err != nil {
 			return CreateRollupInfo{}, err
 		}
@@ -159,6 +182,7 @@ func (rm *RollupManager) GetRollupCreationInfo(ctx context.Context, rollupID uin
 			ChainID:         chainID,
 			RollupID:        rollupID,
 			GasToken:        common.Address{},
+			VerifierType:    StateTransition,
 		}, nil
 	}
 	it, err := rm.Contract.FilterCreateNewRollup(&bind.FilterOpts{
@@ -188,6 +212,7 @@ func (rm *RollupManager) GetRollupCreationInfo(ctx context.Context, rollupID uin
 				ChainID:         it.Event.ChainID,
 				RollupID:        rollupID,
 				GasToken:        it.Event.GasTokenAddress,
+				VerifierType:    VerifierType(rollupType.RollupCompatibilityID),
 			}, nil
 		}
 	}
@@ -207,7 +232,7 @@ func (rm *RollupManager) GetAttachedRollups(ctx context.Context) (map[uint64]str
 		fmt.Println("rollup manager has no attached rollups")
 		return res, nil
 	}
-	rollup, err := polygonzkevm.NewPolygonzkevm(data.RollupContract, rm.Client)
+	rollup, err := polygonconsensusbase.NewPolygonconsensusbase(data.RollupContract, rm.Client)
 	if err != nil {
 		return nil, err
 	}
@@ -218,10 +243,11 @@ func (rm *RollupManager) GetAttachedRollups(ctx context.Context) (map[uint64]str
 	res[data.ChainID] = name
 
 	// Attached rollups
-	it, err := rm.Contract.FilterCreateNewRollup(&bind.FilterOpts{
-		Start:   rm.CreationBlock,
-		Context: ctx,
-	}, nil)
+	it, err := rm.Contract.FilterCreateNewRollup(
+		&bind.FilterOpts{
+			Start:   rm.CreationBlock,
+			Context: ctx,
+		}, nil)
 	if err != nil {
 		return nil, err
 	}
