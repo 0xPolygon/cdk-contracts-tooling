@@ -44,6 +44,7 @@ type CombinedJSON struct {
 	RollupGasTokenAddress      common.Address `json:"gasTokenAddress"`
 	DACAddress                 common.Address `json:"polygonDataCommitteeAddress"`
 	BatchL2Data                string         `json:"batchL2Data,omitempty"`
+	LastGlobalExitRoot         common.Hash    `json:"globalExitRoot,omitempty"`
 }
 
 func importCombinedJson(cliCtx *cli.Context) error {
@@ -76,8 +77,9 @@ func importCombinedJson(cliCtx *cli.Context) error {
 	}
 
 	var (
-		dac         common.Address
-		batchL2Data string
+		dacAddr            common.Address
+		batchL2Data        string
+		lastGlobalExitRoot common.Hash
 	)
 
 	switch rollupMetadata.VerifierType {
@@ -87,17 +89,23 @@ func importCombinedJson(cliCtx *cli.Context) error {
 			return err
 		}
 
-		batchL2Data, err = r.GetBatchL2Data(rollupManager, client)
+		batchL2Data, err = r.GetBatchL2Data(client)
 		if err != nil {
 			return fmt.Errorf("failed to retrieve batch l2 data %w", err)
 		}
+
+		lastGlobalExitRoot, err = r.GetLastGlobalExitRoot(rollupManager.GERAddr, client)
+		if err != nil {
+			return fmt.Errorf("failed to retrieve batch l2 data %w", err)
+		}
+
 	default:
 		r := &rollup.RollupValidium{RollupMetadata: rollupMetadata}
 		if err := r.InitContract(cliCtx.Context, client); err != nil {
 			return err
 		}
 
-		dac, err = r.Contract.DataAvailabilityProtocol(nil)
+		dacAddr, err = r.Contract.DataAvailabilityProtocol(nil)
 		if err != nil {
 			fmt.Println("failed to retrieve data availability protocol address", "reason:", err)
 		}
@@ -118,8 +126,9 @@ func importCombinedJson(cliCtx *cli.Context) error {
 		RollupID:                   rollupMetadata.RollupID,
 		L2ChainID:                  rollupMetadata.ChainID,
 		RollupGasTokenAddress:      rollupMetadata.GasToken,
-		DACAddress:                 dac,
+		DACAddress:                 dacAddr,
 		BatchL2Data:                batchL2Data,
+		LastGlobalExitRoot:         lastGlobalExitRoot,
 	}
 
 	raw, err := json.MarshalIndent(combinedJson, "", "   ")

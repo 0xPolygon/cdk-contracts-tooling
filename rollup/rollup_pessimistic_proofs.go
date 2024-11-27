@@ -7,8 +7,8 @@ import (
 	"math/big"
 
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/banana-paris/polygonzkevmbridgev2"
+	"github.com/0xPolygon/cdk-contracts-tooling/contracts/banana-paris/polygonzkevmglobalexitroot"
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/pessimistic-proofs/polygonpessimisticconsensus"
-	"github.com/0xPolygon/cdk-contracts-tooling/rollupmanager"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
@@ -42,7 +42,7 @@ func (r *RollupPessimisticProofs) InitContract(ctx context.Context, client bind.
 // GetBatchL2Data constructs bridge initialization transaction.
 // The logic is implemented according to the following snippet:
 // https://github.com/0xPolygonHermez/zkevm-contracts/blob/v9.0.0-rc.3-pp/deployment/v2/4_createRollup.ts#L404-L456
-func (r *RollupPessimisticProofs) GetBatchL2Data(rm *rollupmanager.RollupManager, client bind.ContractBackend) (string, error) {
+func (r *RollupPessimisticProofs) GetBatchL2Data(client bind.ContractBackend) (string, error) {
 	const maxDataLength = 65535
 
 	bridgeAddr, err := r.Contract.BridgeAddress(nil)
@@ -110,6 +110,21 @@ func (r *RollupPessimisticProofs) GetBatchL2Data(rm *rollupmanager.RollupManager
 	rawTxWithSignature = append(rawTxWithSignature, effectivePercentage...)
 
 	return hexutil.Encode(rawTxWithSignature), nil
+}
+
+// GetLastGlobalExitRoot retrieves the last global exit root from global exit root manager
+func (r *RollupPessimisticProofs) GetLastGlobalExitRoot(gerAddr common.Address, client bind.ContractBackend) (common.Hash, error) {
+	gerContract, err := polygonzkevmglobalexitroot.NewPolygonzkevmglobalexitroot(gerAddr, client)
+	if err != nil {
+		return common.Hash{}, err
+	}
+
+	lastGER, err := gerContract.GetLastGlobalExitRoot(nil)
+	if err != nil {
+		return common.Hash{}, err
+	}
+
+	return common.BytesToHash(lastGER[:]), nil
 }
 
 // encodeTxSignature combines the v, r and s into r, s and v byte array
