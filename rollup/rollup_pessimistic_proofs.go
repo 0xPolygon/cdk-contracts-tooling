@@ -89,12 +89,14 @@ func (r *RollupPessimisticProofs) GetBatchL2Data(client bind.ContractBackend) (s
 	R := common.BigToHash(big.NewInt(0x5ca1ab1e0))
 	S := common.BigToHash(big.NewInt(0x5ca1ab1e))
 
+	const gasLimit = uint64(30000000)
+
 	bridgeInitTx := types.NewTx(
 		&types.LegacyTx{
 			To:       &bridgeAddr,
 			Value:    common.Big0,
 			GasPrice: common.Big0,
-			Gas:      30000000,
+			Gas:      gasLimit,
 			Nonce:    0,
 			Data:     bridgeInitTxData,
 		})
