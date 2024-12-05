@@ -12,7 +12,7 @@ import (
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/ethereum/go-ethereum/core/types"
+	"github.com/ethereum/go-ethereum/rlp"
 )
 
 // https://github.com/0xPolygonHermez/zkevm-commonjs/blob/bb0e77e9158a0fc3d06eb5de53b458bb87f77bc7/src/constants.js#L58
@@ -91,18 +91,17 @@ func (r *RollupPessimisticProofs) GetBatchL2Data(client bind.ContractBackend) (s
 
 	const gasLimit = uint64(30000000)
 
-	bridgeInitTx := types.NewTx(
-		&types.LegacyTx{
-			To:       &bridgeAddr,
-			Value:    common.Big0,
-			GasPrice: common.Big0,
-			Gas:      gasLimit,
-			Nonce:    0,
-			Data:     bridgeInitTxData,
-		})
+	bridgeInitTx := &preEIP155Transaction{
+		To:       &bridgeAddr,
+		Nonce:    0,
+		GasPrice: common.Big0,
+		Value:    common.Big0,
+		GasLimit: gasLimit,
+		Data:     bridgeInitTxData,
+	}
 
 	var rawBridgeInitTx bytes.Buffer
-	err = bridgeInitTx.EncodeRLP(&rawBridgeInitTx)
+	err = rlp.Encode(&rawBridgeInitTx, bridgeInitTx)
 	if err != nil {
 		return "", err
 	}
@@ -127,6 +126,15 @@ func (r *RollupPessimisticProofs) GetLastGlobalExitRoot(gerAddr common.Address, 
 	}
 
 	return common.BytesToHash(lastGER[:]), nil
+}
+
+type preEIP155Transaction struct {
+	Nonce    uint64
+	GasPrice *big.Int
+	GasLimit uint64
+	To       *common.Address
+	Value    *big.Int
+	Data     []byte
 }
 
 // encodeTxSignature combines the v, r and s into r, s and v byte array
