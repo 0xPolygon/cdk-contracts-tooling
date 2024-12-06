@@ -94,7 +94,7 @@ func importCombinedJson(cliCtx *cli.Context) error {
 			return fmt.Errorf("failed to retrieve batch l2 data %w", err)
 		}
 
-		lastGlobalExitRoot, err = r.GetLastGlobalExitRoot(rollupManager.GERAddr, client)
+		lastGlobalExitRoot, err = r.GetLastGlobalExitRoot(rollupManager, client)
 		if err != nil {
 			return fmt.Errorf("failed to retrieve batch l2 data %w", err)
 		}

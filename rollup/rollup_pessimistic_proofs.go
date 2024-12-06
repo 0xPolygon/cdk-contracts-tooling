@@ -3,15 +3,18 @@ package rollup
 import (
 	"bytes"
 	"context"
+	"errors"
 	"fmt"
 	"math/big"
 
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/banana-paris/polygonzkevmbridgev2"
-	"github.com/0xPolygon/cdk-contracts-tooling/contracts/banana-paris/polygonzkevmglobalexitroot"
+	"github.com/0xPolygon/cdk-contracts-tooling/contracts/etrog/polygonzkevmglobalexitrootv2"
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/pessimistic-proofs/polygonpessimisticconsensus"
+	"github.com/0xPolygon/cdk-contracts-tooling/rollupmanager"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
+	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/rlp"
 )
 
@@ -114,18 +117,43 @@ func (r *RollupPessimisticProofs) GetBatchL2Data(client bind.ContractBackend) (s
 }
 
 // GetLastGlobalExitRoot retrieves the last global exit root from global exit root manager
-func (r *RollupPessimisticProofs) GetLastGlobalExitRoot(gerAddr common.Address, client bind.ContractBackend) (common.Hash, error) {
-	gerContract, err := polygonzkevmglobalexitroot.NewPolygonzkevmglobalexitroot(gerAddr, client)
+func (r *RollupPessimisticProofs) GetLastGlobalExitRoot(rm *rollupmanager.RollupManager, client bind.ContractBackend) (common.Hash, error) {
+	gerContract, err := polygonzkevmglobalexitrootv2.NewPolygonzkevmglobalexitrootv2(rm.GERAddr, client)
 	if err != nil {
 		return common.Hash{}, err
 	}
 
-	lastGER, err := gerContract.GetLastGlobalExitRoot(nil)
+	if r.CreationBlock == 0 {
+		return common.Hash{}, errors.New("rollup creation block number is zero")
+	}
+
+	endBlock := r.CreationBlock - 1
+	iter, err := gerContract.FilterUpdateL1InfoTree(
+		&bind.FilterOpts{
+			Start: rm.UpdateToULxLyBlock,
+			End:   &endBlock,
+		}, nil, nil)
+
 	if err != nil {
 		return common.Hash{}, err
 	}
 
-	return common.BytesToHash(lastGER[:]), nil
+	// We need to grab the latest UpdateL1InfoTree event
+	var globalExitRoot common.Hash
+	for iter.Next() {
+		globalExitRoot = common.BytesToHash(
+			crypto.Keccak256(
+				iter.Event.MainnetExitRoot[:],
+				iter.Event.RollupExitRoot[:],
+			))
+	}
+
+	err = iter.Close()
+	if err != nil {
+		return common.Hash{}, err
+	}
+
+	return common.BytesToHash(globalExitRoot[:]), nil
 }
 
 type preEIP155Transaction struct {
