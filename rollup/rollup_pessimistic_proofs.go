@@ -60,7 +60,7 @@ func (r *RollupPessimisticProofs) GetBatchL2Data(client bind.ContractBackend) (s
 		return "", err
 	}
 
-	gasTokenMetadata, err := bridge.GasTokenMetadata(nil)
+	gasTokenMetadata, err := bridge.GetTokenMetadata(nil, r.GasToken)
 	if err != nil {
 		return "", err
 	}
