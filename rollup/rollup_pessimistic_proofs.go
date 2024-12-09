@@ -116,8 +116,8 @@ func (r *RollupPessimisticProofs) GetBatchL2Data(client bind.ContractBackend) (s
 	return hexutil.Encode(rawTxWithSignature), nil
 }
 
-// GetLastGlobalExitRoot retrieves the last global exit root from global exit root manager
-func (r *RollupPessimisticProofs) GetLastGlobalExitRoot(rm *rollupmanager.RollupManager, client bind.ContractBackend) (common.Hash, error) {
+// GetRollupGlobalExitRoot retrieves the actual global exit root at the rollup creation time
+func (r *RollupPessimisticProofs) GetRollupGlobalExitRoot(rm *rollupmanager.RollupManager, client bind.ContractBackend) (common.Hash, error) {
 	gerContract, err := polygonzkevmglobalexitrootv2.NewPolygonzkevmglobalexitrootv2(rm.GERAddr, client)
 	if err != nil {
 		return common.Hash{}, err
@@ -128,12 +128,17 @@ func (r *RollupPessimisticProofs) GetLastGlobalExitRoot(rm *rollupmanager.Rollup
 	}
 
 	endBlock := r.CreationBlock - 1
-	iter, err := gerContract.FilterUpdateL1InfoTree(
-		&bind.FilterOpts{
-			Start: rm.UpdateToULxLyBlock,
-			End:   &endBlock,
-		}, nil, nil)
 
+	if endBlock < rm.UpdateToULxLyBlock {
+		return common.Hash{}, fmt.Errorf("end block (%d) is less than starting block (%d) in UpdateL1InfoTree filter",
+			rm.UpdateToULxLyBlock, endBlock)
+	}
+
+	filter := &bind.FilterOpts{
+		Start: rm.UpdateToULxLyBlock,
+		End:   &endBlock,
+	}
+	iter, err := gerContract.FilterUpdateL1InfoTree(filter, nil, nil)
 	if err != nil {
 		return common.Hash{}, err
 	}
