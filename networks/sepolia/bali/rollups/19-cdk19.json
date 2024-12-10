@@ -1,0 +1,13 @@
+{
+   "Address": "0x6f14229e22eabe46b7fbd5a5ccb70170682bf30f",
+   "GenesisRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+   "CreationBlock": 7243650,
+   "CreationBlockHash": "0x756e691aac700ff5e0d2028afb620b23c535a3a2400d16e58a2faccece3d4a99",
+   "CreationParentBlockHash": "0x86505203ec290dde35bc581a7f144258d1aba9294714c05dd25db04794d78a6e",
+   "CreationTimestamp": 1733749080,
+   "ChainID": 464,
+   "Name": "cdk19",
+   "RollupID": 19,
+   "GasToken": "0x72293b2e981d4d0642531357f0792ae1b70bf1ab",
+   "VerifierType": 1
+}

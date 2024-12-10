@@ -1,0 +1,13 @@
+{
+   "Address": "0x83de684f04d8cfdac5f0f18e86868c0292466c9c",
+   "GenesisRoot": "0xba1fbb6c11ba3abc9dbee98d8920b8bd832e531ce9360c6f427ef6bfacebe3d1",
+   "CreationBlock": 5328218,
+   "CreationBlockHash": "0xfe4b7ae88810103251ddd41928b5580e9f8c2f545f4a125698dfd45a00cb41f4",
+   "CreationParentBlockHash": "0x64a27e6185ddff184c6a4f74560158416517afd16aea67db312a655593eb15e5",
+   "CreationTimestamp": 1708443588,
+   "ChainID": 99901,
+   "Name": "cdk-validium-01",
+   "RollupID": 2,
+   "GasToken": "0x0000000000000000000000000000000000000000",
+   "VerifierType": 0
+}

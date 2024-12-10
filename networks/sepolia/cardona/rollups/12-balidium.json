@@ -1,0 +1,13 @@
+{
+   "Address": "0x31f5a206f5c600dcd84898b17c9481cc2b0ee808",
+   "GenesisRoot": "0xc8380fc07613572cabbc1a36d62077e2cd3b0e20bdb56ec521729e71f4c217d6",
+   "CreationBlock": 6936606,
+   "CreationBlockHash": "0x515b4d283cfdcff8b769898b7e8df16f8063d2df0fa4f1eb646893a0d84529ee",
+   "CreationParentBlockHash": "0x3f977d342d0c26e982c2e5cf0d04bbbc7905a15825db56dc694011356d9a0360",
+   "CreationTimestamp": 1729782396,
+   "ChainID": 2445,
+   "Name": "balidium",
+   "RollupID": 12,
+   "GasToken": "0x0000000000000000000000000000000000000000",
+   "VerifierType": 0
+}

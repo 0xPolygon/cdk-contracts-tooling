@@ -1,0 +1,13 @@
+{
+   "Address": "0xcb9530e86d6e0183fcdbe74c74c5c0a3963393ce",
+   "GenesisRoot": "0xc8380fc07613572cabbc1a36d62077e2cd3b0e20bdb56ec521729e71f4c217d6",
+   "CreationBlock": 5368714,
+   "CreationBlockHash": "0x04ea19eb345b36a1f10ec20f2cac1cc0bb9abc566abc67777eb52deb207c491b",
+   "CreationParentBlockHash": "0x591ad2f8e7ee28f35c349e7c0b30895a6fd7b57ad3238850ec1c34d2b01c2da5",
+   "CreationTimestamp": 1708971540,
+   "ChainID": 82286,
+   "Name": "cdk-validium-bali-04",
+   "RollupID": 4,
+   "GasToken": "0x0000000000000000000000000000000000000000",
+   "VerifierType": 0
+}

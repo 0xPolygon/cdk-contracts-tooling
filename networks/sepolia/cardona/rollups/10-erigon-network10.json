@@ -1,0 +1,13 @@
+{
+   "Address": "0x9f2f4d232326ef14ad481e51026aafa621b36d1f",
+   "GenesisRoot": "0xc8380fc07613572cabbc1a36d62077e2cd3b0e20bdb56ec521729e71f4c217d6",
+   "CreationBlock": 6709686,
+   "CreationBlockHash": "0x50356eb6fc4e75e5853e5722bacbe6b8f4588e7c4e46dc3d78ac0646cdef3c33",
+   "CreationParentBlockHash": "0xbb6b4ab1d1a7600a756941f58e540239424b97321eb71fb38511b13b1a75a315",
+   "CreationTimestamp": 1726583808,
+   "ChainID": 781,
+   "Name": "erigon-network10",
+   "RollupID": 10,
+   "GasToken": "0x0000000000000000000000000000000000000000",
+   "VerifierType": 0
+}
