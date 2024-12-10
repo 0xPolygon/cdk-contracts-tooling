@@ -44,7 +44,7 @@ type CombinedJSON struct {
 	RollupGasTokenAddress      common.Address `json:"gasTokenAddress"`
 	DACAddress                 common.Address `json:"polygonDataCommitteeAddress"`
 	BatchL2Data                string         `json:"batchL2Data,omitempty"`
-	LastGlobalExitRoot         common.Hash    `json:"globalExitRoot,omitempty"`
+	RollupGlobalExitRoot       common.Hash    `json:"globalExitRoot,omitempty"`
 }
 
 func importCombinedJson(cliCtx *cli.Context) error {
@@ -77,9 +77,9 @@ func importCombinedJson(cliCtx *cli.Context) error {
 	}
 
 	var (
-		dacAddr            common.Address
-		batchL2Data        string
-		lastGlobalExitRoot common.Hash
+		dacAddr              common.Address
+		batchL2Data          string
+		rollupGlobalExitRoot common.Hash
 	)
 
 	switch rollupMetadata.VerifierType {
@@ -94,7 +94,7 @@ func importCombinedJson(cliCtx *cli.Context) error {
 			return fmt.Errorf("failed to retrieve batch l2 data %w", err)
 		}
 
-		lastGlobalExitRoot, err = r.GetLastGlobalExitRoot(rollupManager.GERAddr, client)
+		rollupGlobalExitRoot, err = r.GetRollupGlobalExitRoot(rollupManager, client)
 		if err != nil {
 			return fmt.Errorf("failed to retrieve batch l2 data %w", err)
 		}
@@ -128,7 +128,7 @@ func importCombinedJson(cliCtx *cli.Context) error {
 		RollupGasTokenAddress:      rollupMetadata.GasToken,
 		DACAddress:                 dacAddr,
 		BatchL2Data:                batchL2Data,
-		LastGlobalExitRoot:         lastGlobalExitRoot,
+		RollupGlobalExitRoot:       rollupGlobalExitRoot,
 	}
 
 	raw, err := json.MarshalIndent(combinedJson, "", "   ")

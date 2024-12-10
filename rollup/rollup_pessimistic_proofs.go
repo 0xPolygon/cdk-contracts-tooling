@@ -3,16 +3,19 @@ package rollup
 import (
 	"bytes"
 	"context"
+	"errors"
 	"fmt"
 	"math/big"
 
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/banana-paris/polygonzkevmbridgev2"
-	"github.com/0xPolygon/cdk-contracts-tooling/contracts/banana-paris/polygonzkevmglobalexitroot"
+	"github.com/0xPolygon/cdk-contracts-tooling/contracts/etrog/polygonzkevmglobalexitrootv2"
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/pessimistic-proofs/polygonpessimisticconsensus"
+	"github.com/0xPolygon/cdk-contracts-tooling/rollupmanager"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/ethereum/go-ethereum/core/types"
+	"github.com/ethereum/go-ethereum/crypto"
+	"github.com/ethereum/go-ethereum/rlp"
 )
 
 // https://github.com/0xPolygonHermez/zkevm-commonjs/blob/bb0e77e9158a0fc3d06eb5de53b458bb87f77bc7/src/constants.js#L58
@@ -60,7 +63,7 @@ func (r *RollupPessimisticProofs) GetBatchL2Data(client bind.ContractBackend) (s
 		return "", err
 	}
 
-	gasTokenMetadata, err := bridge.GasTokenMetadata(nil)
+	gasTokenMetadata, err := bridge.GetTokenMetadata(nil, r.GasToken)
 	if err != nil {
 		return "", err
 	}
@@ -89,18 +92,19 @@ func (r *RollupPessimisticProofs) GetBatchL2Data(client bind.ContractBackend) (s
 	R := common.BigToHash(big.NewInt(0x5ca1ab1e0))
 	S := common.BigToHash(big.NewInt(0x5ca1ab1e))
 
-	bridgeInitTx := types.NewTx(
-		&types.LegacyTx{
-			To:       &bridgeAddr,
-			Value:    common.Big0,
-			GasPrice: common.Big0,
-			Gas:      30000000,
-			Nonce:    0,
-			Data:     bridgeInitTxData,
-		})
+	const gasLimit = uint64(30000000)
+
+	bridgeInitTx := &preEIP155Transaction{
+		To:       &bridgeAddr,
+		Nonce:    0,
+		GasPrice: common.Big0,
+		Value:    common.Big0,
+		GasLimit: gasLimit,
+		Data:     bridgeInitTxData,
+	}
 
 	var rawBridgeInitTx bytes.Buffer
-	err = bridgeInitTx.EncodeRLP(&rawBridgeInitTx)
+	err = rlp.Encode(&rawBridgeInitTx, bridgeInitTx)
 	if err != nil {
 		return "", err
 	}
@@ -112,19 +116,58 @@ func (r *RollupPessimisticProofs) GetBatchL2Data(client bind.ContractBackend) (s
 	return hexutil.Encode(rawTxWithSignature), nil
 }
 
-// GetLastGlobalExitRoot retrieves the last global exit root from global exit root manager
-func (r *RollupPessimisticProofs) GetLastGlobalExitRoot(gerAddr common.Address, client bind.ContractBackend) (common.Hash, error) {
-	gerContract, err := polygonzkevmglobalexitroot.NewPolygonzkevmglobalexitroot(gerAddr, client)
+// GetRollupGlobalExitRoot retrieves the actual global exit root at the rollup creation time
+func (r *RollupPessimisticProofs) GetRollupGlobalExitRoot(rm *rollupmanager.RollupManager, client bind.ContractBackend) (common.Hash, error) {
+	gerContract, err := polygonzkevmglobalexitrootv2.NewPolygonzkevmglobalexitrootv2(rm.GERAddr, client)
 	if err != nil {
 		return common.Hash{}, err
 	}
 
-	lastGER, err := gerContract.GetLastGlobalExitRoot(nil)
+	if r.CreationBlock == 0 {
+		return common.Hash{}, errors.New("rollup creation block number is zero")
+	}
+
+	endBlock := r.CreationBlock - 1
+
+	if endBlock < rm.UpdateToULxLyBlock {
+		return common.Hash{}, fmt.Errorf("end block (%d) is less than starting block (%d) in UpdateL1InfoTree filter",
+			rm.UpdateToULxLyBlock, endBlock)
+	}
+
+	filter := &bind.FilterOpts{
+		Start: rm.UpdateToULxLyBlock,
+		End:   &endBlock,
+	}
+	iter, err := gerContract.FilterUpdateL1InfoTree(filter, nil, nil)
 	if err != nil {
 		return common.Hash{}, err
 	}
 
-	return common.BytesToHash(lastGER[:]), nil
+	// We need to grab the latest UpdateL1InfoTree event
+	var globalExitRoot common.Hash
+	for iter.Next() {
+		globalExitRoot = common.BytesToHash(
+			crypto.Keccak256(
+				iter.Event.MainnetExitRoot[:],
+				iter.Event.RollupExitRoot[:],
+			))
+	}
+
+	err = iter.Close()
+	if err != nil {
+		return common.Hash{}, err
+	}
+
+	return common.BytesToHash(globalExitRoot[:]), nil
+}
+
+type preEIP155Transaction struct {
+	Nonce    uint64
+	GasPrice *big.Int
+	GasLimit uint64
+	To       *common.Address
+	Value    *big.Int
+	Data     []byte
 }
 
 // encodeTxSignature combines the v, r and s into r, s and v byte array
