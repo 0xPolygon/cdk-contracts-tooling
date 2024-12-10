@@ -106,10 +106,13 @@ func importRollupManager(cliCtx *cli.Context) error {
 		if err != nil {
 			return err
 		}
+
+		rollupFile := fmt.Sprintf("%d-%s.json", r.RollupID, name)
 		if name == "networkName" || name == "" {
-			name = fmt.Sprintf("%d", chainID)
+			rollupFile = fmt.Sprintf("%d.json", r.RollupID)
 		}
-		err = os.WriteFile(path.Join(rollupPath, name+".json"), rData, 0644)
+
+		err = os.WriteFile(path.Join(rollupPath, rollupFile), rData, 0644)
 		if err != nil {
 			return err
 		}
