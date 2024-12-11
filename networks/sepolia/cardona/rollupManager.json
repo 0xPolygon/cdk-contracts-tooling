@@ -1,8 +1,8 @@
 {
-   "Address": "0xe2ef6215adc132df6913c8dd16487abf118d1764",
-   "BridgeAddress": "0x1348947e282138d8f377b467f7d9c2eb0f335d1f",
-   "GERAddr": "0x2968d6d736178f8fe7393cc33c87f29d9c287e78",
-   "POLAddr": "0x57e7e56d9dce34c5e899141834bf512061dd9cd0",
-   "CreationBlock": 4794475,
-   "UpdateToULxLyBlock": 5157574
+   "Address": "0x32d33d5137a7cffb54c5bf8371172bcec5f310ff",
+   "BridgeAddress": "0x528e26b25a34a4a5d0dbda1d57d318153d2ed582",
+   "GERAddr": "0xad1490c248c5d3cbae399fd529b79b42984277df",
+   "POLAddr": "0x6a7c3f4b0651d6da389ad1d11d962ea458cdca70",
+   "CreationBlock": 4789190,
+   "UpdateToULxLyBlock": 5158574
 }
