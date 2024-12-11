@@ -1,0 +1,13 @@
+{
+   "Address": "0x4e79d5a9d58413a09fb850a23143888677a97d72",
+   "GenesisRoot": "0xc012c41e4583a2e3b776aff34aea0b4fd235d098484a455956554dbf69b8235e",
+   "CreationBlock": 5526149,
+   "CreationBlockHash": "0xb04c864cf6aec9d020022b5df52e23c1e8319f233485d752efca009d4b735fd1",
+   "CreationParentBlockHash": "0x481a1e2dbf2fd97a3107b86da79af2be1dc1c4e4833905d42ca9291481987198",
+   "CreationTimestamp": 1710962124,
+   "ChainID": 879490799,
+   "Name": "networkName",
+   "RollupID": 6,
+   "GasToken": "0x0000000000000000000000000000000000000000",
+   "VerifierType": 0
+}

@@ -1,0 +1,13 @@
+{
+   "Address": "0xc750b9269fca45dec889b09d78c5c1e789eb754f",
+   "GenesisRoot": "0xc012c41e4583a2e3b776aff34aea0b4fd235d098484a455956554dbf69b8235e",
+   "CreationBlock": 6182682,
+   "CreationBlockHash": "0x94037a70652aa3c8ac5ddca20736b6671996d98ebd70b5ea33e058bd4f7ab30c",
+   "CreationParentBlockHash": "0xa3337b3c33f22304325a7cf00c314b4c9674e5182ed0f2d0fd1233a475be745d",
+   "CreationTimestamp": 1719308724,
+   "ChainID": 883424730,
+   "Name": "meowchain-testnet",
+   "RollupID": 13,
+   "GasToken": "0x0000000000000000000000000000000000000000",
+   "VerifierType": 0
+}

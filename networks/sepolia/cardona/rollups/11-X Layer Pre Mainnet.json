@@ -1,0 +1,13 @@
+{
+   "Address": "0x5633de7e2cbfcc10e1f9a4a1db67a7f83ccb1b89",
+   "GenesisRoot": "0xc012c41e4583a2e3b776aff34aea0b4fd235d098484a455956554dbf69b8235e",
+   "CreationBlock": 5588933,
+   "CreationBlockHash": "0x7c47d8ba05bb5296e51b69bd0baa43a91ad6efab41414fe32cd592554afc1719",
+   "CreationParentBlockHash": "0xb7209b6ec6d53df9daf0f18ca09178fe656748cd5dd6acf05a4a64ab0a8b3da4",
+   "CreationTimestamp": 1711766352,
+   "ChainID": 193,
+   "Name": "X Layer Pre Mainnet",
+   "RollupID": 11,
+   "GasToken": "0x3f4b6664338f23d2397c953f2ab4ce8031663f80",
+   "VerifierType": 0
+}

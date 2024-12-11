@@ -1,0 +1,13 @@
+{
+   "Address": "0xb86ae60c76994e9dae207881b5696feb5bd0d695",
+   "GenesisRoot": "0xc012c41e4583a2e3b776aff34aea0b4fd235d098484a455956554dbf69b8235e",
+   "CreationBlock": 6637548,
+   "CreationBlockHash": "0xccb4a3548c4e8878c353e970c2b0e42eb34b6bc7bf01a6213dc14d24cc723b8d",
+   "CreationParentBlockHash": "0x3a52f5375cd3e7dbb939ec6f02ff4d6d86d244bc6f628056a3d5dc4c3f12d216",
+   "CreationTimestamp": 1725543288,
+   "ChainID": 1668201165,
+   "Name": "zchain-testnet",
+   "RollupID": 19,
+   "GasToken": "0x7148db73c78ded8e4f81784a121bbe7e163f4834",
+   "VerifierType": 0
+}

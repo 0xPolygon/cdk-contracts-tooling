@@ -1,0 +1,13 @@
+{
+   "Address": "0x47193c28404c762e7e213a8099a8b3d72885cddc",
+   "GenesisRoot": "0xc012c41e4583a2e3b776aff34aea0b4fd235d098484a455956554dbf69b8235e",
+   "CreationBlock": 5330273,
+   "CreationBlockHash": "0xc37218785cad5250a86d99a32d3c4c21ca1d3e2476380054ea0ef001c3266a95",
+   "CreationParentBlockHash": "0xe8bece1844ce911fd8f330137a7dabcb066436a8870a61653dbb532c65e2eb81",
+   "CreationTimestamp": 1708469676,
+   "ChainID": 6038361,
+   "Name": "zKyoto",
+   "RollupID": 2,
+   "GasToken": "0x0000000000000000000000000000000000000000",
+   "VerifierType": 0
+}

@@ -1,0 +1,13 @@
+{
+   "Address": "0x8603cf22ecb4343f82151201bcc4a40bf6949b90",
+   "GenesisRoot": "0xc012c41e4583a2e3b776aff34aea0b4fd235d098484a455956554dbf69b8235e",
+   "CreationBlock": 5988558,
+   "CreationBlockHash": "0x81004bf06b6ad981543b16c34630be8150e5657318624f7a9eae1e45014d985c",
+   "CreationParentBlockHash": "0xbe72feeb0e388132e34d3b38566d272d872c17225c8cf3f3afb6b670113b3593",
+   "CreationTimestamp": 1716820788,
+   "ChainID": 1952959480,
+   "Name": "Lumia Testnet",
+   "RollupID": 12,
+   "GasToken": "0x5787a0c1ccf0c94d99fe5725120ab1f7482ed9e8",
+   "VerifierType": 0
+}

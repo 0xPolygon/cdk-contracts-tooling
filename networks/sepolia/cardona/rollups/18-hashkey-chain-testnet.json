@@ -1,0 +1,13 @@
+{
+   "Address": "0x6f08a93805a192c026102db91c6e2bae41d0bae8",
+   "GenesisRoot": "0xc012c41e4583a2e3b776aff34aea0b4fd235d098484a455956554dbf69b8235e",
+   "CreationBlock": 6530085,
+   "CreationBlockHash": "0x7b065e6ee7d9ddfe36a03772dffc9b016adfc01c34e748d4199dcfc0a1e7821d",
+   "CreationParentBlockHash": "0x62269e5fe7d823bd412aac21f71e9ca4aa5e80680b5898cbe4710a63a1dfe8df",
+   "CreationTimestamp": 1724065572,
+   "ChainID": 1304267893,
+   "Name": "hashkey-chain-testnet",
+   "RollupID": 18,
+   "GasToken": "0x31bdac8e4b897e470b70ebe286f94245baa793c2",
+   "VerifierType": 0
+}

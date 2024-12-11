@@ -1,0 +1,13 @@
+{
+   "Address": "0x0947030d46917b307cd77f003beac1b3ea6d7cf0",
+   "GenesisRoot": "0xc012c41e4583a2e3b776aff34aea0b4fd235d098484a455956554dbf69b8235e",
+   "CreationBlock": 6441412,
+   "CreationBlockHash": "0x7a8a2cb4301652646e682ef785802020ae96f69c96c3ef8366bd53e6ab10d051",
+   "CreationParentBlockHash": "0x1be3392f6077202bc6f21461f9287f43489f00d19699a16103a36cfcaac6403d",
+   "CreationTimestamp": 1722857544,
+   "ChainID": 1722641160,
+   "Name": "silicon-sepolia-testnet",
+   "RollupID": 16,
+   "GasToken": "0x0000000000000000000000000000000000000000",
+   "VerifierType": 0
+}

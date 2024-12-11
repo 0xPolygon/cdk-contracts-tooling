@@ -1,0 +1,13 @@
+{
+   "Address": "0x28a884c863589c84a63ed505ccf4a63287578af8",
+   "GenesisRoot": "0xc012c41e4583a2e3b776aff34aea0b4fd235d098484a455956554dbf69b8235e",
+   "CreationBlock": 6963063,
+   "CreationBlockHash": "0x5e6b5990c835b2e73419afd89a60992124f150da4a3e334a735abb84c43849f4",
+   "CreationParentBlockHash": "0xf31f1917f713b8e68ba528cdb36825252f3e3e76d5f0e0500fbc023607aa5ffb",
+   "CreationTimestamp": 1730119056,
+   "ChainID": 720380884,
+   "Name": "newton-sepolia",
+   "RollupID": 20,
+   "GasToken": "0x0000000000000000000000000000000000000000",
+   "VerifierType": 0
+}
