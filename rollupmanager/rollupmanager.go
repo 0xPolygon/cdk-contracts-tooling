@@ -93,17 +93,21 @@ func LoadFromFile(client *ethclient.Client, filePath string) (*RollupManager, er
 	if err != nil {
 		return nil, err
 	}
+
 	var rm RollupManager
 	err = json.Unmarshal(data, &rm)
 	if err != nil {
 		return nil, err
 	}
+
 	if client != nil {
 		contract, err := polygonrollupmanager.NewPolygonrollupmanager(rm.Address, client)
 		if err != nil {
 			return nil, err
 		}
+
 		rm.Contract = contract
+		rm.Client = client
 	}
 	return &rm, nil
 }
