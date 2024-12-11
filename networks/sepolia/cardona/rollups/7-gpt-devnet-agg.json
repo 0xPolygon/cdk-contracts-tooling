@@ -1,0 +1,13 @@
+{
+   "Address": "0x29fb65284cea4284af94b526996bcc1408965af1",
+   "GenesisRoot": "0xc8380fc07613572cabbc1a36d62077e2cd3b0e20bdb56ec521729e71f4c217d6",
+   "CreationBlock": 5962166,
+   "CreationBlockHash": "0x38259e65c44ed52245d92ff104bd7cdcb2c0ffe6eb995002b965efc003a83352",
+   "CreationParentBlockHash": "0x7804b6ce71f08568ac62da26fa88361ad47969e710ace2834b8923f9514271be",
+   "CreationTimestamp": 1716476292,
+   "ChainID": 1238446921,
+   "Name": "gpt-devnet-agg",
+   "RollupID": 7,
+   "GasToken": "0xa99c7b9026cf7d15bd02c6eb922d481d7ac136c4",
+   "VerifierType": 0
+}

@@ -1,0 +1,13 @@
+{
+   "Address": "0xeb81f3d429e04449d2e4cb37ad40687e4ad25831",
+   "GenesisRoot": "0xc012c41e4583a2e3b776aff34aea0b4fd235d098484a455956554dbf69b8235e",
+   "CreationBlock": 5584851,
+   "CreationBlockHash": "0xa683ab6552b9a6f292c357c75e91acf926c109e87256986889976d94ed5b7874",
+   "CreationParentBlockHash": "0xe94daf7b395b8d6ee956db9ea69eebc474700e93a0197c6d53a047ebedab248f",
+   "CreationTimestamp": 1711714056,
+   "ChainID": 190,
+   "Name": "X Layer Devnet 2",
+   "RollupID": 8,
+   "GasToken": "0xe223519d64c0a49e7c08303c2220251be6b70e1d",
+   "VerifierType": 0
+}

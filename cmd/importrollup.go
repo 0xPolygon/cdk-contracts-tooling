@@ -34,10 +34,9 @@ var (
 				Required: true,
 			},
 			&cli.StringFlag{
-				Name:     rollupAliasFlagName,
-				Aliases:  []string{"r"},
-				Usage:    "Name of the rollup. Will be used to store the file",
-				Required: true,
+				Name:    rollupAliasFlagName,
+				Aliases: []string{"r"},
+				Usage:   "Name of the rollup. Will be used to store the file",
 			},
 		},
 	}
@@ -86,5 +85,13 @@ func importRollup(cliCtx *cli.Context) error {
 	if err != nil {
 		return err
 	}
-	return os.WriteFile(path.Join(rollupPath, alias+".json"), rData, 0644)
+
+	var rollupFile string
+	if alias == "" {
+		rollupFile = fmt.Sprintf("%d-%s.json", r.RollupID, r.Name)
+	} else {
+		rollupFile = fmt.Sprintf("%s.json", alias)
+	}
+
+	return os.WriteFile(path.Join(rollupPath, rollupFile), rData, 0644)
 }

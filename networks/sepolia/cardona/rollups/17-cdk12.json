@@ -1,0 +1,13 @@
+{
+   "Address": "0x708b70f24faa86a50cdb29fe267cc7c17822812c",
+   "GenesisRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+   "CreationBlock": 7215718,
+   "CreationBlockHash": "0xe7246d6f7344164afd530b8c16efbb47ee5ab35526fdeaf36ea0ea86a7d4f244",
+   "CreationParentBlockHash": "0x8b210a196ce2fb540e6edfc9d78582e9ace82b668e58c32502b03199803a8025",
+   "CreationTimestamp": 1733393688,
+   "ChainID": 462,
+   "Name": "cdk12",
+   "RollupID": 17,
+   "GasToken": "0x9fff7fae51160924623d235d91970e260be0a22e",
+   "VerifierType": 1
+}

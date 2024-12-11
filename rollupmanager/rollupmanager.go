@@ -93,17 +93,21 @@ func LoadFromFile(client *ethclient.Client, filePath string) (*RollupManager, er
 	if err != nil {
 		return nil, err
 	}
+
 	var rm RollupManager
 	err = json.Unmarshal(data, &rm)
 	if err != nil {
 		return nil, err
 	}
+
 	if client != nil {
 		contract, err := polygonrollupmanager.NewPolygonrollupmanager(rm.Address, client)
 		if err != nil {
 			return nil, err
 		}
+
 		rm.Contract = contract
+		rm.Client = client
 	}
 	return &rm, nil
 }
@@ -158,7 +162,7 @@ func (rm *RollupManager) GetRollupCreationInfo(ctx context.Context, rollupID uin
 		if err != nil {
 			return CreateRollupInfo{}, err
 		}
-		callOpts := &bind.CallOpts{BlockNumber: big.NewInt(int64(rm.UpdateToULxLyBlock - 1))}
+		callOpts := &bind.CallOpts{BlockNumber: new(big.Int).SetUint64(rm.UpdateToULxLyBlock - 1)}
 		root, err := rollup.BatchNumToStateRoot(callOpts, 0)
 		if err != nil {
 			fmt.Println("couldn't find genesis for batch 0 of the rollup 1")
@@ -197,7 +201,7 @@ func (rm *RollupManager) GetRollupCreationInfo(ctx context.Context, rollupID uin
 		if err != nil {
 			return CreateRollupInfo{}, err
 		}
-		b, err := rm.Client.BlockByNumber(ctx, big.NewInt(int64(it.Event.Raw.BlockNumber)))
+		b, err := rm.Client.BlockByNumber(ctx, new(big.Int).SetUint64(it.Event.Raw.BlockNumber))
 		if err != nil {
 			return CreateRollupInfo{}, err
 		}

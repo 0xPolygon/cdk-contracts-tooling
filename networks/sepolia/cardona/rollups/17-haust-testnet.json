@@ -1,0 +1,13 @@
+{
+   "Address": "0xf3eca1d175cd7811519e251a9e0c7f13c9217734",
+   "GenesisRoot": "0xc012c41e4583a2e3b776aff34aea0b4fd235d098484a455956554dbf69b8235e",
+   "CreationBlock": 6510565,
+   "CreationBlockHash": "0x1a251fdf53738c8dddcf8ac70719189f9eec1565fa7adfd11bc8c9d370a9f939",
+   "CreationParentBlockHash": "0xc60f804a00e8b7ec0fbfe754539736d6d72a33f399b99c16ea62cb6c5e23f07c",
+   "CreationTimestamp": 1723802412,
+   "ChainID": 1570754601,
+   "Name": "haust-testnet",
+   "RollupID": 17,
+   "GasToken": "0x73b3fcabe217701fc6a83137074955002c2e6c86",
+   "VerifierType": 0
+}

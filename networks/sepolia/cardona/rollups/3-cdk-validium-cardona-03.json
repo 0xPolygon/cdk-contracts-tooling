@@ -1,0 +1,13 @@
+{
+   "Address": "0xf7af1811310201b4c96906625348b8db457c1902",
+   "GenesisRoot": "0xc012c41e4583a2e3b776aff34aea0b4fd235d098484a455956554dbf69b8235e",
+   "CreationBlock": 5335306,
+   "CreationBlockHash": "0xba84452be9a758a4dde3c8f85669b8e619a573b32e6977c634b334046dfb3033",
+   "CreationParentBlockHash": "0xe4937082e47e3ceb0749c2ebb2907a0ad66c4dec691207e545b11e34c7460a24",
+   "CreationTimestamp": 1708533540,
+   "ChainID": 33303,
+   "Name": "cdk-validium-cardona-03",
+   "RollupID": 3,
+   "GasToken": "0x0000000000000000000000000000000000000000",
+   "VerifierType": 0
+}

@@ -1,0 +1,13 @@
+{
+   "Address": "0xfec0602056fec538fe5f34029c871e1ae4214909",
+   "GenesisRoot": "0xc8380fc07613572cabbc1a36d62077e2cd3b0e20bdb56ec521729e71f4c217d6",
+   "CreationBlock": 6100407,
+   "CreationBlockHash": "0x2ac7538b0e6da6dbd43d8858a91d13f15c65f3c65d68cae910f485a45ffd1b4b",
+   "CreationParentBlockHash": "0x92b79044b6797a8274949e97f2fb4e59db02c28710d369e64f0912050445c94a",
+   "CreationTimestamp": 1718296116,
+   "ChainID": 407985408,
+   "Name": "wirex-pay-devnet",
+   "RollupID": 8,
+   "GasToken": "0x0000000000000000000000000000000000000000",
+   "VerifierType": 0
+}

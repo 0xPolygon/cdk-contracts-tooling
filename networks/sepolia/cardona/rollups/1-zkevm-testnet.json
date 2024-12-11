@@ -1,0 +1,13 @@
+{
+   "Address": "0xa13ddb14437a8f34897131367ad3ca78416d6bca",
+   "GenesisRoot": "0x91dfcdeb628dfdc51f3a2ee38cb17c78581e4e7ff91bcc2e327d24a9dfa46982",
+   "CreationBlock": 4789190,
+   "CreationBlockHash": "0xe366f958f01461fcd022e82fc1d0903eabdee8cc7525f2b12551226285d4f17b",
+   "CreationParentBlockHash": "0x0e1eee14407ece2bbc4b7e60c0907c0bb06c4658366f8735be5d8554e5864e02",
+   "CreationTimestamp": 1701262224,
+   "ChainID": 2442,
+   "Name": "zkevm-testnet",
+   "RollupID": 1,
+   "GasToken": "0x0000000000000000000000000000000000000000",
+   "VerifierType": 0
+}

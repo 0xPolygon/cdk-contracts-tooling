@@ -1,0 +1,13 @@
+{
+   "Address": "0x99bdea7acf8ba45cdc94410ab728ef2811ec9ff8",
+   "GenesisRoot": "0xc012c41e4583a2e3b776aff34aea0b4fd235d098484a455956554dbf69b8235e",
+   "CreationBlock": 7017293,
+   "CreationBlockHash": "0x9be6af1449fac396112a1ef1b1c168dc665a8e5f0f958256af562debdccae43e",
+   "CreationParentBlockHash": "0x250de4c8d9ccb9dd2da19dbf2de55592e6c4cbb93464052379de09ba0fe8bbb6",
+   "CreationTimestamp": 1730815416,
+   "ChainID": 50591822,
+   "Name": "stavanger",
+   "RollupID": 21,
+   "GasToken": "0x6a7c3f4b0651d6da389ad1d11d962ea458cdca70",
+   "VerifierType": 0
+}

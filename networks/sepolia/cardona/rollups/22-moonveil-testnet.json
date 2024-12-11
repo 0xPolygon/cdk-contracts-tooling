@@ -1,0 +1,13 @@
+{
+   "Address": "0xb61bcc5470d13f388533205ab76404c95076cab2",
+   "GenesisRoot": "0xc012c41e4583a2e3b776aff34aea0b4fd235d098484a455956554dbf69b8235e",
+   "CreationBlock": 7250581,
+   "CreationBlockHash": "0x3e6cf6c21bbbb0b9a95de4c196aeaac7f1d50920415ba3aff718437c09cb78ba",
+   "CreationParentBlockHash": "0x2b05a350f8362cbd5e82980947c7847494ef5006317c25796d0f8be7d345d07e",
+   "CreationTimestamp": 1733838036,
+   "ChainID": 1093502521,
+   "Name": "moonveil-testnet",
+   "RollupID": 22,
+   "GasToken": "0xfb809f9d7a148a57d41d11b261a3fb43a744576f",
+   "VerifierType": 0
+}
