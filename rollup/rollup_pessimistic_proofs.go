@@ -46,7 +46,10 @@ func (r *RollupPessimisticProofs) InitContract(ctx context.Context, client bind.
 // The logic is implemented according to the following snippet:
 // https://github.com/0xPolygonHermez/zkevm-contracts/blob/v9.0.0-rc.3-pp/deployment/v2/4_createRollup.ts#L404-L456
 func (r *RollupPessimisticProofs) GetBatchL2Data(client bind.ContractBackend) (string, error) {
-	const maxDataLength = 65535
+	const (
+		maxTxDataLength = 65535
+		gasLimit        = uint64(30000000)
+	)
 
 	bridgeAddr, err := r.Contract.BridgeAddress(nil)
 	if err != nil {
@@ -63,9 +66,12 @@ func (r *RollupPessimisticProofs) GetBatchL2Data(client bind.ContractBackend) (s
 		return "", err
 	}
 
-	gasTokenMetadata, err := bridge.GetTokenMetadata(nil, r.GasToken)
-	if err != nil {
-		return "", err
+	gasTokenMetadata := []byte{}
+	if r.GasToken != common.HexToAddress("0x0") {
+		gasTokenMetadata, err = bridge.GetTokenMetadata(nil, r.GasToken)
+		if err != nil {
+			return "", err
+		}
 	}
 
 	bridgeABI, err := polygonzkevmbridgev2.Polygonzkevmbridgev2MetaData.GetAbi()
@@ -84,15 +90,13 @@ func (r *RollupPessimisticProofs) GetBatchL2Data(client bind.ContractBackend) (s
 		return "", err
 	}
 
-	if len(bridgeInitTxData) > maxDataLength {
-		return "", fmt.Errorf("bridge init tx data length exceeds maximum allowed size (%d bytes)", maxDataLength)
+	if len(bridgeInitTxData) > maxTxDataLength {
+		return "", fmt.Errorf("bridge init tx data length exceeds maximum allowed size (%d bytes)", maxTxDataLength)
 	}
 
 	V := big.NewInt(27)
 	R := common.BigToHash(big.NewInt(0x5ca1ab1e0))
 	S := common.BigToHash(big.NewInt(0x5ca1ab1e))
-
-	const gasLimit = uint64(30000000)
 
 	bridgeInitTx := &preEIP155Transaction{
 		To:       &bridgeAddr,
