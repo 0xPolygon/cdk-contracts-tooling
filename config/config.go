@@ -25,9 +25,10 @@ func Load(l1Network, rmAlias, rAlias, baseDir string) (*RPCs, *rollupmanager.Rol
 		return nil, nil, nil, err
 	}
 
-	fmt.Println("loading the rollup info from file")
 	rollupPath := path.Join(rollupManagerPath, "rollups")
-	r, err := rollup.LoadMetadataFromFile(path.Join(rollupPath, rAlias+".json"))
+	rollupFile := path.Join(rollupPath, rAlias+".json")
+	fmt.Println("loading the rollup info from file", rollupFile)
+	r, err := rollup.LoadMetadataFromFile(rollupFile)
 	if err != nil {
 		return nil, nil, nil, err
 	}
