@@ -139,28 +139,37 @@ func (r *RollupPessimisticProofs) GetRollupGlobalExitRoot(rm *rollupmanager.Roll
 			rm.UpdateToULxLyBlock, endBlock)
 	}
 
-	filter := &bind.FilterOpts{
-		Start: rm.UpdateToULxLyBlock,
-		End:   &endBlock,
-	}
-	iter, err := gerContract.FilterUpdateL1InfoTree(filter, nil, nil)
-	if err != nil {
-		return common.Hash{}, err
-	}
-
-	// We need to grab the latest UpdateL1InfoTree event
+	const blocksChunkSize = 100000
 	var globalExitRoot common.Hash
-	for iter.Next() {
-		globalExitRoot = common.BytesToHash(
-			crypto.Keccak256(
-				iter.Event.MainnetExitRoot[:],
-				iter.Event.RollupExitRoot[:],
-			))
-	}
 
-	err = iter.Close()
-	if err != nil {
-		return common.Hash{}, err
+	for start := rm.UpdateToULxLyBlock; start <= endBlock; start += blocksChunkSize {
+		chunkEnd := start + blocksChunkSize - 1
+		if chunkEnd > endBlock {
+			chunkEnd = endBlock
+		}
+
+		filter := &bind.FilterOpts{
+			Start: start,
+			End:   &chunkEnd,
+		}
+		iter, err := gerContract.FilterUpdateL1InfoTree(filter, nil, nil)
+		if err != nil {
+			return common.Hash{}, err
+		}
+
+		// We need to grab the latest UpdateL1InfoTree event
+		for iter.Next() {
+			globalExitRoot = common.BytesToHash(
+				crypto.Keccak256(
+					iter.Event.MainnetExitRoot[:],
+					iter.Event.RollupExitRoot[:],
+				))
+		}
+
+		err = iter.Close()
+		if err != nil {
+			return common.Hash{}, err
+		}
 	}
 
 	return common.BytesToHash(globalExitRoot[:]), nil
