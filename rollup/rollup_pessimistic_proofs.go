@@ -14,6 +14,7 @@ import (
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/rlp"
+	"golang.org/x/sync/errgroup"
 
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/l2-sovereign-chain/polygonpessimisticconsensus"
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/l2-sovereign-chain/polygonzkevmbridgev2"
@@ -146,15 +147,13 @@ func (r *RollupPessimisticProofs) GetRollupGlobalExitRoot(rm *rollupmanager.Roll
 	var (
 		l1InfoTreeEvents []*polygonzkevmglobalexitrootv2.Polygonzkevmglobalexitrootv2UpdateL1InfoTree
 		mu               sync.Mutex
-		wg               sync.WaitGroup
 	)
 
-	errCh := make(chan error)
+	g := errgroup.Group{}
 
 	for start := rm.UpdateToULxLyBlock; start <= endBlock; start += blocksChunkSize {
-		wg.Add(1)
-		go func(start uint64) {
-			defer wg.Done()
+		start := start
+		g.Go(func() error {
 			chunkEnd := start + blocksChunkSize - 1
 			if chunkEnd > endBlock {
 				chunkEnd = endBlock
@@ -166,8 +165,7 @@ func (r *RollupPessimisticProofs) GetRollupGlobalExitRoot(rm *rollupmanager.Roll
 			}
 			iter, err := gerContract.FilterUpdateL1InfoTree(filter, nil, nil)
 			if err != nil {
-				errCh <- err
-				return
+				return err
 			}
 
 			for iter.Next() {
@@ -176,20 +174,11 @@ func (r *RollupPessimisticProofs) GetRollupGlobalExitRoot(rm *rollupmanager.Roll
 				mu.Unlock()
 			}
 
-			err = iter.Close()
-			if err != nil {
-				errCh <- err
-				return
-			}
-		}(start)
+			return iter.Close()
+		})
 	}
 
-	go func() {
-		wg.Wait()
-		close(errCh)
-	}()
-
-	if err := <-errCh; err != nil {
+	if err := g.Wait(); err != nil {
 		return common.Hash{}, err
 	}
 
