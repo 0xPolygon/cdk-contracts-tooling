@@ -6,12 +6,15 @@ import (
 	"errors"
 	"fmt"
 	"math/big"
+	"sort"
+	"sync"
 
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/rlp"
+	"golang.org/x/sync/errgroup"
 
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/l2-sovereign-chain/polygonpessimisticconsensus"
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/l2-sovereign-chain/polygonzkevmbridgev2"
@@ -122,6 +125,7 @@ func (r *RollupPessimisticProofs) GetBatchL2Data(client bind.ContractBackend) (s
 }
 
 // GetRollupGlobalExitRoot retrieves the actual global exit root at the rollup creation time
+
 func (r *RollupPessimisticProofs) GetRollupGlobalExitRoot(rm *rollupmanager.RollupManager, client bind.ContractBackend) (common.Hash, error) {
 	gerContract, err := polygonzkevmglobalexitrootv2.NewPolygonzkevmglobalexitrootv2(rm.GERAddr, client)
 	if err != nil {
@@ -139,31 +143,61 @@ func (r *RollupPessimisticProofs) GetRollupGlobalExitRoot(rm *rollupmanager.Roll
 			rm.UpdateToULxLyBlock, endBlock)
 	}
 
-	filter := &bind.FilterOpts{
-		Start: rm.UpdateToULxLyBlock,
-		End:   &endBlock,
+	const blocksChunkSize = 100000
+	var (
+		l1InfoTreeEvents []*polygonzkevmglobalexitrootv2.Polygonzkevmglobalexitrootv2UpdateL1InfoTree
+		mu               sync.Mutex
+	)
+
+	g := errgroup.Group{}
+
+	for start := rm.UpdateToULxLyBlock; start <= endBlock; start += blocksChunkSize {
+		start := start
+		g.Go(func() error {
+			chunkEnd := start + blocksChunkSize - 1
+			if chunkEnd > endBlock {
+				chunkEnd = endBlock
+			}
+
+			filter := &bind.FilterOpts{
+				Start: start,
+				End:   &chunkEnd,
+			}
+			iter, err := gerContract.FilterUpdateL1InfoTree(filter, nil, nil)
+			if err != nil {
+				return err
+			}
+
+			for iter.Next() {
+				mu.Lock()
+				l1InfoTreeEvents = append(l1InfoTreeEvents, iter.Event)
+				mu.Unlock()
+			}
+
+			return iter.Close()
+		})
 	}
-	iter, err := gerContract.FilterUpdateL1InfoTree(filter, nil, nil)
-	if err != nil {
+
+	if err := g.Wait(); err != nil {
 		return common.Hash{}, err
 	}
 
-	// We need to grab the latest UpdateL1InfoTree event
-	var globalExitRoot common.Hash
-	for iter.Next() {
-		globalExitRoot = common.BytesToHash(
-			crypto.Keccak256(
-				iter.Event.MainnetExitRoot[:],
-				iter.Event.RollupExitRoot[:],
-			))
+	if len(l1InfoTreeEvents) == 0 {
+		return common.Hash{}, errors.New("no UpdateL1InfoTree events found")
 	}
 
-	err = iter.Close()
-	if err != nil {
-		return common.Hash{}, err
-	}
+	sort.Slice(l1InfoTreeEvents, func(i, j int) bool {
+		return l1InfoTreeEvents[i].Raw.BlockNumber > l1InfoTreeEvents[j].Raw.BlockNumber
+	})
 
-	return common.BytesToHash(globalExitRoot[:]), nil
+	latestEvent := l1InfoTreeEvents[0]
+	globalExitRoot := common.BytesToHash(
+		crypto.Keccak256(
+			latestEvent.MainnetExitRoot[:],
+			latestEvent.RollupExitRoot[:],
+		))
+
+	return globalExitRoot, nil
 }
 
 type preEIP155Transaction struct {

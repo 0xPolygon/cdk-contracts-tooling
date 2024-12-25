@@ -96,7 +96,7 @@ func importCombinedJson(cliCtx *cli.Context) error {
 
 		rollupGlobalExitRoot, err = r.GetRollupGlobalExitRoot(rollupManager, client)
 		if err != nil {
-			return fmt.Errorf("failed to retrieve batch l2 data %w", err)
+			return fmt.Errorf("failed to retrieve the rollup global exit root %w", err)
 		}
 
 	default:
