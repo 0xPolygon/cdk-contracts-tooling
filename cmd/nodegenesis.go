@@ -14,8 +14,8 @@ import (
 
 const (
 	genesisAllocsFileName = "allocs.json"
-	fepDirName            = "fep"
-	ppDirName             = "pp"
+	legacyDirName         = "legacy"
+	ppDefaultDirName      = "pp_default"
 )
 
 var (
@@ -75,10 +75,10 @@ func createNodeGenesis(cliCtx *cli.Context) error {
 	case rollupmanager.Pessimistic:
 		// The genesis allocations file is uniquelly identified by: l1 network alias, rollup manager alias, and rollup alias.
 		// This is the case, because for pessimistic consensus, rollup's genesis state root is an empty hash.
-		genesisPath = filepath.Join("genesis", ppDirName, l1Network, rmAlias, rAlias, genesisAllocsFileName)
+		genesisPath = filepath.Join("genesis", ppDefaultDirName, rmAlias, genesisAllocsFileName)
 	default:
 		// The genesis allocations file is uniquelly identified by the genesis state root, written in the rollup
-		genesisPath = filepath.Join("genesis", fepDirName, fmt.Sprintf("%s.json", r.GenesisRoot.Hex()))
+		genesisPath = filepath.Join("genesis", legacyDirName, fmt.Sprintf("%s.json", r.GenesisRoot.Hex()))
 	}
 
 	genesis, err := config.LoadGenesisAllocs(baseDir, genesisPath)
