@@ -261,11 +261,6 @@
    },
    {
       "inputs": [],
-      "name": "UpdateToOldRollupTypeID",
-      "type": "error"
-   },
-   {
-      "inputs": [],
       "name": "UpdateToSameRollupTypeID",
       "type": "error"
    },

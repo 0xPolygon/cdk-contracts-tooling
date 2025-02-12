@@ -22,17 +22,12 @@
    },
    {
       "inputs": [],
+      "name": "GlobalExitRootNotFound",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "MerkleTreeFull",
-      "type": "error"
-   },
-   {
-      "inputs": [],
-      "name": "NotEnoughGlobalExitRootsInserted",
-      "type": "error"
-   },
-   {
-      "inputs": [],
-      "name": "NotLastInsertedGlobalExitRoot",
       "type": "error"
    },
    {

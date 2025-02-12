@@ -17,12 +17,7 @@
    },
    {
       "inputs": [],
-      "name": "NotEnoughGlobalExitRootsInserted",
-      "type": "error"
-   },
-   {
-      "inputs": [],
-      "name": "NotLastInsertedGlobalExitRoot",
+      "name": "GlobalExitRootNotFound",
       "type": "error"
    },
    {
@@ -61,6 +56,12 @@
             "internalType": "bytes32",
             "name": "newGlobalExitRoot",
             "type": "bytes32"
+         },
+         {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "newHashChainValue",
+            "type": "bytes32"
          }
       ],
       "name": "InsertGlobalExitRoot",
@@ -74,9 +75,15 @@
             "internalType": "bytes32",
             "name": "removedGlobalExitRoot",
             "type": "bytes32"
+         },
+         {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "newRemovalHashChainValue",
+            "type": "bytes32"
          }
       ],
-      "name": "RemoveLastGlobalExitRoot",
+      "name": "RemoveGlobalExitRoot",
       "type": "event"
    },
    {
@@ -113,6 +120,32 @@
             "internalType": "address",
             "name": "",
             "type": "address"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "currentHashChainValue",
+      "outputs": [
+         {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "currentRemovalHashChainValue",
+      "outputs": [
+         {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
          }
       ],
       "stateMutability": "view",
@@ -196,19 +229,6 @@
    },
    {
       "inputs": [],
-      "name": "insertedGERCount",
-      "outputs": [
-         {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-         }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-   },
-   {
-      "inputs": [],
       "name": "lastRollupExitRoot",
       "outputs": [
          {
@@ -228,7 +248,7 @@
             "type": "bytes32[]"
          }
       ],
-      "name": "removeLastGlobalExitRoots",
+      "name": "removeGlobalExitRoots",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"

@@ -1,0 +1,39 @@
+[
+   {
+      "inputs": [],
+      "name": "InvalidInitializer",
+      "type": "error"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "bytes",
+            "name": "customChainData",
+            "type": "bytes"
+         }
+      ],
+      "name": "getAggchainHash",
+      "outputs": [
+         {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "bytes",
+            "name": "data",
+            "type": "bytes"
+         }
+      ],
+      "name": "onVerifyPessimistic",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+   }
+]
