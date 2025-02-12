@@ -15,6 +15,11 @@
             "internalType": "contract IPolygonZkEVMBridge",
             "name": "_bridgeAddress",
             "type": "address"
+         },
+         {
+            "internalType": "contract AggLayerGateway",
+            "name": "_aggLayerGateway",
+            "type": "address"
          }
       ],
       "stateMutability": "nonpayable",
@@ -272,6 +277,11 @@
    },
    {
       "inputs": [],
+      "name": "ReentrancyGuardReentrantCall",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "RollbackBatchIsNotEndOfSequence",
       "type": "error"
    },
@@ -383,6 +393,12 @@
             "indexed": false,
             "internalType": "bytes32",
             "name": "programVKey",
+            "type": "bytes32"
+         },
+         {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "initPessimisticRoot",
             "type": "bytes32"
          }
       ],
@@ -775,7 +791,7 @@
    {
       "inputs": [
          {
-            "internalType": "contract IPolygonRollupBase",
+            "internalType": "address",
             "name": "rollupAddress",
             "type": "address"
          },
@@ -807,6 +823,11 @@
          {
             "internalType": "bytes32",
             "name": "programVKey",
+            "type": "bytes32"
+         },
+         {
+            "internalType": "bytes32",
+            "name": "initPessimisticRoot",
             "type": "bytes32"
          }
       ],
@@ -856,6 +877,19 @@
       "name": "addNewRollupType",
       "outputs": [],
       "stateMutability": "nonpayable",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "aggLayerGateway",
+      "outputs": [
+         {
+            "internalType": "contract AggLayerGateway",
+            "name": "",
+            "type": "address"
+         }
+      ],
+      "stateMutability": "view",
       "type": "function"
    },
    {
@@ -939,6 +973,11 @@
             "internalType": "string",
             "name": "networkName",
             "type": "string"
+         },
+         {
+            "internalType": "bytes",
+            "name": "initializeBytesCustomChain",
+            "type": "bytes"
          }
       ],
       "name": "createNewRollup",
@@ -1000,6 +1039,11 @@
             "internalType": "bytes32",
             "name": "newPessimisticRoot",
             "type": "bytes32"
+         },
+         {
+            "internalType": "bytes",
+            "name": "customChainData",
+            "type": "bytes"
          }
       ],
       "name": "getInputPessimisticBytes",
@@ -1451,7 +1495,7 @@
          {
             "components": [
                {
-                  "internalType": "contract IPolygonRollupBase",
+                  "internalType": "address",
                   "name": "rollupContract",
                   "type": "address"
                },
@@ -1514,6 +1558,80 @@
             "internalType": "struct PolygonRollupManager.RollupDataReturn",
             "name": "rollupData",
             "type": "tuple"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "uint32",
+            "name": "rollupID",
+            "type": "uint32"
+         }
+      ],
+      "name": "rollupIDToRollupDataDeserialized",
+      "outputs": [
+         {
+            "internalType": "address",
+            "name": "rollupContract",
+            "type": "address"
+         },
+         {
+            "internalType": "uint64",
+            "name": "chainID",
+            "type": "uint64"
+         },
+         {
+            "internalType": "address",
+            "name": "verifier",
+            "type": "address"
+         },
+         {
+            "internalType": "uint64",
+            "name": "forkID",
+            "type": "uint64"
+         },
+         {
+            "internalType": "bytes32",
+            "name": "lastLocalExitRoot",
+            "type": "bytes32"
+         },
+         {
+            "internalType": "uint64",
+            "name": "lastBatchSequenced",
+            "type": "uint64"
+         },
+         {
+            "internalType": "uint64",
+            "name": "lastVerifiedBatch",
+            "type": "uint64"
+         },
+         {
+            "internalType": "uint64",
+            "name": "lastVerifiedBatchBeforeUpgrade",
+            "type": "uint64"
+         },
+         {
+            "internalType": "uint64",
+            "name": "rollupTypeID",
+            "type": "uint64"
+         },
+         {
+            "internalType": "enum IPolygonRollupManager.VerifierType",
+            "name": "rollupVerifierType",
+            "type": "uint8"
+         },
+         {
+            "internalType": "bytes32",
+            "name": "lastPessimisticRoot",
+            "type": "bytes32"
+         },
+         {
+            "internalType": "bytes32",
+            "name": "programVKey",
+            "type": "bytes32"
          }
       ],
       "stateMutability": "view",
@@ -1815,6 +1933,11 @@
          {
             "internalType": "bytes",
             "name": "proof",
+            "type": "bytes"
+         },
+         {
+            "internalType": "bytes",
+            "name": "customChainData",
             "type": "bytes"
          }
       ],

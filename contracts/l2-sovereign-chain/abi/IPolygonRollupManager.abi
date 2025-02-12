@@ -309,7 +309,7 @@
    {
       "inputs": [
          {
-            "internalType": "contract IPolygonRollupBase",
+            "internalType": "address",
             "name": "rollupAddress",
             "type": "address"
          },
@@ -341,6 +341,11 @@
          {
             "internalType": "bytes32",
             "name": "programVKey",
+            "type": "bytes32"
+         },
+         {
+            "internalType": "bytes32",
+            "name": "initPessimisticRoot",
             "type": "bytes32"
          }
       ],
@@ -441,6 +446,11 @@
             "internalType": "string",
             "name": "networkName",
             "type": "string"
+         },
+         {
+            "internalType": "bytes",
+            "name": "initializeBytesCustomChain",
+            "type": "bytes"
          }
       ],
       "name": "createNewRollup",
@@ -502,6 +512,11 @@
             "internalType": "bytes32",
             "name": "newPessimisticRoot",
             "type": "bytes32"
+         },
+         {
+            "internalType": "bytes",
+            "name": "customChainData",
+            "type": "bytes"
          }
       ],
       "name": "getInputPessimisticBytes",
@@ -810,6 +825,11 @@
          {
             "internalType": "bytes",
             "name": "proof",
+            "type": "bytes"
+         },
+         {
+            "internalType": "bytes",
+            "name": "customChainData",
             "type": "bytes"
          }
       ],

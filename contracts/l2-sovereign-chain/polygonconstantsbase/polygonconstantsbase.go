@@ -32,7 +32,7 @@ var (
 // PolygonconstantsbaseMetaData contains all meta data concerning the Polygonconstantsbase contract.
 var PolygonconstantsbaseMetaData = &bind.MetaData{
 	ABI: "[]",
-	Bin: "0x6080604052348015600e575f80fd5b50603e80601a5f395ff3fe60806040525f80fdfea2646970667358221220dc3e2d5a5b872adf2b4943e1b85a1fd2475284df55439f5819a5ebb6bc95230464736f6c63430008140033",
+	Bin: "0x6080604052348015600e575f5ffd5b50603e80601a5f395ff3fe60806040525f5ffdfea264697066735822122081754184cd5d807ba8e8c450487c32a1e62ca76212c2711c96cbebfab1b75c2464736f6c634300081c0033",
 }
 
 // PolygonconstantsbaseABI is the input ABI used to generate the binding from.

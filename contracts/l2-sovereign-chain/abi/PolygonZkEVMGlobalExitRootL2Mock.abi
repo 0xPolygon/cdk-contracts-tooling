@@ -17,12 +17,7 @@
    },
    {
       "inputs": [],
-      "name": "NotEnoughGlobalExitRootsInserted",
-      "type": "error"
-   },
-   {
-      "inputs": [],
-      "name": "NotLastInsertedGlobalExitRoot",
+      "name": "GlobalExitRootNotFound",
       "type": "error"
    },
    {

@@ -1,0 +1,240 @@
+[
+   {
+      "inputs": [],
+      "name": "AggchainVKeyAlreadyExists",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "AggchainVKeyNotFound",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OnlyAggLayerAdmin",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OnlyPendingAggLayerAdmin",
+      "type": "error"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "address",
+            "name": "verifier",
+            "type": "address"
+         }
+      ],
+      "name": "RouteAlreadyExists",
+      "type": "error"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+         }
+      ],
+      "name": "RouteIsFrozen",
+      "type": "error"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+         }
+      ],
+      "name": "RouteNotFound",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "SelectorCannotBeZero",
+      "type": "error"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+         },
+         {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "newVKey",
+            "type": "bytes32"
+         }
+      ],
+      "name": "AddDefaultAggchainVKey",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+         },
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "verifier",
+            "type": "address"
+         },
+         {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "pessimisticVKey",
+            "type": "bytes32"
+         }
+      ],
+      "name": "RouteAdded",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+         },
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "verifier",
+            "type": "address"
+         }
+      ],
+      "name": "RouteFrozen",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+         },
+         {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "newVKey",
+            "type": "bytes32"
+         }
+      ],
+      "name": "UpdateDefaultAggchainVKey",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+         },
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "verifier",
+            "type": "address"
+         },
+         {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "newPessimisticVKey",
+            "type": "bytes32"
+         }
+      ],
+      "name": "UpdatePessimisticVKey",
+      "type": "event"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "bytes4",
+            "name": "pessimisticVKeySelector",
+            "type": "bytes4"
+         },
+         {
+            "internalType": "address",
+            "name": "verifier",
+            "type": "address"
+         },
+         {
+            "internalType": "bytes32",
+            "name": "pessimisticVKey",
+            "type": "bytes32"
+         }
+      ],
+      "name": "addPessimisticVKeyRoute",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "bytes4",
+            "name": "pessimisticVKeySelector",
+            "type": "bytes4"
+         }
+      ],
+      "name": "freezePessimisticVKeyRoute",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "bytes4",
+            "name": "defaultAggchainSelector",
+            "type": "bytes4"
+         }
+      ],
+      "name": "getDefaultAggchainVKey",
+      "outputs": [
+         {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "bytes",
+            "name": "publicValues",
+            "type": "bytes"
+         },
+         {
+            "internalType": "bytes",
+            "name": "proofBytes",
+            "type": "bytes"
+         }
+      ],
+      "name": "verifyPessimisticProof",
+      "outputs": [],
+      "stateMutability": "view",
+      "type": "function"
+   }
+]

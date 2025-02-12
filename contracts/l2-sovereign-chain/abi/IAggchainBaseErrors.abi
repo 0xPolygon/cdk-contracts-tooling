@@ -1,0 +1,27 @@
+[
+   {
+      "inputs": [],
+      "name": "AggchainRouteAlreadyAdded",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "AggchainRouteNotFound",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "InvalidAggchainVKey",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "InvalidInitializeFunction",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "UseDefaultGatewayAlreadySet",
+      "type": "error"
+   }
+]
