@@ -139,11 +139,13 @@ func (r *RollupPessimisticProofs) GetRollupGlobalExitRoot(rm *rollupmanager.Roll
 			endBlock, rm.UpdateToULxLyBlock)
 	}
 
-	const blocksChunkSize = 1000
+	const maxChunkSize = 1000
 
 	// Iterate sequentially from endBlock down to UpdateToULxLyBlock
-	for chunkEnd := endBlock; chunkEnd >= rm.UpdateToULxLyBlock; chunkEnd -= blocksChunkSize {
-		chunkStart := max(chunkEnd-blocksChunkSize+1, rm.UpdateToULxLyBlock)
+	chunkEnd := endBlock
+	for chunkEnd >= rm.UpdateToULxLyBlock {
+		chunkStart := max(chunkEnd-maxChunkSize+1, rm.UpdateToULxLyBlock)
+
 		filter := &bind.FilterOpts{
 			Start: chunkStart,
 			End:   &chunkEnd,
@@ -167,7 +169,7 @@ func (r *RollupPessimisticProofs) GetRollupGlobalExitRoot(rm *rollupmanager.Roll
 			return common.Hash{}, err
 		}
 
-		// If we found an event, return it
+		// If we found an event, return it immediately
 		if latestEvent != nil {
 			globalExitRoot := common.BytesToHash(
 				crypto.Keccak256(
@@ -176,6 +178,9 @@ func (r *RollupPessimisticProofs) GetRollupGlobalExitRoot(rm *rollupmanager.Roll
 				))
 			return globalExitRoot, nil
 		}
+
+		// Move to the next chunk
+		chunkEnd = chunkStart - 1
 	}
 
 	return common.Hash{}, errors.New("no UpdateL1InfoTree events found")
