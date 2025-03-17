@@ -14,6 +14,7 @@ import (
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/rlp"
+	"github.com/ethereum/go-ethereum/rpc"
 	"golang.org/x/sync/errgroup"
 
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/l2-sovereign-chain/polygonpessimisticconsensus"
@@ -125,7 +126,6 @@ func (r *RollupPessimisticProofs) GetBatchL2Data(client bind.ContractBackend) (s
 }
 
 // GetRollupGlobalExitRoot retrieves the actual global exit root at the rollup creation time
-
 func (r *RollupPessimisticProofs) GetRollupGlobalExitRoot(rm *rollupmanager.RollupManager, client bind.ContractBackend) (common.Hash, error) {
 	gerContract, err := polygonzkevmglobalexitrootv2.NewPolygonzkevmglobalexitrootv2(rm.GERAddr, client)
 	if err != nil {
@@ -154,10 +154,7 @@ func (r *RollupPessimisticProofs) GetRollupGlobalExitRoot(rm *rollupmanager.Roll
 	for start := rm.UpdateToULxLyBlock; start <= endBlock; start += blocksChunkSize {
 		start := start
 		g.Go(func() error {
-			chunkEnd := start + blocksChunkSize - 1
-			if chunkEnd > endBlock {
-				chunkEnd = endBlock
-			}
+			chunkEnd := min(start+blocksChunkSize-1, endBlock)
 
 			filter := &bind.FilterOpts{
 				Start: start,
@@ -165,6 +162,10 @@ func (r *RollupPessimisticProofs) GetRollupGlobalExitRoot(rm *rollupmanager.Roll
 			}
 			iter, err := gerContract.FilterUpdateL1InfoTree(filter, nil, nil)
 			if err != nil {
+				var dataErr rpc.DataError
+				if errors.As(err, &dataErr) {
+					return fmt.Errorf("%w (additional details: %s)", dataErr, dataErr.ErrorData())
+				}
 				return err
 			}
 
