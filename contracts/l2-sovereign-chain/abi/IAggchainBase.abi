@@ -1,12 +1,7 @@
 [
    {
       "inputs": [],
-      "name": "AggchainRouteAlreadyAdded",
-      "type": "error"
-   },
-   {
-      "inputs": [],
-      "name": "AggchainRouteNotFound",
+      "name": "AggchainVKeyNotFound",
       "type": "error"
    },
    {
@@ -21,8 +16,51 @@
    },
    {
       "inputs": [],
+      "name": "InvalidInitializer",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OnlyPendingVKeyManager",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OnlyVKeyManager",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OwnedAggchainVKeyAlreadyAdded",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OwnedAggchainVKeyLengthMismatch",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OwnedAggchainVKeyNotFound",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "UseDefaultGatewayAlreadySet",
       "type": "error"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "newVKeyManager",
+            "type": "address"
+         }
+      ],
+      "name": "AcceptVKeyManagerRole",
+      "type": "event"
    },
    {
       "anonymous": false,
@@ -41,6 +79,19 @@
          }
       ],
       "name": "AddAggchainVKey",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "newVKeyManager",
+            "type": "address"
+         }
+      ],
+      "name": "TransferVKeyManagerRole",
       "type": "event"
    },
    {
@@ -74,18 +125,5 @@
       ],
       "name": "UpdateUseDefaultGatewayFlag",
       "type": "event"
-   },
-   {
-      "inputs": [
-         {
-            "internalType": "bytes",
-            "name": "initializeBytesCustomChain",
-            "type": "bytes"
-         }
-      ],
-      "name": "initialize",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
    }
 ]

@@ -32,7 +32,7 @@ var (
 // LegacyzkevmstatevariablesMetaData contains all meta data concerning the Legacyzkevmstatevariables contract.
 var LegacyzkevmstatevariablesMetaData = &bind.MetaData{
 	ABI: "[]",
-	Bin: "0x6080604052348015600e575f5ffd5b50603e80601a5f395ff3fe60806040525f5ffdfea264697066735822122098edf3f13131c7df52c2f8aeb0ca01e49433c03d82d2db7e6ff4155d0355a55964736f6c634300081c0033",
+	Bin: "0x6080604052348015600e575f5ffd5b50603e80601a5f395ff3fe60806040525f5ffdfea2646970667358221220e1ca115d1d6f2c3c4b091dc3838eaaad83aaa70e6781143d0ed3df779ee2618664736f6c634300081c0033",
 }
 
 // LegacyzkevmstatevariablesABI is the input ABI used to generate the binding from.

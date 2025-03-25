@@ -31,7 +31,7 @@ var (
 
 // AggchainbaseMetaData contains all meta data concerning the Aggchainbase contract.
 var AggchainbaseMetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[],\"name\":\"AggchainRouteAlreadyAdded\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"AggchainRouteNotFound\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"BatchAlreadyVerified\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"BatchNotSequencedOrNotSequenceEnd\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ExceedMaxVerifyBatches\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"FinalAccInputHashDoesNotMatch\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"FinalNumBatchBelowLastVerifiedBatch\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"FinalNumBatchDoesNotMatchPendingState\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"FinalPendingStateNumInvalid\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ForceBatchNotAllowed\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ForceBatchTimeoutNotExpired\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ForceBatchesAlreadyActive\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ForceBatchesDecentralized\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ForceBatchesNotAllowedOnEmergencyState\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ForceBatchesOverflow\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ForcedDataDoesNotMatch\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"GasTokenNetworkMustBeZeroOnEther\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"GlobalExitRootNotExist\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"HaltTimeoutNotExpired\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"HaltTimeoutNotExpiredAfterEmergencyState\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"HugeTokenMetadataNotSupported\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InitNumBatchAboveLastVerifiedBatch\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InitNumBatchDoesNotMatchPendingState\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InitSequencedBatchDoesNotMatch\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidAggchainVKey\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidInitializeFunction\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidInitializeTransaction\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidProof\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidRangeBatchTimeTarget\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidRangeForceBatchTimeout\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidRangeMultiplierBatchFee\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"L1InfoTreeLeafCountInvalid\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"MaxTimestampSequenceInvalid\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NewAccInputHashDoesNotExist\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NewPendingStateTimeoutMustBeLower\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NewStateRootNotInsidePrime\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NewTrustedAggregatorTimeoutMustBeLower\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NotEnoughMaticAmount\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NotEnoughPOLAmount\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OldAccInputHashDoesNotExist\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OldStateRootDoesNotExist\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyAdmin\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyPendingAdmin\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyRollupManager\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyTrustedAggregator\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyTrustedSequencer\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"PendingStateDoesNotExist\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"PendingStateInvalid\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"PendingStateNotConsolidable\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"PendingStateTimeoutExceedHaltAggregationTimeout\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"SequenceZeroBatches\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"SequencedTimestampBelowForcedTimestamp\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"SequencedTimestampInvalid\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"StoredRootMustBeDifferentThanNewRoot\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"TransactionsLengthAboveMax\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"TrustedAggregatorTimeoutExceedHaltAggregationTimeout\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"TrustedAggregatorTimeoutNotExpired\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"UseDefaultGatewayAlreadySet\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newAdmin\",\"type\":\"address\"}],\"name\":\"AcceptAdminRole\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"newAggchainVKey\",\"type\":\"bytes32\"}],\"name\":\"AddAggchainVKey\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"version\",\"type\":\"uint8\"}],\"name\":\"Initialized\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newTrustedSequencer\",\"type\":\"address\"}],\"name\":\"SetTrustedSequencer\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"newTrustedSequencerURL\",\"type\":\"string\"}],\"name\":\"SetTrustedSequencerURL\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newPendingAdmin\",\"type\":\"address\"}],\"name\":\"TransferAdminRole\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"newAggchainVKey\",\"type\":\"bytes32\"}],\"name\":\"UpdateAggchainVKey\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"useDefaultGateway\",\"type\":\"bool\"}],\"name\":\"UpdateUseDefaultGatewayFlag\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"AGGCHAIN_TYPE\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"acceptAdminRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"aggchainSelector\",\"type\":\"bytes4\"},{\"internalType\":\"bytes32\",\"name\":\"aggchainVKey\",\"type\":\"bytes32\"}],\"name\":\"addAggchainRoute\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"admin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"aggLayerGateway\",\"outputs\":[{\"internalType\":\"contractIAggLayerGateway\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"aggchainVKeySelector\",\"type\":\"bytes4\"}],\"name\":\"aggchainVKeyRoutes\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"aggchainVKey\",\"type\":\"bytes32\"},{\"internalType\":\"bool\",\"name\":\"frozen\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"bridgeAddress\",\"outputs\":[{\"internalType\":\"contractIPolygonZkEVMBridgeV2\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"disableUseDefaultGatewayFlag\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"enableUseDefaultGatewayFlag\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"forceBatchAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"forceBatchTimeout\",\"outputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"name\":\"forcedBatches\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"gasTokenAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"gasTokenNetwork\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"aggchainSelector\",\"type\":\"bytes4\"}],\"name\":\"getAggchainVKey\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"aggchainVKey\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"globalExitRootManager\",\"outputs\":[{\"internalType\":\"contractIPolygonZkEVMGlobalExitRootV2\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"initializeBytesCustomChain\",\"type\":\"bytes\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"lastAccInputHash\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"lastForceBatch\",\"outputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"lastForceBatchSequenced\",\"outputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"networkName\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"pendingAdmin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"pol\",\"outputs\":[{\"internalType\":\"contractIERC20Upgradeable\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"rollupManager\",\"outputs\":[{\"internalType\":\"contractPolygonRollupManager\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newTrustedSequencer\",\"type\":\"address\"}],\"name\":\"setTrustedSequencer\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"newTrustedSequencerURL\",\"type\":\"string\"}],\"name\":\"setTrustedSequencerURL\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newPendingAdmin\",\"type\":\"address\"}],\"name\":\"transferAdminRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"trustedSequencer\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"trustedSequencerURL\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"aggchainSelector\",\"type\":\"bytes4\"},{\"internalType\":\"bytes32\",\"name\":\"updatedAggchainVKey\",\"type\":\"bytes32\"}],\"name\":\"updateAggchainRoute\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"useDefaultGateway\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
+	ABI: "[{\"inputs\":[],\"name\":\"AggchainVKeyNotFound\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"BatchAlreadyVerified\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"BatchNotSequencedOrNotSequenceEnd\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ExceedMaxVerifyBatches\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"FinalAccInputHashDoesNotMatch\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"FinalNumBatchBelowLastVerifiedBatch\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"FinalNumBatchDoesNotMatchPendingState\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"FinalPendingStateNumInvalid\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ForceBatchNotAllowed\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ForceBatchTimeoutNotExpired\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ForceBatchesAlreadyActive\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ForceBatchesDecentralized\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ForceBatchesNotAllowedOnEmergencyState\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ForceBatchesOverflow\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ForcedDataDoesNotMatch\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"GasTokenNetworkMustBeZeroOnEther\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"GlobalExitRootNotExist\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"HaltTimeoutNotExpired\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"HaltTimeoutNotExpiredAfterEmergencyState\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"HugeTokenMetadataNotSupported\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InitNumBatchAboveLastVerifiedBatch\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InitNumBatchDoesNotMatchPendingState\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InitSequencedBatchDoesNotMatch\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidAggchainVKey\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidInitializeFunction\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidInitializeTransaction\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidInitializer\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidProof\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidRangeBatchTimeTarget\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidRangeForceBatchTimeout\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidRangeMultiplierBatchFee\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"L1InfoTreeLeafCountInvalid\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"MaxTimestampSequenceInvalid\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NewAccInputHashDoesNotExist\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NewPendingStateTimeoutMustBeLower\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NewStateRootNotInsidePrime\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NewTrustedAggregatorTimeoutMustBeLower\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NotEnoughMaticAmount\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NotEnoughPOLAmount\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OldAccInputHashDoesNotExist\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OldStateRootDoesNotExist\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyAdmin\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyPendingAdmin\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyPendingVKeyManager\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyRollupManager\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyTrustedAggregator\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyTrustedSequencer\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyVKeyManager\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OwnedAggchainVKeyAlreadyAdded\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OwnedAggchainVKeyLengthMismatch\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OwnedAggchainVKeyNotFound\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"PendingStateDoesNotExist\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"PendingStateInvalid\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"PendingStateNotConsolidable\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"PendingStateTimeoutExceedHaltAggregationTimeout\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"SequenceZeroBatches\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"SequencedTimestampBelowForcedTimestamp\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"SequencedTimestampInvalid\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"StoredRootMustBeDifferentThanNewRoot\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"TransactionsLengthAboveMax\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"TrustedAggregatorTimeoutExceedHaltAggregationTimeout\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"TrustedAggregatorTimeoutNotExpired\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"UseDefaultGatewayAlreadySet\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newAdmin\",\"type\":\"address\"}],\"name\":\"AcceptAdminRole\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newVKeyManager\",\"type\":\"address\"}],\"name\":\"AcceptVKeyManagerRole\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"newAggchainVKey\",\"type\":\"bytes32\"}],\"name\":\"AddAggchainVKey\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"version\",\"type\":\"uint8\"}],\"name\":\"Initialized\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newTrustedSequencer\",\"type\":\"address\"}],\"name\":\"SetTrustedSequencer\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"string\",\"name\":\"newTrustedSequencerURL\",\"type\":\"string\"}],\"name\":\"SetTrustedSequencerURL\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newPendingAdmin\",\"type\":\"address\"}],\"name\":\"TransferAdminRole\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newVKeyManager\",\"type\":\"address\"}],\"name\":\"TransferVKeyManagerRole\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"newAggchainVKey\",\"type\":\"bytes32\"}],\"name\":\"UpdateAggchainVKey\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"useDefaultGateway\",\"type\":\"bool\"}],\"name\":\"UpdateUseDefaultGatewayFlag\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"AGGCHAIN_TYPE\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"acceptAdminRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"acceptVKeyManagerRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"aggchainSelector\",\"type\":\"bytes4\"},{\"internalType\":\"bytes32\",\"name\":\"newAggchainVKey\",\"type\":\"bytes32\"}],\"name\":\"addOwnedAggchainVKey\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"admin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"aggLayerGateway\",\"outputs\":[{\"internalType\":\"contractIAggLayerGateway\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"bridgeAddress\",\"outputs\":[{\"internalType\":\"contractIPolygonZkEVMBridgeV2\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"disableUseDefaultGatewayFlag\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"enableUseDefaultGatewayFlag\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"forceBatchAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"forceBatchTimeout\",\"outputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"name\":\"forcedBatches\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"gasTokenAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"gasTokenNetwork\",\"outputs\":[{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"aggchainSelector\",\"type\":\"bytes4\"}],\"name\":\"getAggchainVKey\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"aggchainVKey\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"globalExitRootManager\",\"outputs\":[{\"internalType\":\"contractIPolygonZkEVMGlobalExitRootV2\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"\",\"type\":\"uint32\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"lastAccInputHash\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"lastForceBatch\",\"outputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"lastForceBatchSequenced\",\"outputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"networkName\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"aggchainVKeySelector\",\"type\":\"bytes4\"}],\"name\":\"ownedAggchainVKeys\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"ownedAggchainVKey\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"pendingAdmin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"pendingVKeyManager\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"pol\",\"outputs\":[{\"internalType\":\"contractIERC20Upgradeable\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"rollupManager\",\"outputs\":[{\"internalType\":\"contractPolygonRollupManager\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newTrustedSequencer\",\"type\":\"address\"}],\"name\":\"setTrustedSequencer\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"newTrustedSequencerURL\",\"type\":\"string\"}],\"name\":\"setTrustedSequencerURL\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newPendingAdmin\",\"type\":\"address\"}],\"name\":\"transferAdminRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newVKeyManager\",\"type\":\"address\"}],\"name\":\"transferVKeyManagerRole\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"trustedSequencer\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"trustedSequencerURL\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"aggchainSelector\",\"type\":\"bytes4\"},{\"internalType\":\"bytes32\",\"name\":\"updatedAggchainVKey\",\"type\":\"bytes32\"}],\"name\":\"updateOwnedAggchainVKey\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"useDefaultGateway\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"vKeyManager\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
 }
 
 // AggchainbaseABI is the input ABI used to generate the binding from.
@@ -271,51 +271,6 @@ func (_Aggchainbase *AggchainbaseSession) AggLayerGateway() (common.Address, err
 // Solidity: function aggLayerGateway() view returns(address)
 func (_Aggchainbase *AggchainbaseCallerSession) AggLayerGateway() (common.Address, error) {
 	return _Aggchainbase.Contract.AggLayerGateway(&_Aggchainbase.CallOpts)
-}
-
-// AggchainVKeyRoutes is a free data retrieval call binding the contract method 0x69d8f277.
-//
-// Solidity: function aggchainVKeyRoutes(bytes4 aggchainVKeySelector) view returns(bytes32 aggchainVKey, bool frozen)
-func (_Aggchainbase *AggchainbaseCaller) AggchainVKeyRoutes(opts *bind.CallOpts, aggchainVKeySelector [4]byte) (struct {
-	AggchainVKey [32]byte
-	Frozen       bool
-}, error) {
-	var out []interface{}
-	err := _Aggchainbase.contract.Call(opts, &out, "aggchainVKeyRoutes", aggchainVKeySelector)
-
-	outstruct := new(struct {
-		AggchainVKey [32]byte
-		Frozen       bool
-	})
-	if err != nil {
-		return *outstruct, err
-	}
-
-	outstruct.AggchainVKey = *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
-	outstruct.Frozen = *abi.ConvertType(out[1], new(bool)).(*bool)
-
-	return *outstruct, err
-
-}
-
-// AggchainVKeyRoutes is a free data retrieval call binding the contract method 0x69d8f277.
-//
-// Solidity: function aggchainVKeyRoutes(bytes4 aggchainVKeySelector) view returns(bytes32 aggchainVKey, bool frozen)
-func (_Aggchainbase *AggchainbaseSession) AggchainVKeyRoutes(aggchainVKeySelector [4]byte) (struct {
-	AggchainVKey [32]byte
-	Frozen       bool
-}, error) {
-	return _Aggchainbase.Contract.AggchainVKeyRoutes(&_Aggchainbase.CallOpts, aggchainVKeySelector)
-}
-
-// AggchainVKeyRoutes is a free data retrieval call binding the contract method 0x69d8f277.
-//
-// Solidity: function aggchainVKeyRoutes(bytes4 aggchainVKeySelector) view returns(bytes32 aggchainVKey, bool frozen)
-func (_Aggchainbase *AggchainbaseCallerSession) AggchainVKeyRoutes(aggchainVKeySelector [4]byte) (struct {
-	AggchainVKey [32]byte
-	Frozen       bool
-}, error) {
-	return _Aggchainbase.Contract.AggchainVKeyRoutes(&_Aggchainbase.CallOpts, aggchainVKeySelector)
 }
 
 // BridgeAddress is a free data retrieval call binding the contract method 0xa3c573eb.
@@ -566,12 +521,12 @@ func (_Aggchainbase *AggchainbaseCallerSession) GlobalExitRootManager() (common.
 	return _Aggchainbase.Contract.GlobalExitRootManager(&_Aggchainbase.CallOpts)
 }
 
-// Initialize0 is a free data retrieval call binding the contract method 0x71257022.
+// Initialize is a free data retrieval call binding the contract method 0x71257022.
 //
 // Solidity: function initialize(address , address , uint32 , address , string , string ) pure returns()
-func (_Aggchainbase *AggchainbaseCaller) Initialize0(opts *bind.CallOpts, arg0 common.Address, arg1 common.Address, arg2 uint32, arg3 common.Address, arg4 string, arg5 string) error {
+func (_Aggchainbase *AggchainbaseCaller) Initialize(opts *bind.CallOpts, arg0 common.Address, arg1 common.Address, arg2 uint32, arg3 common.Address, arg4 string, arg5 string) error {
 	var out []interface{}
-	err := _Aggchainbase.contract.Call(opts, &out, "initialize0", arg0, arg1, arg2, arg3, arg4, arg5)
+	err := _Aggchainbase.contract.Call(opts, &out, "initialize", arg0, arg1, arg2, arg3, arg4, arg5)
 
 	if err != nil {
 		return err
@@ -581,18 +536,18 @@ func (_Aggchainbase *AggchainbaseCaller) Initialize0(opts *bind.CallOpts, arg0 c
 
 }
 
-// Initialize0 is a free data retrieval call binding the contract method 0x71257022.
+// Initialize is a free data retrieval call binding the contract method 0x71257022.
 //
 // Solidity: function initialize(address , address , uint32 , address , string , string ) pure returns()
-func (_Aggchainbase *AggchainbaseSession) Initialize0(arg0 common.Address, arg1 common.Address, arg2 uint32, arg3 common.Address, arg4 string, arg5 string) error {
-	return _Aggchainbase.Contract.Initialize0(&_Aggchainbase.CallOpts, arg0, arg1, arg2, arg3, arg4, arg5)
+func (_Aggchainbase *AggchainbaseSession) Initialize(arg0 common.Address, arg1 common.Address, arg2 uint32, arg3 common.Address, arg4 string, arg5 string) error {
+	return _Aggchainbase.Contract.Initialize(&_Aggchainbase.CallOpts, arg0, arg1, arg2, arg3, arg4, arg5)
 }
 
-// Initialize0 is a free data retrieval call binding the contract method 0x71257022.
+// Initialize is a free data retrieval call binding the contract method 0x71257022.
 //
 // Solidity: function initialize(address , address , uint32 , address , string , string ) pure returns()
-func (_Aggchainbase *AggchainbaseCallerSession) Initialize0(arg0 common.Address, arg1 common.Address, arg2 uint32, arg3 common.Address, arg4 string, arg5 string) error {
-	return _Aggchainbase.Contract.Initialize0(&_Aggchainbase.CallOpts, arg0, arg1, arg2, arg3, arg4, arg5)
+func (_Aggchainbase *AggchainbaseCallerSession) Initialize(arg0 common.Address, arg1 common.Address, arg2 uint32, arg3 common.Address, arg4 string, arg5 string) error {
+	return _Aggchainbase.Contract.Initialize(&_Aggchainbase.CallOpts, arg0, arg1, arg2, arg3, arg4, arg5)
 }
 
 // LastAccInputHash is a free data retrieval call binding the contract method 0x6e05d2cd.
@@ -719,6 +674,37 @@ func (_Aggchainbase *AggchainbaseCallerSession) NetworkName() (string, error) {
 	return _Aggchainbase.Contract.NetworkName(&_Aggchainbase.CallOpts)
 }
 
+// OwnedAggchainVKeys is a free data retrieval call binding the contract method 0xeffb8479.
+//
+// Solidity: function ownedAggchainVKeys(bytes4 aggchainVKeySelector) view returns(bytes32 ownedAggchainVKey)
+func (_Aggchainbase *AggchainbaseCaller) OwnedAggchainVKeys(opts *bind.CallOpts, aggchainVKeySelector [4]byte) ([32]byte, error) {
+	var out []interface{}
+	err := _Aggchainbase.contract.Call(opts, &out, "ownedAggchainVKeys", aggchainVKeySelector)
+
+	if err != nil {
+		return *new([32]byte), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
+
+	return out0, err
+
+}
+
+// OwnedAggchainVKeys is a free data retrieval call binding the contract method 0xeffb8479.
+//
+// Solidity: function ownedAggchainVKeys(bytes4 aggchainVKeySelector) view returns(bytes32 ownedAggchainVKey)
+func (_Aggchainbase *AggchainbaseSession) OwnedAggchainVKeys(aggchainVKeySelector [4]byte) ([32]byte, error) {
+	return _Aggchainbase.Contract.OwnedAggchainVKeys(&_Aggchainbase.CallOpts, aggchainVKeySelector)
+}
+
+// OwnedAggchainVKeys is a free data retrieval call binding the contract method 0xeffb8479.
+//
+// Solidity: function ownedAggchainVKeys(bytes4 aggchainVKeySelector) view returns(bytes32 ownedAggchainVKey)
+func (_Aggchainbase *AggchainbaseCallerSession) OwnedAggchainVKeys(aggchainVKeySelector [4]byte) ([32]byte, error) {
+	return _Aggchainbase.Contract.OwnedAggchainVKeys(&_Aggchainbase.CallOpts, aggchainVKeySelector)
+}
+
 // PendingAdmin is a free data retrieval call binding the contract method 0x26782247.
 //
 // Solidity: function pendingAdmin() view returns(address)
@@ -748,6 +734,37 @@ func (_Aggchainbase *AggchainbaseSession) PendingAdmin() (common.Address, error)
 // Solidity: function pendingAdmin() view returns(address)
 func (_Aggchainbase *AggchainbaseCallerSession) PendingAdmin() (common.Address, error) {
 	return _Aggchainbase.Contract.PendingAdmin(&_Aggchainbase.CallOpts)
+}
+
+// PendingVKeyManager is a free data retrieval call binding the contract method 0xbfb193b6.
+//
+// Solidity: function pendingVKeyManager() view returns(address)
+func (_Aggchainbase *AggchainbaseCaller) PendingVKeyManager(opts *bind.CallOpts) (common.Address, error) {
+	var out []interface{}
+	err := _Aggchainbase.contract.Call(opts, &out, "pendingVKeyManager")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
+}
+
+// PendingVKeyManager is a free data retrieval call binding the contract method 0xbfb193b6.
+//
+// Solidity: function pendingVKeyManager() view returns(address)
+func (_Aggchainbase *AggchainbaseSession) PendingVKeyManager() (common.Address, error) {
+	return _Aggchainbase.Contract.PendingVKeyManager(&_Aggchainbase.CallOpts)
+}
+
+// PendingVKeyManager is a free data retrieval call binding the contract method 0xbfb193b6.
+//
+// Solidity: function pendingVKeyManager() view returns(address)
+func (_Aggchainbase *AggchainbaseCallerSession) PendingVKeyManager() (common.Address, error) {
+	return _Aggchainbase.Contract.PendingVKeyManager(&_Aggchainbase.CallOpts)
 }
 
 // Pol is a free data retrieval call binding the contract method 0xe46761c4.
@@ -905,6 +922,37 @@ func (_Aggchainbase *AggchainbaseCallerSession) UseDefaultGateway() (bool, error
 	return _Aggchainbase.Contract.UseDefaultGateway(&_Aggchainbase.CallOpts)
 }
 
+// VKeyManager is a free data retrieval call binding the contract method 0xe279984e.
+//
+// Solidity: function vKeyManager() view returns(address)
+func (_Aggchainbase *AggchainbaseCaller) VKeyManager(opts *bind.CallOpts) (common.Address, error) {
+	var out []interface{}
+	err := _Aggchainbase.contract.Call(opts, &out, "vKeyManager")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
+}
+
+// VKeyManager is a free data retrieval call binding the contract method 0xe279984e.
+//
+// Solidity: function vKeyManager() view returns(address)
+func (_Aggchainbase *AggchainbaseSession) VKeyManager() (common.Address, error) {
+	return _Aggchainbase.Contract.VKeyManager(&_Aggchainbase.CallOpts)
+}
+
+// VKeyManager is a free data retrieval call binding the contract method 0xe279984e.
+//
+// Solidity: function vKeyManager() view returns(address)
+func (_Aggchainbase *AggchainbaseCallerSession) VKeyManager() (common.Address, error) {
+	return _Aggchainbase.Contract.VKeyManager(&_Aggchainbase.CallOpts)
+}
+
 // AcceptAdminRole is a paid mutator transaction binding the contract method 0x8c3d7301.
 //
 // Solidity: function acceptAdminRole() returns()
@@ -926,25 +974,46 @@ func (_Aggchainbase *AggchainbaseTransactorSession) AcceptAdminRole() (*types.Tr
 	return _Aggchainbase.Contract.AcceptAdminRole(&_Aggchainbase.TransactOpts)
 }
 
-// AddAggchainRoute is a paid mutator transaction binding the contract method 0xdf4970a8.
+// AcceptVKeyManagerRole is a paid mutator transaction binding the contract method 0x368c822c.
 //
-// Solidity: function addAggchainRoute(bytes4 aggchainSelector, bytes32 aggchainVKey) returns()
-func (_Aggchainbase *AggchainbaseTransactor) AddAggchainRoute(opts *bind.TransactOpts, aggchainSelector [4]byte, aggchainVKey [32]byte) (*types.Transaction, error) {
-	return _Aggchainbase.contract.Transact(opts, "addAggchainRoute", aggchainSelector, aggchainVKey)
+// Solidity: function acceptVKeyManagerRole() returns()
+func (_Aggchainbase *AggchainbaseTransactor) AcceptVKeyManagerRole(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _Aggchainbase.contract.Transact(opts, "acceptVKeyManagerRole")
 }
 
-// AddAggchainRoute is a paid mutator transaction binding the contract method 0xdf4970a8.
+// AcceptVKeyManagerRole is a paid mutator transaction binding the contract method 0x368c822c.
 //
-// Solidity: function addAggchainRoute(bytes4 aggchainSelector, bytes32 aggchainVKey) returns()
-func (_Aggchainbase *AggchainbaseSession) AddAggchainRoute(aggchainSelector [4]byte, aggchainVKey [32]byte) (*types.Transaction, error) {
-	return _Aggchainbase.Contract.AddAggchainRoute(&_Aggchainbase.TransactOpts, aggchainSelector, aggchainVKey)
+// Solidity: function acceptVKeyManagerRole() returns()
+func (_Aggchainbase *AggchainbaseSession) AcceptVKeyManagerRole() (*types.Transaction, error) {
+	return _Aggchainbase.Contract.AcceptVKeyManagerRole(&_Aggchainbase.TransactOpts)
 }
 
-// AddAggchainRoute is a paid mutator transaction binding the contract method 0xdf4970a8.
+// AcceptVKeyManagerRole is a paid mutator transaction binding the contract method 0x368c822c.
 //
-// Solidity: function addAggchainRoute(bytes4 aggchainSelector, bytes32 aggchainVKey) returns()
-func (_Aggchainbase *AggchainbaseTransactorSession) AddAggchainRoute(aggchainSelector [4]byte, aggchainVKey [32]byte) (*types.Transaction, error) {
-	return _Aggchainbase.Contract.AddAggchainRoute(&_Aggchainbase.TransactOpts, aggchainSelector, aggchainVKey)
+// Solidity: function acceptVKeyManagerRole() returns()
+func (_Aggchainbase *AggchainbaseTransactorSession) AcceptVKeyManagerRole() (*types.Transaction, error) {
+	return _Aggchainbase.Contract.AcceptVKeyManagerRole(&_Aggchainbase.TransactOpts)
+}
+
+// AddOwnedAggchainVKey is a paid mutator transaction binding the contract method 0x19451a8f.
+//
+// Solidity: function addOwnedAggchainVKey(bytes4 aggchainSelector, bytes32 newAggchainVKey) returns()
+func (_Aggchainbase *AggchainbaseTransactor) AddOwnedAggchainVKey(opts *bind.TransactOpts, aggchainSelector [4]byte, newAggchainVKey [32]byte) (*types.Transaction, error) {
+	return _Aggchainbase.contract.Transact(opts, "addOwnedAggchainVKey", aggchainSelector, newAggchainVKey)
+}
+
+// AddOwnedAggchainVKey is a paid mutator transaction binding the contract method 0x19451a8f.
+//
+// Solidity: function addOwnedAggchainVKey(bytes4 aggchainSelector, bytes32 newAggchainVKey) returns()
+func (_Aggchainbase *AggchainbaseSession) AddOwnedAggchainVKey(aggchainSelector [4]byte, newAggchainVKey [32]byte) (*types.Transaction, error) {
+	return _Aggchainbase.Contract.AddOwnedAggchainVKey(&_Aggchainbase.TransactOpts, aggchainSelector, newAggchainVKey)
+}
+
+// AddOwnedAggchainVKey is a paid mutator transaction binding the contract method 0x19451a8f.
+//
+// Solidity: function addOwnedAggchainVKey(bytes4 aggchainSelector, bytes32 newAggchainVKey) returns()
+func (_Aggchainbase *AggchainbaseTransactorSession) AddOwnedAggchainVKey(aggchainSelector [4]byte, newAggchainVKey [32]byte) (*types.Transaction, error) {
+	return _Aggchainbase.Contract.AddOwnedAggchainVKey(&_Aggchainbase.TransactOpts, aggchainSelector, newAggchainVKey)
 }
 
 // DisableUseDefaultGatewayFlag is a paid mutator transaction binding the contract method 0xdc8c4249.
@@ -987,27 +1056,6 @@ func (_Aggchainbase *AggchainbaseSession) EnableUseDefaultGatewayFlag() (*types.
 // Solidity: function enableUseDefaultGatewayFlag() returns()
 func (_Aggchainbase *AggchainbaseTransactorSession) EnableUseDefaultGatewayFlag() (*types.Transaction, error) {
 	return _Aggchainbase.Contract.EnableUseDefaultGatewayFlag(&_Aggchainbase.TransactOpts)
-}
-
-// Initialize is a paid mutator transaction binding the contract method 0x439fab91.
-//
-// Solidity: function initialize(bytes initializeBytesCustomChain) returns()
-func (_Aggchainbase *AggchainbaseTransactor) Initialize(opts *bind.TransactOpts, initializeBytesCustomChain []byte) (*types.Transaction, error) {
-	return _Aggchainbase.contract.Transact(opts, "initialize", initializeBytesCustomChain)
-}
-
-// Initialize is a paid mutator transaction binding the contract method 0x439fab91.
-//
-// Solidity: function initialize(bytes initializeBytesCustomChain) returns()
-func (_Aggchainbase *AggchainbaseSession) Initialize(initializeBytesCustomChain []byte) (*types.Transaction, error) {
-	return _Aggchainbase.Contract.Initialize(&_Aggchainbase.TransactOpts, initializeBytesCustomChain)
-}
-
-// Initialize is a paid mutator transaction binding the contract method 0x439fab91.
-//
-// Solidity: function initialize(bytes initializeBytesCustomChain) returns()
-func (_Aggchainbase *AggchainbaseTransactorSession) Initialize(initializeBytesCustomChain []byte) (*types.Transaction, error) {
-	return _Aggchainbase.Contract.Initialize(&_Aggchainbase.TransactOpts, initializeBytesCustomChain)
 }
 
 // SetTrustedSequencer is a paid mutator transaction binding the contract method 0x6ff512cc.
@@ -1073,25 +1121,46 @@ func (_Aggchainbase *AggchainbaseTransactorSession) TransferAdminRole(newPending
 	return _Aggchainbase.Contract.TransferAdminRole(&_Aggchainbase.TransactOpts, newPendingAdmin)
 }
 
-// UpdateAggchainRoute is a paid mutator transaction binding the contract method 0xab27f141.
+// TransferVKeyManagerRole is a paid mutator transaction binding the contract method 0x85018182.
 //
-// Solidity: function updateAggchainRoute(bytes4 aggchainSelector, bytes32 updatedAggchainVKey) returns()
-func (_Aggchainbase *AggchainbaseTransactor) UpdateAggchainRoute(opts *bind.TransactOpts, aggchainSelector [4]byte, updatedAggchainVKey [32]byte) (*types.Transaction, error) {
-	return _Aggchainbase.contract.Transact(opts, "updateAggchainRoute", aggchainSelector, updatedAggchainVKey)
+// Solidity: function transferVKeyManagerRole(address newVKeyManager) returns()
+func (_Aggchainbase *AggchainbaseTransactor) TransferVKeyManagerRole(opts *bind.TransactOpts, newVKeyManager common.Address) (*types.Transaction, error) {
+	return _Aggchainbase.contract.Transact(opts, "transferVKeyManagerRole", newVKeyManager)
 }
 
-// UpdateAggchainRoute is a paid mutator transaction binding the contract method 0xab27f141.
+// TransferVKeyManagerRole is a paid mutator transaction binding the contract method 0x85018182.
 //
-// Solidity: function updateAggchainRoute(bytes4 aggchainSelector, bytes32 updatedAggchainVKey) returns()
-func (_Aggchainbase *AggchainbaseSession) UpdateAggchainRoute(aggchainSelector [4]byte, updatedAggchainVKey [32]byte) (*types.Transaction, error) {
-	return _Aggchainbase.Contract.UpdateAggchainRoute(&_Aggchainbase.TransactOpts, aggchainSelector, updatedAggchainVKey)
+// Solidity: function transferVKeyManagerRole(address newVKeyManager) returns()
+func (_Aggchainbase *AggchainbaseSession) TransferVKeyManagerRole(newVKeyManager common.Address) (*types.Transaction, error) {
+	return _Aggchainbase.Contract.TransferVKeyManagerRole(&_Aggchainbase.TransactOpts, newVKeyManager)
 }
 
-// UpdateAggchainRoute is a paid mutator transaction binding the contract method 0xab27f141.
+// TransferVKeyManagerRole is a paid mutator transaction binding the contract method 0x85018182.
 //
-// Solidity: function updateAggchainRoute(bytes4 aggchainSelector, bytes32 updatedAggchainVKey) returns()
-func (_Aggchainbase *AggchainbaseTransactorSession) UpdateAggchainRoute(aggchainSelector [4]byte, updatedAggchainVKey [32]byte) (*types.Transaction, error) {
-	return _Aggchainbase.Contract.UpdateAggchainRoute(&_Aggchainbase.TransactOpts, aggchainSelector, updatedAggchainVKey)
+// Solidity: function transferVKeyManagerRole(address newVKeyManager) returns()
+func (_Aggchainbase *AggchainbaseTransactorSession) TransferVKeyManagerRole(newVKeyManager common.Address) (*types.Transaction, error) {
+	return _Aggchainbase.Contract.TransferVKeyManagerRole(&_Aggchainbase.TransactOpts, newVKeyManager)
+}
+
+// UpdateOwnedAggchainVKey is a paid mutator transaction binding the contract method 0x314eb17b.
+//
+// Solidity: function updateOwnedAggchainVKey(bytes4 aggchainSelector, bytes32 updatedAggchainVKey) returns()
+func (_Aggchainbase *AggchainbaseTransactor) UpdateOwnedAggchainVKey(opts *bind.TransactOpts, aggchainSelector [4]byte, updatedAggchainVKey [32]byte) (*types.Transaction, error) {
+	return _Aggchainbase.contract.Transact(opts, "updateOwnedAggchainVKey", aggchainSelector, updatedAggchainVKey)
+}
+
+// UpdateOwnedAggchainVKey is a paid mutator transaction binding the contract method 0x314eb17b.
+//
+// Solidity: function updateOwnedAggchainVKey(bytes4 aggchainSelector, bytes32 updatedAggchainVKey) returns()
+func (_Aggchainbase *AggchainbaseSession) UpdateOwnedAggchainVKey(aggchainSelector [4]byte, updatedAggchainVKey [32]byte) (*types.Transaction, error) {
+	return _Aggchainbase.Contract.UpdateOwnedAggchainVKey(&_Aggchainbase.TransactOpts, aggchainSelector, updatedAggchainVKey)
+}
+
+// UpdateOwnedAggchainVKey is a paid mutator transaction binding the contract method 0x314eb17b.
+//
+// Solidity: function updateOwnedAggchainVKey(bytes4 aggchainSelector, bytes32 updatedAggchainVKey) returns()
+func (_Aggchainbase *AggchainbaseTransactorSession) UpdateOwnedAggchainVKey(aggchainSelector [4]byte, updatedAggchainVKey [32]byte) (*types.Transaction, error) {
+	return _Aggchainbase.Contract.UpdateOwnedAggchainVKey(&_Aggchainbase.TransactOpts, aggchainSelector, updatedAggchainVKey)
 }
 
 // AggchainbaseAcceptAdminRoleIterator is returned from FilterAcceptAdminRole and is used to iterate over the raw logs and unpacked data for AcceptAdminRole events raised by the Aggchainbase contract.
@@ -1222,6 +1291,140 @@ func (_Aggchainbase *AggchainbaseFilterer) WatchAcceptAdminRole(opts *bind.Watch
 func (_Aggchainbase *AggchainbaseFilterer) ParseAcceptAdminRole(log types.Log) (*AggchainbaseAcceptAdminRole, error) {
 	event := new(AggchainbaseAcceptAdminRole)
 	if err := _Aggchainbase.contract.UnpackLog(event, "AcceptAdminRole", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// AggchainbaseAcceptVKeyManagerRoleIterator is returned from FilterAcceptVKeyManagerRole and is used to iterate over the raw logs and unpacked data for AcceptVKeyManagerRole events raised by the Aggchainbase contract.
+type AggchainbaseAcceptVKeyManagerRoleIterator struct {
+	Event *AggchainbaseAcceptVKeyManagerRole // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *AggchainbaseAcceptVKeyManagerRoleIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(AggchainbaseAcceptVKeyManagerRole)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(AggchainbaseAcceptVKeyManagerRole)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *AggchainbaseAcceptVKeyManagerRoleIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *AggchainbaseAcceptVKeyManagerRoleIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// AggchainbaseAcceptVKeyManagerRole represents a AcceptVKeyManagerRole event raised by the Aggchainbase contract.
+type AggchainbaseAcceptVKeyManagerRole struct {
+	NewVKeyManager common.Address
+	Raw            types.Log // Blockchain specific contextual infos
+}
+
+// FilterAcceptVKeyManagerRole is a free log retrieval operation binding the contract event 0x75ccbacededf0b9fc9371bb4cf651be4f96efab2c519a529cfd90e14c9d49ad2.
+//
+// Solidity: event AcceptVKeyManagerRole(address newVKeyManager)
+func (_Aggchainbase *AggchainbaseFilterer) FilterAcceptVKeyManagerRole(opts *bind.FilterOpts) (*AggchainbaseAcceptVKeyManagerRoleIterator, error) {
+
+	logs, sub, err := _Aggchainbase.contract.FilterLogs(opts, "AcceptVKeyManagerRole")
+	if err != nil {
+		return nil, err
+	}
+	return &AggchainbaseAcceptVKeyManagerRoleIterator{contract: _Aggchainbase.contract, event: "AcceptVKeyManagerRole", logs: logs, sub: sub}, nil
+}
+
+// WatchAcceptVKeyManagerRole is a free log subscription operation binding the contract event 0x75ccbacededf0b9fc9371bb4cf651be4f96efab2c519a529cfd90e14c9d49ad2.
+//
+// Solidity: event AcceptVKeyManagerRole(address newVKeyManager)
+func (_Aggchainbase *AggchainbaseFilterer) WatchAcceptVKeyManagerRole(opts *bind.WatchOpts, sink chan<- *AggchainbaseAcceptVKeyManagerRole) (event.Subscription, error) {
+
+	logs, sub, err := _Aggchainbase.contract.WatchLogs(opts, "AcceptVKeyManagerRole")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(AggchainbaseAcceptVKeyManagerRole)
+				if err := _Aggchainbase.contract.UnpackLog(event, "AcceptVKeyManagerRole", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseAcceptVKeyManagerRole is a log parse operation binding the contract event 0x75ccbacededf0b9fc9371bb4cf651be4f96efab2c519a529cfd90e14c9d49ad2.
+//
+// Solidity: event AcceptVKeyManagerRole(address newVKeyManager)
+func (_Aggchainbase *AggchainbaseFilterer) ParseAcceptVKeyManagerRole(log types.Log) (*AggchainbaseAcceptVKeyManagerRole, error) {
+	event := new(AggchainbaseAcceptVKeyManagerRole)
+	if err := _Aggchainbase.contract.UnpackLog(event, "AcceptVKeyManagerRole", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
@@ -1893,6 +2096,140 @@ func (_Aggchainbase *AggchainbaseFilterer) WatchTransferAdminRole(opts *bind.Wat
 func (_Aggchainbase *AggchainbaseFilterer) ParseTransferAdminRole(log types.Log) (*AggchainbaseTransferAdminRole, error) {
 	event := new(AggchainbaseTransferAdminRole)
 	if err := _Aggchainbase.contract.UnpackLog(event, "TransferAdminRole", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// AggchainbaseTransferVKeyManagerRoleIterator is returned from FilterTransferVKeyManagerRole and is used to iterate over the raw logs and unpacked data for TransferVKeyManagerRole events raised by the Aggchainbase contract.
+type AggchainbaseTransferVKeyManagerRoleIterator struct {
+	Event *AggchainbaseTransferVKeyManagerRole // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *AggchainbaseTransferVKeyManagerRoleIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(AggchainbaseTransferVKeyManagerRole)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(AggchainbaseTransferVKeyManagerRole)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *AggchainbaseTransferVKeyManagerRoleIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *AggchainbaseTransferVKeyManagerRoleIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// AggchainbaseTransferVKeyManagerRole represents a TransferVKeyManagerRole event raised by the Aggchainbase contract.
+type AggchainbaseTransferVKeyManagerRole struct {
+	NewVKeyManager common.Address
+	Raw            types.Log // Blockchain specific contextual infos
+}
+
+// FilterTransferVKeyManagerRole is a free log retrieval operation binding the contract event 0xfa4ea207951b027c94aa15f12ca5d0f4ca0543beb8426209ac79b49d2fc46b10.
+//
+// Solidity: event TransferVKeyManagerRole(address newVKeyManager)
+func (_Aggchainbase *AggchainbaseFilterer) FilterTransferVKeyManagerRole(opts *bind.FilterOpts) (*AggchainbaseTransferVKeyManagerRoleIterator, error) {
+
+	logs, sub, err := _Aggchainbase.contract.FilterLogs(opts, "TransferVKeyManagerRole")
+	if err != nil {
+		return nil, err
+	}
+	return &AggchainbaseTransferVKeyManagerRoleIterator{contract: _Aggchainbase.contract, event: "TransferVKeyManagerRole", logs: logs, sub: sub}, nil
+}
+
+// WatchTransferVKeyManagerRole is a free log subscription operation binding the contract event 0xfa4ea207951b027c94aa15f12ca5d0f4ca0543beb8426209ac79b49d2fc46b10.
+//
+// Solidity: event TransferVKeyManagerRole(address newVKeyManager)
+func (_Aggchainbase *AggchainbaseFilterer) WatchTransferVKeyManagerRole(opts *bind.WatchOpts, sink chan<- *AggchainbaseTransferVKeyManagerRole) (event.Subscription, error) {
+
+	logs, sub, err := _Aggchainbase.contract.WatchLogs(opts, "TransferVKeyManagerRole")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(AggchainbaseTransferVKeyManagerRole)
+				if err := _Aggchainbase.contract.UnpackLog(event, "TransferVKeyManagerRole", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseTransferVKeyManagerRole is a log parse operation binding the contract event 0xfa4ea207951b027c94aa15f12ca5d0f4ca0543beb8426209ac79b49d2fc46b10.
+//
+// Solidity: event TransferVKeyManagerRole(address newVKeyManager)
+func (_Aggchainbase *AggchainbaseFilterer) ParseTransferVKeyManagerRole(log types.Log) (*AggchainbaseTransferVKeyManagerRole, error) {
+	event := new(AggchainbaseTransferVKeyManagerRole)
+	if err := _Aggchainbase.contract.UnpackLog(event, "TransferVKeyManagerRole", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log

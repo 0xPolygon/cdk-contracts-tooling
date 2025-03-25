@@ -31,7 +31,7 @@ var (
 
 // IaggchainMetaData contains all meta data concerning the Iaggchain contract.
 var IaggchainMetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[],\"name\":\"InvalidInitializer\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"customChainData\",\"type\":\"bytes\"}],\"name\":\"getAggchainHash\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"onVerifyPessimistic\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
+	ABI: "[{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"customChainData\",\"type\":\"bytes\"}],\"name\":\"getAggchainHash\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"initializeBytesCustomChain\",\"type\":\"bytes\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"}],\"name\":\"onVerifyPessimistic\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
 }
 
 // IaggchainABI is the input ABI used to generate the binding from.
@@ -209,6 +209,27 @@ func (_Iaggchain *IaggchainSession) GetAggchainHash(customChainData []byte) ([32
 // Solidity: function getAggchainHash(bytes customChainData) view returns(bytes32)
 func (_Iaggchain *IaggchainCallerSession) GetAggchainHash(customChainData []byte) ([32]byte, error) {
 	return _Iaggchain.Contract.GetAggchainHash(&_Iaggchain.CallOpts, customChainData)
+}
+
+// Initialize is a paid mutator transaction binding the contract method 0x439fab91.
+//
+// Solidity: function initialize(bytes initializeBytesCustomChain) returns()
+func (_Iaggchain *IaggchainTransactor) Initialize(opts *bind.TransactOpts, initializeBytesCustomChain []byte) (*types.Transaction, error) {
+	return _Iaggchain.contract.Transact(opts, "initialize", initializeBytesCustomChain)
+}
+
+// Initialize is a paid mutator transaction binding the contract method 0x439fab91.
+//
+// Solidity: function initialize(bytes initializeBytesCustomChain) returns()
+func (_Iaggchain *IaggchainSession) Initialize(initializeBytesCustomChain []byte) (*types.Transaction, error) {
+	return _Iaggchain.Contract.Initialize(&_Iaggchain.TransactOpts, initializeBytesCustomChain)
+}
+
+// Initialize is a paid mutator transaction binding the contract method 0x439fab91.
+//
+// Solidity: function initialize(bytes initializeBytesCustomChain) returns()
+func (_Iaggchain *IaggchainTransactorSession) Initialize(initializeBytesCustomChain []byte) (*types.Transaction, error) {
+	return _Iaggchain.Contract.Initialize(&_Iaggchain.TransactOpts, initializeBytesCustomChain)
 }
 
 // OnVerifyPessimistic is a paid mutator transaction binding the contract method 0x9ee4afa3.

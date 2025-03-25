@@ -1,12 +1,7 @@
 [
    {
       "inputs": [],
-      "name": "AggchainRouteAlreadyAdded",
-      "type": "error"
-   },
-   {
-      "inputs": [],
-      "name": "AggchainRouteNotFound",
+      "name": "AggchainVKeyNotFound",
       "type": "error"
    },
    {
@@ -136,6 +131,11 @@
    },
    {
       "inputs": [],
+      "name": "InvalidInitializer",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "InvalidProof",
       "type": "error"
    },
@@ -216,6 +216,11 @@
    },
    {
       "inputs": [],
+      "name": "OnlyPendingVKeyManager",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "OnlyRollupManager",
       "type": "error"
    },
@@ -227,6 +232,26 @@
    {
       "inputs": [],
       "name": "OnlyTrustedSequencer",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OnlyVKeyManager",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OwnedAggchainVKeyAlreadyAdded",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OwnedAggchainVKeyLengthMismatch",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OwnedAggchainVKeyNotFound",
       "type": "error"
    },
    {
@@ -307,6 +332,19 @@
       "inputs": [
          {
             "indexed": false,
+            "internalType": "address",
+            "name": "newVKeyManager",
+            "type": "address"
+         }
+      ],
+      "name": "AcceptVKeyManagerRole",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
             "internalType": "bytes4",
             "name": "selector",
             "type": "bytes4"
@@ -378,6 +416,19 @@
       "inputs": [
          {
             "indexed": false,
+            "internalType": "address",
+            "name": "newVKeyManager",
+            "type": "address"
+         }
+      ],
+      "name": "TransferVKeyManagerRole",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
             "internalType": "bytes4",
             "name": "selector",
             "type": "bytes4"
@@ -426,6 +477,13 @@
       "type": "function"
    },
    {
+      "inputs": [],
+      "name": "acceptVKeyManagerRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+   },
+   {
       "inputs": [
          {
             "internalType": "bytes4",
@@ -434,11 +492,11 @@
          },
          {
             "internalType": "bytes32",
-            "name": "aggchainVKey",
+            "name": "newAggchainVKey",
             "type": "bytes32"
          }
       ],
-      "name": "addAggchainRoute",
+      "name": "addOwnedAggchainVKey",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
@@ -464,30 +522,6 @@
             "internalType": "contract IAggLayerGateway",
             "name": "",
             "type": "address"
-         }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-   },
-   {
-      "inputs": [
-         {
-            "internalType": "bytes4",
-            "name": "aggchainVKeySelector",
-            "type": "bytes4"
-         }
-      ],
-      "name": "aggchainVKeyRoutes",
-      "outputs": [
-         {
-            "internalType": "bytes32",
-            "name": "aggchainVKey",
-            "type": "bytes32"
-         },
-         {
-            "internalType": "bool",
-            "name": "frozen",
-            "type": "bool"
          }
       ],
       "stateMutability": "view",
@@ -626,19 +660,6 @@
    {
       "inputs": [
          {
-            "internalType": "bytes",
-            "name": "initializeBytesCustomChain",
-            "type": "bytes"
-         }
-      ],
-      "name": "initialize",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-   },
-   {
-      "inputs": [
-         {
             "internalType": "address",
             "name": "",
             "type": "address"
@@ -727,8 +748,40 @@
       "type": "function"
    },
    {
+      "inputs": [
+         {
+            "internalType": "bytes4",
+            "name": "aggchainVKeySelector",
+            "type": "bytes4"
+         }
+      ],
+      "name": "ownedAggchainVKeys",
+      "outputs": [
+         {
+            "internalType": "bytes32",
+            "name": "ownedAggchainVKey",
+            "type": "bytes32"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
       "inputs": [],
       "name": "pendingAdmin",
+      "outputs": [
+         {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "pendingVKeyManager",
       "outputs": [
          {
             "internalType": "address",
@@ -805,6 +858,19 @@
       "type": "function"
    },
    {
+      "inputs": [
+         {
+            "internalType": "address",
+            "name": "newVKeyManager",
+            "type": "address"
+         }
+      ],
+      "name": "transferVKeyManagerRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+   },
+   {
       "inputs": [],
       "name": "trustedSequencer",
       "outputs": [
@@ -843,7 +909,7 @@
             "type": "bytes32"
          }
       ],
-      "name": "updateAggchainRoute",
+      "name": "updateOwnedAggchainVKey",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
@@ -856,6 +922,19 @@
             "internalType": "bool",
             "name": "",
             "type": "bool"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "vKeyManager",
+      "outputs": [
+         {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
          }
       ],
       "stateMutability": "view",

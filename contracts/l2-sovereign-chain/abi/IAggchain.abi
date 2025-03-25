@@ -1,10 +1,5 @@
 [
    {
-      "inputs": [],
-      "name": "InvalidInitializer",
-      "type": "error"
-   },
-   {
       "inputs": [
          {
             "internalType": "bytes",
@@ -21,6 +16,19 @@
          }
       ],
       "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "bytes",
+            "name": "initializeBytesCustomChain",
+            "type": "bytes"
+         }
+      ],
+      "name": "initialize",
+      "outputs": [],
+      "stateMutability": "nonpayable",
       "type": "function"
    },
    {
