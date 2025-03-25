@@ -31,7 +31,7 @@ var (
 
 // IpolygonrollupbaseMetaData contains all meta data concerning the Ipolygonrollupbase contract.
 var IpolygonrollupbaseMetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[],\"name\":\"admin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_admin\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"sequencer\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"networkID\",\"type\":\"uint32\"},{\"internalType\":\"address\",\"name\":\"gasTokenAddress\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"sequencerURL\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_networkName\",\"type\":\"string\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"lastVerifiedBatch\",\"type\":\"uint64\"},{\"internalType\":\"bytes32\",\"name\":\"newStateRoot\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"aggregator\",\"type\":\"address\"}],\"name\":\"onVerifyBatches\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"targetBatch\",\"type\":\"uint64\"},{\"internalType\":\"bytes32\",\"name\":\"accInputHashToRollback\",\"type\":\"bytes32\"}],\"name\":\"rollbackBatches\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
+	ABI: "[{\"inputs\":[],\"name\":\"admin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_admin\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"sequencer\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"networkID\",\"type\":\"uint32\"},{\"internalType\":\"address\",\"name\":\"gasTokenAddress\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"sequencerURL\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_networkName\",\"type\":\"string\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"lastVerifiedBatch\",\"type\":\"uint64\"},{\"internalType\":\"bytes32\",\"name\":\"newStateRoot\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"aggregator\",\"type\":\"address\"}],\"name\":\"onVerifyBatches\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"targetBatch\",\"type\":\"uint64\"},{\"internalType\":\"bytes32\",\"name\":\"accInputHashToRollback\",\"type\":\"bytes32\"}],\"name\":\"rollbackBatches\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
 }
 
 // IpolygonrollupbaseABI is the input ABI used to generate the binding from.
@@ -180,25 +180,35 @@ func (_Ipolygonrollupbase *IpolygonrollupbaseTransactorRaw) Transact(opts *bind.
 	return _Ipolygonrollupbase.Contract.contract.Transact(opts, method, params...)
 }
 
-// Admin is a paid mutator transaction binding the contract method 0xf851a440.
+// Admin is a free data retrieval call binding the contract method 0xf851a440.
 //
-// Solidity: function admin() returns(address)
-func (_Ipolygonrollupbase *IpolygonrollupbaseTransactor) Admin(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _Ipolygonrollupbase.contract.Transact(opts, "admin")
+// Solidity: function admin() view returns(address)
+func (_Ipolygonrollupbase *IpolygonrollupbaseCaller) Admin(opts *bind.CallOpts) (common.Address, error) {
+	var out []interface{}
+	err := _Ipolygonrollupbase.contract.Call(opts, &out, "admin")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
 }
 
-// Admin is a paid mutator transaction binding the contract method 0xf851a440.
+// Admin is a free data retrieval call binding the contract method 0xf851a440.
 //
-// Solidity: function admin() returns(address)
-func (_Ipolygonrollupbase *IpolygonrollupbaseSession) Admin() (*types.Transaction, error) {
-	return _Ipolygonrollupbase.Contract.Admin(&_Ipolygonrollupbase.TransactOpts)
+// Solidity: function admin() view returns(address)
+func (_Ipolygonrollupbase *IpolygonrollupbaseSession) Admin() (common.Address, error) {
+	return _Ipolygonrollupbase.Contract.Admin(&_Ipolygonrollupbase.CallOpts)
 }
 
-// Admin is a paid mutator transaction binding the contract method 0xf851a440.
+// Admin is a free data retrieval call binding the contract method 0xf851a440.
 //
-// Solidity: function admin() returns(address)
-func (_Ipolygonrollupbase *IpolygonrollupbaseTransactorSession) Admin() (*types.Transaction, error) {
-	return _Ipolygonrollupbase.Contract.Admin(&_Ipolygonrollupbase.TransactOpts)
+// Solidity: function admin() view returns(address)
+func (_Ipolygonrollupbase *IpolygonrollupbaseCallerSession) Admin() (common.Address, error) {
+	return _Ipolygonrollupbase.Contract.Admin(&_Ipolygonrollupbase.CallOpts)
 }
 
 // Initialize is a paid mutator transaction binding the contract method 0x71257022.

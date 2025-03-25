@@ -56,12 +56,6 @@
             "internalType": "bytes32",
             "name": "newGlobalExitRoot",
             "type": "bytes32"
-         },
-         {
-            "indexed": true,
-            "internalType": "bytes32",
-            "name": "newHashChainValue",
-            "type": "bytes32"
          }
       ],
       "name": "InsertGlobalExitRoot",
@@ -75,15 +69,9 @@
             "internalType": "bytes32",
             "name": "removedGlobalExitRoot",
             "type": "bytes32"
-         },
-         {
-            "indexed": true,
-            "internalType": "bytes32",
-            "name": "newRemovalHashChainValue",
-            "type": "bytes32"
          }
       ],
-      "name": "RemoveGlobalExitRoot",
+      "name": "RemoveLastGlobalExitRoot",
       "type": "event"
    },
    {
@@ -113,6 +101,57 @@
       "type": "event"
    },
    {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "newGlobalExitRoot",
+            "type": "bytes32"
+         },
+         {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "newHashChainValue",
+            "type": "bytes32"
+         }
+      ],
+      "name": "UpdateHashChainValue",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "removedGlobalExitRoot",
+            "type": "bytes32"
+         },
+         {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "newRemovalHashChainValue",
+            "type": "bytes32"
+         }
+      ],
+      "name": "UpdateRemovalHashChainValue",
+      "type": "event"
+   },
+   {
+      "inputs": [],
+      "name": "_legacyInsertedGERCount",
+      "outputs": [
+         {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
       "inputs": [],
       "name": "bridgeAddress",
       "outputs": [
@@ -120,32 +159,6 @@
             "internalType": "address",
             "name": "",
             "type": "address"
-         }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-   },
-   {
-      "inputs": [],
-      "name": "currentHashChainValue",
-      "outputs": [
-         {
-            "internalType": "bytes32",
-            "name": "",
-            "type": "bytes32"
-         }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-   },
-   {
-      "inputs": [],
-      "name": "currentRemovalHashChainValue",
-      "outputs": [
-         {
-            "internalType": "bytes32",
-            "name": "",
-            "type": "bytes32"
          }
       ],
       "stateMutability": "view",
@@ -229,6 +242,19 @@
    },
    {
       "inputs": [],
+      "name": "insertedGERHashChain",
+      "outputs": [
+         {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
       "name": "lastRollupExitRoot",
       "outputs": [
          {
@@ -251,6 +277,32 @@
       "name": "removeGlobalExitRoots",
       "outputs": [],
       "stateMutability": "nonpayable",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "bytes32[]",
+            "name": "gersToRemove",
+            "type": "bytes32[]"
+         }
+      ],
+      "name": "removeLastGlobalExitRoots",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "removedGERHashChain",
+      "outputs": [
+         {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+         }
+      ],
+      "stateMutability": "view",
       "type": "function"
    },
    {

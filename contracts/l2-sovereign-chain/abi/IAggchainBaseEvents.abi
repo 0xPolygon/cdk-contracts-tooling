@@ -4,6 +4,19 @@
       "inputs": [
          {
             "indexed": false,
+            "internalType": "address",
+            "name": "newVKeyManager",
+            "type": "address"
+         }
+      ],
+      "name": "AcceptVKeyManagerRole",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
             "internalType": "bytes4",
             "name": "selector",
             "type": "bytes4"
@@ -16,6 +29,19 @@
          }
       ],
       "name": "AddAggchainVKey",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "newVKeyManager",
+            "type": "address"
+         }
+      ],
+      "name": "TransferVKeyManagerRole",
       "type": "event"
    },
    {

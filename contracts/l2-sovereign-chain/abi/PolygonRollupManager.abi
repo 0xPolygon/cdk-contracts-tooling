@@ -232,11 +232,6 @@
    },
    {
       "inputs": [],
-      "name": "OnlyChainsWithPessimisticProofs",
-      "type": "error"
-   },
-   {
-      "inputs": [],
       "name": "OnlyEmergencyState",
       "type": "error"
    },
@@ -318,6 +313,11 @@
    {
       "inputs": [],
       "name": "SenderMustBeRollup",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "StateTransitionChainsNotAllowed",
       "type": "error"
    },
    {

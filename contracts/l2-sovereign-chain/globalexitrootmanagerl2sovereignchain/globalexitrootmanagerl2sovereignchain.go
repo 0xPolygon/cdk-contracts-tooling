@@ -31,8 +31,8 @@ var (
 
 // Globalexitrootmanagerl2sovereignchainMetaData contains all meta data concerning the Globalexitrootmanagerl2sovereignchain contract.
 var Globalexitrootmanagerl2sovereignchainMetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_bridgeAddress\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"GlobalExitRootAlreadySet\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"GlobalExitRootNotFound\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyAllowedContracts\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyGlobalExitRootRemover\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyGlobalExitRootUpdater\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"version\",\"type\":\"uint8\"}],\"name\":\"Initialized\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"newGlobalExitRoot\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"newHashChainValue\",\"type\":\"bytes32\"}],\"name\":\"InsertGlobalExitRoot\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"removedGlobalExitRoot\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"newRemovalHashChainValue\",\"type\":\"bytes32\"}],\"name\":\"RemoveGlobalExitRoot\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newGlobalExitRootRemover\",\"type\":\"address\"}],\"name\":\"SetGlobalExitRootRemover\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newGlobalExitRootUpdater\",\"type\":\"address\"}],\"name\":\"SetGlobalExitRootUpdater\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"bridgeAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"currentHashChainValue\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"currentRemovalHashChainValue\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"globalExitRootMap\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"globalExitRootRemover\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"globalExitRootUpdater\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_globalExitRootUpdater\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_globalExitRootRemover\",\"type\":\"address\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_newRoot\",\"type\":\"bytes32\"}],\"name\":\"insertGlobalExitRoot\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"lastRollupExitRoot\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32[]\",\"name\":\"gersToRemove\",\"type\":\"bytes32[]\"}],\"name\":\"removeGlobalExitRoots\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_globalExitRootRemover\",\"type\":\"address\"}],\"name\":\"setGlobalExitRootRemover\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_globalExitRootUpdater\",\"type\":\"address\"}],\"name\":\"setGlobalExitRootUpdater\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"newRoot\",\"type\":\"bytes32\"}],\"name\":\"updateExitRoot\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
-	Bin: "0x60a060405234801561000f575f5ffd5b50604051610c35380380610c3583398101604081905261002e91610109565b6001600160a01b038116608052610043610049565b50610136565b603454610100900460ff16156100b55760405162461bcd60e51b815260206004820152602760248201527f496e697469616c697a61626c653a20636f6e747261637420697320696e697469604482015266616c697a696e6760c81b606482015260840160405180910390fd5b60345460ff9081161015610107576034805460ff191660ff9081179091556040519081527f7f26b83ff96e1f2b6a682f133852f6798a09c465da95921460cefb38474024989060200160405180910390a15b565b5f60208284031215610119575f5ffd5b81516001600160a01b038116811461012f575f5ffd5b9392505050565b608051610ae06101555f395f81816101fc01526103d20152610ae05ff3fe608060405234801561000f575f5ffd5b50600436106100da575f3560e01c8063485cc955116100885780637c314ce3116100635780637c314ce31461018c57806391eb796d146101d7578063a3c573eb146101f7578063d0267f391461021e575f5ffd5b8063485cc9551461015357806365f0e347146101665780636da0e4ab14610179575f5ffd5b80631f71e0da116100b85780631f71e0da14610118578063257b36321461012157806333d6247d14610140575f5ffd5b806301fd9044146100de57806312da06b2146100fa57806312e8abbf1461010f575b5f5ffd5b6100e760015481565b6040519081526020015b60405180910390f35b61010d61010836600461097c565b610231565b005b6100e760375481565b6100e760365481565b6100e761012f36600461097c565b5f6020819052908152604090205481565b61010d61014e36600461097c565b6103ba565b61010d6101613660046109bb565b61042e565b61010d6101743660046109ec565b61063a565b61010d610187366004610a5d565b610790565b6034546101b29062010000900473ffffffffffffffffffffffffffffffffffffffff1681565b60405173ffffffffffffffffffffffffffffffffffffffff90911681526020016100f1565b6035546101b29073ffffffffffffffffffffffffffffffffffffffff1681565b6101b27f000000000000000000000000000000000000000000000000000000000000000081565b61010d61022c366004610a5d565b6108be565b60345462010000900473ffffffffffffffffffffffffffffffffffffffff166102925741331461028d576040517fc758fc1a00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b6102e9565b60345462010000900473ffffffffffffffffffffffffffffffffffffffff1633146102e9576040517fc758fc1a00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b5f818152602081905260408120549003610388575f8181526020818152604091829020429055603654825191820152908101829052606001604080517fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe081840301815290829052805160209091012060368190559082907f4818797817f28eec29f9612bc1a89632e565ec870d55c593b51905c6f8250490905f90a350565b6040517f1f97a58200000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b3373ffffffffffffffffffffffffffffffffffffffff7f00000000000000000000000000000000000000000000000000000000000000001614610429576040517fb49365dd00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b600155565b603454610100900460ff161580801561044e5750603454600160ff909116105b806104685750303b158015610468575060345460ff166001145b6104f8576040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152602e60248201527f496e697469616c697a61626c653a20636f6e747261637420697320616c72656160448201527f647920696e697469616c697a6564000000000000000000000000000000000000606482015260840160405180910390fd5b603480547fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00166001179055801561055657603480547fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00ff166101001790555b603480547fffffffffffffffffffff0000000000000000000000000000000000000000ffff166201000073ffffffffffffffffffffffffffffffffffffffff8681169190910291909117909155603580547fffffffffffffffffffffffff000000000000000000000000000000000000000016918416919091179055801561063557603480547fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00ff169055604051600181527f7f26b83ff96e1f2b6a682f133852f6798a09c465da95921460cefb38474024989060200160405180910390a15b505050565b60355473ffffffffffffffffffffffffffffffffffffffff16331461068b576040517fa34ddeb100000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b6037545f5b82811015610788575f8484838181106106ab576106ab610a7d565b9050602002013590505f5f8281526020019081526020015f20545f036106fd576040517ff4a66f9d00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b6040805160208101859052908101829052606001604080517fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe081840301815282825280516020918201205f85815291829052918120819055909450849183917f4349c9bb198dfc0cd4f9774f09f0fad9c69a642e73ab02de85e28ce1ec6ab74091a350600101610690565b506037555050565b60345462010000900473ffffffffffffffffffffffffffffffffffffffff166107f1574133146107ec576040517fc758fc1a00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b610848565b60345462010000900473ffffffffffffffffffffffffffffffffffffffff163314610848576040517fc758fc1a00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b603480547fffffffffffffffffffff0000000000000000000000000000000000000000ffff166201000073ffffffffffffffffffffffffffffffffffffffff8416908102919091179091556040517f992b80814dbc3fba903486d81daddb07d1d5b20483742458c8b0540e3a37e37c905f90a250565b60355473ffffffffffffffffffffffffffffffffffffffff16331461090f576040517fa34ddeb100000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b603580547fffffffffffffffffffffffff00000000000000000000000000000000000000001673ffffffffffffffffffffffffffffffffffffffff83169081179091556040517eb4672b6135d1dfbd4e9520e01abb14ea5eac645990b0d24dfda00ae999b758905f90a250565b5f6020828403121561098c575f5ffd5b5035919050565b803573ffffffffffffffffffffffffffffffffffffffff811681146109b6575f5ffd5b919050565b5f5f604083850312156109cc575f5ffd5b6109d583610993565b91506109e360208401610993565b90509250929050565b5f5f602083850312156109fd575f5ffd5b823567ffffffffffffffff811115610a13575f5ffd5b8301601f81018513610a23575f5ffd5b803567ffffffffffffffff811115610a39575f5ffd5b8560208260051b8401011115610a4d575f5ffd5b6020919091019590945092505050565b5f60208284031215610a6d575f5ffd5b610a7682610993565b9392505050565b7f4e487b71000000000000000000000000000000000000000000000000000000005f52603260045260245ffdfea264697066735822122053e8da55c999b5d386c5ba04914376582cac88659456c7fc6b74fb1febcce82964736f6c634300081c0033",
+	ABI: "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_bridgeAddress\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"GlobalExitRootAlreadySet\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"GlobalExitRootNotFound\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyAllowedContracts\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyGlobalExitRootRemover\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyGlobalExitRootUpdater\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"version\",\"type\":\"uint8\"}],\"name\":\"Initialized\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"newGlobalExitRoot\",\"type\":\"bytes32\"}],\"name\":\"InsertGlobalExitRoot\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"removedGlobalExitRoot\",\"type\":\"bytes32\"}],\"name\":\"RemoveLastGlobalExitRoot\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newGlobalExitRootRemover\",\"type\":\"address\"}],\"name\":\"SetGlobalExitRootRemover\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newGlobalExitRootUpdater\",\"type\":\"address\"}],\"name\":\"SetGlobalExitRootUpdater\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"newGlobalExitRoot\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"newHashChainValue\",\"type\":\"bytes32\"}],\"name\":\"UpdateHashChainValue\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"removedGlobalExitRoot\",\"type\":\"bytes32\"},{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"newRemovalHashChainValue\",\"type\":\"bytes32\"}],\"name\":\"UpdateRemovalHashChainValue\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"_legacyInsertedGERCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"bridgeAddress\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"globalExitRootMap\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"globalExitRootRemover\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"globalExitRootUpdater\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_globalExitRootUpdater\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_globalExitRootRemover\",\"type\":\"address\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_newRoot\",\"type\":\"bytes32\"}],\"name\":\"insertGlobalExitRoot\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"insertedGERHashChain\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"lastRollupExitRoot\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32[]\",\"name\":\"gersToRemove\",\"type\":\"bytes32[]\"}],\"name\":\"removeGlobalExitRoots\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32[]\",\"name\":\"gersToRemove\",\"type\":\"bytes32[]\"}],\"name\":\"removeLastGlobalExitRoots\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"removedGERHashChain\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_globalExitRootRemover\",\"type\":\"address\"}],\"name\":\"setGlobalExitRootRemover\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_globalExitRootUpdater\",\"type\":\"address\"}],\"name\":\"setGlobalExitRootUpdater\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"newRoot\",\"type\":\"bytes32\"}],\"name\":\"updateExitRoot\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
+	Bin: "0x60a060405234801561000f575f5ffd5b50604051610cb7380380610cb783398101604081905261002e91610109565b6001600160a01b038116608052610043610049565b50610136565b603454610100900460ff16156100b55760405162461bcd60e51b815260206004820152602760248201527f496e697469616c697a61626c653a20636f6e747261637420697320696e697469604482015266616c697a696e6760c81b606482015260840160405180910390fd5b60345460ff9081161015610107576034805460ff191660ff9081179091556040519081527f7f26b83ff96e1f2b6a682f133852f6798a09c465da95921460cefb38474024989060200160405180910390a15b565b5f60208284031215610119575f5ffd5b81516001600160a01b038116811461012f575f5ffd5b9392505050565b608051610b626101555f395f8181610209015261041b0152610b625ff3fe608060405234801561000f575f5ffd5b50600436106100f0575f3560e01c806365f0e34711610093578063a3c573eb11610063578063a3c573eb14610204578063d0267f391461022b578063ec3810a21461023e578063f5d2f04b14610247575f5ffd5b806365f0e347146101735780636da0e4ab146101865780637c314ce31461019957806391eb796d146101e4575f5ffd5b8063257b3632116100ce578063257b36321461012e57806333d6247d1461014d578063485cc9551461016057806357dfb57214610173575f5ffd5b806301fd9044146100f457806312da06b214610110578063163bbb4614610125575b5f5ffd5b6100fd60015481565b6040519081526020015b60405180910390f35b61012361011e3660046109fe565b610250565b005b6100fd60375481565b6100fd61013c3660046109fe565b5f6020819052908152604090205481565b61012361015b3660046109fe565b610403565b61012361016e366004610a3d565b610477565b610123610181366004610a6e565b610683565b610123610194366004610adf565b6106e2565b6034546101bf9062010000900473ffffffffffffffffffffffffffffffffffffffff1681565b60405173ffffffffffffffffffffffffffffffffffffffff9091168152602001610107565b6035546101bf9073ffffffffffffffffffffffffffffffffffffffff1681565b6101bf7f000000000000000000000000000000000000000000000000000000000000000081565b610123610239366004610adf565b610810565b6100fd60365481565b6100fd60385481565b60345462010000900473ffffffffffffffffffffffffffffffffffffffff166102b1574133146102ac576040517fc758fc1a00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b610308565b60345462010000900473ffffffffffffffffffffffffffffffffffffffff163314610308576040517fc758fc1a00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b5f8181526020819052604081205490036103d1575f8181526020818152604091829020429055603754825191820152908101829052606001604080517fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe081840301815290829052805160209091012060375581907fb1b866fe5fac68e8f1a4ab2520c7a6b493a954934bbd0f054bd91d6674a4c0d5905f90a260375460405182907f65d3bf36615f1f02a134d12dfa9ea6b1d4a52386e825973cd27ddb70895c2319905f90a350565b6040517f1f97a58200000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b3373ffffffffffffffffffffffffffffffffffffffff7f00000000000000000000000000000000000000000000000000000000000000001614610472576040517fb49365dd00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b600155565b603454610100900460ff16158080156104975750603454600160ff909116105b806104b15750303b1580156104b1575060345460ff166001145b610541576040517f08c379a000000000000000000000000000000000000000000000000000000000815260206004820152602e60248201527f496e697469616c697a61626c653a20636f6e747261637420697320616c72656160448201527f647920696e697469616c697a6564000000000000000000000000000000000000606482015260840160405180910390fd5b603480547fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00166001179055801561059f57603480547fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00ff166101001790555b603480547fffffffffffffffffffff0000000000000000000000000000000000000000ffff166201000073ffffffffffffffffffffffffffffffffffffffff8681169190910291909117909155603580547fffffffffffffffffffffffff000000000000000000000000000000000000000016918416919091179055801561067e57603480547fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff00ff169055604051600181527f7f26b83ff96e1f2b6a682f133852f6798a09c465da95921460cefb38474024989060200160405180910390a15b505050565b60355473ffffffffffffffffffffffffffffffffffffffff1633146106d4576040517fa34ddeb100000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b6106de82826108ce565b5050565b60345462010000900473ffffffffffffffffffffffffffffffffffffffff166107435741331461073e576040517fc758fc1a00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b61079a565b60345462010000900473ffffffffffffffffffffffffffffffffffffffff16331461079a576040517fc758fc1a00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b603480547fffffffffffffffffffff0000000000000000000000000000000000000000ffff166201000073ffffffffffffffffffffffffffffffffffffffff8416908102919091179091556040517f992b80814dbc3fba903486d81daddb07d1d5b20483742458c8b0540e3a37e37c905f90a250565b60355473ffffffffffffffffffffffffffffffffffffffff163314610861576040517fa34ddeb100000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b603580547fffffffffffffffffffffffff00000000000000000000000000000000000000001673ffffffffffffffffffffffffffffffffffffffff83169081179091556040517eb4672b6135d1dfbd4e9520e01abb14ea5eac645990b0d24dfda00ae999b758905f90a250565b6038545f5b828110156109f6575f8484838181106108ee576108ee610aff565b9050602002013590505f5f8281526020019081526020015f20545f03610940576040517ff4a66f9d00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b6040805160208101859052908101829052606001604080517fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe081840301815282825280516020918201205f8581529182905291812081905590945082917f605764d0b65b62ecf05dc90f674a00a2e2531fabaf120fdde65790e407fcb7a29190a2604051839082907faafec9380147d2b2b14fe23b1343cbaa1b07f86c5adb060bd28cdf1af4c6f0d4905f90a3506001016108d3565b506038555050565b5f60208284031215610a0e575f5ffd5b5035919050565b803573ffffffffffffffffffffffffffffffffffffffff81168114610a38575f5ffd5b919050565b5f5f60408385031215610a4e575f5ffd5b610a5783610a15565b9150610a6560208401610a15565b90509250929050565b5f5f60208385031215610a7f575f5ffd5b823567ffffffffffffffff811115610a95575f5ffd5b8301601f81018513610aa5575f5ffd5b803567ffffffffffffffff811115610abb575f5ffd5b8560208260051b8401011115610acf575f5ffd5b6020919091019590945092505050565b5f60208284031215610aef575f5ffd5b610af882610a15565b9392505050565b7f4e487b71000000000000000000000000000000000000000000000000000000005f52603260045260245ffdfea26469706673582212200ccdbb6370ef60e04b1b936ff7c36eb10e8f4b304e5b410cd7819f652d5a77fe64736f6c634300081c0033",
 }
 
 // Globalexitrootmanagerl2sovereignchainABI is the input ABI used to generate the binding from.
@@ -202,6 +202,37 @@ func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignch
 	return _Globalexitrootmanagerl2sovereignchain.Contract.contract.Transact(opts, method, params...)
 }
 
+// LegacyInsertedGERCount is a free data retrieval call binding the contract method 0xec3810a2.
+//
+// Solidity: function _legacyInsertedGERCount() view returns(uint256)
+func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainCaller) LegacyInsertedGERCount(opts *bind.CallOpts) (*big.Int, error) {
+	var out []interface{}
+	err := _Globalexitrootmanagerl2sovereignchain.contract.Call(opts, &out, "_legacyInsertedGERCount")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
+}
+
+// LegacyInsertedGERCount is a free data retrieval call binding the contract method 0xec3810a2.
+//
+// Solidity: function _legacyInsertedGERCount() view returns(uint256)
+func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainSession) LegacyInsertedGERCount() (*big.Int, error) {
+	return _Globalexitrootmanagerl2sovereignchain.Contract.LegacyInsertedGERCount(&_Globalexitrootmanagerl2sovereignchain.CallOpts)
+}
+
+// LegacyInsertedGERCount is a free data retrieval call binding the contract method 0xec3810a2.
+//
+// Solidity: function _legacyInsertedGERCount() view returns(uint256)
+func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainCallerSession) LegacyInsertedGERCount() (*big.Int, error) {
+	return _Globalexitrootmanagerl2sovereignchain.Contract.LegacyInsertedGERCount(&_Globalexitrootmanagerl2sovereignchain.CallOpts)
+}
+
 // BridgeAddress is a free data retrieval call binding the contract method 0xa3c573eb.
 //
 // Solidity: function bridgeAddress() view returns(address)
@@ -231,68 +262,6 @@ func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignch
 // Solidity: function bridgeAddress() view returns(address)
 func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainCallerSession) BridgeAddress() (common.Address, error) {
 	return _Globalexitrootmanagerl2sovereignchain.Contract.BridgeAddress(&_Globalexitrootmanagerl2sovereignchain.CallOpts)
-}
-
-// CurrentHashChainValue is a free data retrieval call binding the contract method 0x1f71e0da.
-//
-// Solidity: function currentHashChainValue() view returns(bytes32)
-func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainCaller) CurrentHashChainValue(opts *bind.CallOpts) ([32]byte, error) {
-	var out []interface{}
-	err := _Globalexitrootmanagerl2sovereignchain.contract.Call(opts, &out, "currentHashChainValue")
-
-	if err != nil {
-		return *new([32]byte), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
-
-	return out0, err
-
-}
-
-// CurrentHashChainValue is a free data retrieval call binding the contract method 0x1f71e0da.
-//
-// Solidity: function currentHashChainValue() view returns(bytes32)
-func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainSession) CurrentHashChainValue() ([32]byte, error) {
-	return _Globalexitrootmanagerl2sovereignchain.Contract.CurrentHashChainValue(&_Globalexitrootmanagerl2sovereignchain.CallOpts)
-}
-
-// CurrentHashChainValue is a free data retrieval call binding the contract method 0x1f71e0da.
-//
-// Solidity: function currentHashChainValue() view returns(bytes32)
-func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainCallerSession) CurrentHashChainValue() ([32]byte, error) {
-	return _Globalexitrootmanagerl2sovereignchain.Contract.CurrentHashChainValue(&_Globalexitrootmanagerl2sovereignchain.CallOpts)
-}
-
-// CurrentRemovalHashChainValue is a free data retrieval call binding the contract method 0x12e8abbf.
-//
-// Solidity: function currentRemovalHashChainValue() view returns(bytes32)
-func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainCaller) CurrentRemovalHashChainValue(opts *bind.CallOpts) ([32]byte, error) {
-	var out []interface{}
-	err := _Globalexitrootmanagerl2sovereignchain.contract.Call(opts, &out, "currentRemovalHashChainValue")
-
-	if err != nil {
-		return *new([32]byte), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
-
-	return out0, err
-
-}
-
-// CurrentRemovalHashChainValue is a free data retrieval call binding the contract method 0x12e8abbf.
-//
-// Solidity: function currentRemovalHashChainValue() view returns(bytes32)
-func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainSession) CurrentRemovalHashChainValue() ([32]byte, error) {
-	return _Globalexitrootmanagerl2sovereignchain.Contract.CurrentRemovalHashChainValue(&_Globalexitrootmanagerl2sovereignchain.CallOpts)
-}
-
-// CurrentRemovalHashChainValue is a free data retrieval call binding the contract method 0x12e8abbf.
-//
-// Solidity: function currentRemovalHashChainValue() view returns(bytes32)
-func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainCallerSession) CurrentRemovalHashChainValue() ([32]byte, error) {
-	return _Globalexitrootmanagerl2sovereignchain.Contract.CurrentRemovalHashChainValue(&_Globalexitrootmanagerl2sovereignchain.CallOpts)
 }
 
 // GlobalExitRootMap is a free data retrieval call binding the contract method 0x257b3632.
@@ -388,6 +357,37 @@ func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignch
 	return _Globalexitrootmanagerl2sovereignchain.Contract.GlobalExitRootUpdater(&_Globalexitrootmanagerl2sovereignchain.CallOpts)
 }
 
+// InsertedGERHashChain is a free data retrieval call binding the contract method 0x163bbb46.
+//
+// Solidity: function insertedGERHashChain() view returns(bytes32)
+func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainCaller) InsertedGERHashChain(opts *bind.CallOpts) ([32]byte, error) {
+	var out []interface{}
+	err := _Globalexitrootmanagerl2sovereignchain.contract.Call(opts, &out, "insertedGERHashChain")
+
+	if err != nil {
+		return *new([32]byte), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
+
+	return out0, err
+
+}
+
+// InsertedGERHashChain is a free data retrieval call binding the contract method 0x163bbb46.
+//
+// Solidity: function insertedGERHashChain() view returns(bytes32)
+func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainSession) InsertedGERHashChain() ([32]byte, error) {
+	return _Globalexitrootmanagerl2sovereignchain.Contract.InsertedGERHashChain(&_Globalexitrootmanagerl2sovereignchain.CallOpts)
+}
+
+// InsertedGERHashChain is a free data retrieval call binding the contract method 0x163bbb46.
+//
+// Solidity: function insertedGERHashChain() view returns(bytes32)
+func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainCallerSession) InsertedGERHashChain() ([32]byte, error) {
+	return _Globalexitrootmanagerl2sovereignchain.Contract.InsertedGERHashChain(&_Globalexitrootmanagerl2sovereignchain.CallOpts)
+}
+
 // LastRollupExitRoot is a free data retrieval call binding the contract method 0x01fd9044.
 //
 // Solidity: function lastRollupExitRoot() view returns(bytes32)
@@ -417,6 +417,37 @@ func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignch
 // Solidity: function lastRollupExitRoot() view returns(bytes32)
 func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainCallerSession) LastRollupExitRoot() ([32]byte, error) {
 	return _Globalexitrootmanagerl2sovereignchain.Contract.LastRollupExitRoot(&_Globalexitrootmanagerl2sovereignchain.CallOpts)
+}
+
+// RemovedGERHashChain is a free data retrieval call binding the contract method 0xf5d2f04b.
+//
+// Solidity: function removedGERHashChain() view returns(bytes32)
+func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainCaller) RemovedGERHashChain(opts *bind.CallOpts) ([32]byte, error) {
+	var out []interface{}
+	err := _Globalexitrootmanagerl2sovereignchain.contract.Call(opts, &out, "removedGERHashChain")
+
+	if err != nil {
+		return *new([32]byte), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
+
+	return out0, err
+
+}
+
+// RemovedGERHashChain is a free data retrieval call binding the contract method 0xf5d2f04b.
+//
+// Solidity: function removedGERHashChain() view returns(bytes32)
+func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainSession) RemovedGERHashChain() ([32]byte, error) {
+	return _Globalexitrootmanagerl2sovereignchain.Contract.RemovedGERHashChain(&_Globalexitrootmanagerl2sovereignchain.CallOpts)
+}
+
+// RemovedGERHashChain is a free data retrieval call binding the contract method 0xf5d2f04b.
+//
+// Solidity: function removedGERHashChain() view returns(bytes32)
+func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainCallerSession) RemovedGERHashChain() ([32]byte, error) {
+	return _Globalexitrootmanagerl2sovereignchain.Contract.RemovedGERHashChain(&_Globalexitrootmanagerl2sovereignchain.CallOpts)
 }
 
 // Initialize is a paid mutator transaction binding the contract method 0x485cc955.
@@ -480,6 +511,27 @@ func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignch
 // Solidity: function removeGlobalExitRoots(bytes32[] gersToRemove) returns()
 func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainTransactorSession) RemoveGlobalExitRoots(gersToRemove [][32]byte) (*types.Transaction, error) {
 	return _Globalexitrootmanagerl2sovereignchain.Contract.RemoveGlobalExitRoots(&_Globalexitrootmanagerl2sovereignchain.TransactOpts, gersToRemove)
+}
+
+// RemoveLastGlobalExitRoots is a paid mutator transaction binding the contract method 0x57dfb572.
+//
+// Solidity: function removeLastGlobalExitRoots(bytes32[] gersToRemove) returns()
+func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainTransactor) RemoveLastGlobalExitRoots(opts *bind.TransactOpts, gersToRemove [][32]byte) (*types.Transaction, error) {
+	return _Globalexitrootmanagerl2sovereignchain.contract.Transact(opts, "removeLastGlobalExitRoots", gersToRemove)
+}
+
+// RemoveLastGlobalExitRoots is a paid mutator transaction binding the contract method 0x57dfb572.
+//
+// Solidity: function removeLastGlobalExitRoots(bytes32[] gersToRemove) returns()
+func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainSession) RemoveLastGlobalExitRoots(gersToRemove [][32]byte) (*types.Transaction, error) {
+	return _Globalexitrootmanagerl2sovereignchain.Contract.RemoveLastGlobalExitRoots(&_Globalexitrootmanagerl2sovereignchain.TransactOpts, gersToRemove)
+}
+
+// RemoveLastGlobalExitRoots is a paid mutator transaction binding the contract method 0x57dfb572.
+//
+// Solidity: function removeLastGlobalExitRoots(bytes32[] gersToRemove) returns()
+func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainTransactorSession) RemoveLastGlobalExitRoots(gersToRemove [][32]byte) (*types.Transaction, error) {
+	return _Globalexitrootmanagerl2sovereignchain.Contract.RemoveLastGlobalExitRoots(&_Globalexitrootmanagerl2sovereignchain.TransactOpts, gersToRemove)
 }
 
 // SetGlobalExitRootRemover is a paid mutator transaction binding the contract method 0xd0267f39.
@@ -749,46 +801,37 @@ func (it *Globalexitrootmanagerl2sovereignchainInsertGlobalExitRootIterator) Clo
 // Globalexitrootmanagerl2sovereignchainInsertGlobalExitRoot represents a InsertGlobalExitRoot event raised by the Globalexitrootmanagerl2sovereignchain contract.
 type Globalexitrootmanagerl2sovereignchainInsertGlobalExitRoot struct {
 	NewGlobalExitRoot [32]byte
-	NewHashChainValue [32]byte
 	Raw               types.Log // Blockchain specific contextual infos
 }
 
-// FilterInsertGlobalExitRoot is a free log retrieval operation binding the contract event 0x4818797817f28eec29f9612bc1a89632e565ec870d55c593b51905c6f8250490.
+// FilterInsertGlobalExitRoot is a free log retrieval operation binding the contract event 0xb1b866fe5fac68e8f1a4ab2520c7a6b493a954934bbd0f054bd91d6674a4c0d5.
 //
-// Solidity: event InsertGlobalExitRoot(bytes32 indexed newGlobalExitRoot, bytes32 indexed newHashChainValue)
-func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainFilterer) FilterInsertGlobalExitRoot(opts *bind.FilterOpts, newGlobalExitRoot [][32]byte, newHashChainValue [][32]byte) (*Globalexitrootmanagerl2sovereignchainInsertGlobalExitRootIterator, error) {
+// Solidity: event InsertGlobalExitRoot(bytes32 indexed newGlobalExitRoot)
+func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainFilterer) FilterInsertGlobalExitRoot(opts *bind.FilterOpts, newGlobalExitRoot [][32]byte) (*Globalexitrootmanagerl2sovereignchainInsertGlobalExitRootIterator, error) {
 
 	var newGlobalExitRootRule []interface{}
 	for _, newGlobalExitRootItem := range newGlobalExitRoot {
 		newGlobalExitRootRule = append(newGlobalExitRootRule, newGlobalExitRootItem)
 	}
-	var newHashChainValueRule []interface{}
-	for _, newHashChainValueItem := range newHashChainValue {
-		newHashChainValueRule = append(newHashChainValueRule, newHashChainValueItem)
-	}
 
-	logs, sub, err := _Globalexitrootmanagerl2sovereignchain.contract.FilterLogs(opts, "InsertGlobalExitRoot", newGlobalExitRootRule, newHashChainValueRule)
+	logs, sub, err := _Globalexitrootmanagerl2sovereignchain.contract.FilterLogs(opts, "InsertGlobalExitRoot", newGlobalExitRootRule)
 	if err != nil {
 		return nil, err
 	}
 	return &Globalexitrootmanagerl2sovereignchainInsertGlobalExitRootIterator{contract: _Globalexitrootmanagerl2sovereignchain.contract, event: "InsertGlobalExitRoot", logs: logs, sub: sub}, nil
 }
 
-// WatchInsertGlobalExitRoot is a free log subscription operation binding the contract event 0x4818797817f28eec29f9612bc1a89632e565ec870d55c593b51905c6f8250490.
+// WatchInsertGlobalExitRoot is a free log subscription operation binding the contract event 0xb1b866fe5fac68e8f1a4ab2520c7a6b493a954934bbd0f054bd91d6674a4c0d5.
 //
-// Solidity: event InsertGlobalExitRoot(bytes32 indexed newGlobalExitRoot, bytes32 indexed newHashChainValue)
-func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainFilterer) WatchInsertGlobalExitRoot(opts *bind.WatchOpts, sink chan<- *Globalexitrootmanagerl2sovereignchainInsertGlobalExitRoot, newGlobalExitRoot [][32]byte, newHashChainValue [][32]byte) (event.Subscription, error) {
+// Solidity: event InsertGlobalExitRoot(bytes32 indexed newGlobalExitRoot)
+func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainFilterer) WatchInsertGlobalExitRoot(opts *bind.WatchOpts, sink chan<- *Globalexitrootmanagerl2sovereignchainInsertGlobalExitRoot, newGlobalExitRoot [][32]byte) (event.Subscription, error) {
 
 	var newGlobalExitRootRule []interface{}
 	for _, newGlobalExitRootItem := range newGlobalExitRoot {
 		newGlobalExitRootRule = append(newGlobalExitRootRule, newGlobalExitRootItem)
 	}
-	var newHashChainValueRule []interface{}
-	for _, newHashChainValueItem := range newHashChainValue {
-		newHashChainValueRule = append(newHashChainValueRule, newHashChainValueItem)
-	}
 
-	logs, sub, err := _Globalexitrootmanagerl2sovereignchain.contract.WatchLogs(opts, "InsertGlobalExitRoot", newGlobalExitRootRule, newHashChainValueRule)
+	logs, sub, err := _Globalexitrootmanagerl2sovereignchain.contract.WatchLogs(opts, "InsertGlobalExitRoot", newGlobalExitRootRule)
 	if err != nil {
 		return nil, err
 	}
@@ -820,9 +863,9 @@ func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignch
 	}), nil
 }
 
-// ParseInsertGlobalExitRoot is a log parse operation binding the contract event 0x4818797817f28eec29f9612bc1a89632e565ec870d55c593b51905c6f8250490.
+// ParseInsertGlobalExitRoot is a log parse operation binding the contract event 0xb1b866fe5fac68e8f1a4ab2520c7a6b493a954934bbd0f054bd91d6674a4c0d5.
 //
-// Solidity: event InsertGlobalExitRoot(bytes32 indexed newGlobalExitRoot, bytes32 indexed newHashChainValue)
+// Solidity: event InsertGlobalExitRoot(bytes32 indexed newGlobalExitRoot)
 func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainFilterer) ParseInsertGlobalExitRoot(log types.Log) (*Globalexitrootmanagerl2sovereignchainInsertGlobalExitRoot, error) {
 	event := new(Globalexitrootmanagerl2sovereignchainInsertGlobalExitRoot)
 	if err := _Globalexitrootmanagerl2sovereignchain.contract.UnpackLog(event, "InsertGlobalExitRoot", log); err != nil {
@@ -832,9 +875,9 @@ func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignch
 	return event, nil
 }
 
-// Globalexitrootmanagerl2sovereignchainRemoveGlobalExitRootIterator is returned from FilterRemoveGlobalExitRoot and is used to iterate over the raw logs and unpacked data for RemoveGlobalExitRoot events raised by the Globalexitrootmanagerl2sovereignchain contract.
-type Globalexitrootmanagerl2sovereignchainRemoveGlobalExitRootIterator struct {
-	Event *Globalexitrootmanagerl2sovereignchainRemoveGlobalExitRoot // Event containing the contract specifics and raw log
+// Globalexitrootmanagerl2sovereignchainRemoveLastGlobalExitRootIterator is returned from FilterRemoveLastGlobalExitRoot and is used to iterate over the raw logs and unpacked data for RemoveLastGlobalExitRoot events raised by the Globalexitrootmanagerl2sovereignchain contract.
+type Globalexitrootmanagerl2sovereignchainRemoveLastGlobalExitRootIterator struct {
+	Event *Globalexitrootmanagerl2sovereignchainRemoveLastGlobalExitRoot // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -848,7 +891,7 @@ type Globalexitrootmanagerl2sovereignchainRemoveGlobalExitRootIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *Globalexitrootmanagerl2sovereignchainRemoveGlobalExitRootIterator) Next() bool {
+func (it *Globalexitrootmanagerl2sovereignchainRemoveLastGlobalExitRootIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -857,7 +900,7 @@ func (it *Globalexitrootmanagerl2sovereignchainRemoveGlobalExitRootIterator) Nex
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(Globalexitrootmanagerl2sovereignchainRemoveGlobalExitRoot)
+			it.Event = new(Globalexitrootmanagerl2sovereignchainRemoveLastGlobalExitRoot)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -872,7 +915,7 @@ func (it *Globalexitrootmanagerl2sovereignchainRemoveGlobalExitRootIterator) Nex
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(Globalexitrootmanagerl2sovereignchainRemoveGlobalExitRoot)
+		it.Event = new(Globalexitrootmanagerl2sovereignchainRemoveLastGlobalExitRoot)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -888,60 +931,51 @@ func (it *Globalexitrootmanagerl2sovereignchainRemoveGlobalExitRootIterator) Nex
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *Globalexitrootmanagerl2sovereignchainRemoveGlobalExitRootIterator) Error() error {
+func (it *Globalexitrootmanagerl2sovereignchainRemoveLastGlobalExitRootIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *Globalexitrootmanagerl2sovereignchainRemoveGlobalExitRootIterator) Close() error {
+func (it *Globalexitrootmanagerl2sovereignchainRemoveLastGlobalExitRootIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// Globalexitrootmanagerl2sovereignchainRemoveGlobalExitRoot represents a RemoveGlobalExitRoot event raised by the Globalexitrootmanagerl2sovereignchain contract.
-type Globalexitrootmanagerl2sovereignchainRemoveGlobalExitRoot struct {
-	RemovedGlobalExitRoot    [32]byte
-	NewRemovalHashChainValue [32]byte
-	Raw                      types.Log // Blockchain specific contextual infos
+// Globalexitrootmanagerl2sovereignchainRemoveLastGlobalExitRoot represents a RemoveLastGlobalExitRoot event raised by the Globalexitrootmanagerl2sovereignchain contract.
+type Globalexitrootmanagerl2sovereignchainRemoveLastGlobalExitRoot struct {
+	RemovedGlobalExitRoot [32]byte
+	Raw                   types.Log // Blockchain specific contextual infos
 }
 
-// FilterRemoveGlobalExitRoot is a free log retrieval operation binding the contract event 0x4349c9bb198dfc0cd4f9774f09f0fad9c69a642e73ab02de85e28ce1ec6ab740.
+// FilterRemoveLastGlobalExitRoot is a free log retrieval operation binding the contract event 0x605764d0b65b62ecf05dc90f674a00a2e2531fabaf120fdde65790e407fcb7a2.
 //
-// Solidity: event RemoveGlobalExitRoot(bytes32 indexed removedGlobalExitRoot, bytes32 indexed newRemovalHashChainValue)
-func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainFilterer) FilterRemoveGlobalExitRoot(opts *bind.FilterOpts, removedGlobalExitRoot [][32]byte, newRemovalHashChainValue [][32]byte) (*Globalexitrootmanagerl2sovereignchainRemoveGlobalExitRootIterator, error) {
+// Solidity: event RemoveLastGlobalExitRoot(bytes32 indexed removedGlobalExitRoot)
+func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainFilterer) FilterRemoveLastGlobalExitRoot(opts *bind.FilterOpts, removedGlobalExitRoot [][32]byte) (*Globalexitrootmanagerl2sovereignchainRemoveLastGlobalExitRootIterator, error) {
 
 	var removedGlobalExitRootRule []interface{}
 	for _, removedGlobalExitRootItem := range removedGlobalExitRoot {
 		removedGlobalExitRootRule = append(removedGlobalExitRootRule, removedGlobalExitRootItem)
 	}
-	var newRemovalHashChainValueRule []interface{}
-	for _, newRemovalHashChainValueItem := range newRemovalHashChainValue {
-		newRemovalHashChainValueRule = append(newRemovalHashChainValueRule, newRemovalHashChainValueItem)
-	}
 
-	logs, sub, err := _Globalexitrootmanagerl2sovereignchain.contract.FilterLogs(opts, "RemoveGlobalExitRoot", removedGlobalExitRootRule, newRemovalHashChainValueRule)
+	logs, sub, err := _Globalexitrootmanagerl2sovereignchain.contract.FilterLogs(opts, "RemoveLastGlobalExitRoot", removedGlobalExitRootRule)
 	if err != nil {
 		return nil, err
 	}
-	return &Globalexitrootmanagerl2sovereignchainRemoveGlobalExitRootIterator{contract: _Globalexitrootmanagerl2sovereignchain.contract, event: "RemoveGlobalExitRoot", logs: logs, sub: sub}, nil
+	return &Globalexitrootmanagerl2sovereignchainRemoveLastGlobalExitRootIterator{contract: _Globalexitrootmanagerl2sovereignchain.contract, event: "RemoveLastGlobalExitRoot", logs: logs, sub: sub}, nil
 }
 
-// WatchRemoveGlobalExitRoot is a free log subscription operation binding the contract event 0x4349c9bb198dfc0cd4f9774f09f0fad9c69a642e73ab02de85e28ce1ec6ab740.
+// WatchRemoveLastGlobalExitRoot is a free log subscription operation binding the contract event 0x605764d0b65b62ecf05dc90f674a00a2e2531fabaf120fdde65790e407fcb7a2.
 //
-// Solidity: event RemoveGlobalExitRoot(bytes32 indexed removedGlobalExitRoot, bytes32 indexed newRemovalHashChainValue)
-func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainFilterer) WatchRemoveGlobalExitRoot(opts *bind.WatchOpts, sink chan<- *Globalexitrootmanagerl2sovereignchainRemoveGlobalExitRoot, removedGlobalExitRoot [][32]byte, newRemovalHashChainValue [][32]byte) (event.Subscription, error) {
+// Solidity: event RemoveLastGlobalExitRoot(bytes32 indexed removedGlobalExitRoot)
+func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainFilterer) WatchRemoveLastGlobalExitRoot(opts *bind.WatchOpts, sink chan<- *Globalexitrootmanagerl2sovereignchainRemoveLastGlobalExitRoot, removedGlobalExitRoot [][32]byte) (event.Subscription, error) {
 
 	var removedGlobalExitRootRule []interface{}
 	for _, removedGlobalExitRootItem := range removedGlobalExitRoot {
 		removedGlobalExitRootRule = append(removedGlobalExitRootRule, removedGlobalExitRootItem)
 	}
-	var newRemovalHashChainValueRule []interface{}
-	for _, newRemovalHashChainValueItem := range newRemovalHashChainValue {
-		newRemovalHashChainValueRule = append(newRemovalHashChainValueRule, newRemovalHashChainValueItem)
-	}
 
-	logs, sub, err := _Globalexitrootmanagerl2sovereignchain.contract.WatchLogs(opts, "RemoveGlobalExitRoot", removedGlobalExitRootRule, newRemovalHashChainValueRule)
+	logs, sub, err := _Globalexitrootmanagerl2sovereignchain.contract.WatchLogs(opts, "RemoveLastGlobalExitRoot", removedGlobalExitRootRule)
 	if err != nil {
 		return nil, err
 	}
@@ -951,8 +985,8 @@ func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignch
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(Globalexitrootmanagerl2sovereignchainRemoveGlobalExitRoot)
-				if err := _Globalexitrootmanagerl2sovereignchain.contract.UnpackLog(event, "RemoveGlobalExitRoot", log); err != nil {
+				event := new(Globalexitrootmanagerl2sovereignchainRemoveLastGlobalExitRoot)
+				if err := _Globalexitrootmanagerl2sovereignchain.contract.UnpackLog(event, "RemoveLastGlobalExitRoot", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -973,12 +1007,12 @@ func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignch
 	}), nil
 }
 
-// ParseRemoveGlobalExitRoot is a log parse operation binding the contract event 0x4349c9bb198dfc0cd4f9774f09f0fad9c69a642e73ab02de85e28ce1ec6ab740.
+// ParseRemoveLastGlobalExitRoot is a log parse operation binding the contract event 0x605764d0b65b62ecf05dc90f674a00a2e2531fabaf120fdde65790e407fcb7a2.
 //
-// Solidity: event RemoveGlobalExitRoot(bytes32 indexed removedGlobalExitRoot, bytes32 indexed newRemovalHashChainValue)
-func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainFilterer) ParseRemoveGlobalExitRoot(log types.Log) (*Globalexitrootmanagerl2sovereignchainRemoveGlobalExitRoot, error) {
-	event := new(Globalexitrootmanagerl2sovereignchainRemoveGlobalExitRoot)
-	if err := _Globalexitrootmanagerl2sovereignchain.contract.UnpackLog(event, "RemoveGlobalExitRoot", log); err != nil {
+// Solidity: event RemoveLastGlobalExitRoot(bytes32 indexed removedGlobalExitRoot)
+func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainFilterer) ParseRemoveLastGlobalExitRoot(log types.Log) (*Globalexitrootmanagerl2sovereignchainRemoveLastGlobalExitRoot, error) {
+	event := new(Globalexitrootmanagerl2sovereignchainRemoveLastGlobalExitRoot)
+	if err := _Globalexitrootmanagerl2sovereignchain.contract.UnpackLog(event, "RemoveLastGlobalExitRoot", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
@@ -1267,6 +1301,312 @@ func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignch
 func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainFilterer) ParseSetGlobalExitRootUpdater(log types.Log) (*Globalexitrootmanagerl2sovereignchainSetGlobalExitRootUpdater, error) {
 	event := new(Globalexitrootmanagerl2sovereignchainSetGlobalExitRootUpdater)
 	if err := _Globalexitrootmanagerl2sovereignchain.contract.UnpackLog(event, "SetGlobalExitRootUpdater", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// Globalexitrootmanagerl2sovereignchainUpdateHashChainValueIterator is returned from FilterUpdateHashChainValue and is used to iterate over the raw logs and unpacked data for UpdateHashChainValue events raised by the Globalexitrootmanagerl2sovereignchain contract.
+type Globalexitrootmanagerl2sovereignchainUpdateHashChainValueIterator struct {
+	Event *Globalexitrootmanagerl2sovereignchainUpdateHashChainValue // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *Globalexitrootmanagerl2sovereignchainUpdateHashChainValueIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(Globalexitrootmanagerl2sovereignchainUpdateHashChainValue)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(Globalexitrootmanagerl2sovereignchainUpdateHashChainValue)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *Globalexitrootmanagerl2sovereignchainUpdateHashChainValueIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *Globalexitrootmanagerl2sovereignchainUpdateHashChainValueIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// Globalexitrootmanagerl2sovereignchainUpdateHashChainValue represents a UpdateHashChainValue event raised by the Globalexitrootmanagerl2sovereignchain contract.
+type Globalexitrootmanagerl2sovereignchainUpdateHashChainValue struct {
+	NewGlobalExitRoot [32]byte
+	NewHashChainValue [32]byte
+	Raw               types.Log // Blockchain specific contextual infos
+}
+
+// FilterUpdateHashChainValue is a free log retrieval operation binding the contract event 0x65d3bf36615f1f02a134d12dfa9ea6b1d4a52386e825973cd27ddb70895c2319.
+//
+// Solidity: event UpdateHashChainValue(bytes32 indexed newGlobalExitRoot, bytes32 indexed newHashChainValue)
+func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainFilterer) FilterUpdateHashChainValue(opts *bind.FilterOpts, newGlobalExitRoot [][32]byte, newHashChainValue [][32]byte) (*Globalexitrootmanagerl2sovereignchainUpdateHashChainValueIterator, error) {
+
+	var newGlobalExitRootRule []interface{}
+	for _, newGlobalExitRootItem := range newGlobalExitRoot {
+		newGlobalExitRootRule = append(newGlobalExitRootRule, newGlobalExitRootItem)
+	}
+	var newHashChainValueRule []interface{}
+	for _, newHashChainValueItem := range newHashChainValue {
+		newHashChainValueRule = append(newHashChainValueRule, newHashChainValueItem)
+	}
+
+	logs, sub, err := _Globalexitrootmanagerl2sovereignchain.contract.FilterLogs(opts, "UpdateHashChainValue", newGlobalExitRootRule, newHashChainValueRule)
+	if err != nil {
+		return nil, err
+	}
+	return &Globalexitrootmanagerl2sovereignchainUpdateHashChainValueIterator{contract: _Globalexitrootmanagerl2sovereignchain.contract, event: "UpdateHashChainValue", logs: logs, sub: sub}, nil
+}
+
+// WatchUpdateHashChainValue is a free log subscription operation binding the contract event 0x65d3bf36615f1f02a134d12dfa9ea6b1d4a52386e825973cd27ddb70895c2319.
+//
+// Solidity: event UpdateHashChainValue(bytes32 indexed newGlobalExitRoot, bytes32 indexed newHashChainValue)
+func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainFilterer) WatchUpdateHashChainValue(opts *bind.WatchOpts, sink chan<- *Globalexitrootmanagerl2sovereignchainUpdateHashChainValue, newGlobalExitRoot [][32]byte, newHashChainValue [][32]byte) (event.Subscription, error) {
+
+	var newGlobalExitRootRule []interface{}
+	for _, newGlobalExitRootItem := range newGlobalExitRoot {
+		newGlobalExitRootRule = append(newGlobalExitRootRule, newGlobalExitRootItem)
+	}
+	var newHashChainValueRule []interface{}
+	for _, newHashChainValueItem := range newHashChainValue {
+		newHashChainValueRule = append(newHashChainValueRule, newHashChainValueItem)
+	}
+
+	logs, sub, err := _Globalexitrootmanagerl2sovereignchain.contract.WatchLogs(opts, "UpdateHashChainValue", newGlobalExitRootRule, newHashChainValueRule)
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(Globalexitrootmanagerl2sovereignchainUpdateHashChainValue)
+				if err := _Globalexitrootmanagerl2sovereignchain.contract.UnpackLog(event, "UpdateHashChainValue", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseUpdateHashChainValue is a log parse operation binding the contract event 0x65d3bf36615f1f02a134d12dfa9ea6b1d4a52386e825973cd27ddb70895c2319.
+//
+// Solidity: event UpdateHashChainValue(bytes32 indexed newGlobalExitRoot, bytes32 indexed newHashChainValue)
+func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainFilterer) ParseUpdateHashChainValue(log types.Log) (*Globalexitrootmanagerl2sovereignchainUpdateHashChainValue, error) {
+	event := new(Globalexitrootmanagerl2sovereignchainUpdateHashChainValue)
+	if err := _Globalexitrootmanagerl2sovereignchain.contract.UnpackLog(event, "UpdateHashChainValue", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// Globalexitrootmanagerl2sovereignchainUpdateRemovalHashChainValueIterator is returned from FilterUpdateRemovalHashChainValue and is used to iterate over the raw logs and unpacked data for UpdateRemovalHashChainValue events raised by the Globalexitrootmanagerl2sovereignchain contract.
+type Globalexitrootmanagerl2sovereignchainUpdateRemovalHashChainValueIterator struct {
+	Event *Globalexitrootmanagerl2sovereignchainUpdateRemovalHashChainValue // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *Globalexitrootmanagerl2sovereignchainUpdateRemovalHashChainValueIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(Globalexitrootmanagerl2sovereignchainUpdateRemovalHashChainValue)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(Globalexitrootmanagerl2sovereignchainUpdateRemovalHashChainValue)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *Globalexitrootmanagerl2sovereignchainUpdateRemovalHashChainValueIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *Globalexitrootmanagerl2sovereignchainUpdateRemovalHashChainValueIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// Globalexitrootmanagerl2sovereignchainUpdateRemovalHashChainValue represents a UpdateRemovalHashChainValue event raised by the Globalexitrootmanagerl2sovereignchain contract.
+type Globalexitrootmanagerl2sovereignchainUpdateRemovalHashChainValue struct {
+	RemovedGlobalExitRoot    [32]byte
+	NewRemovalHashChainValue [32]byte
+	Raw                      types.Log // Blockchain specific contextual infos
+}
+
+// FilterUpdateRemovalHashChainValue is a free log retrieval operation binding the contract event 0xaafec9380147d2b2b14fe23b1343cbaa1b07f86c5adb060bd28cdf1af4c6f0d4.
+//
+// Solidity: event UpdateRemovalHashChainValue(bytes32 indexed removedGlobalExitRoot, bytes32 indexed newRemovalHashChainValue)
+func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainFilterer) FilterUpdateRemovalHashChainValue(opts *bind.FilterOpts, removedGlobalExitRoot [][32]byte, newRemovalHashChainValue [][32]byte) (*Globalexitrootmanagerl2sovereignchainUpdateRemovalHashChainValueIterator, error) {
+
+	var removedGlobalExitRootRule []interface{}
+	for _, removedGlobalExitRootItem := range removedGlobalExitRoot {
+		removedGlobalExitRootRule = append(removedGlobalExitRootRule, removedGlobalExitRootItem)
+	}
+	var newRemovalHashChainValueRule []interface{}
+	for _, newRemovalHashChainValueItem := range newRemovalHashChainValue {
+		newRemovalHashChainValueRule = append(newRemovalHashChainValueRule, newRemovalHashChainValueItem)
+	}
+
+	logs, sub, err := _Globalexitrootmanagerl2sovereignchain.contract.FilterLogs(opts, "UpdateRemovalHashChainValue", removedGlobalExitRootRule, newRemovalHashChainValueRule)
+	if err != nil {
+		return nil, err
+	}
+	return &Globalexitrootmanagerl2sovereignchainUpdateRemovalHashChainValueIterator{contract: _Globalexitrootmanagerl2sovereignchain.contract, event: "UpdateRemovalHashChainValue", logs: logs, sub: sub}, nil
+}
+
+// WatchUpdateRemovalHashChainValue is a free log subscription operation binding the contract event 0xaafec9380147d2b2b14fe23b1343cbaa1b07f86c5adb060bd28cdf1af4c6f0d4.
+//
+// Solidity: event UpdateRemovalHashChainValue(bytes32 indexed removedGlobalExitRoot, bytes32 indexed newRemovalHashChainValue)
+func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainFilterer) WatchUpdateRemovalHashChainValue(opts *bind.WatchOpts, sink chan<- *Globalexitrootmanagerl2sovereignchainUpdateRemovalHashChainValue, removedGlobalExitRoot [][32]byte, newRemovalHashChainValue [][32]byte) (event.Subscription, error) {
+
+	var removedGlobalExitRootRule []interface{}
+	for _, removedGlobalExitRootItem := range removedGlobalExitRoot {
+		removedGlobalExitRootRule = append(removedGlobalExitRootRule, removedGlobalExitRootItem)
+	}
+	var newRemovalHashChainValueRule []interface{}
+	for _, newRemovalHashChainValueItem := range newRemovalHashChainValue {
+		newRemovalHashChainValueRule = append(newRemovalHashChainValueRule, newRemovalHashChainValueItem)
+	}
+
+	logs, sub, err := _Globalexitrootmanagerl2sovereignchain.contract.WatchLogs(opts, "UpdateRemovalHashChainValue", removedGlobalExitRootRule, newRemovalHashChainValueRule)
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(Globalexitrootmanagerl2sovereignchainUpdateRemovalHashChainValue)
+				if err := _Globalexitrootmanagerl2sovereignchain.contract.UnpackLog(event, "UpdateRemovalHashChainValue", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseUpdateRemovalHashChainValue is a log parse operation binding the contract event 0xaafec9380147d2b2b14fe23b1343cbaa1b07f86c5adb060bd28cdf1af4c6f0d4.
+//
+// Solidity: event UpdateRemovalHashChainValue(bytes32 indexed removedGlobalExitRoot, bytes32 indexed newRemovalHashChainValue)
+func (_Globalexitrootmanagerl2sovereignchain *Globalexitrootmanagerl2sovereignchainFilterer) ParseUpdateRemovalHashChainValue(log types.Log) (*Globalexitrootmanagerl2sovereignchainUpdateRemovalHashChainValue, error) {
+	event := new(Globalexitrootmanagerl2sovereignchainUpdateRemovalHashChainValue)
+	if err := _Globalexitrootmanagerl2sovereignchain.contract.UnpackLog(event, "UpdateRemovalHashChainValue", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
