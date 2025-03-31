@@ -31,7 +31,7 @@ var (
 
 // IpolygonrollupmanagerMetaData contains all meta data concerning the Ipolygonrollupmanager contract.
 var IpolygonrollupmanagerMetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[],\"name\":\"AllBatchesMustBeVerified\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"AllSequencedMustBeVerified\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"AllzkEVMSequencedBatchesMustBeVerified\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"BatchFeeOutOfRange\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"CannotUpdateWithUnconsolidatedPendingState\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ChainIDAlreadyExist\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ChainIDOutOfRange\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"EmptyVerifySequencesData\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ExceedMaxVerifyBatches\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"FinalNumBatchBelowLastVerifiedBatch\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"FinalNumBatchDoesNotMatchPendingState\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"FinalNumSequenceBelowLastVerifiedSequence\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"FinalNumSequenceDoesNotMatchPendingState\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"FinalPendingStateNumInvalid\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"HaltTimeoutNotExpired\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InitBatchMustMatchCurrentForkID\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InitNumBatchAboveLastVerifiedBatch\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InitNumBatchDoesNotMatchPendingState\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InitSequenceMustMatchCurrentForkID\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InitSequenceNumDoesNotMatchPendingState\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidPessimisticProof\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidProof\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidRangeBatchTimeTarget\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidRangeMultiplierBatchFee\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidRangeMultiplierZkGasPrice\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidRangeSequenceTimeTarget\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidRollup\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidRollupType\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidVerifierType\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"L1InfoTreeLeafCountInvalid\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"MustSequenceSomeBatch\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"MustSequenceSomeBlob\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NewAccInputHashDoesNotExist\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NewPendingStateTimeoutMustBeLower\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NewStateRootNotInsidePrime\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NewTrustedAggregatorTimeoutMustBeLower\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NotAllowedAddress\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OldAccInputHashDoesNotExist\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OldStateRootDoesNotExist\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyChainsWithPessimisticProofs\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyRollupAdmin\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyStateTransitionChains\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"PendingStateDoesNotExist\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"PendingStateInvalid\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"PendingStateNotConsolidable\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"PendingStateNumExist\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"RollbackBatchIsNotEndOfSequence\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"RollbackBatchIsNotValid\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"RollupAddressAlreadyExist\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"RollupIDNotAscendingOrder\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"RollupMustExist\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"RollupTypeDoesNotExist\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"RollupTypeObsolete\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"SenderMustBeRollup\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"StoredRootMustBeDifferentThanNewRoot\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"TrustedAggregatorTimeoutNotExpired\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"UpdateNotCompatible\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"UpdateToOldRollupTypeID\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"UpdateToSameRollupTypeID\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"zkGasPriceOfRange\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"activateEmergencyState\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"rollupAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"verifier\",\"type\":\"address\"},{\"internalType\":\"uint64\",\"name\":\"forkID\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"chainID\",\"type\":\"uint64\"},{\"internalType\":\"bytes32\",\"name\":\"initRoot\",\"type\":\"bytes32\"},{\"internalType\":\"enumIPolygonRollupManager.VerifierType\",\"name\":\"rollupVerifierType\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"programVKey\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"initPessimisticRoot\",\"type\":\"bytes32\"}],\"name\":\"addExistingRollup\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"consensusImplementation\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"verifier\",\"type\":\"address\"},{\"internalType\":\"uint64\",\"name\":\"forkID\",\"type\":\"uint64\"},{\"internalType\":\"enumIPolygonRollupManager.VerifierType\",\"name\":\"rollupVerifierType\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"initRoot\",\"type\":\"bytes32\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"bytes32\",\"name\":\"programVKey\",\"type\":\"bytes32\"}],\"name\":\"addNewRollupType\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"calculateRewardPerBatch\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"rollupTypeID\",\"type\":\"uint32\"},{\"internalType\":\"uint64\",\"name\":\"chainID\",\"type\":\"uint64\"},{\"internalType\":\"address\",\"name\":\"admin\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"sequencer\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"gasTokenAddress\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"sequencerURL\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"networkName\",\"type\":\"string\"},{\"internalType\":\"bytes\",\"name\":\"initializeBytesCustomChain\",\"type\":\"bytes\"}],\"name\":\"createNewRollup\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"deactivateEmergencyState\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getBatchFee\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getForcedBatchFee\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"rollupID\",\"type\":\"uint32\"},{\"internalType\":\"bytes32\",\"name\":\"selectedGlobalExitRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"newLocalExitRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"newPessimisticRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"customChainData\",\"type\":\"bytes\"}],\"name\":\"getInputPessimisticBytes\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"rollupID\",\"type\":\"uint32\"},{\"internalType\":\"uint64\",\"name\":\"initNumBatch\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"finalNewBatch\",\"type\":\"uint64\"},{\"internalType\":\"bytes32\",\"name\":\"newLocalExitRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"oldStateRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"newStateRoot\",\"type\":\"bytes32\"}],\"name\":\"getInputSnarkBytes\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"rollupID\",\"type\":\"uint32\"}],\"name\":\"getLastVerifiedBatch\",\"outputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"rollupID\",\"type\":\"uint32\"},{\"internalType\":\"uint64\",\"name\":\"batchNum\",\"type\":\"uint64\"}],\"name\":\"getRollupBatchNumToStateRoot\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getRollupExitRoot\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"lastDeactivatedEmergencyStateTimestamp\",\"outputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"rollupTypeID\",\"type\":\"uint32\"}],\"name\":\"obsoleteRollupType\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"newSequencedBatches\",\"type\":\"uint64\"},{\"internalType\":\"bytes32\",\"name\":\"newAccInputHash\",\"type\":\"bytes32\"}],\"name\":\"onSequenceBatches\",\"outputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contractIPolygonRollupBase\",\"name\":\"rollupContract\",\"type\":\"address\"},{\"internalType\":\"uint64\",\"name\":\"targetBatch\",\"type\":\"uint64\"}],\"name\":\"rollbackBatches\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"newBatchFee\",\"type\":\"uint256\"}],\"name\":\"setBatchFee\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contractITransparentUpgradeableProxy\",\"name\":\"rollupContract\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"newRollupTypeID\",\"type\":\"uint32\"},{\"internalType\":\"bytes\",\"name\":\"upgradeData\",\"type\":\"bytes\"}],\"name\":\"updateRollup\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contractITransparentUpgradeableProxy\",\"name\":\"rollupContract\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"newRollupTypeID\",\"type\":\"uint32\"}],\"name\":\"updateRollupByRollupAdmin\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"rollupID\",\"type\":\"uint32\"},{\"internalType\":\"uint64\",\"name\":\"pendingStateNum\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"initNumBatch\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"finalNewBatch\",\"type\":\"uint64\"},{\"internalType\":\"bytes32\",\"name\":\"newLocalExitRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"newStateRoot\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"beneficiary\",\"type\":\"address\"},{\"internalType\":\"bytes32[24]\",\"name\":\"proof\",\"type\":\"bytes32[24]\"}],\"name\":\"verifyBatchesTrustedAggregator\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"rollupID\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"l1InfoTreeLeafCount\",\"type\":\"uint32\"},{\"internalType\":\"bytes32\",\"name\":\"newLocalExitRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"newPessimisticRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"proof\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"customChainData\",\"type\":\"bytes\"}],\"name\":\"verifyPessimisticTrustedAggregator\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
+	ABI: "[{\"inputs\":[],\"name\":\"AllBatchesMustBeVerified\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"AllSequencedMustBeVerified\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"AllzkEVMSequencedBatchesMustBeVerified\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"BatchFeeOutOfRange\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"CannotUpdateWithUnconsolidatedPendingState\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ChainIDAlreadyExist\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ChainIDOutOfRange\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"EmptyVerifySequencesData\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ExceedMaxVerifyBatches\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"FinalNumBatchBelowLastVerifiedBatch\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"FinalNumBatchDoesNotMatchPendingState\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"FinalNumSequenceBelowLastVerifiedSequence\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"FinalNumSequenceDoesNotMatchPendingState\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"FinalPendingStateNumInvalid\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"HaltTimeoutNotExpired\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InitBatchMustMatchCurrentForkID\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InitNumBatchAboveLastVerifiedBatch\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InitNumBatchDoesNotMatchPendingState\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InitSequenceMustMatchCurrentForkID\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InitSequenceNumDoesNotMatchPendingState\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidPessimisticProof\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidProof\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidRangeBatchTimeTarget\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidRangeMultiplierBatchFee\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidRangeMultiplierZkGasPrice\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidRangeSequenceTimeTarget\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidRollup\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidRollupType\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidVerifierType\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"L1InfoTreeLeafCountInvalid\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"MustSequenceSomeBatch\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"MustSequenceSomeBlob\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NewAccInputHashDoesNotExist\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NewPendingStateTimeoutMustBeLower\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NewStateRootNotInsidePrime\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NewTrustedAggregatorTimeoutMustBeLower\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NotAllowedAddress\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OldAccInputHashDoesNotExist\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OldStateRootDoesNotExist\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyRollupAdmin\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyStateTransitionChains\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"PendingStateDoesNotExist\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"PendingStateInvalid\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"PendingStateNotConsolidable\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"PendingStateNumExist\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"RollbackBatchIsNotEndOfSequence\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"RollbackBatchIsNotValid\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"RollupAddressAlreadyExist\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"RollupIDNotAscendingOrder\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"RollupMustExist\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"RollupTypeDoesNotExist\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"RollupTypeObsolete\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"SenderMustBeRollup\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"StateTransitionChainsNotAllowed\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"StoredRootMustBeDifferentThanNewRoot\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"TrustedAggregatorTimeoutNotExpired\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"UpdateNotCompatible\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"UpdateToOldRollupTypeID\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"UpdateToSameRollupTypeID\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"zkGasPriceOfRange\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"activateEmergencyState\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"rollupAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"verifier\",\"type\":\"address\"},{\"internalType\":\"uint64\",\"name\":\"forkID\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"chainID\",\"type\":\"uint64\"},{\"internalType\":\"bytes32\",\"name\":\"initRoot\",\"type\":\"bytes32\"},{\"internalType\":\"enumIPolygonRollupManager.VerifierType\",\"name\":\"rollupVerifierType\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"programVKey\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"initPessimisticRoot\",\"type\":\"bytes32\"}],\"name\":\"addExistingRollup\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"consensusImplementation\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"verifier\",\"type\":\"address\"},{\"internalType\":\"uint64\",\"name\":\"forkID\",\"type\":\"uint64\"},{\"internalType\":\"enumIPolygonRollupManager.VerifierType\",\"name\":\"rollupVerifierType\",\"type\":\"uint8\"},{\"internalType\":\"bytes32\",\"name\":\"initRoot\",\"type\":\"bytes32\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"},{\"internalType\":\"bytes32\",\"name\":\"programVKey\",\"type\":\"bytes32\"}],\"name\":\"addNewRollupType\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"calculateRewardPerBatch\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"rollupTypeID\",\"type\":\"uint32\"},{\"internalType\":\"uint64\",\"name\":\"chainID\",\"type\":\"uint64\"},{\"internalType\":\"address\",\"name\":\"admin\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"sequencer\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"gasTokenAddress\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"sequencerURL\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"networkName\",\"type\":\"string\"},{\"internalType\":\"bytes\",\"name\":\"initializeBytesCustomChain\",\"type\":\"bytes\"}],\"name\":\"createNewRollup\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"deactivateEmergencyState\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getBatchFee\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getForcedBatchFee\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"rollupID\",\"type\":\"uint32\"},{\"internalType\":\"bytes32\",\"name\":\"selectedGlobalExitRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"newLocalExitRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"newPessimisticRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"customChainData\",\"type\":\"bytes\"}],\"name\":\"getInputPessimisticBytes\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"rollupID\",\"type\":\"uint32\"},{\"internalType\":\"uint64\",\"name\":\"initNumBatch\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"finalNewBatch\",\"type\":\"uint64\"},{\"internalType\":\"bytes32\",\"name\":\"newLocalExitRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"oldStateRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"newStateRoot\",\"type\":\"bytes32\"}],\"name\":\"getInputSnarkBytes\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"rollupID\",\"type\":\"uint32\"}],\"name\":\"getLastVerifiedBatch\",\"outputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"rollupID\",\"type\":\"uint32\"},{\"internalType\":\"uint64\",\"name\":\"batchNum\",\"type\":\"uint64\"}],\"name\":\"getRollupBatchNumToStateRoot\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getRollupExitRoot\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"lastDeactivatedEmergencyStateTimestamp\",\"outputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"rollupTypeID\",\"type\":\"uint32\"}],\"name\":\"obsoleteRollupType\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"newSequencedBatches\",\"type\":\"uint64\"},{\"internalType\":\"bytes32\",\"name\":\"newAccInputHash\",\"type\":\"bytes32\"}],\"name\":\"onSequenceBatches\",\"outputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contractIPolygonRollupBase\",\"name\":\"rollupContract\",\"type\":\"address\"},{\"internalType\":\"uint64\",\"name\":\"targetBatch\",\"type\":\"uint64\"}],\"name\":\"rollbackBatches\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"newBatchFee\",\"type\":\"uint256\"}],\"name\":\"setBatchFee\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contractITransparentUpgradeableProxy\",\"name\":\"rollupContract\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"newRollupTypeID\",\"type\":\"uint32\"},{\"internalType\":\"bytes\",\"name\":\"upgradeData\",\"type\":\"bytes\"}],\"name\":\"updateRollup\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contractITransparentUpgradeableProxy\",\"name\":\"rollupContract\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"newRollupTypeID\",\"type\":\"uint32\"}],\"name\":\"updateRollupByRollupAdmin\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"rollupID\",\"type\":\"uint32\"},{\"internalType\":\"uint64\",\"name\":\"pendingStateNum\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"initNumBatch\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"finalNewBatch\",\"type\":\"uint64\"},{\"internalType\":\"bytes32\",\"name\":\"newLocalExitRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"newStateRoot\",\"type\":\"bytes32\"},{\"internalType\":\"address\",\"name\":\"beneficiary\",\"type\":\"address\"},{\"internalType\":\"bytes32[24]\",\"name\":\"proof\",\"type\":\"bytes32[24]\"}],\"name\":\"verifyBatchesTrustedAggregator\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint32\",\"name\":\"rollupID\",\"type\":\"uint32\"},{\"internalType\":\"uint32\",\"name\":\"l1InfoTreeLeafCount\",\"type\":\"uint32\"},{\"internalType\":\"bytes32\",\"name\":\"newLocalExitRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"newPessimisticRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"proof\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"customChainData\",\"type\":\"bytes\"}],\"name\":\"verifyPessimisticTrustedAggregator\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
 }
 
 // IpolygonrollupmanagerABI is the input ABI used to generate the binding from.
@@ -180,6 +180,285 @@ func (_Ipolygonrollupmanager *IpolygonrollupmanagerTransactorRaw) Transact(opts 
 	return _Ipolygonrollupmanager.Contract.contract.Transact(opts, method, params...)
 }
 
+// CalculateRewardPerBatch is a free data retrieval call binding the contract method 0x99f5634e.
+//
+// Solidity: function calculateRewardPerBatch() view returns(uint256)
+func (_Ipolygonrollupmanager *IpolygonrollupmanagerCaller) CalculateRewardPerBatch(opts *bind.CallOpts) (*big.Int, error) {
+	var out []interface{}
+	err := _Ipolygonrollupmanager.contract.Call(opts, &out, "calculateRewardPerBatch")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
+}
+
+// CalculateRewardPerBatch is a free data retrieval call binding the contract method 0x99f5634e.
+//
+// Solidity: function calculateRewardPerBatch() view returns(uint256)
+func (_Ipolygonrollupmanager *IpolygonrollupmanagerSession) CalculateRewardPerBatch() (*big.Int, error) {
+	return _Ipolygonrollupmanager.Contract.CalculateRewardPerBatch(&_Ipolygonrollupmanager.CallOpts)
+}
+
+// CalculateRewardPerBatch is a free data retrieval call binding the contract method 0x99f5634e.
+//
+// Solidity: function calculateRewardPerBatch() view returns(uint256)
+func (_Ipolygonrollupmanager *IpolygonrollupmanagerCallerSession) CalculateRewardPerBatch() (*big.Int, error) {
+	return _Ipolygonrollupmanager.Contract.CalculateRewardPerBatch(&_Ipolygonrollupmanager.CallOpts)
+}
+
+// GetBatchFee is a free data retrieval call binding the contract method 0x477fa270.
+//
+// Solidity: function getBatchFee() view returns(uint256)
+func (_Ipolygonrollupmanager *IpolygonrollupmanagerCaller) GetBatchFee(opts *bind.CallOpts) (*big.Int, error) {
+	var out []interface{}
+	err := _Ipolygonrollupmanager.contract.Call(opts, &out, "getBatchFee")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
+}
+
+// GetBatchFee is a free data retrieval call binding the contract method 0x477fa270.
+//
+// Solidity: function getBatchFee() view returns(uint256)
+func (_Ipolygonrollupmanager *IpolygonrollupmanagerSession) GetBatchFee() (*big.Int, error) {
+	return _Ipolygonrollupmanager.Contract.GetBatchFee(&_Ipolygonrollupmanager.CallOpts)
+}
+
+// GetBatchFee is a free data retrieval call binding the contract method 0x477fa270.
+//
+// Solidity: function getBatchFee() view returns(uint256)
+func (_Ipolygonrollupmanager *IpolygonrollupmanagerCallerSession) GetBatchFee() (*big.Int, error) {
+	return _Ipolygonrollupmanager.Contract.GetBatchFee(&_Ipolygonrollupmanager.CallOpts)
+}
+
+// GetForcedBatchFee is a free data retrieval call binding the contract method 0x60469169.
+//
+// Solidity: function getForcedBatchFee() view returns(uint256)
+func (_Ipolygonrollupmanager *IpolygonrollupmanagerCaller) GetForcedBatchFee(opts *bind.CallOpts) (*big.Int, error) {
+	var out []interface{}
+	err := _Ipolygonrollupmanager.contract.Call(opts, &out, "getForcedBatchFee")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
+}
+
+// GetForcedBatchFee is a free data retrieval call binding the contract method 0x60469169.
+//
+// Solidity: function getForcedBatchFee() view returns(uint256)
+func (_Ipolygonrollupmanager *IpolygonrollupmanagerSession) GetForcedBatchFee() (*big.Int, error) {
+	return _Ipolygonrollupmanager.Contract.GetForcedBatchFee(&_Ipolygonrollupmanager.CallOpts)
+}
+
+// GetForcedBatchFee is a free data retrieval call binding the contract method 0x60469169.
+//
+// Solidity: function getForcedBatchFee() view returns(uint256)
+func (_Ipolygonrollupmanager *IpolygonrollupmanagerCallerSession) GetForcedBatchFee() (*big.Int, error) {
+	return _Ipolygonrollupmanager.Contract.GetForcedBatchFee(&_Ipolygonrollupmanager.CallOpts)
+}
+
+// GetInputPessimisticBytes is a free data retrieval call binding the contract method 0xdd0464b9.
+//
+// Solidity: function getInputPessimisticBytes(uint32 rollupID, bytes32 selectedGlobalExitRoot, bytes32 newLocalExitRoot, bytes32 newPessimisticRoot, bytes customChainData) view returns(bytes)
+func (_Ipolygonrollupmanager *IpolygonrollupmanagerCaller) GetInputPessimisticBytes(opts *bind.CallOpts, rollupID uint32, selectedGlobalExitRoot [32]byte, newLocalExitRoot [32]byte, newPessimisticRoot [32]byte, customChainData []byte) ([]byte, error) {
+	var out []interface{}
+	err := _Ipolygonrollupmanager.contract.Call(opts, &out, "getInputPessimisticBytes", rollupID, selectedGlobalExitRoot, newLocalExitRoot, newPessimisticRoot, customChainData)
+
+	if err != nil {
+		return *new([]byte), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new([]byte)).(*[]byte)
+
+	return out0, err
+
+}
+
+// GetInputPessimisticBytes is a free data retrieval call binding the contract method 0xdd0464b9.
+//
+// Solidity: function getInputPessimisticBytes(uint32 rollupID, bytes32 selectedGlobalExitRoot, bytes32 newLocalExitRoot, bytes32 newPessimisticRoot, bytes customChainData) view returns(bytes)
+func (_Ipolygonrollupmanager *IpolygonrollupmanagerSession) GetInputPessimisticBytes(rollupID uint32, selectedGlobalExitRoot [32]byte, newLocalExitRoot [32]byte, newPessimisticRoot [32]byte, customChainData []byte) ([]byte, error) {
+	return _Ipolygonrollupmanager.Contract.GetInputPessimisticBytes(&_Ipolygonrollupmanager.CallOpts, rollupID, selectedGlobalExitRoot, newLocalExitRoot, newPessimisticRoot, customChainData)
+}
+
+// GetInputPessimisticBytes is a free data retrieval call binding the contract method 0xdd0464b9.
+//
+// Solidity: function getInputPessimisticBytes(uint32 rollupID, bytes32 selectedGlobalExitRoot, bytes32 newLocalExitRoot, bytes32 newPessimisticRoot, bytes customChainData) view returns(bytes)
+func (_Ipolygonrollupmanager *IpolygonrollupmanagerCallerSession) GetInputPessimisticBytes(rollupID uint32, selectedGlobalExitRoot [32]byte, newLocalExitRoot [32]byte, newPessimisticRoot [32]byte, customChainData []byte) ([]byte, error) {
+	return _Ipolygonrollupmanager.Contract.GetInputPessimisticBytes(&_Ipolygonrollupmanager.CallOpts, rollupID, selectedGlobalExitRoot, newLocalExitRoot, newPessimisticRoot, customChainData)
+}
+
+// GetInputSnarkBytes is a free data retrieval call binding the contract method 0x7975fcfe.
+//
+// Solidity: function getInputSnarkBytes(uint32 rollupID, uint64 initNumBatch, uint64 finalNewBatch, bytes32 newLocalExitRoot, bytes32 oldStateRoot, bytes32 newStateRoot) view returns(bytes)
+func (_Ipolygonrollupmanager *IpolygonrollupmanagerCaller) GetInputSnarkBytes(opts *bind.CallOpts, rollupID uint32, initNumBatch uint64, finalNewBatch uint64, newLocalExitRoot [32]byte, oldStateRoot [32]byte, newStateRoot [32]byte) ([]byte, error) {
+	var out []interface{}
+	err := _Ipolygonrollupmanager.contract.Call(opts, &out, "getInputSnarkBytes", rollupID, initNumBatch, finalNewBatch, newLocalExitRoot, oldStateRoot, newStateRoot)
+
+	if err != nil {
+		return *new([]byte), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new([]byte)).(*[]byte)
+
+	return out0, err
+
+}
+
+// GetInputSnarkBytes is a free data retrieval call binding the contract method 0x7975fcfe.
+//
+// Solidity: function getInputSnarkBytes(uint32 rollupID, uint64 initNumBatch, uint64 finalNewBatch, bytes32 newLocalExitRoot, bytes32 oldStateRoot, bytes32 newStateRoot) view returns(bytes)
+func (_Ipolygonrollupmanager *IpolygonrollupmanagerSession) GetInputSnarkBytes(rollupID uint32, initNumBatch uint64, finalNewBatch uint64, newLocalExitRoot [32]byte, oldStateRoot [32]byte, newStateRoot [32]byte) ([]byte, error) {
+	return _Ipolygonrollupmanager.Contract.GetInputSnarkBytes(&_Ipolygonrollupmanager.CallOpts, rollupID, initNumBatch, finalNewBatch, newLocalExitRoot, oldStateRoot, newStateRoot)
+}
+
+// GetInputSnarkBytes is a free data retrieval call binding the contract method 0x7975fcfe.
+//
+// Solidity: function getInputSnarkBytes(uint32 rollupID, uint64 initNumBatch, uint64 finalNewBatch, bytes32 newLocalExitRoot, bytes32 oldStateRoot, bytes32 newStateRoot) view returns(bytes)
+func (_Ipolygonrollupmanager *IpolygonrollupmanagerCallerSession) GetInputSnarkBytes(rollupID uint32, initNumBatch uint64, finalNewBatch uint64, newLocalExitRoot [32]byte, oldStateRoot [32]byte, newStateRoot [32]byte) ([]byte, error) {
+	return _Ipolygonrollupmanager.Contract.GetInputSnarkBytes(&_Ipolygonrollupmanager.CallOpts, rollupID, initNumBatch, finalNewBatch, newLocalExitRoot, oldStateRoot, newStateRoot)
+}
+
+// GetLastVerifiedBatch is a free data retrieval call binding the contract method 0x11f6b287.
+//
+// Solidity: function getLastVerifiedBatch(uint32 rollupID) view returns(uint64)
+func (_Ipolygonrollupmanager *IpolygonrollupmanagerCaller) GetLastVerifiedBatch(opts *bind.CallOpts, rollupID uint32) (uint64, error) {
+	var out []interface{}
+	err := _Ipolygonrollupmanager.contract.Call(opts, &out, "getLastVerifiedBatch", rollupID)
+
+	if err != nil {
+		return *new(uint64), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(uint64)).(*uint64)
+
+	return out0, err
+
+}
+
+// GetLastVerifiedBatch is a free data retrieval call binding the contract method 0x11f6b287.
+//
+// Solidity: function getLastVerifiedBatch(uint32 rollupID) view returns(uint64)
+func (_Ipolygonrollupmanager *IpolygonrollupmanagerSession) GetLastVerifiedBatch(rollupID uint32) (uint64, error) {
+	return _Ipolygonrollupmanager.Contract.GetLastVerifiedBatch(&_Ipolygonrollupmanager.CallOpts, rollupID)
+}
+
+// GetLastVerifiedBatch is a free data retrieval call binding the contract method 0x11f6b287.
+//
+// Solidity: function getLastVerifiedBatch(uint32 rollupID) view returns(uint64)
+func (_Ipolygonrollupmanager *IpolygonrollupmanagerCallerSession) GetLastVerifiedBatch(rollupID uint32) (uint64, error) {
+	return _Ipolygonrollupmanager.Contract.GetLastVerifiedBatch(&_Ipolygonrollupmanager.CallOpts, rollupID)
+}
+
+// GetRollupBatchNumToStateRoot is a free data retrieval call binding the contract method 0x55a71ee0.
+//
+// Solidity: function getRollupBatchNumToStateRoot(uint32 rollupID, uint64 batchNum) view returns(bytes32)
+func (_Ipolygonrollupmanager *IpolygonrollupmanagerCaller) GetRollupBatchNumToStateRoot(opts *bind.CallOpts, rollupID uint32, batchNum uint64) ([32]byte, error) {
+	var out []interface{}
+	err := _Ipolygonrollupmanager.contract.Call(opts, &out, "getRollupBatchNumToStateRoot", rollupID, batchNum)
+
+	if err != nil {
+		return *new([32]byte), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
+
+	return out0, err
+
+}
+
+// GetRollupBatchNumToStateRoot is a free data retrieval call binding the contract method 0x55a71ee0.
+//
+// Solidity: function getRollupBatchNumToStateRoot(uint32 rollupID, uint64 batchNum) view returns(bytes32)
+func (_Ipolygonrollupmanager *IpolygonrollupmanagerSession) GetRollupBatchNumToStateRoot(rollupID uint32, batchNum uint64) ([32]byte, error) {
+	return _Ipolygonrollupmanager.Contract.GetRollupBatchNumToStateRoot(&_Ipolygonrollupmanager.CallOpts, rollupID, batchNum)
+}
+
+// GetRollupBatchNumToStateRoot is a free data retrieval call binding the contract method 0x55a71ee0.
+//
+// Solidity: function getRollupBatchNumToStateRoot(uint32 rollupID, uint64 batchNum) view returns(bytes32)
+func (_Ipolygonrollupmanager *IpolygonrollupmanagerCallerSession) GetRollupBatchNumToStateRoot(rollupID uint32, batchNum uint64) ([32]byte, error) {
+	return _Ipolygonrollupmanager.Contract.GetRollupBatchNumToStateRoot(&_Ipolygonrollupmanager.CallOpts, rollupID, batchNum)
+}
+
+// GetRollupExitRoot is a free data retrieval call binding the contract method 0xa2967d99.
+//
+// Solidity: function getRollupExitRoot() view returns(bytes32)
+func (_Ipolygonrollupmanager *IpolygonrollupmanagerCaller) GetRollupExitRoot(opts *bind.CallOpts) ([32]byte, error) {
+	var out []interface{}
+	err := _Ipolygonrollupmanager.contract.Call(opts, &out, "getRollupExitRoot")
+
+	if err != nil {
+		return *new([32]byte), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
+
+	return out0, err
+
+}
+
+// GetRollupExitRoot is a free data retrieval call binding the contract method 0xa2967d99.
+//
+// Solidity: function getRollupExitRoot() view returns(bytes32)
+func (_Ipolygonrollupmanager *IpolygonrollupmanagerSession) GetRollupExitRoot() ([32]byte, error) {
+	return _Ipolygonrollupmanager.Contract.GetRollupExitRoot(&_Ipolygonrollupmanager.CallOpts)
+}
+
+// GetRollupExitRoot is a free data retrieval call binding the contract method 0xa2967d99.
+//
+// Solidity: function getRollupExitRoot() view returns(bytes32)
+func (_Ipolygonrollupmanager *IpolygonrollupmanagerCallerSession) GetRollupExitRoot() ([32]byte, error) {
+	return _Ipolygonrollupmanager.Contract.GetRollupExitRoot(&_Ipolygonrollupmanager.CallOpts)
+}
+
+// LastDeactivatedEmergencyStateTimestamp is a free data retrieval call binding the contract method 0x30c27dde.
+//
+// Solidity: function lastDeactivatedEmergencyStateTimestamp() view returns(uint64)
+func (_Ipolygonrollupmanager *IpolygonrollupmanagerCaller) LastDeactivatedEmergencyStateTimestamp(opts *bind.CallOpts) (uint64, error) {
+	var out []interface{}
+	err := _Ipolygonrollupmanager.contract.Call(opts, &out, "lastDeactivatedEmergencyStateTimestamp")
+
+	if err != nil {
+		return *new(uint64), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(uint64)).(*uint64)
+
+	return out0, err
+
+}
+
+// LastDeactivatedEmergencyStateTimestamp is a free data retrieval call binding the contract method 0x30c27dde.
+//
+// Solidity: function lastDeactivatedEmergencyStateTimestamp() view returns(uint64)
+func (_Ipolygonrollupmanager *IpolygonrollupmanagerSession) LastDeactivatedEmergencyStateTimestamp() (uint64, error) {
+	return _Ipolygonrollupmanager.Contract.LastDeactivatedEmergencyStateTimestamp(&_Ipolygonrollupmanager.CallOpts)
+}
+
+// LastDeactivatedEmergencyStateTimestamp is a free data retrieval call binding the contract method 0x30c27dde.
+//
+// Solidity: function lastDeactivatedEmergencyStateTimestamp() view returns(uint64)
+func (_Ipolygonrollupmanager *IpolygonrollupmanagerCallerSession) LastDeactivatedEmergencyStateTimestamp() (uint64, error) {
+	return _Ipolygonrollupmanager.Contract.LastDeactivatedEmergencyStateTimestamp(&_Ipolygonrollupmanager.CallOpts)
+}
+
 // ActivateEmergencyState is a paid mutator transaction binding the contract method 0x2072f6c5.
 //
 // Solidity: function activateEmergencyState() returns()
@@ -243,27 +522,6 @@ func (_Ipolygonrollupmanager *IpolygonrollupmanagerTransactorSession) AddNewRoll
 	return _Ipolygonrollupmanager.Contract.AddNewRollupType(&_Ipolygonrollupmanager.TransactOpts, consensusImplementation, verifier, forkID, rollupVerifierType, initRoot, description, programVKey)
 }
 
-// CalculateRewardPerBatch is a paid mutator transaction binding the contract method 0x99f5634e.
-//
-// Solidity: function calculateRewardPerBatch() returns(uint256)
-func (_Ipolygonrollupmanager *IpolygonrollupmanagerTransactor) CalculateRewardPerBatch(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _Ipolygonrollupmanager.contract.Transact(opts, "calculateRewardPerBatch")
-}
-
-// CalculateRewardPerBatch is a paid mutator transaction binding the contract method 0x99f5634e.
-//
-// Solidity: function calculateRewardPerBatch() returns(uint256)
-func (_Ipolygonrollupmanager *IpolygonrollupmanagerSession) CalculateRewardPerBatch() (*types.Transaction, error) {
-	return _Ipolygonrollupmanager.Contract.CalculateRewardPerBatch(&_Ipolygonrollupmanager.TransactOpts)
-}
-
-// CalculateRewardPerBatch is a paid mutator transaction binding the contract method 0x99f5634e.
-//
-// Solidity: function calculateRewardPerBatch() returns(uint256)
-func (_Ipolygonrollupmanager *IpolygonrollupmanagerTransactorSession) CalculateRewardPerBatch() (*types.Transaction, error) {
-	return _Ipolygonrollupmanager.Contract.CalculateRewardPerBatch(&_Ipolygonrollupmanager.TransactOpts)
-}
-
 // CreateNewRollup is a paid mutator transaction binding the contract method 0xc5b4fdb6.
 //
 // Solidity: function createNewRollup(uint32 rollupTypeID, uint64 chainID, address admin, address sequencer, address gasTokenAddress, string sequencerURL, string networkName, bytes initializeBytesCustomChain) returns()
@@ -304,174 +562,6 @@ func (_Ipolygonrollupmanager *IpolygonrollupmanagerSession) DeactivateEmergencyS
 // Solidity: function deactivateEmergencyState() returns()
 func (_Ipolygonrollupmanager *IpolygonrollupmanagerTransactorSession) DeactivateEmergencyState() (*types.Transaction, error) {
 	return _Ipolygonrollupmanager.Contract.DeactivateEmergencyState(&_Ipolygonrollupmanager.TransactOpts)
-}
-
-// GetBatchFee is a paid mutator transaction binding the contract method 0x477fa270.
-//
-// Solidity: function getBatchFee() returns(uint256)
-func (_Ipolygonrollupmanager *IpolygonrollupmanagerTransactor) GetBatchFee(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _Ipolygonrollupmanager.contract.Transact(opts, "getBatchFee")
-}
-
-// GetBatchFee is a paid mutator transaction binding the contract method 0x477fa270.
-//
-// Solidity: function getBatchFee() returns(uint256)
-func (_Ipolygonrollupmanager *IpolygonrollupmanagerSession) GetBatchFee() (*types.Transaction, error) {
-	return _Ipolygonrollupmanager.Contract.GetBatchFee(&_Ipolygonrollupmanager.TransactOpts)
-}
-
-// GetBatchFee is a paid mutator transaction binding the contract method 0x477fa270.
-//
-// Solidity: function getBatchFee() returns(uint256)
-func (_Ipolygonrollupmanager *IpolygonrollupmanagerTransactorSession) GetBatchFee() (*types.Transaction, error) {
-	return _Ipolygonrollupmanager.Contract.GetBatchFee(&_Ipolygonrollupmanager.TransactOpts)
-}
-
-// GetForcedBatchFee is a paid mutator transaction binding the contract method 0x60469169.
-//
-// Solidity: function getForcedBatchFee() returns(uint256)
-func (_Ipolygonrollupmanager *IpolygonrollupmanagerTransactor) GetForcedBatchFee(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _Ipolygonrollupmanager.contract.Transact(opts, "getForcedBatchFee")
-}
-
-// GetForcedBatchFee is a paid mutator transaction binding the contract method 0x60469169.
-//
-// Solidity: function getForcedBatchFee() returns(uint256)
-func (_Ipolygonrollupmanager *IpolygonrollupmanagerSession) GetForcedBatchFee() (*types.Transaction, error) {
-	return _Ipolygonrollupmanager.Contract.GetForcedBatchFee(&_Ipolygonrollupmanager.TransactOpts)
-}
-
-// GetForcedBatchFee is a paid mutator transaction binding the contract method 0x60469169.
-//
-// Solidity: function getForcedBatchFee() returns(uint256)
-func (_Ipolygonrollupmanager *IpolygonrollupmanagerTransactorSession) GetForcedBatchFee() (*types.Transaction, error) {
-	return _Ipolygonrollupmanager.Contract.GetForcedBatchFee(&_Ipolygonrollupmanager.TransactOpts)
-}
-
-// GetInputPessimisticBytes is a paid mutator transaction binding the contract method 0xdd0464b9.
-//
-// Solidity: function getInputPessimisticBytes(uint32 rollupID, bytes32 selectedGlobalExitRoot, bytes32 newLocalExitRoot, bytes32 newPessimisticRoot, bytes customChainData) returns(bytes)
-func (_Ipolygonrollupmanager *IpolygonrollupmanagerTransactor) GetInputPessimisticBytes(opts *bind.TransactOpts, rollupID uint32, selectedGlobalExitRoot [32]byte, newLocalExitRoot [32]byte, newPessimisticRoot [32]byte, customChainData []byte) (*types.Transaction, error) {
-	return _Ipolygonrollupmanager.contract.Transact(opts, "getInputPessimisticBytes", rollupID, selectedGlobalExitRoot, newLocalExitRoot, newPessimisticRoot, customChainData)
-}
-
-// GetInputPessimisticBytes is a paid mutator transaction binding the contract method 0xdd0464b9.
-//
-// Solidity: function getInputPessimisticBytes(uint32 rollupID, bytes32 selectedGlobalExitRoot, bytes32 newLocalExitRoot, bytes32 newPessimisticRoot, bytes customChainData) returns(bytes)
-func (_Ipolygonrollupmanager *IpolygonrollupmanagerSession) GetInputPessimisticBytes(rollupID uint32, selectedGlobalExitRoot [32]byte, newLocalExitRoot [32]byte, newPessimisticRoot [32]byte, customChainData []byte) (*types.Transaction, error) {
-	return _Ipolygonrollupmanager.Contract.GetInputPessimisticBytes(&_Ipolygonrollupmanager.TransactOpts, rollupID, selectedGlobalExitRoot, newLocalExitRoot, newPessimisticRoot, customChainData)
-}
-
-// GetInputPessimisticBytes is a paid mutator transaction binding the contract method 0xdd0464b9.
-//
-// Solidity: function getInputPessimisticBytes(uint32 rollupID, bytes32 selectedGlobalExitRoot, bytes32 newLocalExitRoot, bytes32 newPessimisticRoot, bytes customChainData) returns(bytes)
-func (_Ipolygonrollupmanager *IpolygonrollupmanagerTransactorSession) GetInputPessimisticBytes(rollupID uint32, selectedGlobalExitRoot [32]byte, newLocalExitRoot [32]byte, newPessimisticRoot [32]byte, customChainData []byte) (*types.Transaction, error) {
-	return _Ipolygonrollupmanager.Contract.GetInputPessimisticBytes(&_Ipolygonrollupmanager.TransactOpts, rollupID, selectedGlobalExitRoot, newLocalExitRoot, newPessimisticRoot, customChainData)
-}
-
-// GetInputSnarkBytes is a paid mutator transaction binding the contract method 0x7975fcfe.
-//
-// Solidity: function getInputSnarkBytes(uint32 rollupID, uint64 initNumBatch, uint64 finalNewBatch, bytes32 newLocalExitRoot, bytes32 oldStateRoot, bytes32 newStateRoot) returns(bytes)
-func (_Ipolygonrollupmanager *IpolygonrollupmanagerTransactor) GetInputSnarkBytes(opts *bind.TransactOpts, rollupID uint32, initNumBatch uint64, finalNewBatch uint64, newLocalExitRoot [32]byte, oldStateRoot [32]byte, newStateRoot [32]byte) (*types.Transaction, error) {
-	return _Ipolygonrollupmanager.contract.Transact(opts, "getInputSnarkBytes", rollupID, initNumBatch, finalNewBatch, newLocalExitRoot, oldStateRoot, newStateRoot)
-}
-
-// GetInputSnarkBytes is a paid mutator transaction binding the contract method 0x7975fcfe.
-//
-// Solidity: function getInputSnarkBytes(uint32 rollupID, uint64 initNumBatch, uint64 finalNewBatch, bytes32 newLocalExitRoot, bytes32 oldStateRoot, bytes32 newStateRoot) returns(bytes)
-func (_Ipolygonrollupmanager *IpolygonrollupmanagerSession) GetInputSnarkBytes(rollupID uint32, initNumBatch uint64, finalNewBatch uint64, newLocalExitRoot [32]byte, oldStateRoot [32]byte, newStateRoot [32]byte) (*types.Transaction, error) {
-	return _Ipolygonrollupmanager.Contract.GetInputSnarkBytes(&_Ipolygonrollupmanager.TransactOpts, rollupID, initNumBatch, finalNewBatch, newLocalExitRoot, oldStateRoot, newStateRoot)
-}
-
-// GetInputSnarkBytes is a paid mutator transaction binding the contract method 0x7975fcfe.
-//
-// Solidity: function getInputSnarkBytes(uint32 rollupID, uint64 initNumBatch, uint64 finalNewBatch, bytes32 newLocalExitRoot, bytes32 oldStateRoot, bytes32 newStateRoot) returns(bytes)
-func (_Ipolygonrollupmanager *IpolygonrollupmanagerTransactorSession) GetInputSnarkBytes(rollupID uint32, initNumBatch uint64, finalNewBatch uint64, newLocalExitRoot [32]byte, oldStateRoot [32]byte, newStateRoot [32]byte) (*types.Transaction, error) {
-	return _Ipolygonrollupmanager.Contract.GetInputSnarkBytes(&_Ipolygonrollupmanager.TransactOpts, rollupID, initNumBatch, finalNewBatch, newLocalExitRoot, oldStateRoot, newStateRoot)
-}
-
-// GetLastVerifiedBatch is a paid mutator transaction binding the contract method 0x11f6b287.
-//
-// Solidity: function getLastVerifiedBatch(uint32 rollupID) returns(uint64)
-func (_Ipolygonrollupmanager *IpolygonrollupmanagerTransactor) GetLastVerifiedBatch(opts *bind.TransactOpts, rollupID uint32) (*types.Transaction, error) {
-	return _Ipolygonrollupmanager.contract.Transact(opts, "getLastVerifiedBatch", rollupID)
-}
-
-// GetLastVerifiedBatch is a paid mutator transaction binding the contract method 0x11f6b287.
-//
-// Solidity: function getLastVerifiedBatch(uint32 rollupID) returns(uint64)
-func (_Ipolygonrollupmanager *IpolygonrollupmanagerSession) GetLastVerifiedBatch(rollupID uint32) (*types.Transaction, error) {
-	return _Ipolygonrollupmanager.Contract.GetLastVerifiedBatch(&_Ipolygonrollupmanager.TransactOpts, rollupID)
-}
-
-// GetLastVerifiedBatch is a paid mutator transaction binding the contract method 0x11f6b287.
-//
-// Solidity: function getLastVerifiedBatch(uint32 rollupID) returns(uint64)
-func (_Ipolygonrollupmanager *IpolygonrollupmanagerTransactorSession) GetLastVerifiedBatch(rollupID uint32) (*types.Transaction, error) {
-	return _Ipolygonrollupmanager.Contract.GetLastVerifiedBatch(&_Ipolygonrollupmanager.TransactOpts, rollupID)
-}
-
-// GetRollupBatchNumToStateRoot is a paid mutator transaction binding the contract method 0x55a71ee0.
-//
-// Solidity: function getRollupBatchNumToStateRoot(uint32 rollupID, uint64 batchNum) returns(bytes32)
-func (_Ipolygonrollupmanager *IpolygonrollupmanagerTransactor) GetRollupBatchNumToStateRoot(opts *bind.TransactOpts, rollupID uint32, batchNum uint64) (*types.Transaction, error) {
-	return _Ipolygonrollupmanager.contract.Transact(opts, "getRollupBatchNumToStateRoot", rollupID, batchNum)
-}
-
-// GetRollupBatchNumToStateRoot is a paid mutator transaction binding the contract method 0x55a71ee0.
-//
-// Solidity: function getRollupBatchNumToStateRoot(uint32 rollupID, uint64 batchNum) returns(bytes32)
-func (_Ipolygonrollupmanager *IpolygonrollupmanagerSession) GetRollupBatchNumToStateRoot(rollupID uint32, batchNum uint64) (*types.Transaction, error) {
-	return _Ipolygonrollupmanager.Contract.GetRollupBatchNumToStateRoot(&_Ipolygonrollupmanager.TransactOpts, rollupID, batchNum)
-}
-
-// GetRollupBatchNumToStateRoot is a paid mutator transaction binding the contract method 0x55a71ee0.
-//
-// Solidity: function getRollupBatchNumToStateRoot(uint32 rollupID, uint64 batchNum) returns(bytes32)
-func (_Ipolygonrollupmanager *IpolygonrollupmanagerTransactorSession) GetRollupBatchNumToStateRoot(rollupID uint32, batchNum uint64) (*types.Transaction, error) {
-	return _Ipolygonrollupmanager.Contract.GetRollupBatchNumToStateRoot(&_Ipolygonrollupmanager.TransactOpts, rollupID, batchNum)
-}
-
-// GetRollupExitRoot is a paid mutator transaction binding the contract method 0xa2967d99.
-//
-// Solidity: function getRollupExitRoot() returns(bytes32)
-func (_Ipolygonrollupmanager *IpolygonrollupmanagerTransactor) GetRollupExitRoot(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _Ipolygonrollupmanager.contract.Transact(opts, "getRollupExitRoot")
-}
-
-// GetRollupExitRoot is a paid mutator transaction binding the contract method 0xa2967d99.
-//
-// Solidity: function getRollupExitRoot() returns(bytes32)
-func (_Ipolygonrollupmanager *IpolygonrollupmanagerSession) GetRollupExitRoot() (*types.Transaction, error) {
-	return _Ipolygonrollupmanager.Contract.GetRollupExitRoot(&_Ipolygonrollupmanager.TransactOpts)
-}
-
-// GetRollupExitRoot is a paid mutator transaction binding the contract method 0xa2967d99.
-//
-// Solidity: function getRollupExitRoot() returns(bytes32)
-func (_Ipolygonrollupmanager *IpolygonrollupmanagerTransactorSession) GetRollupExitRoot() (*types.Transaction, error) {
-	return _Ipolygonrollupmanager.Contract.GetRollupExitRoot(&_Ipolygonrollupmanager.TransactOpts)
-}
-
-// LastDeactivatedEmergencyStateTimestamp is a paid mutator transaction binding the contract method 0x30c27dde.
-//
-// Solidity: function lastDeactivatedEmergencyStateTimestamp() returns(uint64)
-func (_Ipolygonrollupmanager *IpolygonrollupmanagerTransactor) LastDeactivatedEmergencyStateTimestamp(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _Ipolygonrollupmanager.contract.Transact(opts, "lastDeactivatedEmergencyStateTimestamp")
-}
-
-// LastDeactivatedEmergencyStateTimestamp is a paid mutator transaction binding the contract method 0x30c27dde.
-//
-// Solidity: function lastDeactivatedEmergencyStateTimestamp() returns(uint64)
-func (_Ipolygonrollupmanager *IpolygonrollupmanagerSession) LastDeactivatedEmergencyStateTimestamp() (*types.Transaction, error) {
-	return _Ipolygonrollupmanager.Contract.LastDeactivatedEmergencyStateTimestamp(&_Ipolygonrollupmanager.TransactOpts)
-}
-
-// LastDeactivatedEmergencyStateTimestamp is a paid mutator transaction binding the contract method 0x30c27dde.
-//
-// Solidity: function lastDeactivatedEmergencyStateTimestamp() returns(uint64)
-func (_Ipolygonrollupmanager *IpolygonrollupmanagerTransactorSession) LastDeactivatedEmergencyStateTimestamp() (*types.Transaction, error) {
-	return _Ipolygonrollupmanager.Contract.LastDeactivatedEmergencyStateTimestamp(&_Ipolygonrollupmanager.TransactOpts)
 }
 
 // ObsoleteRollupType is a paid mutator transaction binding the contract method 0x7222020f.

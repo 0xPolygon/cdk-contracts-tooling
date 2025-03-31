@@ -474,12 +474,22 @@
       "inputs": [
          {
             "internalType": "address",
-            "name": "timelock",
+            "name": "defaultAdmin",
             "type": "address"
          },
          {
             "internalType": "address",
-            "name": "aggLayerAdmin",
+            "name": "aggchainDefaultVKeyRole",
+            "type": "address"
+         },
+         {
+            "internalType": "address",
+            "name": "addRouteRole",
+            "type": "address"
+         },
+         {
+            "internalType": "address",
+            "name": "freezeRouteRole",
             "type": "address"
          }
       ],
@@ -581,7 +591,7 @@
          },
          {
             "internalType": "bytes32",
-            "name": "newAggchainVKey",
+            "name": "newDefaultAggchainVKey",
             "type": "bytes32"
          }
       ],

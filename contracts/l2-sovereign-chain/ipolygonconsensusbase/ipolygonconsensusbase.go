@@ -31,7 +31,7 @@ var (
 
 // IpolygonconsensusbaseMetaData contains all meta data concerning the Ipolygonconsensusbase contract.
 var IpolygonconsensusbaseMetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[],\"name\":\"admin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_admin\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"sequencer\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"networkID\",\"type\":\"uint32\"},{\"internalType\":\"address\",\"name\":\"gasTokenAddress\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"sequencerURL\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_networkName\",\"type\":\"string\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
+	ABI: "[{\"inputs\":[],\"name\":\"admin\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_admin\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"sequencer\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"networkID\",\"type\":\"uint32\"},{\"internalType\":\"address\",\"name\":\"gasTokenAddress\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"sequencerURL\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"_networkName\",\"type\":\"string\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
 }
 
 // IpolygonconsensusbaseABI is the input ABI used to generate the binding from.
@@ -180,25 +180,35 @@ func (_Ipolygonconsensusbase *IpolygonconsensusbaseTransactorRaw) Transact(opts 
 	return _Ipolygonconsensusbase.Contract.contract.Transact(opts, method, params...)
 }
 
-// Admin is a paid mutator transaction binding the contract method 0xf851a440.
+// Admin is a free data retrieval call binding the contract method 0xf851a440.
 //
-// Solidity: function admin() returns(address)
-func (_Ipolygonconsensusbase *IpolygonconsensusbaseTransactor) Admin(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _Ipolygonconsensusbase.contract.Transact(opts, "admin")
+// Solidity: function admin() view returns(address)
+func (_Ipolygonconsensusbase *IpolygonconsensusbaseCaller) Admin(opts *bind.CallOpts) (common.Address, error) {
+	var out []interface{}
+	err := _Ipolygonconsensusbase.contract.Call(opts, &out, "admin")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
 }
 
-// Admin is a paid mutator transaction binding the contract method 0xf851a440.
+// Admin is a free data retrieval call binding the contract method 0xf851a440.
 //
-// Solidity: function admin() returns(address)
-func (_Ipolygonconsensusbase *IpolygonconsensusbaseSession) Admin() (*types.Transaction, error) {
-	return _Ipolygonconsensusbase.Contract.Admin(&_Ipolygonconsensusbase.TransactOpts)
+// Solidity: function admin() view returns(address)
+func (_Ipolygonconsensusbase *IpolygonconsensusbaseSession) Admin() (common.Address, error) {
+	return _Ipolygonconsensusbase.Contract.Admin(&_Ipolygonconsensusbase.CallOpts)
 }
 
-// Admin is a paid mutator transaction binding the contract method 0xf851a440.
+// Admin is a free data retrieval call binding the contract method 0xf851a440.
 //
-// Solidity: function admin() returns(address)
-func (_Ipolygonconsensusbase *IpolygonconsensusbaseTransactorSession) Admin() (*types.Transaction, error) {
-	return _Ipolygonconsensusbase.Contract.Admin(&_Ipolygonconsensusbase.TransactOpts)
+// Solidity: function admin() view returns(address)
+func (_Ipolygonconsensusbase *IpolygonconsensusbaseCallerSession) Admin() (common.Address, error) {
+	return _Ipolygonconsensusbase.Contract.Admin(&_Ipolygonconsensusbase.CallOpts)
 }
 
 // Initialize is a paid mutator transaction binding the contract method 0x71257022.

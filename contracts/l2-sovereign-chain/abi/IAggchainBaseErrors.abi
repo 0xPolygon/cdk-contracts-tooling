@@ -1,12 +1,7 @@
 [
    {
       "inputs": [],
-      "name": "AggchainRouteAlreadyAdded",
-      "type": "error"
-   },
-   {
-      "inputs": [],
-      "name": "AggchainRouteNotFound",
+      "name": "AggchainVKeyNotFound",
       "type": "error"
    },
    {
@@ -17,6 +12,36 @@
    {
       "inputs": [],
       "name": "InvalidInitializeFunction",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "InvalidInitializer",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OnlyPendingVKeyManager",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OnlyVKeyManager",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OwnedAggchainVKeyAlreadyAdded",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OwnedAggchainVKeyLengthMismatch",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OwnedAggchainVKeyNotFound",
       "type": "error"
    },
    {
