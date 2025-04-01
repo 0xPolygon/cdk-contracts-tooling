@@ -1,0 +1,96 @@
+[
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+         },
+         {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "newVKey",
+            "type": "bytes32"
+         }
+      ],
+      "name": "AddDefaultAggchainVKey",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+         },
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "verifier",
+            "type": "address"
+         },
+         {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "pessimisticVKey",
+            "type": "bytes32"
+         }
+      ],
+      "name": "RouteAdded",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+         },
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "verifier",
+            "type": "address"
+         },
+         {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "pessimisticVKey",
+            "type": "bytes32"
+         }
+      ],
+      "name": "RouteFrozen",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+         },
+         {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "previousVKey",
+            "type": "bytes32"
+         },
+         {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "newVKey",
+            "type": "bytes32"
+         }
+      ],
+      "name": "UpdateDefaultAggchainVKey",
+      "type": "event"
+   }
+]
