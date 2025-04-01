@@ -82,7 +82,7 @@ var (
 	importContractsCommand = &cli.Command{
 		Name:    "import-contracts",
 		Aliases: []string{"import-c"},
-		Usage:   "Import the smart contracts from agg-contracts-internal repo and generate Go bindings",
+		Usage:   "Import the smart contracts from agg-contracts-internal or zkevm-contracts repo and generate Go bindings",
 		Action:  importContracts,
 		Flags: []cli.Flag{
 			&cli.StringFlag{
