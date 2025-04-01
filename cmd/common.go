@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
-	"path"
+	"path/filepath"
 	"strings"
 )
 
@@ -13,16 +13,23 @@ const (
 	repoName = "cdk-contracts-tooling"
 )
 
+// checkWorkingDir checks if the current working directory is the root of the project
 func checkWorkingDir() (string, error) {
 	baseDir, err := os.Getwd()
 	if err != nil {
 		return "", err
 	}
-	_, f := path.Split(baseDir)
-	if f == "cmd" {
-		return "", fmt.Errorf("run the command from the root of the (%s), not from (%s)", repoName, baseDir)
+
+	// Check if the current directory is the root of the project by looking for specific files
+	rootPathIndicators := []string{"go.mod", ".gitignore"}
+
+	for _, indicator := range rootPathIndicators {
+		if _, err := os.Stat(filepath.Join(baseDir, indicator)); err == nil {
+			return baseDir, nil
+		}
 	}
-	return baseDir, nil
+
+	return "", fmt.Errorf("run the command from the root of the (%s). Current directory (%s) is not the project root", repoName, baseDir)
 }
 
 // runCommand executes given command and extracts output from standard error in case of failure.

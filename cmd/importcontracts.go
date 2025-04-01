@@ -13,19 +13,68 @@ import (
 	"github.com/urfave/cli/v2"
 )
 
+type ProvingSchema string
+
 const (
+	FullExecutionProofs ProvingSchema = "fep"
+	PessimisticProofs   ProvingSchema = "pp"
+)
+
+// GetContractsRepoURL returns the URL of the contracts repository based on the proving schema
+func (ps ProvingSchema) GetContractsRepoURL() (string, error) {
+	switch ps {
+	case FullExecutionProofs:
+		return fepContractsRepoURL, nil
+	case PessimisticProofs:
+		return ppContractsRepoURL, nil
+	}
+
+	return "", fmt.Errorf("invalid proving schema provided: %s", ps)
+}
+
+// GetContractsRepoName returns the name of the contracts directory based on the proving schema
+func (ps ProvingSchema) GetContractsRepoName() (string, error) {
+	url, err := ps.GetContractsRepoURL()
+	if err != nil {
+		return "", err
+	}
+
+	parts := strings.Split(strings.TrimSuffix(url, ".git"), "/")
+	if len(parts) == 0 {
+		return "", fmt.Errorf("invalid repo URL format: %s", url)
+	}
+
+	return parts[len(parts)-1], nil
+}
+
+func (ps ProvingSchema) String() string {
+	return string(ps)
+}
+
+var validProvingSchemas = map[ProvingSchema]struct{}{
+	FullExecutionProofs: {},
+	PessimisticProofs:   {},
+}
+
+const (
+	// Flags
 	contractsVersionFlagName = "contracts-version"
 	contractsAliasFlagName   = "contracts-alias"
 	nodeVersionFlagName      = "node-version"
 	buildParisFlagName       = "build-paris"
-	pathToFetchContracts     = "zkevm-contracts/artifacts/contracts"
-	readmeTemplate           = `# %s contracts
+	provingSystemFlagName    = "proving-schema"
+
+	// Repo URLs
+	fepContractsRepoURL = "https://github.com/0xPolygonHermez/zkevm-contracts.git"
+	ppContractsRepoURL  = "https://github.com/agglayer/agg-contracts-internal.git"
+
+	artifactsPath  = "artifacts/contracts"
+	readmeTemplate = `# %s contracts
 
 All the files and directories within this directory have been generated using the import-contracts command of the CLI in this repo.
-The ABI and the binnaries of the smart contracts have been extracted from [zkevm-contracts repo](https://github.com/0xPolygonHermez/zkevm-contracts), using the version %s (commit %s)
+The ABI and the binnaries of the smart contracts have been extracted from [%s repo](%s), using the version %s (commit %s)
 
 The CLI command used to generate the contracts: ` + "`$ go run ./cmd %s`" + `
-
 `
 )
 
@@ -33,7 +82,7 @@ var (
 	importContractsCommand = &cli.Command{
 		Name:    "import-contracts",
 		Aliases: []string{"import-c"},
-		Usage:   "Import the smart contracts from zkevm-contracts repo and generate Go bindings",
+		Usage:   "Import the smart contracts from agg-contracts-internal repo and generate Go bindings",
 		Action:  importContracts,
 		Flags: []cli.Flag{
 			&cli.StringFlag{
@@ -62,12 +111,34 @@ var (
 				Required: false,
 				Value:    false,
 			},
+			&cli.StringFlag{
+				Name:     provingSystemFlagName,
+				Aliases:  []string{"ps"},
+				Usage:    "Proving system: 'fep' (full execution proofs) or 'pp' (pessimistic proofs)",
+				Required: false,
+				Value:    string(FullExecutionProofs),
+			},
 		},
 	}
 )
 
 func importContracts(cliCtx *cli.Context) error {
 	baseDir, err := checkWorkingDir()
+	if err != nil {
+		return err
+	}
+
+	provingSchemaRaw := cliCtx.String(provingSystemFlagName)
+	if err := validateProvingSchema(provingSchemaRaw); err != nil {
+		return err
+	}
+
+	provingSchema := ProvingSchema(provingSchemaRaw)
+	contractsRepoName, err := provingSchema.GetContractsRepoName()
+	if err != nil {
+		return err
+	}
+	contractsRepoURL, err := provingSchema.GetContractsRepoURL()
 	if err != nil {
 		return err
 	}
@@ -81,21 +152,21 @@ func importContracts(cliCtx *cli.Context) error {
 	if err != nil {
 		return err
 	}
-	err = runCommand("ls", "zkevm-contracts")
+	err = runCommand("ls", contractsRepoName)
 	if err != nil {
 		if strings.Contains(err.Error(), "exit status 2") {
 			fmt.Println("cloning contracts repo into temporary directory")
-			err = runCommand("git", "clone", "https://github.com/0xPolygonHermez/zkevm-contracts.git")
+			err = runCommand("git", "clone", contractsRepoURL)
 			if err != nil {
-				fmt.Println("error cloning zkevm-contracts repo")
+				fmt.Printf("error cloning contracts repo from %s\n", contractsRepoURL)
 				return err
 			}
 		} else {
-			fmt.Println("unexpected error checking if zkevm-contracts is already cloned")
+			fmt.Printf("unexpected error checking if %s is already cloned\n", contractsRepoName)
 			return err
 		}
 	}
-	err = os.Chdir(path.Join(tmpDir, "zkevm-contracts"))
+	err = os.Chdir(path.Join(tmpDir, contractsRepoName))
 	if err != nil {
 		return err
 	}
@@ -109,7 +180,7 @@ func importContracts(cliCtx *cli.Context) error {
 	}
 	gitCommit, err := exec.Command("git", "rev-parse", "HEAD").CombinedOutput()
 	if err != nil {
-		fmt.Println("error checking out to: ", checkoutVersion)
+		fmt.Printf("error retrieving current Git commit hash: %v\nOutput: %s\n", err, string(gitCommit))
 		return err
 	}
 	nodeVersion := cliCtx.String(nodeVersionFlagName)
@@ -120,7 +191,7 @@ func importContracts(cliCtx *cli.Context) error {
 			return err
 		}
 	}
-	fmt.Println("compiling contracts node version ", nodeVersion)
+	fmt.Println("compiling contracts node version", nodeVersion)
 
 	err = runCommand("bash", "-l", "-c", "NODE_VERSION="+nodeVersion+" $NVM_DIR/nvm-exec npm i && npm run compile")
 	if err != nil {
@@ -130,7 +201,7 @@ func importContracts(cliCtx *cli.Context) error {
 
 	fmt.Println("creating target directory and abi and bin subdirectories")
 	alias := cliCtx.String(contractsAliasFlagName)
-	contractsPath := path.Join(baseDir, "contracts", alias)
+	contractsPath := path.Join(baseDir, "contracts", provingSchemaRaw, alias)
 	err = os.Mkdir(contractsPath, 0744)
 	if err != nil {
 		fmt.Println("error creating directory ", contractsPath)
@@ -149,7 +220,7 @@ func importContracts(cliCtx *cli.Context) error {
 	}
 
 	fmt.Println("scrapping files to find contracts to compile")
-	contractPaths, err := getContractJSONFilePaths(path.Join(tmpDir, pathToFetchContracts))
+	contractPaths, err := getContractJSONFilePaths(path.Join(tmpDir, fmt.Sprintf("%s/%s", contractsRepoName, artifactsPath)))
 	if err != nil {
 		return err
 	}
@@ -179,13 +250,23 @@ func importContracts(cliCtx *cli.Context) error {
 	commandlineParams := strings.Join(os.Args[1:], " ")
 	err = os.WriteFile(
 		contractsPath+"/README.md",
-		[]byte(fmt.Sprintf(
-			readmeTemplate, alias, checkoutVersion, strings.TrimSuffix(string(gitCommit), "\n"), commandlineParams,
-		)),
+		fmt.Appendf(nil,
+			readmeTemplate, alias,
+			contractsRepoName, contractsRepoURL,
+			checkoutVersion, strings.TrimSuffix(string(gitCommit), "\n"), commandlineParams,
+		),
 		0644,
 	)
 	if err != nil {
 		return err
+	}
+	return nil
+}
+
+// validateProvingSchema ensures only valid values are used
+func validateProvingSchema(value string) error {
+	if _, exists := validProvingSchemas[ProvingSchema(value)]; !exists {
+		return fmt.Errorf("invalid proving-schema value provided: %s, must be either %s or %s", value, FullExecutionProofs, PessimisticProofs)
 	}
 	return nil
 }
