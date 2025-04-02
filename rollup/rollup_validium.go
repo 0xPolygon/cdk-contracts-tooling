@@ -3,7 +3,7 @@ package rollup
 import (
 	"context"
 
-	"github.com/0xPolygon/cdk-contracts-tooling/contracts/elderberry/polygonvalidiumetrog"
+	"github.com/0xPolygon/cdk-contracts-tooling/contracts/fep/elderberry/polygonvalidiumetrog"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 )
 
