@@ -70,6 +70,58 @@
       "type": "error"
    },
    {
+      "inputs": [
+         {
+            "internalType": "uint32",
+            "name": "originNetwork",
+            "type": "uint32"
+         },
+         {
+            "internalType": "address",
+            "name": "originTokenAddress",
+            "type": "address"
+         },
+         {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+         },
+         {
+            "internalType": "uint256",
+            "name": "localBalanceTreeAmount",
+            "type": "uint256"
+         }
+      ],
+      "name": "LocalBalanceTreeOverflow",
+      "type": "error"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "uint32",
+            "name": "originNetwork",
+            "type": "uint32"
+         },
+         {
+            "internalType": "address",
+            "name": "originTokenAddress",
+            "type": "address"
+         },
+         {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+         },
+         {
+            "internalType": "uint256",
+            "name": "localBalanceTreeAmount",
+            "type": "uint256"
+         }
+      ],
+      "name": "LocalBalanceTreeUnderflow",
+      "type": "error"
+   },
+   {
       "inputs": [],
       "name": "MessageFailed",
       "type": "error"
@@ -112,6 +164,21 @@
    {
       "inputs": [],
       "name": "OnlyBridgeManager",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OnlyEmergencyBridgePauser",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OnlyGlobalExitRootRemover",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OnlyPendingEmergencyBridgePauser",
       "type": "error"
    },
    {
@@ -453,6 +520,11 @@
             "internalType": "bool",
             "name": "_sovereignWETHAddressIsNotMintable",
             "type": "bool"
+         },
+         {
+            "internalType": "address",
+            "name": "_emergencyBridgePauser",
+            "type": "address"
          }
       ],
       "name": "initialize",

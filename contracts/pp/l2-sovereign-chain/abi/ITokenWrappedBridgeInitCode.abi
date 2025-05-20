@@ -1,0 +1,15 @@
+[
+   {
+      "inputs": [],
+      "name": "BASE_INIT_BYTECODE_WRAPPED_TOKEN",
+      "outputs": [
+         {
+            "internalType": "bytes",
+            "name": "",
+            "type": "bytes"
+         }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+   }
+]

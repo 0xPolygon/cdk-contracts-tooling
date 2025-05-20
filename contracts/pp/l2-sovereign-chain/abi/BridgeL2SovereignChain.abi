@@ -75,6 +75,58 @@
       "type": "error"
    },
    {
+      "inputs": [
+         {
+            "internalType": "uint32",
+            "name": "originNetwork",
+            "type": "uint32"
+         },
+         {
+            "internalType": "address",
+            "name": "originTokenAddress",
+            "type": "address"
+         },
+         {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+         },
+         {
+            "internalType": "uint256",
+            "name": "localBalanceTreeAmount",
+            "type": "uint256"
+         }
+      ],
+      "name": "LocalBalanceTreeOverflow",
+      "type": "error"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "uint32",
+            "name": "originNetwork",
+            "type": "uint32"
+         },
+         {
+            "internalType": "address",
+            "name": "originTokenAddress",
+            "type": "address"
+         },
+         {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+         },
+         {
+            "internalType": "uint256",
+            "name": "localBalanceTreeAmount",
+            "type": "uint256"
+         }
+      ],
+      "name": "LocalBalanceTreeUnderflow",
+      "type": "error"
+   },
+   {
       "inputs": [],
       "name": "MerkleTreeFull",
       "type": "error"
@@ -126,12 +178,27 @@
    },
    {
       "inputs": [],
+      "name": "OnlyEmergencyBridgePauser",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "OnlyEmergencyState",
       "type": "error"
    },
    {
       "inputs": [],
+      "name": "OnlyGlobalExitRootRemover",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "OnlyNotEmergencyState",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OnlyPendingEmergencyBridgePauser",
       "type": "error"
    },
    {
@@ -168,6 +235,25 @@
       "inputs": [],
       "name": "WETHRemappingNotSupportedOnGasTokenNetworks",
       "type": "error"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "oldEmergencyBridgePauser",
+            "type": "address"
+         },
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "newEmergencyBridgePauser",
+            "type": "address"
+         }
+      ],
+      "name": "AcceptEmergencyBridgePauserRole",
+      "type": "event"
    },
    {
       "anonymous": false,
@@ -379,6 +465,25 @@
       "inputs": [
          {
             "indexed": false,
+            "internalType": "bytes32",
+            "name": "tokenInfoHash",
+            "type": "bytes32"
+         },
+         {
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+         }
+      ],
+      "name": "SetInitialLocalBalanceTreeAmount",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
             "internalType": "uint32",
             "name": "originNetwork",
             "type": "uint32"
@@ -422,6 +527,25 @@
          }
       ],
       "name": "SetSovereignWETHAddress",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "currentEmergencyBridgePauser",
+            "type": "address"
+         },
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "newEmergencyBridgePauser",
+            "type": "address"
+         }
+      ],
+      "name": "TransferEmergencyBridgePauserRole",
       "type": "event"
    },
    {
@@ -477,6 +601,32 @@
    },
    {
       "inputs": [],
+      "name": "BRIDGE_SOVEREIGN_VERSION",
+      "outputs": [
+         {
+            "internalType": "string",
+            "name": "",
+            "type": "string"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "BRIDGE_VERSION",
+      "outputs": [
+         {
+            "internalType": "string",
+            "name": "",
+            "type": "string"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
       "name": "WETHToken",
       "outputs": [
          {
@@ -490,9 +640,16 @@
    },
    {
       "inputs": [],
+      "name": "acceptEmergencyBridgePauserRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+   },
+   {
+      "inputs": [],
       "name": "activateEmergencyState",
       "outputs": [],
-      "stateMutability": "pure",
+      "stateMutability": "nonpayable",
       "type": "function"
    },
    {
@@ -827,7 +984,7 @@
       "inputs": [],
       "name": "deactivateEmergencyState",
       "outputs": [],
-      "stateMutability": "pure",
+      "stateMutability": "nonpayable",
       "type": "function"
    },
    {
@@ -838,6 +995,19 @@
             "internalType": "uint256",
             "name": "",
             "type": "uint256"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "emergencyBridgePauser",
+      "outputs": [
+         {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
          }
       ],
       "stateMutability": "view",
@@ -1003,6 +1173,29 @@
    {
       "inputs": [
          {
+            "internalType": "bytes32[]",
+            "name": "tokenInfoHash",
+            "type": "bytes32[]"
+         },
+         {
+            "internalType": "uint256[]",
+            "name": "amount",
+            "type": "uint256[]"
+         },
+         {
+            "internalType": "address",
+            "name": "_emergencyBridgePauser",
+            "type": "address"
+         }
+      ],
+      "name": "initialize",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
             "internalType": "uint32",
             "name": "_networkID",
             "type": "uint32"
@@ -1046,6 +1239,11 @@
             "internalType": "bool",
             "name": "_sovereignWETHAddressIsNotMintable",
             "type": "bool"
+         },
+         {
+            "internalType": "address",
+            "name": "_emergencyBridgePauser",
+            "type": "address"
          }
       ],
       "name": "initialize",
@@ -1144,6 +1342,25 @@
    {
       "inputs": [
          {
+            "internalType": "bytes32",
+            "name": "tokenInfoHash",
+            "type": "bytes32"
+         }
+      ],
+      "name": "localBalanceTree",
+      "outputs": [
+         {
+            "internalType": "uint256",
+            "name": "amount",
+            "type": "uint256"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
             "internalType": "address",
             "name": "legacyTokenAddress",
             "type": "address"
@@ -1152,6 +1369,11 @@
             "internalType": "uint256",
             "name": "amount",
             "type": "uint256"
+         },
+         {
+            "internalType": "bytes",
+            "name": "permitData",
+            "type": "bytes"
          }
       ],
       "name": "migrateLegacyToken",
@@ -1167,6 +1389,19 @@
             "internalType": "uint32",
             "name": "",
             "type": "uint32"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "pendingEmergencyBridgePauser",
+      "outputs": [
+         {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
          }
       ],
       "stateMutability": "view",
@@ -1316,6 +1551,19 @@
       "type": "function"
    },
    {
+      "inputs": [
+         {
+            "internalType": "address",
+            "name": "newEmergencyBridgePauser",
+            "type": "address"
+         }
+      ],
+      "name": "transferEmergencyBridgePauserRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+   },
+   {
       "inputs": [],
       "name": "unsetGlobalIndexHashChain",
       "outputs": [
@@ -1396,6 +1644,19 @@
             "internalType": "bool",
             "name": "isNotMintable",
             "type": "bool"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "wrappedTokenBytecodeStorer",
+      "outputs": [
+         {
+            "internalType": "contract ITokenWrappedBridgeInitCode",
+            "name": "",
+            "type": "address"
          }
       ],
       "stateMutability": "view",

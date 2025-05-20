@@ -22,6 +22,11 @@
    },
    {
       "inputs": [],
+      "name": "InvalidZeroAddress",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "OnlyAllowedContracts",
       "type": "error"
    },
@@ -33,6 +38,16 @@
    {
       "inputs": [],
       "name": "OnlyGlobalExitRootUpdater",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OnlyPendingGlobalExitRootRemover",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OnlyPendingGlobalExitRootUpdater",
       "type": "error"
    },
    {

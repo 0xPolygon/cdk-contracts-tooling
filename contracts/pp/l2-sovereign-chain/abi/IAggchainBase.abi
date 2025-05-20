@@ -1,6 +1,11 @@
 [
    {
       "inputs": [],
+      "name": "AggchainManagerCannotBeZero",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "AggchainVKeyNotFound",
       "type": "error"
    },
@@ -11,7 +16,27 @@
    },
    {
       "inputs": [],
+      "name": "InvalidAggchainDataLength",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "InvalidInitializeFunction",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "InvalidZeroAddress",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OnlyAggchainManager",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OnlyPendingAggchainManager",
       "type": "error"
    },
    {
@@ -48,6 +73,25 @@
       "inputs": [],
       "name": "ZeroValueAggchainVKey",
       "type": "error"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "oldAggchainManager",
+            "type": "address"
+         },
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "newAggchainManager",
+            "type": "address"
+         }
+      ],
+      "name": "AcceptAggchainManagerRole",
+      "type": "event"
    },
    {
       "anonymous": false,
@@ -97,6 +141,25 @@
       "anonymous": false,
       "inputs": [],
       "name": "EnableUseDefaultGatewayFlag",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "currentAggchainManager",
+            "type": "address"
+         },
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "newPendingAggchainManager",
+            "type": "address"
+         }
+      ],
+      "name": "TransferAggchainManagerRole",
       "type": "event"
    },
    {
@@ -178,12 +241,12 @@
    {
       "inputs": [
          {
-            "internalType": "bytes",
-            "name": "initializeBytesAggchain",
-            "type": "bytes"
+            "internalType": "address",
+            "name": "newAggchainManager",
+            "type": "address"
          }
       ],
-      "name": "initialize",
+      "name": "initAggchainManager",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"

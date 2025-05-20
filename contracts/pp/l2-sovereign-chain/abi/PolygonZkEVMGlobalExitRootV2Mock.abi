@@ -27,6 +27,11 @@
    },
    {
       "inputs": [],
+      "name": "InvalidZeroAddress",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "MerkleTreeFull",
       "type": "error"
    },
@@ -43,6 +48,16 @@
    {
       "inputs": [],
       "name": "OnlyGlobalExitRootUpdater",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OnlyPendingGlobalExitRootRemover",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OnlyPendingGlobalExitRootUpdater",
       "type": "error"
    },
    {
@@ -126,6 +141,19 @@
       ],
       "name": "UpdateL1InfoTreeV2",
       "type": "event"
+   },
+   {
+      "inputs": [],
+      "name": "GER_VERSION",
+      "outputs": [
+         {
+            "internalType": "string",
+            "name": "",
+            "type": "string"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
    },
    {
       "inputs": [],

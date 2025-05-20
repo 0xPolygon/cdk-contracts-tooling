@@ -32,7 +32,17 @@
    },
    {
       "inputs": [],
+      "name": "AggchainManagerCannotBeZero",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "AggchainVKeyNotFound",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "AggregationVkeyMustBeDifferentThanZero",
       "type": "error"
    },
    {
@@ -157,6 +167,11 @@
    },
    {
       "inputs": [],
+      "name": "InvalidAggchainDataLength",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "InvalidInitializeFunction",
       "type": "error"
    },
@@ -188,6 +203,11 @@
    {
       "inputs": [],
       "name": "InvalidRangeMultiplierBatchFee",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "InvalidZeroAddress",
       "type": "error"
    },
    {
@@ -352,6 +372,11 @@
    },
    {
       "inputs": [],
+      "name": "RangeVkeyCommitmentMustBeDifferentThanZero",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "RollupConfigHashMustBeDifferentThanZero",
       "type": "error"
    },
@@ -372,7 +397,7 @@
    },
    {
       "inputs": [],
-      "name": "StartL2TimestampMustBeGreaterThanCurrentTime",
+      "name": "StartL2TimestampMustBeLessThanCurrentTime",
       "type": "error"
    },
    {
@@ -506,6 +531,25 @@
    },
    {
       "anonymous": false,
+      "inputs": [
+         {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "oldAggregationVkey",
+            "type": "bytes32"
+         },
+         {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "newAggregationVkey",
+            "type": "bytes32"
+         }
+      ],
+      "name": "AggregationVkeyUpdated",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
       "inputs": [],
       "name": "DisableOptimisticMode",
       "type": "event"
@@ -570,6 +614,25 @@
          }
       ],
       "name": "OutputProposed",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "oldRangeVkeyCommitment",
+            "type": "bytes32"
+         },
+         {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "newRangeVkeyCommitment",
+            "type": "bytes32"
+         }
+      ],
+      "name": "RangeVkeyCommitmentUpdated",
       "type": "event"
    },
    {
@@ -870,6 +933,19 @@
    },
    {
       "inputs": [],
+      "name": "aggregationVkey",
+      "outputs": [
+         {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
       "name": "bridgeAddress",
       "outputs": [
          {
@@ -1108,6 +1184,19 @@
          }
       ],
       "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "address",
+            "name": "newAggchainManager",
+            "type": "address"
+         }
+      ],
+      "name": "initAggchainManager",
+      "outputs": [],
+      "stateMutability": "nonpayable",
       "type": "function"
    },
    {
@@ -1403,6 +1492,19 @@
    },
    {
       "inputs": [],
+      "name": "rangeVkeyCommitment",
+      "outputs": [
+         {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
       "name": "rollupConfigHash",
       "outputs": [
          {
@@ -1573,6 +1675,19 @@
    {
       "inputs": [
          {
+            "internalType": "bytes32",
+            "name": "_aggregationVkey",
+            "type": "bytes32"
+         }
+      ],
+      "name": "updateAggregationVkey",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
             "internalType": "bytes4",
             "name": "aggchainVKeySelector",
             "type": "bytes4"
@@ -1584,6 +1699,19 @@
          }
       ],
       "name": "updateOwnedAggchainVKey",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "bytes32",
+            "name": "_rangeVkeyCommitment",
+            "type": "bytes32"
+         }
+      ],
+      "name": "updateRangeVkeyCommitment",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
@@ -1635,6 +1763,19 @@
             "internalType": "address",
             "name": "",
             "type": "address"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "version",
+      "outputs": [
+         {
+            "internalType": "string",
+            "name": "",
+            "type": "string"
          }
       ],
       "stateMutability": "view",
