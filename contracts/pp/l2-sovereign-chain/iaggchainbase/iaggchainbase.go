@@ -31,7 +31,7 @@ var (
 
 // IaggchainbaseMetaData contains all meta data concerning the Iaggchainbase contract.
 var IaggchainbaseMetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[],\"name\":\"AggchainVKeyNotFound\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidAggLayerGatewayAddress\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidInitializeFunction\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyPendingVKeyManager\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyVKeyManager\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OwnedAggchainVKeyAlreadyAdded\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OwnedAggchainVKeyNotFound\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"UseDefaultGatewayAlreadyDisabled\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"UseDefaultGatewayAlreadyEnabled\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ZeroValueAggchainVKey\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"oldVKeyManager\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newVKeyManager\",\"type\":\"address\"}],\"name\":\"AcceptVKeyManagerRole\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"newAggchainVKey\",\"type\":\"bytes32\"}],\"name\":\"AddAggchainVKey\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[],\"name\":\"DisableUseDefaultGatewayFlag\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[],\"name\":\"EnableUseDefaultGatewayFlag\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"currentVKeyManager\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newPendingVKeyManager\",\"type\":\"address\"}],\"name\":\"TransferVKeyManagerRole\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"previousAggchainVKey\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"newAggchainVKey\",\"type\":\"bytes32\"}],\"name\":\"UpdateAggchainVKey\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"AGGCHAIN_TYPE\",\"outputs\":[{\"internalType\":\"bytes2\",\"name\":\"\",\"type\":\"bytes2\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"aggchainData\",\"type\":\"bytes\"}],\"name\":\"getAggchainHash\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"initializeBytesAggchain\",\"type\":\"bytes\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"aggchainData\",\"type\":\"bytes\"}],\"name\":\"onVerifyPessimistic\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
+	ABI: "[{\"inputs\":[],\"name\":\"AggchainManagerCannotBeZero\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"AggchainVKeyNotFound\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidAggLayerGatewayAddress\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidAggchainDataLength\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidInitializeFunction\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidZeroAddress\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyAggchainManager\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyPendingAggchainManager\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyPendingVKeyManager\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyVKeyManager\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OwnedAggchainVKeyAlreadyAdded\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OwnedAggchainVKeyNotFound\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"UseDefaultGatewayAlreadyDisabled\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"UseDefaultGatewayAlreadyEnabled\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ZeroValueAggchainVKey\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"oldAggchainManager\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newAggchainManager\",\"type\":\"address\"}],\"name\":\"AcceptAggchainManagerRole\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"oldVKeyManager\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newVKeyManager\",\"type\":\"address\"}],\"name\":\"AcceptVKeyManagerRole\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"newAggchainVKey\",\"type\":\"bytes32\"}],\"name\":\"AddAggchainVKey\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[],\"name\":\"DisableUseDefaultGatewayFlag\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[],\"name\":\"EnableUseDefaultGatewayFlag\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"currentAggchainManager\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newPendingAggchainManager\",\"type\":\"address\"}],\"name\":\"TransferAggchainManagerRole\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"currentVKeyManager\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newPendingVKeyManager\",\"type\":\"address\"}],\"name\":\"TransferVKeyManagerRole\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"previousAggchainVKey\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"newAggchainVKey\",\"type\":\"bytes32\"}],\"name\":\"UpdateAggchainVKey\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"AGGCHAIN_TYPE\",\"outputs\":[{\"internalType\":\"bytes2\",\"name\":\"\",\"type\":\"bytes2\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"aggchainData\",\"type\":\"bytes\"}],\"name\":\"getAggchainHash\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newAggchainManager\",\"type\":\"address\"}],\"name\":\"initAggchainManager\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"aggchainData\",\"type\":\"bytes\"}],\"name\":\"onVerifyPessimistic\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
 }
 
 // IaggchainbaseABI is the input ABI used to generate the binding from.
@@ -242,25 +242,25 @@ func (_Iaggchainbase *IaggchainbaseCallerSession) GetAggchainHash(aggchainData [
 	return _Iaggchainbase.Contract.GetAggchainHash(&_Iaggchainbase.CallOpts, aggchainData)
 }
 
-// Initialize is a paid mutator transaction binding the contract method 0x439fab91.
+// InitAggchainManager is a paid mutator transaction binding the contract method 0xb3a326f7.
 //
-// Solidity: function initialize(bytes initializeBytesAggchain) returns()
-func (_Iaggchainbase *IaggchainbaseTransactor) Initialize(opts *bind.TransactOpts, initializeBytesAggchain []byte) (*types.Transaction, error) {
-	return _Iaggchainbase.contract.Transact(opts, "initialize", initializeBytesAggchain)
+// Solidity: function initAggchainManager(address newAggchainManager) returns()
+func (_Iaggchainbase *IaggchainbaseTransactor) InitAggchainManager(opts *bind.TransactOpts, newAggchainManager common.Address) (*types.Transaction, error) {
+	return _Iaggchainbase.contract.Transact(opts, "initAggchainManager", newAggchainManager)
 }
 
-// Initialize is a paid mutator transaction binding the contract method 0x439fab91.
+// InitAggchainManager is a paid mutator transaction binding the contract method 0xb3a326f7.
 //
-// Solidity: function initialize(bytes initializeBytesAggchain) returns()
-func (_Iaggchainbase *IaggchainbaseSession) Initialize(initializeBytesAggchain []byte) (*types.Transaction, error) {
-	return _Iaggchainbase.Contract.Initialize(&_Iaggchainbase.TransactOpts, initializeBytesAggchain)
+// Solidity: function initAggchainManager(address newAggchainManager) returns()
+func (_Iaggchainbase *IaggchainbaseSession) InitAggchainManager(newAggchainManager common.Address) (*types.Transaction, error) {
+	return _Iaggchainbase.Contract.InitAggchainManager(&_Iaggchainbase.TransactOpts, newAggchainManager)
 }
 
-// Initialize is a paid mutator transaction binding the contract method 0x439fab91.
+// InitAggchainManager is a paid mutator transaction binding the contract method 0xb3a326f7.
 //
-// Solidity: function initialize(bytes initializeBytesAggchain) returns()
-func (_Iaggchainbase *IaggchainbaseTransactorSession) Initialize(initializeBytesAggchain []byte) (*types.Transaction, error) {
-	return _Iaggchainbase.Contract.Initialize(&_Iaggchainbase.TransactOpts, initializeBytesAggchain)
+// Solidity: function initAggchainManager(address newAggchainManager) returns()
+func (_Iaggchainbase *IaggchainbaseTransactorSession) InitAggchainManager(newAggchainManager common.Address) (*types.Transaction, error) {
+	return _Iaggchainbase.Contract.InitAggchainManager(&_Iaggchainbase.TransactOpts, newAggchainManager)
 }
 
 // OnVerifyPessimistic is a paid mutator transaction binding the contract method 0x9ee4afa3.
@@ -282,6 +282,141 @@ func (_Iaggchainbase *IaggchainbaseSession) OnVerifyPessimistic(aggchainData []b
 // Solidity: function onVerifyPessimistic(bytes aggchainData) returns()
 func (_Iaggchainbase *IaggchainbaseTransactorSession) OnVerifyPessimistic(aggchainData []byte) (*types.Transaction, error) {
 	return _Iaggchainbase.Contract.OnVerifyPessimistic(&_Iaggchainbase.TransactOpts, aggchainData)
+}
+
+// IaggchainbaseAcceptAggchainManagerRoleIterator is returned from FilterAcceptAggchainManagerRole and is used to iterate over the raw logs and unpacked data for AcceptAggchainManagerRole events raised by the Iaggchainbase contract.
+type IaggchainbaseAcceptAggchainManagerRoleIterator struct {
+	Event *IaggchainbaseAcceptAggchainManagerRole // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *IaggchainbaseAcceptAggchainManagerRoleIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(IaggchainbaseAcceptAggchainManagerRole)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(IaggchainbaseAcceptAggchainManagerRole)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *IaggchainbaseAcceptAggchainManagerRoleIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *IaggchainbaseAcceptAggchainManagerRoleIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// IaggchainbaseAcceptAggchainManagerRole represents a AcceptAggchainManagerRole event raised by the Iaggchainbase contract.
+type IaggchainbaseAcceptAggchainManagerRole struct {
+	OldAggchainManager common.Address
+	NewAggchainManager common.Address
+	Raw                types.Log // Blockchain specific contextual infos
+}
+
+// FilterAcceptAggchainManagerRole is a free log retrieval operation binding the contract event 0x67c02ffba2f5329171ad235a360497af6ac3cfe82f1412866fbbf2dd3556ed3f.
+//
+// Solidity: event AcceptAggchainManagerRole(address oldAggchainManager, address newAggchainManager)
+func (_Iaggchainbase *IaggchainbaseFilterer) FilterAcceptAggchainManagerRole(opts *bind.FilterOpts) (*IaggchainbaseAcceptAggchainManagerRoleIterator, error) {
+
+	logs, sub, err := _Iaggchainbase.contract.FilterLogs(opts, "AcceptAggchainManagerRole")
+	if err != nil {
+		return nil, err
+	}
+	return &IaggchainbaseAcceptAggchainManagerRoleIterator{contract: _Iaggchainbase.contract, event: "AcceptAggchainManagerRole", logs: logs, sub: sub}, nil
+}
+
+// WatchAcceptAggchainManagerRole is a free log subscription operation binding the contract event 0x67c02ffba2f5329171ad235a360497af6ac3cfe82f1412866fbbf2dd3556ed3f.
+//
+// Solidity: event AcceptAggchainManagerRole(address oldAggchainManager, address newAggchainManager)
+func (_Iaggchainbase *IaggchainbaseFilterer) WatchAcceptAggchainManagerRole(opts *bind.WatchOpts, sink chan<- *IaggchainbaseAcceptAggchainManagerRole) (event.Subscription, error) {
+
+	logs, sub, err := _Iaggchainbase.contract.WatchLogs(opts, "AcceptAggchainManagerRole")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(IaggchainbaseAcceptAggchainManagerRole)
+				if err := _Iaggchainbase.contract.UnpackLog(event, "AcceptAggchainManagerRole", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseAcceptAggchainManagerRole is a log parse operation binding the contract event 0x67c02ffba2f5329171ad235a360497af6ac3cfe82f1412866fbbf2dd3556ed3f.
+//
+// Solidity: event AcceptAggchainManagerRole(address oldAggchainManager, address newAggchainManager)
+func (_Iaggchainbase *IaggchainbaseFilterer) ParseAcceptAggchainManagerRole(log types.Log) (*IaggchainbaseAcceptAggchainManagerRole, error) {
+	event := new(IaggchainbaseAcceptAggchainManagerRole)
+	if err := _Iaggchainbase.contract.UnpackLog(event, "AcceptAggchainManagerRole", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
 }
 
 // IaggchainbaseAcceptVKeyManagerRoleIterator is returned from FilterAcceptVKeyManagerRole and is used to iterate over the raw logs and unpacked data for AcceptVKeyManagerRole events raised by the Iaggchainbase contract.
@@ -814,6 +949,141 @@ func (_Iaggchainbase *IaggchainbaseFilterer) WatchEnableUseDefaultGatewayFlag(op
 func (_Iaggchainbase *IaggchainbaseFilterer) ParseEnableUseDefaultGatewayFlag(log types.Log) (*IaggchainbaseEnableUseDefaultGatewayFlag, error) {
 	event := new(IaggchainbaseEnableUseDefaultGatewayFlag)
 	if err := _Iaggchainbase.contract.UnpackLog(event, "EnableUseDefaultGatewayFlag", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// IaggchainbaseTransferAggchainManagerRoleIterator is returned from FilterTransferAggchainManagerRole and is used to iterate over the raw logs and unpacked data for TransferAggchainManagerRole events raised by the Iaggchainbase contract.
+type IaggchainbaseTransferAggchainManagerRoleIterator struct {
+	Event *IaggchainbaseTransferAggchainManagerRole // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *IaggchainbaseTransferAggchainManagerRoleIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(IaggchainbaseTransferAggchainManagerRole)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(IaggchainbaseTransferAggchainManagerRole)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *IaggchainbaseTransferAggchainManagerRoleIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *IaggchainbaseTransferAggchainManagerRoleIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// IaggchainbaseTransferAggchainManagerRole represents a TransferAggchainManagerRole event raised by the Iaggchainbase contract.
+type IaggchainbaseTransferAggchainManagerRole struct {
+	CurrentAggchainManager    common.Address
+	NewPendingAggchainManager common.Address
+	Raw                       types.Log // Blockchain specific contextual infos
+}
+
+// FilterTransferAggchainManagerRole is a free log retrieval operation binding the contract event 0xa3d8e5d045432398be30f83ce7c35a7bfc220c1b66cc5bf3f4dd4d539d93fab6.
+//
+// Solidity: event TransferAggchainManagerRole(address currentAggchainManager, address newPendingAggchainManager)
+func (_Iaggchainbase *IaggchainbaseFilterer) FilterTransferAggchainManagerRole(opts *bind.FilterOpts) (*IaggchainbaseTransferAggchainManagerRoleIterator, error) {
+
+	logs, sub, err := _Iaggchainbase.contract.FilterLogs(opts, "TransferAggchainManagerRole")
+	if err != nil {
+		return nil, err
+	}
+	return &IaggchainbaseTransferAggchainManagerRoleIterator{contract: _Iaggchainbase.contract, event: "TransferAggchainManagerRole", logs: logs, sub: sub}, nil
+}
+
+// WatchTransferAggchainManagerRole is a free log subscription operation binding the contract event 0xa3d8e5d045432398be30f83ce7c35a7bfc220c1b66cc5bf3f4dd4d539d93fab6.
+//
+// Solidity: event TransferAggchainManagerRole(address currentAggchainManager, address newPendingAggchainManager)
+func (_Iaggchainbase *IaggchainbaseFilterer) WatchTransferAggchainManagerRole(opts *bind.WatchOpts, sink chan<- *IaggchainbaseTransferAggchainManagerRole) (event.Subscription, error) {
+
+	logs, sub, err := _Iaggchainbase.contract.WatchLogs(opts, "TransferAggchainManagerRole")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(IaggchainbaseTransferAggchainManagerRole)
+				if err := _Iaggchainbase.contract.UnpackLog(event, "TransferAggchainManagerRole", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseTransferAggchainManagerRole is a log parse operation binding the contract event 0xa3d8e5d045432398be30f83ce7c35a7bfc220c1b66cc5bf3f4dd4d539d93fab6.
+//
+// Solidity: event TransferAggchainManagerRole(address currentAggchainManager, address newPendingAggchainManager)
+func (_Iaggchainbase *IaggchainbaseFilterer) ParseTransferAggchainManagerRole(log types.Log) (*IaggchainbaseTransferAggchainManagerRole, error) {
+	event := new(IaggchainbaseTransferAggchainManagerRole)
+	if err := _Iaggchainbase.contract.UnpackLog(event, "TransferAggchainManagerRole", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log

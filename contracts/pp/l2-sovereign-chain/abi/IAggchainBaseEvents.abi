@@ -5,6 +5,25 @@
          {
             "indexed": false,
             "internalType": "address",
+            "name": "oldAggchainManager",
+            "type": "address"
+         },
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "newAggchainManager",
+            "type": "address"
+         }
+      ],
+      "name": "AcceptAggchainManagerRole",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "address",
             "name": "oldVKeyManager",
             "type": "address"
          },
@@ -47,6 +66,25 @@
       "anonymous": false,
       "inputs": [],
       "name": "EnableUseDefaultGatewayFlag",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "currentAggchainManager",
+            "type": "address"
+         },
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "newPendingAggchainManager",
+            "type": "address"
+         }
+      ],
+      "name": "TransferAggchainManagerRole",
       "type": "event"
    },
    {

@@ -111,6 +111,11 @@
    },
    {
       "inputs": [],
+      "name": "InvalidImplementationAddress",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "InvalidInputsForRollupType",
       "type": "error"
    },
@@ -152,6 +157,11 @@
    {
       "inputs": [],
       "name": "InvalidRollupType",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "InvalidVerifierAddress",
       "type": "error"
    },
    {

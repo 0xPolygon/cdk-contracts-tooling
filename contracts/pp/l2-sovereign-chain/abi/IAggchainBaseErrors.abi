@@ -1,6 +1,11 @@
 [
    {
       "inputs": [],
+      "name": "AggchainManagerCannotBeZero",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "AggchainVKeyNotFound",
       "type": "error"
    },
@@ -11,7 +16,27 @@
    },
    {
       "inputs": [],
+      "name": "InvalidAggchainDataLength",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "InvalidInitializeFunction",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "InvalidZeroAddress",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OnlyAggchainManager",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OnlyPendingAggchainManager",
       "type": "error"
    },
    {

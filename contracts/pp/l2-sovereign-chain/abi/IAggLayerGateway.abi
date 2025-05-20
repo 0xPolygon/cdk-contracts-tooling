@@ -11,6 +11,16 @@
    },
    {
       "inputs": [],
+      "name": "InvalidProofBytesLength",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "InvalidZeroAddress",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "OnlyAggLayerAdmin",
       "type": "error"
    },

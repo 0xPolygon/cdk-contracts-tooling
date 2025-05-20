@@ -1,6 +1,11 @@
 [
    {
       "inputs": [],
+      "name": "AggchainManagerCannotBeZero",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "AggchainVKeyNotFound",
       "type": "error"
    },
@@ -121,6 +126,11 @@
    },
    {
       "inputs": [],
+      "name": "InvalidAggchainDataLength",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "InvalidInitializeFunction",
       "type": "error"
    },
@@ -147,6 +157,11 @@
    {
       "inputs": [],
       "name": "InvalidRangeMultiplierBatchFee",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "InvalidZeroAddress",
       "type": "error"
    },
    {
@@ -206,7 +221,17 @@
    },
    {
       "inputs": [],
+      "name": "OnlyAggchainManager",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "OnlyPendingAdmin",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OnlyPendingAggchainManager",
       "type": "error"
    },
    {
@@ -333,6 +358,25 @@
          {
             "indexed": false,
             "internalType": "address",
+            "name": "oldAggchainManager",
+            "type": "address"
+         },
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "newAggchainManager",
+            "type": "address"
+         }
+      ],
+      "name": "AcceptAggchainManagerRole",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "address",
             "name": "oldVKeyManager",
             "type": "address"
          },
@@ -435,6 +479,25 @@
          {
             "indexed": false,
             "internalType": "address",
+            "name": "currentAggchainManager",
+            "type": "address"
+         },
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "newPendingAggchainManager",
+            "type": "address"
+         }
+      ],
+      "name": "TransferAggchainManagerRole",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "address",
             "name": "currentVKeyManager",
             "type": "address"
          },
@@ -508,6 +571,13 @@
    },
    {
       "inputs": [],
+      "name": "acceptAggchainManagerRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+   },
+   {
+      "inputs": [],
       "name": "acceptVKeyManagerRole",
       "outputs": [],
       "stateMutability": "nonpayable",
@@ -550,6 +620,19 @@
       "outputs": [
          {
             "internalType": "contract IAggLayerGateway",
+            "name": "",
+            "type": "address"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "aggchainManager",
+      "outputs": [
+         {
+            "internalType": "address",
             "name": "",
             "type": "address"
          }
@@ -733,12 +816,12 @@
    {
       "inputs": [
          {
-            "internalType": "bytes",
-            "name": "initializeBytesAggchain",
-            "type": "bytes"
+            "internalType": "address",
+            "name": "newAggchainManager",
+            "type": "address"
          }
       ],
-      "name": "initialize",
+      "name": "initAggchainManager",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
@@ -880,6 +963,19 @@
    },
    {
       "inputs": [],
+      "name": "pendingAggchainManager",
+      "outputs": [
+         {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
       "name": "pendingVKeyManager",
       "outputs": [
          {
@@ -952,6 +1048,19 @@
          }
       ],
       "name": "transferAdminRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "address",
+            "name": "newAggchainManager",
+            "type": "address"
+         }
+      ],
+      "name": "transferAggchainManagerRole",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"

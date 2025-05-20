@@ -267,6 +267,19 @@
    },
    {
       "inputs": [],
+      "name": "BRIDGE_VERSION",
+      "outputs": [
+         {
+            "internalType": "string",
+            "name": "",
+            "type": "string"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
       "name": "WETHToken",
       "outputs": [
          {
@@ -975,6 +988,19 @@
          }
       ],
       "stateMutability": "pure",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "wrappedTokenBytecodeStorer",
+      "outputs": [
+         {
+            "internalType": "contract ITokenWrappedBridgeInitCode",
+            "name": "",
+            "type": "address"
+         }
+      ],
+      "stateMutability": "view",
       "type": "function"
    },
    {

@@ -1,0 +1,87 @@
+[
+   {
+      "inputs": [],
+      "name": "GlobalExitRootAlreadySet",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "GlobalExitRootNotFound",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "InvalidZeroAddress",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OnlyAllowedContracts",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OnlyGlobalExitRootRemover",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OnlyGlobalExitRootUpdater",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OnlyPendingGlobalExitRootRemover",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OnlyPendingGlobalExitRootUpdater",
+      "type": "error"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "bytes32",
+            "name": "globalExitRootNum",
+            "type": "bytes32"
+         }
+      ],
+      "name": "globalExitRootMap",
+      "outputs": [
+         {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+         }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "globalExitRootRemover",
+      "outputs": [
+         {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "bytes32",
+            "name": "newRollupExitRoot",
+            "type": "bytes32"
+         }
+      ],
+      "name": "updateExitRoot",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+   }
+]
