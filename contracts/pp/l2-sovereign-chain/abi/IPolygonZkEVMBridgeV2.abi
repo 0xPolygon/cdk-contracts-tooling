@@ -11,6 +11,11 @@
    },
    {
       "inputs": [],
+      "name": "BridgeAddressNotAllowed",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "DestinationNetworkInvalid",
       "type": "error"
    },
@@ -21,7 +26,7 @@
    },
    {
       "inputs": [],
-      "name": "FailedTokenWrappedDeployment",
+      "name": "FailedProxyDeployment",
       "type": "error"
    },
    {
@@ -36,7 +41,44 @@
    },
    {
       "inputs": [],
+      "name": "InvalidGlobalIndex",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "InvalidInitializeFunction",
+      "type": "error"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "address",
+            "name": "proxyAdmin",
+            "type": "address"
+         }
+      ],
+      "name": "InvalidProxyAdmin",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "InvalidSmtProof",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "InvalidZeroAddress",
+      "type": "error"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "address",
+            "name": "proxyAdmin",
+            "type": "address"
+         }
+      ],
+      "name": "InvalidZeroProxyAdminOwner",
       "type": "error"
    },
    {
@@ -77,6 +119,16 @@
    {
       "inputs": [],
       "name": "NotValidSpender",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OnlyPendingProxiedTokensManager",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OnlyProxiedTokensManager",
       "type": "error"
    },
    {
@@ -324,6 +376,19 @@
       "type": "function"
    },
    {
+      "inputs": [],
+      "name": "getProxiedTokensManager",
+      "outputs": [
+         {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
       "inputs": [
          {
             "internalType": "address",
@@ -337,6 +402,19 @@
             "internalType": "bytes",
             "name": "",
             "type": "bytes"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "getWrappedTokenBridgeImplementation",
+      "outputs": [
+         {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
          }
       ],
       "stateMutability": "view",

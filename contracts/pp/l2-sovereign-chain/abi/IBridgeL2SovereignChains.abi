@@ -11,6 +11,11 @@
    },
    {
       "inputs": [],
+      "name": "BridgeAddressNotAllowed",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "ClaimNotSet",
       "type": "error"
    },
@@ -31,7 +36,7 @@
    },
    {
       "inputs": [],
-      "name": "FailedTokenWrappedDeployment",
+      "name": "FailedProxyDeployment",
       "type": "error"
    },
    {
@@ -51,7 +56,23 @@
    },
    {
       "inputs": [],
+      "name": "InvalidGlobalIndex",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "InvalidInitializeFunction",
+      "type": "error"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "address",
+            "name": "proxyAdmin",
+            "type": "address"
+         }
+      ],
+      "name": "InvalidProxyAdmin",
       "type": "error"
    },
    {
@@ -67,6 +88,22 @@
    {
       "inputs": [],
       "name": "InvalidZeroAddress",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "InvalidZeroNetworkID",
+      "type": "error"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "address",
+            "name": "proxyAdmin",
+            "type": "address"
+         }
+      ],
+      "name": "InvalidZeroProxyAdminOwner",
       "type": "error"
    },
    {
@@ -173,12 +210,32 @@
    },
    {
       "inputs": [],
+      "name": "OnlyEmergencyBridgeUnpauser",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "OnlyGlobalExitRootRemover",
       "type": "error"
    },
    {
       "inputs": [],
       "name": "OnlyPendingEmergencyBridgePauser",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OnlyPendingEmergencyBridgeUnpauser",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OnlyPendingProxiedTokensManager",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OnlyProxiedTokensManager",
       "type": "error"
    },
    {
@@ -456,6 +513,19 @@
       "type": "function"
    },
    {
+      "inputs": [],
+      "name": "getProxiedTokensManager",
+      "outputs": [
+         {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
       "inputs": [
          {
             "internalType": "address",
@@ -469,6 +539,19 @@
             "internalType": "bytes",
             "name": "",
             "type": "bytes"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "getWrappedTokenBridgeImplementation",
+      "outputs": [
+         {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
          }
       ],
       "stateMutability": "view",
@@ -524,6 +607,16 @@
          {
             "internalType": "address",
             "name": "_emergencyBridgePauser",
+            "type": "address"
+         },
+         {
+            "internalType": "address",
+            "name": "_emergencyBridgeUnpauser",
+            "type": "address"
+         },
+         {
+            "internalType": "address",
+            "name": "_proxiedTokensManager",
             "type": "address"
          }
       ],

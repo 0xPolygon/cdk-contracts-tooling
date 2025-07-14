@@ -165,6 +165,19 @@
             "internalType": "bytes4",
             "name": "selector",
             "type": "bytes4"
+         }
+      ],
+      "name": "UnsetDefaultAggchainVKey",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
          },
          {
             "indexed": false,

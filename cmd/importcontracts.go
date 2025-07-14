@@ -22,14 +22,7 @@ const (
 
 // GetContractsRepoURL returns the URL of the contracts repository based on the proving schema
 func (ps ProvingSchema) GetContractsRepoURL() (string, error) {
-	switch ps {
-	case FullExecutionProofs:
-		return fepContractsRepoURL, nil
-	case PessimisticProofs:
-		return ppContractsRepoURL, nil
-	}
-
-	return "", fmt.Errorf("invalid proving schema provided: %s", ps)
+	return contractsRepoURL, nil
 }
 
 // GetContractsRepoName returns the name of the contracts directory based on the proving schema
@@ -65,8 +58,7 @@ const (
 	provingSystemFlagName    = "proving-schema"
 
 	// Repo URLs
-	fepContractsRepoURL = "https://github.com/0xPolygonHermez/zkevm-contracts.git"
-	ppContractsRepoURL  = "https://github.com/agglayer/agg-contracts-internal.git"
+	contractsRepoURL = "https://github.com/agglayer/agglayer-contracts.git"
 
 	artifactsPath  = "artifacts/contracts"
 	readmeTemplate = `# %s contracts
@@ -82,7 +74,7 @@ var (
 	importContractsCommand = &cli.Command{
 		Name:    "import-contracts",
 		Aliases: []string{"import-c"},
-		Usage:   "Import the smart contracts from agg-contracts-internal or zkevm-contracts repo and generate Go bindings",
+		Usage:   "Import the smart contracts from agglayer-contracts repo and generate Go bindings",
 		Action:  importContracts,
 		Flags: []cli.Flag{
 			&cli.StringFlag{
@@ -114,7 +106,7 @@ var (
 			&cli.StringFlag{
 				Name:     provingSystemFlagName,
 				Aliases:  []string{"ps"},
-				Usage:    "Proving system: 'fep' (full execution proofs) or 'pp' (pessimistic proofs)",
+				Usage:    "Proving system: 'fep' (full execution proofs) or 'pp' (pessimistic proofs) - used for organizing output directories",
 				Required: false,
 				Value:    string(FullExecutionProofs),
 			},
@@ -154,7 +146,7 @@ func importContracts(cliCtx *cli.Context) error {
 	}
 	err = runCommand("ls", contractsRepoName)
 	if err != nil {
-		if strings.Contains(err.Error(), "exit status 2") {
+		if strings.Contains(err.Error(), "exit status 2") || strings.Contains(err.Error(), "No such file or directory") {
 			fmt.Println("cloning contracts repo into temporary directory")
 			err = runCommand("git", "clone", contractsRepoURL)
 			if err != nil {
