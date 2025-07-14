@@ -1,33 +1,12 @@
 [
    {
-      "inputs": [
-         {
-            "internalType": "contract GlobalExitRootManagerL2SovereignChain",
-            "name": "globalExitRootManager",
-            "type": "address"
-         }
-      ],
-      "stateMutability": "nonpayable",
-      "type": "constructor"
-   },
-   {
       "inputs": [],
       "name": "AlreadyOracleMember",
       "type": "error"
    },
    {
       "inputs": [],
-      "name": "InvalidInitialization",
-      "type": "error"
-   },
-   {
-      "inputs": [],
       "name": "InvalidProposedGER",
-      "type": "error"
-   },
-   {
-      "inputs": [],
-      "name": "NotInitializing",
       "type": "error"
    },
    {
@@ -51,25 +30,8 @@
       "type": "error"
    },
    {
-      "inputs": [
-         {
-            "internalType": "address",
-            "name": "owner",
-            "type": "address"
-         }
-      ],
-      "name": "OwnableInvalidOwner",
-      "type": "error"
-   },
-   {
-      "inputs": [
-         {
-            "internalType": "address",
-            "name": "account",
-            "type": "address"
-         }
-      ],
-      "name": "OwnableUnauthorizedAccount",
+      "inputs": [],
+      "name": "QuorumCannotBeGreaterThanAggOracleMembers",
       "type": "error"
    },
    {
@@ -106,38 +68,6 @@
          }
       ],
       "name": "ConsolidatedGlobalExitRoot",
-      "type": "event"
-   },
-   {
-      "anonymous": false,
-      "inputs": [
-         {
-            "indexed": false,
-            "internalType": "uint64",
-            "name": "version",
-            "type": "uint64"
-         }
-      ],
-      "name": "Initialized",
-      "type": "event"
-   },
-   {
-      "anonymous": false,
-      "inputs": [
-         {
-            "indexed": true,
-            "internalType": "address",
-            "name": "previousOwner",
-            "type": "address"
-         },
-         {
-            "indexed": true,
-            "internalType": "address",
-            "name": "newOwner",
-            "type": "address"
-         }
-      ],
-      "name": "OwnershipTransferred",
       "type": "event"
    },
    {
@@ -222,7 +152,7 @@
       "inputs": [
          {
             "internalType": "address",
-            "name": "",
+            "name": "oracleMember",
             "type": "address"
          }
       ],
@@ -241,7 +171,7 @@
       "inputs": [
          {
             "internalType": "uint256",
-            "name": "",
+            "name": "index",
             "type": "uint256"
          }
       ],
@@ -306,7 +236,7 @@
       "name": "globalExitRootManagerL2Sovereign",
       "outputs": [
          {
-            "internalType": "contract GlobalExitRootManagerL2SovereignChain",
+            "internalType": "contract IGlobalExitRootManagerL2SovereignChain",
             "name": "",
             "type": "address"
          }
@@ -338,19 +268,6 @@
       "type": "function"
    },
    {
-      "inputs": [],
-      "name": "owner",
-      "outputs": [
-         {
-            "internalType": "address",
-            "name": "",
-            "type": "address"
-         }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-   },
-   {
       "inputs": [
          {
             "internalType": "bytes32",
@@ -361,30 +278,6 @@
       "name": "proposeGlobalExitRoot",
       "outputs": [],
       "stateMutability": "nonpayable",
-      "type": "function"
-   },
-   {
-      "inputs": [
-         {
-            "internalType": "bytes32",
-            "name": "",
-            "type": "bytes32"
-         }
-      ],
-      "name": "proposedGERToReport",
-      "outputs": [
-         {
-            "internalType": "uint64",
-            "name": "votes",
-            "type": "uint64"
-         },
-         {
-            "internalType": "uint64",
-            "name": "timestamp",
-            "type": "uint64"
-         }
-      ],
-      "stateMutability": "view",
       "type": "function"
    },
    {
@@ -419,13 +312,6 @@
       "type": "function"
    },
    {
-      "inputs": [],
-      "name": "renounceOwnership",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-   },
-   {
       "inputs": [
          {
             "internalType": "address",
@@ -434,19 +320,6 @@
          }
       ],
       "name": "transferGlobalExitRootUpdater",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-   },
-   {
-      "inputs": [
-         {
-            "internalType": "address",
-            "name": "newOwner",
-            "type": "address"
-         }
-      ],
-      "name": "transferOwnership",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
