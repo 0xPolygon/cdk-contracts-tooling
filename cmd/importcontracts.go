@@ -58,7 +58,7 @@ const (
 	provingSystemFlagName    = "proving-schema"
 
 	// Repo URLs
-	contractsRepoURL = "https://github.com/agglayer/agglayer-contracts.git"
+	contractsRepoURL = "https://github.com/temaniarpit27/agglayer-contracts.git"
 
 	artifactsPath  = "artifacts/contracts"
 	readmeTemplate = `# %s contracts
