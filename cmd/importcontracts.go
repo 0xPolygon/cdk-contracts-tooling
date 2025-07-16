@@ -57,7 +57,7 @@ const (
 	buildParisFlagName       = "build-paris"
 	provingSystemFlagName    = "proving-schema"
 
-	// Repo URLs
+	// Contracts repo URL
 	contractsRepoURL = "https://github.com/agglayer/agglayer-contracts.git"
 
 	artifactsPath  = "artifacts/contracts"
