@@ -125,10 +125,20 @@ func importContracts(cliCtx *cli.Context) error {
 	if err != nil {
 		return err
 	}
+
+	// Defer deletion of the temporary directory and all its contents
+	defer func() {
+		err := os.RemoveAll(tmpDir)
+		if err != nil {
+			fmt.Printf("warning: failed to remove tmp dir %s: %v\n", tmpDir, err)
+		}
+	}()
+
 	err = runCommand("ls", contractsRepoName)
+	absolutePath := path.Join(tmpDir, contractsRepoName)
 	if err != nil {
 		if strings.Contains(err.Error(), "exit status 2") {
-			fmt.Println("cloning contracts repo into temporary directory")
+			fmt.Println("cloning contracts repo into temporary directory", absolutePath)
 			err = runCommand("git", "clone", contractsRepoURL)
 			if err != nil {
 				fmt.Printf("error cloning contracts repo from %s\n", contractsRepoURL)
@@ -139,7 +149,7 @@ func importContracts(cliCtx *cli.Context) error {
 			return err
 		}
 	}
-	err = os.Chdir(path.Join(tmpDir, contractsRepoName))
+	err = os.Chdir(absolutePath)
 	if err != nil {
 		return err
 	}
