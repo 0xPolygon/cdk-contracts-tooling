@@ -1,0 +1,134 @@
+[
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "oldAggchainManager",
+            "type": "address"
+         },
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "newAggchainManager",
+            "type": "address"
+         }
+      ],
+      "name": "AcceptAggchainManagerRole",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "oldVKeyManager",
+            "type": "address"
+         },
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "newVKeyManager",
+            "type": "address"
+         }
+      ],
+      "name": "AcceptVKeyManagerRole",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+         },
+         {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "newAggchainVKey",
+            "type": "bytes32"
+         }
+      ],
+      "name": "AddAggchainVKey",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [],
+      "name": "DisableUseDefaultGatewayFlag",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [],
+      "name": "EnableUseDefaultGatewayFlag",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "currentAggchainManager",
+            "type": "address"
+         },
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "newPendingAggchainManager",
+            "type": "address"
+         }
+      ],
+      "name": "TransferAggchainManagerRole",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "currentVKeyManager",
+            "type": "address"
+         },
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "newPendingVKeyManager",
+            "type": "address"
+         }
+      ],
+      "name": "TransferVKeyManagerRole",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+         },
+         {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "previousAggchainVKey",
+            "type": "bytes32"
+         },
+         {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "newAggchainVKey",
+            "type": "bytes32"
+         }
+      ],
+      "name": "UpdateAggchainVKey",
+      "type": "event"
+   }
+]
