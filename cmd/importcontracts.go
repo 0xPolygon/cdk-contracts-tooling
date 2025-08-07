@@ -60,7 +60,7 @@ var (
 	importContractsCommand = &cli.Command{
 		Name:    "import-contracts",
 		Aliases: []string{"import-c"},
-		Usage:   "Import the smart contracts from agg-contracts-internal or zkevm-contracts repo and generate Go bindings",
+		Usage:   "Import the smart contracts from agglayer-contracts repo and generate Go bindings",
 		Action:  importContracts,
 		Flags: []cli.Flag{
 			&cli.StringFlag{
@@ -137,7 +137,7 @@ func importContracts(cliCtx *cli.Context) error {
 	err = runCommand("ls", contractsRepoName)
 	absolutePath := path.Join(tmpDir, contractsRepoName)
 	if err != nil {
-		if strings.Contains(err.Error(), "exit status 2") {
+		if strings.Contains(err.Error(), "exit status 2") || strings.Contains(err.Error(), "No such file or directory") {
 			fmt.Println("cloning contracts repo into temporary directory", absolutePath)
 			err = runCommand("git", "clone", contractsRepoURL)
 			if err != nil {

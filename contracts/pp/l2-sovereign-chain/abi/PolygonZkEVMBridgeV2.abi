@@ -5,6 +5,28 @@
       "type": "constructor"
    },
    {
+      "inputs": [
+         {
+            "internalType": "address",
+            "name": "target",
+            "type": "address"
+         }
+      ],
+      "name": "AddressEmptyCode",
+      "type": "error"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+         }
+      ],
+      "name": "AddressInsufficientBalance",
+      "type": "error"
+   },
+   {
       "inputs": [],
       "name": "AlreadyClaimed",
       "type": "error"
@@ -12,6 +34,11 @@
    {
       "inputs": [],
       "name": "AmountDoesNotMatchMsgValue",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "BridgeAddressNotAllowed",
       "type": "error"
    },
    {
@@ -26,7 +53,12 @@
    },
    {
       "inputs": [],
-      "name": "FailedTokenWrappedDeployment",
+      "name": "FailedInnerCall",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "FailedProxyDeployment",
       "type": "error"
    },
    {
@@ -41,7 +73,44 @@
    },
    {
       "inputs": [],
+      "name": "InvalidGlobalIndex",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "InvalidInitializeFunction",
+      "type": "error"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "address",
+            "name": "proxyAdmin",
+            "type": "address"
+         }
+      ],
+      "name": "InvalidProxyAdmin",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "InvalidSmtProof",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "InvalidZeroAddress",
+      "type": "error"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "address",
+            "name": "proxyAdmin",
+            "type": "address"
+         }
+      ],
+      "name": "InvalidZeroProxyAdminOwner",
       "type": "error"
    },
    {
@@ -101,8 +170,48 @@
    },
    {
       "inputs": [],
+      "name": "OnlyPendingProxiedTokensManager",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OnlyProxiedTokensManager",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "OnlyRollupManager",
       "type": "error"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "address",
+            "name": "token",
+            "type": "address"
+         }
+      ],
+      "name": "SafeERC20FailedOperation",
+      "type": "error"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "oldProxiedTokensManager",
+            "type": "address"
+         },
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "newProxiedTokensManager",
+            "type": "address"
+         }
+      ],
+      "name": "AcceptProxiedTokensManagerRole",
+      "type": "event"
    },
    {
       "anonymous": false,
@@ -253,17 +362,23 @@
       "type": "event"
    },
    {
-      "inputs": [],
-      "name": "BASE_INIT_BYTECODE_WRAPPED_TOKEN",
-      "outputs": [
+      "anonymous": false,
+      "inputs": [
          {
-            "internalType": "bytes",
-            "name": "",
-            "type": "bytes"
+            "indexed": false,
+            "internalType": "address",
+            "name": "currentProxiedTokensManager",
+            "type": "address"
+         },
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "newProxiedTokensManager",
+            "type": "address"
          }
       ],
-      "stateMutability": "view",
-      "type": "function"
+      "name": "TransferProxiedTokensManagerRole",
+      "type": "event"
    },
    {
       "inputs": [],
@@ -280,15 +395,35 @@
    },
    {
       "inputs": [],
+      "name": "INIT_BYTECODE_TRANSPARENT_PROXY",
+      "outputs": [
+         {
+            "internalType": "bytes",
+            "name": "",
+            "type": "bytes"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
       "name": "WETHToken",
       "outputs": [
          {
-            "internalType": "contract TokenWrapped",
+            "internalType": "contract ITokenWrappedBridgeUpgradeable",
             "name": "",
             "type": "address"
          }
       ],
       "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "acceptProxiedTokensManagerRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
       "type": "function"
    },
    {
@@ -424,35 +559,6 @@
          }
       ],
       "stateMutability": "pure",
-      "type": "function"
-   },
-   {
-      "inputs": [
-         {
-            "internalType": "uint32",
-            "name": "originNetwork",
-            "type": "uint32"
-         },
-         {
-            "internalType": "address",
-            "name": "originTokenAddress",
-            "type": "address"
-         },
-         {
-            "internalType": "address",
-            "name": "token",
-            "type": "address"
-         }
-      ],
-      "name": "calculateTokenWrapperAddress",
-      "outputs": [
-         {
-            "internalType": "address",
-            "name": "",
-            "type": "address"
-         }
-      ],
-      "stateMutability": "view",
       "type": "function"
    },
    {
@@ -601,6 +707,30 @@
       "type": "function"
    },
    {
+      "inputs": [
+         {
+            "internalType": "uint32",
+            "name": "originNetwork",
+            "type": "uint32"
+         },
+         {
+            "internalType": "address",
+            "name": "originTokenAddress",
+            "type": "address"
+         }
+      ],
+      "name": "computeTokenProxyAddress",
+      "outputs": [
+         {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
       "inputs": [],
       "name": "deactivateEmergencyState",
       "outputs": [],
@@ -710,6 +840,19 @@
    },
    {
       "inputs": [],
+      "name": "getProxiedTokensManager",
+      "outputs": [
+         {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
       "name": "getRoot",
       "outputs": [
          {
@@ -766,6 +909,19 @@
    },
    {
       "inputs": [],
+      "name": "getWrappedTokenBridgeImplementation",
+      "outputs": [
+         {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
       "name": "globalExitRootManager",
       "outputs": [
          {
@@ -775,6 +931,13 @@
          }
       ],
       "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "initialize",
+      "outputs": [],
+      "stateMutability": "nonpayable",
       "type": "function"
    },
    {
@@ -880,6 +1043,19 @@
    },
    {
       "inputs": [],
+      "name": "pendingProxiedTokensManager",
+      "outputs": [
+         {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
       "name": "polygonRollupManager",
       "outputs": [
          {
@@ -892,34 +1068,8 @@
       "type": "function"
    },
    {
-      "inputs": [
-         {
-            "internalType": "uint32",
-            "name": "originNetwork",
-            "type": "uint32"
-         },
-         {
-            "internalType": "address",
-            "name": "originTokenAddress",
-            "type": "address"
-         },
-         {
-            "internalType": "string",
-            "name": "name",
-            "type": "string"
-         },
-         {
-            "internalType": "string",
-            "name": "symbol",
-            "type": "string"
-         },
-         {
-            "internalType": "uint8",
-            "name": "decimals",
-            "type": "uint8"
-         }
-      ],
-      "name": "precalculatedWrapperAddress",
+      "inputs": [],
+      "name": "proxiedTokensManager",
       "outputs": [
          {
             "internalType": "address",
@@ -947,6 +1097,19 @@
          }
       ],
       "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "address",
+            "name": "newProxiedTokensManager",
+            "type": "address"
+         }
+      ],
+      "name": "transferProxiedTokensManagerRole",
+      "outputs": [],
+      "stateMutability": "nonpayable",
       "type": "function"
    },
    {
@@ -995,7 +1158,7 @@
       "name": "wrappedTokenBytecodeStorer",
       "outputs": [
          {
-            "internalType": "contract ITokenWrappedBridgeInitCode",
+            "internalType": "contract IBytecodeStorer",
             "name": "",
             "type": "address"
          }

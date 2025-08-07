@@ -31,7 +31,7 @@ var (
 
 // Iglobalexitrootmanagerl2sovereignchainMetaData contains all meta data concerning the Iglobalexitrootmanagerl2sovereignchain contract.
 var Iglobalexitrootmanagerl2sovereignchainMetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[],\"name\":\"GlobalExitRootAlreadySet\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"GlobalExitRootNotFound\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidZeroAddress\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyAllowedContracts\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyGlobalExitRootRemover\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyGlobalExitRootUpdater\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyPendingGlobalExitRootRemover\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyPendingGlobalExitRootUpdater\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"globalExitRootNum\",\"type\":\"bytes32\"}],\"name\":\"globalExitRootMap\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"globalExitRootRemover\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"newRollupExitRoot\",\"type\":\"bytes32\"}],\"name\":\"updateExitRoot\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
+	ABI: "[{\"inputs\":[],\"name\":\"GlobalExitRootAlreadySet\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"GlobalExitRootNotFound\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidZeroAddress\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyAllowedContracts\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyGlobalExitRootRemover\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyGlobalExitRootUpdater\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyPendingGlobalExitRootRemover\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyPendingGlobalExitRootUpdater\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"acceptGlobalExitRootUpdater\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"globalExitRootNum\",\"type\":\"bytes32\"}],\"name\":\"globalExitRootMap\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"globalExitRootRemover\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"globalExitRootUpdater\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_newRoot\",\"type\":\"bytes32\"}],\"name\":\"insertGlobalExitRoot\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"insertedGERHashChain\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"pendingGlobalExitRootUpdater\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_newGlobalExitRootUpdater\",\"type\":\"address\"}],\"name\":\"transferGlobalExitRootUpdater\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"newRollupExitRoot\",\"type\":\"bytes32\"}],\"name\":\"updateExitRoot\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
 }
 
 // Iglobalexitrootmanagerl2sovereignchainABI is the input ABI used to generate the binding from.
@@ -211,6 +211,120 @@ func (_Iglobalexitrootmanagerl2sovereignchain *Iglobalexitrootmanagerl2sovereign
 	return _Iglobalexitrootmanagerl2sovereignchain.Contract.GlobalExitRootRemover(&_Iglobalexitrootmanagerl2sovereignchain.CallOpts)
 }
 
+// GlobalExitRootUpdater is a free data retrieval call binding the contract method 0x7c314ce3.
+//
+// Solidity: function globalExitRootUpdater() view returns(address)
+func (_Iglobalexitrootmanagerl2sovereignchain *Iglobalexitrootmanagerl2sovereignchainCaller) GlobalExitRootUpdater(opts *bind.CallOpts) (common.Address, error) {
+	var out []interface{}
+	err := _Iglobalexitrootmanagerl2sovereignchain.contract.Call(opts, &out, "globalExitRootUpdater")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
+}
+
+// GlobalExitRootUpdater is a free data retrieval call binding the contract method 0x7c314ce3.
+//
+// Solidity: function globalExitRootUpdater() view returns(address)
+func (_Iglobalexitrootmanagerl2sovereignchain *Iglobalexitrootmanagerl2sovereignchainSession) GlobalExitRootUpdater() (common.Address, error) {
+	return _Iglobalexitrootmanagerl2sovereignchain.Contract.GlobalExitRootUpdater(&_Iglobalexitrootmanagerl2sovereignchain.CallOpts)
+}
+
+// GlobalExitRootUpdater is a free data retrieval call binding the contract method 0x7c314ce3.
+//
+// Solidity: function globalExitRootUpdater() view returns(address)
+func (_Iglobalexitrootmanagerl2sovereignchain *Iglobalexitrootmanagerl2sovereignchainCallerSession) GlobalExitRootUpdater() (common.Address, error) {
+	return _Iglobalexitrootmanagerl2sovereignchain.Contract.GlobalExitRootUpdater(&_Iglobalexitrootmanagerl2sovereignchain.CallOpts)
+}
+
+// InsertedGERHashChain is a free data retrieval call binding the contract method 0x163bbb46.
+//
+// Solidity: function insertedGERHashChain() view returns(bytes32)
+func (_Iglobalexitrootmanagerl2sovereignchain *Iglobalexitrootmanagerl2sovereignchainCaller) InsertedGERHashChain(opts *bind.CallOpts) ([32]byte, error) {
+	var out []interface{}
+	err := _Iglobalexitrootmanagerl2sovereignchain.contract.Call(opts, &out, "insertedGERHashChain")
+
+	if err != nil {
+		return *new([32]byte), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
+
+	return out0, err
+
+}
+
+// InsertedGERHashChain is a free data retrieval call binding the contract method 0x163bbb46.
+//
+// Solidity: function insertedGERHashChain() view returns(bytes32)
+func (_Iglobalexitrootmanagerl2sovereignchain *Iglobalexitrootmanagerl2sovereignchainSession) InsertedGERHashChain() ([32]byte, error) {
+	return _Iglobalexitrootmanagerl2sovereignchain.Contract.InsertedGERHashChain(&_Iglobalexitrootmanagerl2sovereignchain.CallOpts)
+}
+
+// InsertedGERHashChain is a free data retrieval call binding the contract method 0x163bbb46.
+//
+// Solidity: function insertedGERHashChain() view returns(bytes32)
+func (_Iglobalexitrootmanagerl2sovereignchain *Iglobalexitrootmanagerl2sovereignchainCallerSession) InsertedGERHashChain() ([32]byte, error) {
+	return _Iglobalexitrootmanagerl2sovereignchain.Contract.InsertedGERHashChain(&_Iglobalexitrootmanagerl2sovereignchain.CallOpts)
+}
+
+// PendingGlobalExitRootUpdater is a free data retrieval call binding the contract method 0x2d5ddf2b.
+//
+// Solidity: function pendingGlobalExitRootUpdater() view returns(address)
+func (_Iglobalexitrootmanagerl2sovereignchain *Iglobalexitrootmanagerl2sovereignchainCaller) PendingGlobalExitRootUpdater(opts *bind.CallOpts) (common.Address, error) {
+	var out []interface{}
+	err := _Iglobalexitrootmanagerl2sovereignchain.contract.Call(opts, &out, "pendingGlobalExitRootUpdater")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
+}
+
+// PendingGlobalExitRootUpdater is a free data retrieval call binding the contract method 0x2d5ddf2b.
+//
+// Solidity: function pendingGlobalExitRootUpdater() view returns(address)
+func (_Iglobalexitrootmanagerl2sovereignchain *Iglobalexitrootmanagerl2sovereignchainSession) PendingGlobalExitRootUpdater() (common.Address, error) {
+	return _Iglobalexitrootmanagerl2sovereignchain.Contract.PendingGlobalExitRootUpdater(&_Iglobalexitrootmanagerl2sovereignchain.CallOpts)
+}
+
+// PendingGlobalExitRootUpdater is a free data retrieval call binding the contract method 0x2d5ddf2b.
+//
+// Solidity: function pendingGlobalExitRootUpdater() view returns(address)
+func (_Iglobalexitrootmanagerl2sovereignchain *Iglobalexitrootmanagerl2sovereignchainCallerSession) PendingGlobalExitRootUpdater() (common.Address, error) {
+	return _Iglobalexitrootmanagerl2sovereignchain.Contract.PendingGlobalExitRootUpdater(&_Iglobalexitrootmanagerl2sovereignchain.CallOpts)
+}
+
+// AcceptGlobalExitRootUpdater is a paid mutator transaction binding the contract method 0xc053902a.
+//
+// Solidity: function acceptGlobalExitRootUpdater() returns()
+func (_Iglobalexitrootmanagerl2sovereignchain *Iglobalexitrootmanagerl2sovereignchainTransactor) AcceptGlobalExitRootUpdater(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _Iglobalexitrootmanagerl2sovereignchain.contract.Transact(opts, "acceptGlobalExitRootUpdater")
+}
+
+// AcceptGlobalExitRootUpdater is a paid mutator transaction binding the contract method 0xc053902a.
+//
+// Solidity: function acceptGlobalExitRootUpdater() returns()
+func (_Iglobalexitrootmanagerl2sovereignchain *Iglobalexitrootmanagerl2sovereignchainSession) AcceptGlobalExitRootUpdater() (*types.Transaction, error) {
+	return _Iglobalexitrootmanagerl2sovereignchain.Contract.AcceptGlobalExitRootUpdater(&_Iglobalexitrootmanagerl2sovereignchain.TransactOpts)
+}
+
+// AcceptGlobalExitRootUpdater is a paid mutator transaction binding the contract method 0xc053902a.
+//
+// Solidity: function acceptGlobalExitRootUpdater() returns()
+func (_Iglobalexitrootmanagerl2sovereignchain *Iglobalexitrootmanagerl2sovereignchainTransactorSession) AcceptGlobalExitRootUpdater() (*types.Transaction, error) {
+	return _Iglobalexitrootmanagerl2sovereignchain.Contract.AcceptGlobalExitRootUpdater(&_Iglobalexitrootmanagerl2sovereignchain.TransactOpts)
+}
+
 // GlobalExitRootMap is a paid mutator transaction binding the contract method 0x257b3632.
 //
 // Solidity: function globalExitRootMap(bytes32 globalExitRootNum) returns(uint256)
@@ -230,6 +344,48 @@ func (_Iglobalexitrootmanagerl2sovereignchain *Iglobalexitrootmanagerl2sovereign
 // Solidity: function globalExitRootMap(bytes32 globalExitRootNum) returns(uint256)
 func (_Iglobalexitrootmanagerl2sovereignchain *Iglobalexitrootmanagerl2sovereignchainTransactorSession) GlobalExitRootMap(globalExitRootNum [32]byte) (*types.Transaction, error) {
 	return _Iglobalexitrootmanagerl2sovereignchain.Contract.GlobalExitRootMap(&_Iglobalexitrootmanagerl2sovereignchain.TransactOpts, globalExitRootNum)
+}
+
+// InsertGlobalExitRoot is a paid mutator transaction binding the contract method 0x12da06b2.
+//
+// Solidity: function insertGlobalExitRoot(bytes32 _newRoot) returns()
+func (_Iglobalexitrootmanagerl2sovereignchain *Iglobalexitrootmanagerl2sovereignchainTransactor) InsertGlobalExitRoot(opts *bind.TransactOpts, _newRoot [32]byte) (*types.Transaction, error) {
+	return _Iglobalexitrootmanagerl2sovereignchain.contract.Transact(opts, "insertGlobalExitRoot", _newRoot)
+}
+
+// InsertGlobalExitRoot is a paid mutator transaction binding the contract method 0x12da06b2.
+//
+// Solidity: function insertGlobalExitRoot(bytes32 _newRoot) returns()
+func (_Iglobalexitrootmanagerl2sovereignchain *Iglobalexitrootmanagerl2sovereignchainSession) InsertGlobalExitRoot(_newRoot [32]byte) (*types.Transaction, error) {
+	return _Iglobalexitrootmanagerl2sovereignchain.Contract.InsertGlobalExitRoot(&_Iglobalexitrootmanagerl2sovereignchain.TransactOpts, _newRoot)
+}
+
+// InsertGlobalExitRoot is a paid mutator transaction binding the contract method 0x12da06b2.
+//
+// Solidity: function insertGlobalExitRoot(bytes32 _newRoot) returns()
+func (_Iglobalexitrootmanagerl2sovereignchain *Iglobalexitrootmanagerl2sovereignchainTransactorSession) InsertGlobalExitRoot(_newRoot [32]byte) (*types.Transaction, error) {
+	return _Iglobalexitrootmanagerl2sovereignchain.Contract.InsertGlobalExitRoot(&_Iglobalexitrootmanagerl2sovereignchain.TransactOpts, _newRoot)
+}
+
+// TransferGlobalExitRootUpdater is a paid mutator transaction binding the contract method 0x0e1bbf9f.
+//
+// Solidity: function transferGlobalExitRootUpdater(address _newGlobalExitRootUpdater) returns()
+func (_Iglobalexitrootmanagerl2sovereignchain *Iglobalexitrootmanagerl2sovereignchainTransactor) TransferGlobalExitRootUpdater(opts *bind.TransactOpts, _newGlobalExitRootUpdater common.Address) (*types.Transaction, error) {
+	return _Iglobalexitrootmanagerl2sovereignchain.contract.Transact(opts, "transferGlobalExitRootUpdater", _newGlobalExitRootUpdater)
+}
+
+// TransferGlobalExitRootUpdater is a paid mutator transaction binding the contract method 0x0e1bbf9f.
+//
+// Solidity: function transferGlobalExitRootUpdater(address _newGlobalExitRootUpdater) returns()
+func (_Iglobalexitrootmanagerl2sovereignchain *Iglobalexitrootmanagerl2sovereignchainSession) TransferGlobalExitRootUpdater(_newGlobalExitRootUpdater common.Address) (*types.Transaction, error) {
+	return _Iglobalexitrootmanagerl2sovereignchain.Contract.TransferGlobalExitRootUpdater(&_Iglobalexitrootmanagerl2sovereignchain.TransactOpts, _newGlobalExitRootUpdater)
+}
+
+// TransferGlobalExitRootUpdater is a paid mutator transaction binding the contract method 0x0e1bbf9f.
+//
+// Solidity: function transferGlobalExitRootUpdater(address _newGlobalExitRootUpdater) returns()
+func (_Iglobalexitrootmanagerl2sovereignchain *Iglobalexitrootmanagerl2sovereignchainTransactorSession) TransferGlobalExitRootUpdater(_newGlobalExitRootUpdater common.Address) (*types.Transaction, error) {
+	return _Iglobalexitrootmanagerl2sovereignchain.Contract.TransferGlobalExitRootUpdater(&_Iglobalexitrootmanagerl2sovereignchain.TransactOpts, _newGlobalExitRootUpdater)
 }
 
 // UpdateExitRoot is a paid mutator transaction binding the contract method 0x33d6247d.

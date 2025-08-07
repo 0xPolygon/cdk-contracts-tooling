@@ -31,7 +31,7 @@ var (
 
 // IagglayergatewayeventsMetaData contains all meta data concerning the Iagglayergatewayevents contract.
 var IagglayergatewayeventsMetaData = &bind.MetaData{
-	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"newVKey\",\"type\":\"bytes32\"}],\"name\":\"AddDefaultAggchainVKey\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"verifier\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"pessimisticVKey\",\"type\":\"bytes32\"}],\"name\":\"RouteAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"verifier\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"pessimisticVKey\",\"type\":\"bytes32\"}],\"name\":\"RouteFrozen\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"previousVKey\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"newVKey\",\"type\":\"bytes32\"}],\"name\":\"UpdateDefaultAggchainVKey\",\"type\":\"event\"}]",
+	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"newVKey\",\"type\":\"bytes32\"}],\"name\":\"AddDefaultAggchainVKey\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"verifier\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"pessimisticVKey\",\"type\":\"bytes32\"}],\"name\":\"RouteAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"verifier\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"pessimisticVKey\",\"type\":\"bytes32\"}],\"name\":\"RouteFrozen\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"}],\"name\":\"UnsetDefaultAggchainVKey\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"previousVKey\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"newVKey\",\"type\":\"bytes32\"}],\"name\":\"UpdateDefaultAggchainVKey\",\"type\":\"event\"}]",
 }
 
 // IagglayergatewayeventsABI is the input ABI used to generate the binding from.
@@ -581,6 +581,140 @@ func (_Iagglayergatewayevents *IagglayergatewayeventsFilterer) WatchRouteFrozen(
 func (_Iagglayergatewayevents *IagglayergatewayeventsFilterer) ParseRouteFrozen(log types.Log) (*IagglayergatewayeventsRouteFrozen, error) {
 	event := new(IagglayergatewayeventsRouteFrozen)
 	if err := _Iagglayergatewayevents.contract.UnpackLog(event, "RouteFrozen", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// IagglayergatewayeventsUnsetDefaultAggchainVKeyIterator is returned from FilterUnsetDefaultAggchainVKey and is used to iterate over the raw logs and unpacked data for UnsetDefaultAggchainVKey events raised by the Iagglayergatewayevents contract.
+type IagglayergatewayeventsUnsetDefaultAggchainVKeyIterator struct {
+	Event *IagglayergatewayeventsUnsetDefaultAggchainVKey // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *IagglayergatewayeventsUnsetDefaultAggchainVKeyIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(IagglayergatewayeventsUnsetDefaultAggchainVKey)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(IagglayergatewayeventsUnsetDefaultAggchainVKey)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *IagglayergatewayeventsUnsetDefaultAggchainVKeyIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *IagglayergatewayeventsUnsetDefaultAggchainVKeyIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// IagglayergatewayeventsUnsetDefaultAggchainVKey represents a UnsetDefaultAggchainVKey event raised by the Iagglayergatewayevents contract.
+type IagglayergatewayeventsUnsetDefaultAggchainVKey struct {
+	Selector [4]byte
+	Raw      types.Log // Blockchain specific contextual infos
+}
+
+// FilterUnsetDefaultAggchainVKey is a free log retrieval operation binding the contract event 0x43b46d79ee2fbaa8a981b5fd78aaf6fb9e38b18d02e1af17564ce37c67078cab.
+//
+// Solidity: event UnsetDefaultAggchainVKey(bytes4 selector)
+func (_Iagglayergatewayevents *IagglayergatewayeventsFilterer) FilterUnsetDefaultAggchainVKey(opts *bind.FilterOpts) (*IagglayergatewayeventsUnsetDefaultAggchainVKeyIterator, error) {
+
+	logs, sub, err := _Iagglayergatewayevents.contract.FilterLogs(opts, "UnsetDefaultAggchainVKey")
+	if err != nil {
+		return nil, err
+	}
+	return &IagglayergatewayeventsUnsetDefaultAggchainVKeyIterator{contract: _Iagglayergatewayevents.contract, event: "UnsetDefaultAggchainVKey", logs: logs, sub: sub}, nil
+}
+
+// WatchUnsetDefaultAggchainVKey is a free log subscription operation binding the contract event 0x43b46d79ee2fbaa8a981b5fd78aaf6fb9e38b18d02e1af17564ce37c67078cab.
+//
+// Solidity: event UnsetDefaultAggchainVKey(bytes4 selector)
+func (_Iagglayergatewayevents *IagglayergatewayeventsFilterer) WatchUnsetDefaultAggchainVKey(opts *bind.WatchOpts, sink chan<- *IagglayergatewayeventsUnsetDefaultAggchainVKey) (event.Subscription, error) {
+
+	logs, sub, err := _Iagglayergatewayevents.contract.WatchLogs(opts, "UnsetDefaultAggchainVKey")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(IagglayergatewayeventsUnsetDefaultAggchainVKey)
+				if err := _Iagglayergatewayevents.contract.UnpackLog(event, "UnsetDefaultAggchainVKey", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseUnsetDefaultAggchainVKey is a log parse operation binding the contract event 0x43b46d79ee2fbaa8a981b5fd78aaf6fb9e38b18d02e1af17564ce37c67078cab.
+//
+// Solidity: event UnsetDefaultAggchainVKey(bytes4 selector)
+func (_Iagglayergatewayevents *IagglayergatewayeventsFilterer) ParseUnsetDefaultAggchainVKey(log types.Log) (*IagglayergatewayeventsUnsetDefaultAggchainVKey, error) {
+	event := new(IagglayergatewayeventsUnsetDefaultAggchainVKey)
+	if err := _Iagglayergatewayevents.contract.UnpackLog(event, "UnsetDefaultAggchainVKey", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log

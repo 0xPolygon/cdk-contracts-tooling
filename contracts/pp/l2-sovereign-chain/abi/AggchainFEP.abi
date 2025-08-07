@@ -172,6 +172,11 @@
    },
    {
       "inputs": [],
+      "name": "InvalidAggchainType",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "InvalidInitializeFunction",
       "type": "error"
    },
@@ -1102,6 +1107,25 @@
             "type": "bytes4"
          }
       ],
+      "name": "getAggchainTypeFromSelector",
+      "outputs": [
+         {
+            "internalType": "bytes2",
+            "name": "",
+            "type": "bytes2"
+         }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "bytes4",
+            "name": "aggchainVKeySelector",
+            "type": "bytes4"
+         }
+      ],
       "name": "getAggchainVKey",
       "outputs": [
          {
@@ -1132,6 +1156,25 @@
             "internalType": "bytes4",
             "name": "",
             "type": "bytes4"
+         }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "bytes4",
+            "name": "aggchainVKeySelector",
+            "type": "bytes4"
+         }
+      ],
+      "name": "getAggchainVKeyVersionFromSelector",
+      "outputs": [
+         {
+            "internalType": "bytes2",
+            "name": "",
+            "type": "bytes2"
          }
       ],
       "stateMutability": "pure",

@@ -1,7 +1,7 @@
 [
    {
       "inputs": [],
-      "name": "BASE_INIT_BYTECODE_WRAPPED_TOKEN",
+      "name": "INIT_BYTECODE_TRANSPARENT_PROXY",
       "outputs": [
          {
             "internalType": "bytes",
@@ -9,7 +9,7 @@
             "type": "bytes"
          }
       ],
-      "stateMutability": "view",
+      "stateMutability": "pure",
       "type": "function"
    }
 ]

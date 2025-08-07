@@ -21,6 +21,11 @@
    },
    {
       "inputs": [],
+      "name": "InvalidAggchainType",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "InvalidInitializeFunction",
       "type": "error"
    },
