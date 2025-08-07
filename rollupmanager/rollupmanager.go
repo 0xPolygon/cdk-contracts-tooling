@@ -8,9 +8,9 @@ import (
 	"math/big"
 	"os"
 
-	"github.com/0xPolygon/cdk-contracts-tooling/contracts/fep/etrog/polygonrollupmanager"
-	"github.com/0xPolygon/cdk-contracts-tooling/contracts/fep/etrog/polygonrollupmanagernotupgraded"
-	"github.com/0xPolygon/cdk-contracts-tooling/contracts/fep/etrog/polygonzkevm"
+	"github.com/0xPolygon/cdk-contracts-tooling/contracts/legacy/etrog/polygonrollupmanager"
+	"github.com/0xPolygon/cdk-contracts-tooling/contracts/legacy/etrog/polygonrollupmanagernotupgraded"
+	"github.com/0xPolygon/cdk-contracts-tooling/contracts/legacy/etrog/polygonzkevm"
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/pp/l2-sovereign-chain/polygonconsensusbase"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"

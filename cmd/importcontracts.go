@@ -16,42 +16,23 @@ import (
 type ProvingSchema string
 
 const (
+	Legacy              ProvingSchema = "legacy"
 	FullExecutionProofs ProvingSchema = "fep"
 	PessimisticProofs   ProvingSchema = "pp"
 )
 
-// GetContractsRepoURL returns the URL of the contracts repository based on the proving schema
-func (ps ProvingSchema) GetContractsRepoURL() (string, error) {
-	switch ps {
-	case FullExecutionProofs:
-		return fepContractsRepoURL, nil
-	case PessimisticProofs:
-		return ppContractsRepoURL, nil
-	}
-
-	return "", fmt.Errorf("invalid proving schema provided: %s", ps)
-}
-
-// GetContractsRepoName returns the name of the contracts directory based on the proving schema
-func (ps ProvingSchema) GetContractsRepoName() (string, error) {
-	url, err := ps.GetContractsRepoURL()
-	if err != nil {
-		return "", err
-	}
-
-	parts := strings.Split(strings.TrimSuffix(url, ".git"), "/")
+// extractContractsRepoName returns the name of the contracts directory based on the proving schema
+func extractContractsRepoName() (string, error) {
+	parts := strings.Split(strings.TrimSuffix(contractsRepoURL, ".git"), "/")
 	if len(parts) == 0 {
-		return "", fmt.Errorf("invalid repo URL format: %s", url)
+		return "", fmt.Errorf("invalid repo URL format: %s", contractsRepoURL)
 	}
 
 	return parts[len(parts)-1], nil
 }
 
-func (ps ProvingSchema) String() string {
-	return string(ps)
-}
-
 var validProvingSchemas = map[ProvingSchema]struct{}{
+	Legacy:              {},
 	FullExecutionProofs: {},
 	PessimisticProofs:   {},
 }
@@ -64,12 +45,9 @@ const (
 	buildParisFlagName       = "build-paris"
 	provingSystemFlagName    = "proving-schema"
 
-	// Repo URLs
-	fepContractsRepoURL = "https://github.com/0xPolygonHermez/zkevm-contracts.git"
-	ppContractsRepoURL  = "https://github.com/agglayer/agg-contracts-internal.git"
-
-	artifactsPath  = "artifacts/contracts"
-	readmeTemplate = `# %s contracts
+	contractsRepoURL = "https://github.com/agglayer/agglayer-contracts.git"
+	artifactsPath    = "artifacts/contracts"
+	readmeTemplate   = `# %s contracts
 
 All the files and directories within this directory have been generated using the import-contracts command of the CLI in this repo.
 The ABI and the binnaries of the smart contracts have been extracted from [%s repo](%s), using the version %s (commit %s)
@@ -114,9 +92,9 @@ var (
 			&cli.StringFlag{
 				Name:     provingSystemFlagName,
 				Aliases:  []string{"ps"},
-				Usage:    "Proving system: 'fep' (full execution proofs) or 'pp' (pessimistic proofs)",
+				Usage:    "Proving system: 'legacy' (pre-pessimistic proofs), 'fep' (full execution proofs) or 'pp' (pessimistic proofs)",
 				Required: false,
-				Value:    string(FullExecutionProofs),
+				Value:    string(PessimisticProofs),
 			},
 		},
 	}
@@ -133,12 +111,7 @@ func importContracts(cliCtx *cli.Context) error {
 		return err
 	}
 
-	provingSchema := ProvingSchema(provingSchemaRaw)
-	contractsRepoName, err := provingSchema.GetContractsRepoName()
-	if err != nil {
-		return err
-	}
-	contractsRepoURL, err := provingSchema.GetContractsRepoURL()
+	contractsRepoName, err := extractContractsRepoName()
 	if err != nil {
 		return err
 	}
@@ -152,10 +125,20 @@ func importContracts(cliCtx *cli.Context) error {
 	if err != nil {
 		return err
 	}
+
+	// Defer deletion of the temporary directory and all its contents
+	defer func() {
+		err := os.RemoveAll(tmpDir)
+		if err != nil {
+			fmt.Printf("warning: failed to remove tmp dir %s: %v\n", tmpDir, err)
+		}
+	}()
+
 	err = runCommand("ls", contractsRepoName)
+	absolutePath := path.Join(tmpDir, contractsRepoName)
 	if err != nil {
 		if strings.Contains(err.Error(), "exit status 2") {
-			fmt.Println("cloning contracts repo into temporary directory")
+			fmt.Println("cloning contracts repo into temporary directory", absolutePath)
 			err = runCommand("git", "clone", contractsRepoURL)
 			if err != nil {
 				fmt.Printf("error cloning contracts repo from %s\n", contractsRepoURL)
@@ -166,7 +149,7 @@ func importContracts(cliCtx *cli.Context) error {
 			return err
 		}
 	}
-	err = os.Chdir(path.Join(tmpDir, contractsRepoName))
+	err = os.Chdir(absolutePath)
 	if err != nil {
 		return err
 	}
