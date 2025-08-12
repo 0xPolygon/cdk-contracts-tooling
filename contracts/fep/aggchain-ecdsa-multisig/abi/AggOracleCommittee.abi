@@ -1,0 +1,518 @@
+[
+   {
+      "inputs": [
+         {
+            "internalType": "contract IGlobalExitRootManagerL2SovereignChain",
+            "name": "globalExitRootManager",
+            "type": "address"
+         }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+   },
+   {
+      "inputs": [],
+      "name": "AlreadyOracleMember",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "AlreadyVotedForThisGER",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "GlobalExitRootManagerCannotBeZero",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "InvalidInitialization",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "InvalidProposedGER",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "NotInitializing",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "NotOracleMember",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OracleMemberCannotBeZero",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OracleMemberIndexMismatch",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OracleMemberIndexOutOfBounds",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OracleMemberNotFound",
+      "type": "error"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "address",
+            "name": "owner",
+            "type": "address"
+         }
+      ],
+      "name": "OwnableInvalidOwner",
+      "type": "error"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "address",
+            "name": "account",
+            "type": "address"
+         }
+      ],
+      "name": "OwnableUnauthorizedAccount",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "QuorumCannotBeGreaterThanAggOracleMembers",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "QuorumCannotBeZero",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "QuorumNotReached",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "WasNotOracleMember",
+      "type": "error"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "newOracleMember",
+            "type": "address"
+         }
+      ],
+      "name": "AddAggOracleMember",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "consolidatedGlobalExitRoot",
+            "type": "bytes32"
+         }
+      ],
+      "name": "ConsolidatedGlobalExitRoot",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "uint64",
+            "name": "version",
+            "type": "uint64"
+         }
+      ],
+      "name": "Initialized",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": true,
+            "internalType": "address",
+            "name": "previousOwner",
+            "type": "address"
+         },
+         {
+            "indexed": true,
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
+         }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "proposedGlobalExitRoot",
+            "type": "bytes32"
+         },
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "proposer",
+            "type": "address"
+         }
+      ],
+      "name": "ProposedGlobalExitRoot",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "address",
+            "name": "oracleMemberRemoved",
+            "type": "address"
+         }
+      ],
+      "name": "RemoveAggOracleMember",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "uint64",
+            "name": "newQuorum",
+            "type": "uint64"
+         }
+      ],
+      "name": "UpdateQuorum",
+      "type": "event"
+   },
+   {
+      "inputs": [],
+      "name": "INITIAL_PROPOSED_GER",
+      "outputs": [
+         {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "VERSION",
+      "outputs": [
+         {
+            "internalType": "string",
+            "name": "",
+            "type": "string"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "acceptGlobalExitRootUpdater",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "address",
+            "name": "newOracleMember",
+            "type": "address"
+         }
+      ],
+      "name": "addOracleMember",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+         }
+      ],
+      "name": "addressToLastProposedGER",
+      "outputs": [
+         {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+         }
+      ],
+      "name": "aggOracleMembers",
+      "outputs": [
+         {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "bytes32",
+            "name": "globalExitRoot",
+            "type": "bytes32"
+         }
+      ],
+      "name": "consolidateGlobalExitRoot",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "address",
+            "name": "oracleMember",
+            "type": "address"
+         }
+      ],
+      "name": "getAggOracleMemberIndex",
+      "outputs": [
+         {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "getAggOracleMembersCount",
+      "outputs": [
+         {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "getAllAggOracleMembers",
+      "outputs": [
+         {
+            "internalType": "address[]",
+            "name": "",
+            "type": "address[]"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "globalExitRootManagerL2Sovereign",
+      "outputs": [
+         {
+            "internalType": "contract IGlobalExitRootManagerL2SovereignChain",
+            "name": "",
+            "type": "address"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "address",
+            "name": "_owner",
+            "type": "address"
+         },
+         {
+            "internalType": "address[]",
+            "name": "_aggOracleMembers",
+            "type": "address[]"
+         },
+         {
+            "internalType": "uint64",
+            "name": "_quorum",
+            "type": "uint64"
+         }
+      ],
+      "name": "initialize",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+         {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "bytes32",
+            "name": "proposedGlobalExitRoot",
+            "type": "bytes32"
+         }
+      ],
+      "name": "proposeGlobalExitRoot",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+         }
+      ],
+      "name": "proposedGERToReport",
+      "outputs": [
+         {
+            "internalType": "uint64",
+            "name": "votes",
+            "type": "uint64"
+         },
+         {
+            "internalType": "uint64",
+            "name": "timestamp",
+            "type": "uint64"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "quorum",
+      "outputs": [
+         {
+            "internalType": "uint64",
+            "name": "",
+            "type": "uint64"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "address",
+            "name": "oracleMemberAddress",
+            "type": "address"
+         },
+         {
+            "internalType": "uint256",
+            "name": "oracleMemberIndex",
+            "type": "uint256"
+         }
+      ],
+      "name": "removeOracleMember",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "address",
+            "name": "_newGlobalExitRootUpdater",
+            "type": "address"
+         }
+      ],
+      "name": "transferGlobalExitRootUpdater",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
+         }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "uint64",
+            "name": "newQuorum",
+            "type": "uint64"
+         }
+      ],
+      "name": "updateQuorum",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+   }
+]

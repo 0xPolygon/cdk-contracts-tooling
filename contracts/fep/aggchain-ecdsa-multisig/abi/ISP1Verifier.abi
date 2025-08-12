@@ -1,0 +1,25 @@
+[
+   {
+      "inputs": [
+         {
+            "internalType": "bytes32",
+            "name": "programVKey",
+            "type": "bytes32"
+         },
+         {
+            "internalType": "bytes",
+            "name": "publicValues",
+            "type": "bytes"
+         },
+         {
+            "internalType": "bytes",
+            "name": "proofBytes",
+            "type": "bytes"
+         }
+      ],
+      "name": "verifyProof",
+      "outputs": [],
+      "stateMutability": "view",
+      "type": "function"
+   }
+]
