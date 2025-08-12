@@ -11,6 +11,11 @@
    },
    {
       "inputs": [],
+      "name": "GlobalExitRootManagerCannotBeZero",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "InvalidProposedGER",
       "type": "error"
    },
@@ -27,6 +32,11 @@
    {
       "inputs": [],
       "name": "OracleMemberIndexMismatch",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OracleMemberIndexOutOfBounds",
       "type": "error"
    },
    {

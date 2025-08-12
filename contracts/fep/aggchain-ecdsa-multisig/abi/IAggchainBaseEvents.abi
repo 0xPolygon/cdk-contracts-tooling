@@ -58,6 +58,19 @@
    },
    {
       "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "newAggchainSignersHash",
+            "type": "bytes32"
+         }
+      ],
+      "name": "AggchainSignersHashUpdated",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
       "inputs": [],
       "name": "DisableUseDefaultGatewayFlag",
       "type": "event"
@@ -66,6 +79,31 @@
       "anonymous": false,
       "inputs": [],
       "name": "EnableUseDefaultGatewayFlag",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "address[]",
+            "name": "aggchainSigners",
+            "type": "address[]"
+         },
+         {
+            "indexed": false,
+            "internalType": "uint32",
+            "name": "newThreshold",
+            "type": "uint32"
+         },
+         {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "newAggchainSignersHash",
+            "type": "bytes32"
+         }
+      ],
+      "name": "SignersAndThresholdUpdated",
       "type": "event"
    },
    {

@@ -6,7 +6,22 @@
    },
    {
       "inputs": [],
+      "name": "AggchainSignersHashNotInitialized",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "AggchainVKeyNotFound",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "EmptyAggchainSignersArray",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "IndicesNotInDescendingOrder",
       "type": "error"
    },
    {
@@ -27,6 +42,11 @@
    {
       "inputs": [],
       "name": "InvalidInitializeFunction",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "InvalidThreshold",
       "type": "error"
    },
    {
@@ -62,6 +82,36 @@
    {
       "inputs": [],
       "name": "OwnedAggchainVKeyNotFound",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "SignerAlreadyExists",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "SignerCannotBeZero",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "SignerDoesNotExist",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "SignerURLCannotBeEmpty",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "ThresholdTooHigh",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "ThresholdTooHighAfterRemoval",
       "type": "error"
    },
    {
@@ -138,6 +188,19 @@
    },
    {
       "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "newAggchainSignersHash",
+            "type": "bytes32"
+         }
+      ],
+      "name": "AggchainSignersHashUpdated",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
       "inputs": [],
       "name": "DisableUseDefaultGatewayFlag",
       "type": "event"
@@ -146,6 +209,31 @@
       "anonymous": false,
       "inputs": [],
       "name": "EnableUseDefaultGatewayFlag",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "address[]",
+            "name": "aggchainSigners",
+            "type": "address[]"
+         },
+         {
+            "indexed": false,
+            "internalType": "uint32",
+            "name": "newThreshold",
+            "type": "uint32"
+         },
+         {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "newAggchainSignersHash",
+            "type": "bytes32"
+         }
+      ],
+      "name": "SignersAndThresholdUpdated",
       "type": "event"
    },
    {

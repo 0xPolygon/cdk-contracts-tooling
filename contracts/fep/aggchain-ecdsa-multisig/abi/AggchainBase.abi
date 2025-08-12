@@ -6,6 +6,11 @@
    },
    {
       "inputs": [],
+      "name": "AggchainSignersHashNotInitialized",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "AggchainVKeyNotFound",
       "type": "error"
    },
@@ -17,6 +22,11 @@
    {
       "inputs": [],
       "name": "BatchNotSequencedOrNotSequenceEnd",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "EmptyAggchainSignersArray",
       "type": "error"
    },
    {
@@ -106,6 +116,11 @@
    },
    {
       "inputs": [],
+      "name": "IndicesNotInDescendingOrder",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "InitNumBatchAboveLastVerifiedBatch",
       "type": "error"
    },
@@ -162,6 +177,11 @@
    {
       "inputs": [],
       "name": "InvalidRangeMultiplierBatchFee",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "InvalidThreshold",
       "type": "error"
    },
    {
@@ -311,7 +331,37 @@
    },
    {
       "inputs": [],
+      "name": "SignerAlreadyExists",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "SignerCannotBeZero",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "SignerDoesNotExist",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "SignerURLCannotBeEmpty",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "StoredRootMustBeDifferentThanNewRoot",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "ThresholdTooHigh",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "ThresholdTooHighAfterRemoval",
       "type": "error"
    },
    {
@@ -416,6 +466,19 @@
    },
    {
       "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "newAggchainSignersHash",
+            "type": "bytes32"
+         }
+      ],
+      "name": "AggchainSignersHashUpdated",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
       "inputs": [],
       "name": "DisableUseDefaultGatewayFlag",
       "type": "event"
@@ -463,6 +526,31 @@
          }
       ],
       "name": "SetTrustedSequencerURL",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "address[]",
+            "name": "aggchainSigners",
+            "type": "address[]"
+         },
+         {
+            "indexed": false,
+            "internalType": "uint32",
+            "name": "newThreshold",
+            "type": "uint32"
+         },
+         {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "newAggchainSignersHash",
+            "type": "bytes32"
+         }
+      ],
+      "name": "SignersAndThresholdUpdated",
       "type": "event"
    },
    {
@@ -646,6 +734,38 @@
       "type": "function"
    },
    {
+      "inputs": [
+         {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+         }
+      ],
+      "name": "aggchainSigners",
+      "outputs": [
+         {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "aggchainSignersHash",
+      "outputs": [
+         {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
       "inputs": [],
       "name": "bridgeAddress",
       "outputs": [
@@ -757,6 +877,56 @@
             "internalType": "bytes32",
             "name": "",
             "type": "bytes32"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "bytes",
+            "name": "aggchainData",
+            "type": "bytes"
+         }
+      ],
+      "name": "getAggchainParamsAndVKeySelector",
+      "outputs": [
+         {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+         },
+         {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "getAggchainSigners",
+      "outputs": [
+         {
+            "internalType": "address[]",
+            "name": "",
+            "type": "address[]"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "getAggchainSignersCount",
+      "outputs": [
+         {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
          }
       ],
       "stateMutability": "view",
@@ -905,6 +1075,25 @@
       "name": "initialize",
       "outputs": [],
       "stateMutability": "pure",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "address",
+            "name": "_signer",
+            "type": "address"
+         }
+      ],
+      "name": "isSigner",
+      "outputs": [
+         {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+         }
+      ],
+      "stateMutability": "view",
       "type": "function"
    },
    {
@@ -1086,6 +1275,38 @@
       "inputs": [
          {
             "internalType": "address",
+            "name": "",
+            "type": "address"
+         }
+      ],
+      "name": "signerToURLs",
+      "outputs": [
+         {
+            "internalType": "string",
+            "name": "",
+            "type": "string"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "threshold",
+      "outputs": [
+         {
+            "internalType": "uint32",
+            "name": "",
+            "type": "uint32"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "address",
             "name": "newPendingAdmin",
             "type": "address"
          }
@@ -1166,6 +1387,53 @@
       "type": "function"
    },
    {
+      "inputs": [
+         {
+            "components": [
+               {
+                  "internalType": "address",
+                  "name": "addr",
+                  "type": "address"
+               },
+               {
+                  "internalType": "uint256",
+                  "name": "index",
+                  "type": "uint256"
+               }
+            ],
+            "internalType": "struct AggchainBase.RemoveSignerInfo[]",
+            "name": "_signersToRemove",
+            "type": "tuple[]"
+         },
+         {
+            "components": [
+               {
+                  "internalType": "address",
+                  "name": "addr",
+                  "type": "address"
+               },
+               {
+                  "internalType": "string",
+                  "name": "url",
+                  "type": "string"
+               }
+            ],
+            "internalType": "struct AggchainBase.SignerInfo[]",
+            "name": "_signersToAdd",
+            "type": "tuple[]"
+         },
+         {
+            "internalType": "uint32",
+            "name": "_newThreshold",
+            "type": "uint32"
+         }
+      ],
+      "name": "updateSignersAndThreshold",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+   },
+   {
       "inputs": [],
       "name": "useDefaultGateway",
       "outputs": [
@@ -1189,6 +1457,19 @@
          }
       ],
       "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "version",
+      "outputs": [
+         {
+            "internalType": "string",
+            "name": "",
+            "type": "string"
+         }
+      ],
+      "stateMutability": "pure",
       "type": "function"
    }
 ]

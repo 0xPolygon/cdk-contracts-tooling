@@ -121,6 +121,11 @@
    },
    {
       "inputs": [],
+      "name": "InvalidNewLocalExitRoot",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "InvalidPessimisticProof",
       "type": "error"
    },
@@ -192,6 +197,11 @@
    {
       "inputs": [],
       "name": "NewPendingStateTimeoutMustBeLower",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "NewRollupTypeMustBePessimisticOrALGateway",
       "type": "error"
    },
    {

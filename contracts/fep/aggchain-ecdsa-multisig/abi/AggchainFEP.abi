@@ -37,6 +37,11 @@
    },
    {
       "inputs": [],
+      "name": "AggchainSignersHashNotInitialized",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "AggchainVKeyNotFound",
       "type": "error"
    },
@@ -58,6 +63,11 @@
    {
       "inputs": [],
       "name": "CannotProposeFutureL2Output",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "EmptyAggchainSignersArray",
       "type": "error"
    },
    {
@@ -147,6 +157,11 @@
    },
    {
       "inputs": [],
+      "name": "IndicesNotInDescendingOrder",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "InitNumBatchAboveLastVerifiedBatch",
       "type": "error"
    },
@@ -208,6 +223,11 @@
    {
       "inputs": [],
       "name": "InvalidRangeMultiplierBatchFee",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "InvalidThreshold",
       "type": "error"
    },
    {
@@ -402,6 +422,26 @@
    },
    {
       "inputs": [],
+      "name": "SignerAlreadyExists",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "SignerCannotBeZero",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "SignerDoesNotExist",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "SignerURLCannotBeEmpty",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "StartL2TimestampMustBeLessThanCurrentTime",
       "type": "error"
    },
@@ -413,6 +453,16 @@
    {
       "inputs": [],
       "name": "SubmissionIntervalMustBeGreaterThanZero",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "ThresholdTooHigh",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "ThresholdTooHighAfterRemoval",
       "type": "error"
    },
    {
@@ -538,6 +588,19 @@
       "anonymous": false,
       "inputs": [
          {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "newAggchainSignersHash",
+            "type": "bytes32"
+         }
+      ],
+      "name": "AggchainSignersHashUpdated",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
             "indexed": true,
             "internalType": "bytes32",
             "name": "oldAggregationVkey",
@@ -588,6 +651,50 @@
          }
       ],
       "name": "Initialized",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "configName",
+            "type": "bytes32"
+         }
+      ],
+      "name": "OpSuccinctConfigDeleted",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "configName",
+            "type": "bytes32"
+         },
+         {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "aggregationVkey",
+            "type": "bytes32"
+         },
+         {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "rangeVkeyCommitment",
+            "type": "bytes32"
+         },
+         {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "rollupConfigHash",
+            "type": "bytes32"
+         }
+      ],
+      "name": "OpSuccinctConfigUpdated",
       "type": "event"
    },
    {
@@ -683,6 +790,31 @@
          }
       ],
       "name": "SetTrustedSequencerURL",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "address[]",
+            "name": "aggchainSigners",
+            "type": "address[]"
+         },
+         {
+            "indexed": false,
+            "internalType": "uint32",
+            "name": "newThreshold",
+            "type": "uint32"
+         },
+         {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "newAggchainSignersHash",
+            "type": "bytes32"
+         }
+      ],
+      "name": "SignersAndThresholdUpdated",
       "type": "event"
    },
    {
@@ -801,6 +933,19 @@
    },
    {
       "inputs": [],
+      "name": "AGGCHAIN_FEP_VERSION",
+      "outputs": [
+         {
+            "internalType": "string",
+            "name": "",
+            "type": "string"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
       "name": "AGGCHAIN_TYPE",
       "outputs": [
          {
@@ -820,6 +965,19 @@
             "internalType": "uint32",
             "name": "",
             "type": "uint32"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "GENESIS_CONFIG_NAME",
+      "outputs": [
+         {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
          }
       ],
       "stateMutability": "view",
@@ -882,6 +1040,34 @@
    {
       "inputs": [
          {
+            "internalType": "bytes32",
+            "name": "_configName",
+            "type": "bytes32"
+         },
+         {
+            "internalType": "bytes32",
+            "name": "_rollupConfigHash",
+            "type": "bytes32"
+         },
+         {
+            "internalType": "bytes32",
+            "name": "_aggregationVkey",
+            "type": "bytes32"
+         },
+         {
+            "internalType": "bytes32",
+            "name": "_rangeVkeyCommitment",
+            "type": "bytes32"
+         }
+      ],
+      "name": "addOpSuccinctConfig",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
             "internalType": "bytes4",
             "name": "aggchainVKeySelector",
             "type": "bytes4"
@@ -937,6 +1123,38 @@
       "type": "function"
    },
    {
+      "inputs": [
+         {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+         }
+      ],
+      "name": "aggchainSigners",
+      "outputs": [
+         {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "aggchainSignersHash",
+      "outputs": [
+         {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
       "inputs": [],
       "name": "aggregationVkey",
       "outputs": [
@@ -979,6 +1197,19 @@
          }
       ],
       "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "bytes32",
+            "name": "_configName",
+            "type": "bytes32"
+         }
+      ],
+      "name": "deleteOpSuccinctConfig",
+      "outputs": [],
+      "stateMutability": "nonpayable",
       "type": "function"
    },
    {
@@ -1094,6 +1325,56 @@
             "internalType": "bytes32",
             "name": "",
             "type": "bytes32"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "bytes",
+            "name": "aggchainData",
+            "type": "bytes"
+         }
+      ],
+      "name": "getAggchainParamsAndVKeySelector",
+      "outputs": [
+         {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+         },
+         {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "getAggchainSigners",
+      "outputs": [
+         {
+            "internalType": "address[]",
+            "name": "",
+            "type": "address[]"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "getAggchainSignersCount",
+      "outputs": [
+         {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
          }
       ],
       "stateMutability": "view",
@@ -1294,6 +1575,61 @@
       "type": "function"
    },
    {
+      "inputs": [
+         {
+            "internalType": "address",
+            "name": "_signer",
+            "type": "address"
+         }
+      ],
+      "name": "isSigner",
+      "outputs": [
+         {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "components": [
+               {
+                  "internalType": "bytes32",
+                  "name": "aggregationVkey",
+                  "type": "bytes32"
+               },
+               {
+                  "internalType": "bytes32",
+                  "name": "rangeVkeyCommitment",
+                  "type": "bytes32"
+               },
+               {
+                  "internalType": "bytes32",
+                  "name": "rollupConfigHash",
+                  "type": "bytes32"
+               }
+            ],
+            "internalType": "struct AggchainFEP.OpSuccinctConfig",
+            "name": "_config",
+            "type": "tuple"
+         }
+      ],
+      "name": "isValidOpSuccinctConfig",
+      "outputs": [
+         {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+         }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+   },
+   {
       "inputs": [],
       "name": "l2BlockTime",
       "outputs": [
@@ -1421,6 +1757,35 @@
       "name": "onVerifyPessimistic",
       "outputs": [],
       "stateMutability": "nonpayable",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+         }
+      ],
+      "name": "opSuccinctConfigs",
+      "outputs": [
+         {
+            "internalType": "bytes32",
+            "name": "aggregationVkey",
+            "type": "bytes32"
+         },
+         {
+            "internalType": "bytes32",
+            "name": "rangeVkeyCommitment",
+            "type": "bytes32"
+         },
+         {
+            "internalType": "bytes32",
+            "name": "rollupConfigHash",
+            "type": "bytes32"
+         }
+      ],
+      "stateMutability": "view",
       "type": "function"
    },
    {
@@ -1599,6 +1964,25 @@
       "type": "function"
    },
    {
+      "inputs": [
+         {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+         }
+      ],
+      "name": "signerToURLs",
+      "outputs": [
+         {
+            "internalType": "string",
+            "name": "",
+            "type": "string"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
       "inputs": [],
       "name": "startingBlockNumber",
       "outputs": [
@@ -1632,6 +2016,19 @@
             "internalType": "uint256",
             "name": "",
             "type": "uint256"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "threshold",
+      "outputs": [
+         {
+            "internalType": "uint32",
+            "name": "",
+            "type": "uint32"
          }
       ],
       "stateMutability": "view",
@@ -1718,19 +2115,6 @@
    {
       "inputs": [
          {
-            "internalType": "bytes32",
-            "name": "_aggregationVkey",
-            "type": "bytes32"
-         }
-      ],
-      "name": "updateAggregationVkey",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-   },
-   {
-      "inputs": [
-         {
             "internalType": "bytes4",
             "name": "aggchainVKeySelector",
             "type": "bytes4"
@@ -1749,25 +2133,46 @@
    {
       "inputs": [
          {
-            "internalType": "bytes32",
-            "name": "_rangeVkeyCommitment",
-            "type": "bytes32"
-         }
-      ],
-      "name": "updateRangeVkeyCommitment",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-   },
-   {
-      "inputs": [
+            "components": [
+               {
+                  "internalType": "address",
+                  "name": "addr",
+                  "type": "address"
+               },
+               {
+                  "internalType": "uint256",
+                  "name": "index",
+                  "type": "uint256"
+               }
+            ],
+            "internalType": "struct AggchainBase.RemoveSignerInfo[]",
+            "name": "_signersToRemove",
+            "type": "tuple[]"
+         },
          {
-            "internalType": "bytes32",
-            "name": "_rollupConfigHash",
-            "type": "bytes32"
+            "components": [
+               {
+                  "internalType": "address",
+                  "name": "addr",
+                  "type": "address"
+               },
+               {
+                  "internalType": "string",
+                  "name": "url",
+                  "type": "string"
+               }
+            ],
+            "internalType": "struct AggchainBase.SignerInfo[]",
+            "name": "_signersToAdd",
+            "type": "tuple[]"
+         },
+         {
+            "internalType": "uint32",
+            "name": "_newThreshold",
+            "type": "uint32"
          }
       ],
-      "name": "updateRollupConfigHash",
+      "name": "updateSignersAndThreshold",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
@@ -1821,7 +2226,7 @@
             "type": "string"
          }
       ],
-      "stateMutability": "view",
+      "stateMutability": "pure",
       "type": "function"
    }
 ]

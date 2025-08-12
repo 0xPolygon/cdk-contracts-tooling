@@ -321,6 +321,19 @@
    },
    {
       "inputs": [],
+      "name": "AGGLAYER_GATEWAY_VERSION",
+      "outputs": [
+         {
+            "internalType": "string",
+            "name": "",
+            "type": "string"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
       "name": "DEFAULT_ADMIN_ROLE",
       "outputs": [
          {
@@ -659,6 +672,19 @@
       "name": "verifyPessimisticProof",
       "outputs": [],
       "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "version",
+      "outputs": [
+         {
+            "internalType": "string",
+            "name": "",
+            "type": "string"
+         }
+      ],
+      "stateMutability": "pure",
       "type": "function"
    }
 ]

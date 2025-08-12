@@ -37,6 +37,11 @@
    },
    {
       "inputs": [],
+      "name": "AggchainSignersHashNotInitialized",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "AggchainVKeyNotFound",
       "type": "error"
    },
@@ -52,7 +57,7 @@
    },
    {
       "inputs": [],
-      "name": "EmptySignersArray",
+      "name": "EmptyAggchainSignersArray",
       "type": "error"
    },
    {
@@ -138,6 +143,11 @@
    {
       "inputs": [],
       "name": "HugeTokenMetadataNotSupported",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "IndicesNotInDescendingOrder",
       "type": "error"
    },
    {
@@ -372,7 +382,17 @@
    },
    {
       "inputs": [],
+      "name": "SignerURLCannotBeEmpty",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "StoredRootMustBeDifferentThanNewRoot",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "ThresholdTooHigh",
       "type": "error"
    },
    {
@@ -482,6 +502,19 @@
    },
    {
       "anonymous": false,
+      "inputs": [
+         {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "newAggchainSignersHash",
+            "type": "bytes32"
+         }
+      ],
+      "name": "AggchainSignersHashUpdated",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
       "inputs": [],
       "name": "DisableUseDefaultGatewayFlag",
       "type": "event"
@@ -541,58 +574,25 @@
       "anonymous": false,
       "inputs": [
          {
-            "indexed": true,
-            "internalType": "address",
-            "name": "signer",
-            "type": "address"
-         }
-      ],
-      "name": "SignerAdded",
-      "type": "event"
-   },
-   {
-      "anonymous": false,
-      "inputs": [
-         {
-            "indexed": true,
-            "internalType": "address",
-            "name": "signer",
-            "type": "address"
-         }
-      ],
-      "name": "SignerRemoved",
-      "type": "event"
-   },
-   {
-      "anonymous": false,
-      "inputs": [
-         {
             "indexed": false,
-            "internalType": "bytes32",
-            "name": "newSignersHash",
-            "type": "bytes32"
-         }
-      ],
-      "name": "SignersHashUpdated",
-      "type": "event"
-   },
-   {
-      "anonymous": false,
-      "inputs": [
-         {
-            "indexed": false,
-            "internalType": "uint32",
-            "name": "oldThreshold",
-            "type": "uint32"
+            "internalType": "address[]",
+            "name": "aggchainSigners",
+            "type": "address[]"
          },
          {
             "indexed": false,
             "internalType": "uint32",
             "name": "newThreshold",
             "type": "uint32"
+         },
+         {
+            "indexed": false,
+            "internalType": "bytes32",
+            "name": "newAggchainSignersHash",
+            "type": "bytes32"
          }
       ],
-      "name": "ThresholdUpdated",
+      "name": "SignersAndThresholdUpdated",
       "type": "event"
    },
    {
@@ -734,19 +734,6 @@
    {
       "inputs": [
          {
-            "internalType": "address[]",
-            "name": "_signers",
-            "type": "address[]"
-         }
-      ],
-      "name": "addMultiSigners",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-   },
-   {
-      "inputs": [
-         {
             "internalType": "bytes4",
             "name": "aggchainVKeySelector",
             "type": "bytes4"
@@ -758,19 +745,6 @@
          }
       ],
       "name": "addOwnedAggchainVKey",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-   },
-   {
-      "inputs": [
-         {
-            "internalType": "address",
-            "name": "_signer",
-            "type": "address"
-         }
-      ],
-      "name": "addSigner",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
@@ -809,6 +783,38 @@
             "internalType": "address",
             "name": "",
             "type": "address"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+         }
+      ],
+      "name": "aggchainSigners",
+      "outputs": [
+         {
+            "internalType": "address",
+            "name": "",
+            "type": "address"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "aggchainSignersHash",
+      "outputs": [
+         {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
          }
       ],
       "stateMutability": "view",
@@ -934,6 +940,56 @@
    {
       "inputs": [
          {
+            "internalType": "bytes",
+            "name": "aggchainData",
+            "type": "bytes"
+         }
+      ],
+      "name": "getAggchainParamsAndVKeySelector",
+      "outputs": [
+         {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+         },
+         {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+         }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "getAggchainSigners",
+      "outputs": [
+         {
+            "internalType": "address[]",
+            "name": "",
+            "type": "address[]"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "getAggchainSignersCount",
+      "outputs": [
+         {
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
             "internalType": "bytes4",
             "name": "aggchainVKeySelector",
             "type": "bytes4"
@@ -1010,32 +1066,6 @@
          }
       ],
       "stateMutability": "pure",
-      "type": "function"
-   },
-   {
-      "inputs": [],
-      "name": "getSigners",
-      "outputs": [
-         {
-            "internalType": "address[]",
-            "name": "",
-            "type": "address[]"
-         }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-   },
-   {
-      "inputs": [],
-      "name": "getSignersCount",
-      "outputs": [
-         {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-         }
-      ],
-      "stateMutability": "view",
       "type": "function"
    },
    {
@@ -1124,25 +1154,6 @@
          }
       ],
       "name": "isSigner",
-      "outputs": [
-         {
-            "internalType": "bool",
-            "name": "",
-            "type": "bool"
-         }
-      ],
-      "stateMutability": "view",
-      "type": "function"
-   },
-   {
-      "inputs": [
-         {
-            "internalType": "address",
-            "name": "",
-            "type": "address"
-         }
-      ],
-      "name": "isSignerMapping",
       "outputs": [
          {
             "internalType": "bool",
@@ -1290,24 +1301,6 @@
       "type": "function"
    },
    {
-      "inputs": [
-         {
-            "internalType": "address",
-            "name": "_signer",
-            "type": "address"
-         },
-         {
-            "internalType": "uint256",
-            "name": "_signerIndex",
-            "type": "uint256"
-         }
-      ],
-      "name": "removeSigner",
-      "outputs": [],
-      "stateMutability": "nonpayable",
-      "type": "function"
-   },
-   {
       "inputs": [],
       "name": "rollupManager",
       "outputs": [
@@ -1349,30 +1342,17 @@
    {
       "inputs": [
          {
-            "internalType": "uint256",
-            "name": "",
-            "type": "uint256"
-         }
-      ],
-      "name": "signers",
-      "outputs": [
-         {
             "internalType": "address",
             "name": "",
             "type": "address"
          }
       ],
-      "stateMutability": "view",
-      "type": "function"
-   },
-   {
-      "inputs": [],
-      "name": "signersHash",
+      "name": "signerToURLs",
       "outputs": [
          {
-            "internalType": "bytes32",
+            "internalType": "string",
             "name": "",
-            "type": "bytes32"
+            "type": "string"
          }
       ],
       "stateMutability": "view",
@@ -1477,12 +1457,46 @@
    {
       "inputs": [
          {
+            "components": [
+               {
+                  "internalType": "address",
+                  "name": "addr",
+                  "type": "address"
+               },
+               {
+                  "internalType": "uint256",
+                  "name": "index",
+                  "type": "uint256"
+               }
+            ],
+            "internalType": "struct AggchainBase.RemoveSignerInfo[]",
+            "name": "_signersToRemove",
+            "type": "tuple[]"
+         },
+         {
+            "components": [
+               {
+                  "internalType": "address",
+                  "name": "addr",
+                  "type": "address"
+               },
+               {
+                  "internalType": "string",
+                  "name": "url",
+                  "type": "string"
+               }
+            ],
+            "internalType": "struct AggchainBase.SignerInfo[]",
+            "name": "_signersToAdd",
+            "type": "tuple[]"
+         },
+         {
             "internalType": "uint32",
             "name": "_newThreshold",
             "type": "uint32"
          }
       ],
-      "name": "updateThreshold",
+      "name": "updateSignersAndThreshold",
       "outputs": [],
       "stateMutability": "nonpayable",
       "type": "function"
@@ -1511,6 +1525,19 @@
          }
       ],
       "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "version",
+      "outputs": [
+         {
+            "internalType": "string",
+            "name": "",
+            "type": "string"
+         }
+      ],
+      "stateMutability": "pure",
       "type": "function"
    }
 ]

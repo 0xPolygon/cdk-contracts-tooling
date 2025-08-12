@@ -231,7 +231,7 @@ func importContracts(cliCtx *cli.Context) error {
 
 	fmt.Println("generating README.md")
 	commandlineParams := strings.Join(os.Args[1:], " ")
-	err = os.WriteFile(
+	return os.WriteFile(
 		contractsPath+"/README.md",
 		fmt.Appendf(nil,
 			readmeTemplate, alias,
@@ -240,10 +240,6 @@ func importContracts(cliCtx *cli.Context) error {
 		),
 		0644,
 	)
-	if err != nil {
-		return err
-	}
-	return nil
 }
 
 // validateProvingSchema ensures only valid values are used

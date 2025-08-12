@@ -157,6 +157,11 @@
    },
    {
       "inputs": [],
+      "name": "InvalidNewLocalExitRoot",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "InvalidPessimisticProof",
       "type": "error"
    },
@@ -228,6 +233,11 @@
    {
       "inputs": [],
       "name": "NewPendingStateTimeoutMustBeLower",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "NewRollupTypeMustBePessimisticOrALGateway",
       "type": "error"
    },
    {
@@ -493,6 +503,19 @@
             "internalType": "uint32",
             "name": "rollupID",
             "type": "uint32"
+         }
+      ],
+      "name": "CompletedMigration",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": true,
+            "internalType": "uint32",
+            "name": "rollupID",
+            "type": "uint32"
          },
          {
             "indexed": false,
@@ -575,6 +598,25 @@
       "anonymous": false,
       "inputs": [],
       "name": "EmergencyStateDeactivated",
+      "type": "event"
+   },
+   {
+      "anonymous": false,
+      "inputs": [
+         {
+            "indexed": true,
+            "internalType": "uint32",
+            "name": "rollupID",
+            "type": "uint32"
+         },
+         {
+            "indexed": false,
+            "internalType": "uint32",
+            "name": "newRollupTypeID",
+            "type": "uint32"
+         }
+      ],
+      "name": "InitMigration",
       "type": "event"
    },
    {
@@ -1365,6 +1407,29 @@
       "type": "function"
    },
    {
+      "inputs": [
+         {
+            "internalType": "uint32",
+            "name": "rollupID",
+            "type": "uint32"
+         },
+         {
+            "internalType": "uint32",
+            "name": "newRollupTypeID",
+            "type": "uint32"
+         },
+         {
+            "internalType": "bytes",
+            "name": "upgradeData",
+            "type": "bytes"
+         }
+      ],
+      "name": "initMigration",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+   },
+   {
       "inputs": [],
       "name": "initialize",
       "outputs": [],
@@ -1402,6 +1467,25 @@
    {
       "inputs": [],
       "name": "isEmergencyState",
+      "outputs": [
+         {
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "uint32",
+            "name": "rollupID",
+            "type": "uint32"
+         }
+      ],
+      "name": "isRollupMigrating",
       "outputs": [
          {
             "internalType": "bool",
@@ -1702,12 +1786,12 @@
          },
          {
             "internalType": "uint64",
-            "name": "_legacyLastPendingState",
+            "name": "legacyLastPendingState",
             "type": "uint64"
          },
          {
             "internalType": "uint64",
-            "name": "_legacyLastPendingStateConsolidated",
+            "name": "legacyLastPendingStateConsolidated",
             "type": "uint64"
          },
          {
@@ -2110,6 +2194,19 @@
       "name": "verifyPessimisticTrustedAggregator",
       "outputs": [],
       "stateMutability": "nonpayable",
+      "type": "function"
+   },
+   {
+      "inputs": [],
+      "name": "version",
+      "outputs": [
+         {
+            "internalType": "string",
+            "name": "",
+            "type": "string"
+         }
+      ],
+      "stateMutability": "pure",
       "type": "function"
    }
 ]

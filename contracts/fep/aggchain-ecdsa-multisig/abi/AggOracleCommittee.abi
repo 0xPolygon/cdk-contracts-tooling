@@ -22,6 +22,11 @@
    },
    {
       "inputs": [],
+      "name": "GlobalExitRootManagerCannotBeZero",
+      "type": "error"
+   },
+   {
+      "inputs": [],
       "name": "InvalidInitialization",
       "type": "error"
    },
@@ -48,6 +53,11 @@
    {
       "inputs": [],
       "name": "OracleMemberIndexMismatch",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OracleMemberIndexOutOfBounds",
       "type": "error"
    },
    {
