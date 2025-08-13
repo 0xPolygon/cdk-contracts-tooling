@@ -214,13 +214,26 @@ func importContracts(cliCtx *cli.Context) error {
 	}
 	compilationFailures := 0
 	fmt.Printf("found %d contracts, compiling...\n", contractsFound)
+	baseAbiPath := filepath.Join(contractsPath, "abi")
+	baseBinPath := filepath.Join(contractsPath, "bin")
 	for _, contractPath := range contractPaths {
-		if err := importContract(contractPath, contractsPath); err != nil {
+		if err := importContract(contractPath, contractsPath, baseAbiPath, baseBinPath); err != nil {
 			fmt.Println("WARNING: error importing contract ", contractPath, ": ", err)
 			compilationFailures++
 		}
 	}
 	fmt.Printf("%d / %d contracts compiled successfuly\n", contractsFound-compilationFailures, contractsFound)
+
+	fmt.Println("cleaning up abi and bin transient folders...")
+	if err := os.RemoveAll(baseAbiPath); err != nil {
+		fmt.Println("error removing abi directory ", baseAbiPath)
+		return err
+	}
+
+	if err := os.RemoveAll(baseBinPath); err != nil {
+		fmt.Println("error removing bin directory ", baseAbiPath)
+		return err
+	}
 
 	fmt.Println("running go mod tidy to fix potential dependency issues related to generated Go code")
 	err = runCommand("go", "mod", "tidy")
@@ -259,19 +272,19 @@ func prepareParisMode() error {
 	return err
 }
 
-func importContract(contractPath, storingPath string) error {
-	// read file
-	type contractJSON struct {
-		ABI      []interface{} `json:"abi"`
-		Bytecode string        `json:"bytecode"`
-	}
+// read file
+type contractJSON struct {
+	ABI      []any  `json:"abi"`
+	Bytecode string `json:"bytecode"`
+}
+
+func importContract(contractPath, storingPath, baseAbiPath, baseBinPath string) error {
 	data, err := os.ReadFile(contractPath)
 	if err != nil {
 		return err
 	}
 	var contract contractJSON
-	err = json.Unmarshal(data, &contract)
-	if err != nil {
+	if err := json.Unmarshal(data, &contract); err != nil {
 		return err
 	}
 
@@ -282,34 +295,37 @@ func importContract(contractPath, storingPath string) error {
 	if err != nil {
 		return err
 	}
-	err = os.WriteFile(storingPath+"/abi/"+name+".abi", abiData, 0644)
-	if err != nil {
+
+	abiPath := filepath.Join(baseAbiPath, name+".abi")
+	binPath := filepath.Join(baseBinPath, name+".bin")
+
+	if err := os.WriteFile(abiPath, abiData, 0644); err != nil {
 		return err
 	}
-	err = os.WriteFile(storingPath+"/bin/"+name+".bin", []byte(strings.TrimPrefix(contract.Bytecode, "0x")), 0644)
-	if err != nil {
+
+	if err := os.WriteFile(binPath, []byte(strings.TrimPrefix(contract.Bytecode, "0x")), 0644); err != nil {
 		return err
 	}
 
 	// create directory for Go binding
 	goName := strings.ToLower(name)
-	err = os.Mkdir(path.Join(storingPath, goName), 0744)
-	if err != nil {
-		fmt.Println("error creating directory ", storingPath+"/"+goName)
+	if err := os.Mkdir(filepath.Join(storingPath, goName), 0744); err != nil {
+		fmt.Println("error creating directory ", filepath.Join(storingPath, goName))
 		return err
 	}
+
 	// generate Go binding
-	err = runCommand(
+	if err := runCommand(
 		"bash", "-l", "-c",
 		fmt.Sprintf(
 			"abigen --bin bin/%s.bin --abi abi/%s.abi --pkg=%s --out=%s/%s.go",
 			name, name, goName, goName, goName,
 		),
-	)
-	if err != nil {
+	); err != nil {
 		fmt.Println("error generating go bindings for smart contracts")
 		return err
 	}
+
 	// generate errors mapping
 	return nil
 }
