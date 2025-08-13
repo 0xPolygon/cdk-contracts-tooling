@@ -1,0 +1,91 @@
+[
+   {
+      "inputs": [],
+      "name": "AggchainVKeyAlreadyExists",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "AggchainVKeyNotFound",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "InvalidProofBytesLength",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "InvalidZeroAddress",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OnlyAggLayerAdmin",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "OnlyPendingAggLayerAdmin",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "PPSelectorCannotBeZero",
+      "type": "error"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+         },
+         {
+            "internalType": "address",
+            "name": "verifier",
+            "type": "address"
+         }
+      ],
+      "name": "RouteAlreadyExists",
+      "type": "error"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+         }
+      ],
+      "name": "RouteIsAlreadyFrozen",
+      "type": "error"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+         }
+      ],
+      "name": "RouteIsFrozen",
+      "type": "error"
+   },
+   {
+      "inputs": [
+         {
+            "internalType": "bytes4",
+            "name": "selector",
+            "type": "bytes4"
+         }
+      ],
+      "name": "RouteNotFound",
+      "type": "error"
+   },
+   {
+      "inputs": [],
+      "name": "VKeyCannotBeZero",
+      "type": "error"
+   }
+]
