@@ -908,6 +908,31 @@
    },
    {
       "inputs": [],
+      "name": "getAggchainSignerInfos",
+      "outputs": [
+         {
+            "components": [
+               {
+                  "internalType": "address",
+                  "name": "addr",
+                  "type": "address"
+               },
+               {
+                  "internalType": "string",
+                  "name": "url",
+                  "type": "string"
+               }
+            ],
+            "internalType": "struct AggchainBase.SignerInfo[]",
+            "name": "",
+            "type": "tuple[]"
+         }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+   },
+   {
+      "inputs": [],
       "name": "getAggchainSigners",
       "outputs": [
          {
