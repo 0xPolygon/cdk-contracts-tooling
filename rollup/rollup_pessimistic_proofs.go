@@ -81,7 +81,7 @@ func (r *RollupPessimisticProofs) GetBatchL2Data(client bind.ContractBackend) (s
 		return "", err
 	}
 
-	bridgeInitTxData, err := bridgeABI.Pack("initialize",
+	bridgeInitTxData, err := bridgeABI.Pack("initialize0",
 		r.RollupID,
 		r.GasToken,
 		gasTokenNetwork,
