@@ -65,3 +65,9 @@ The genesis file should be named as `allocs.json` and placed in the `./genesis/p
 4. Generate the network config section of the bridge service: `go run ./cmd bridge -l1 sepolia -rm cardona -r API3 -output API3Bridge.toml`
 
 Note that step 1 only needs to be done once, if there are multiple CDKs attached to the same rollup manager, with a single run it will be enough.
+
+#### Combined json command example
+
+Combined json command creates a combined json for specified rollup. To run this, rollup manager and rollup for given network have to be imported. 
+
+`go run ./cmd import-cj -l1 sepolia -rm cardona -r API3`
