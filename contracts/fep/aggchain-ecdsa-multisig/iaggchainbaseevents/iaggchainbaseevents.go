@@ -31,7 +31,7 @@ var (
 
 // IaggchainbaseeventsMetaData contains all meta data concerning the Iaggchainbaseevents contract.
 var IaggchainbaseeventsMetaData = &bind.MetaData{
-	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"oldAggchainManager\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newAggchainManager\",\"type\":\"address\"}],\"name\":\"AcceptAggchainManagerRole\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"oldVKeyManager\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newVKeyManager\",\"type\":\"address\"}],\"name\":\"AcceptVKeyManagerRole\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"newAggchainVKey\",\"type\":\"bytes32\"}],\"name\":\"AddAggchainVKey\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"newAggchainSignersHash\",\"type\":\"bytes32\"}],\"name\":\"AggchainSignersHashUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[],\"name\":\"DisableUseDefaultGatewayFlag\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[],\"name\":\"EnableUseDefaultGatewayFlag\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"aggchainSigners\",\"type\":\"address[]\"},{\"indexed\":false,\"internalType\":\"uint32\",\"name\":\"newThreshold\",\"type\":\"uint32\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"newAggchainSignersHash\",\"type\":\"bytes32\"}],\"name\":\"SignersAndThresholdUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"currentAggchainManager\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newPendingAggchainManager\",\"type\":\"address\"}],\"name\":\"TransferAggchainManagerRole\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"currentVKeyManager\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newPendingVKeyManager\",\"type\":\"address\"}],\"name\":\"TransferVKeyManagerRole\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"previousAggchainVKey\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"newAggchainVKey\",\"type\":\"bytes32\"}],\"name\":\"UpdateAggchainVKey\",\"type\":\"event\"}]",
+	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"oldAggchainManager\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newAggchainManager\",\"type\":\"address\"}],\"name\":\"AcceptAggchainManagerRole\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"oldVKeyManager\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newVKeyManager\",\"type\":\"address\"}],\"name\":\"AcceptVKeyManagerRole\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"newAggchainVKey\",\"type\":\"bytes32\"}],\"name\":\"AddAggchainVKey\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[],\"name\":\"DisableUseDefaultSignersFlag\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[],\"name\":\"DisableUseDefaultVkeysFlag\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[],\"name\":\"EnableUseDefaultSignersFlag\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[],\"name\":\"EnableUseDefaultVkeysFlag\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"aggchainSigners\",\"type\":\"address[]\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"newThreshold\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"newAggchainSignersHash\",\"type\":\"bytes32\"}],\"name\":\"SignersAndThresholdUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"currentAggchainManager\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newPendingAggchainManager\",\"type\":\"address\"}],\"name\":\"TransferAggchainManagerRole\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"currentVKeyManager\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newPendingVKeyManager\",\"type\":\"address\"}],\"name\":\"TransferVKeyManagerRole\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"previousAggchainVKey\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"newAggchainVKey\",\"type\":\"bytes32\"}],\"name\":\"UpdateAggchainVKey\",\"type\":\"event\"}]",
 }
 
 // IaggchainbaseeventsABI is the input ABI used to generate the binding from.
@@ -585,9 +585,9 @@ func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) ParseAddAggchainVKey(lo
 	return event, nil
 }
 
-// IaggchainbaseeventsAggchainSignersHashUpdatedIterator is returned from FilterAggchainSignersHashUpdated and is used to iterate over the raw logs and unpacked data for AggchainSignersHashUpdated events raised by the Iaggchainbaseevents contract.
-type IaggchainbaseeventsAggchainSignersHashUpdatedIterator struct {
-	Event *IaggchainbaseeventsAggchainSignersHashUpdated // Event containing the contract specifics and raw log
+// IaggchainbaseeventsDisableUseDefaultSignersFlagIterator is returned from FilterDisableUseDefaultSignersFlag and is used to iterate over the raw logs and unpacked data for DisableUseDefaultSignersFlag events raised by the Iaggchainbaseevents contract.
+type IaggchainbaseeventsDisableUseDefaultSignersFlagIterator struct {
+	Event *IaggchainbaseeventsDisableUseDefaultSignersFlag // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -601,7 +601,7 @@ type IaggchainbaseeventsAggchainSignersHashUpdatedIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *IaggchainbaseeventsAggchainSignersHashUpdatedIterator) Next() bool {
+func (it *IaggchainbaseeventsDisableUseDefaultSignersFlagIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -610,7 +610,7 @@ func (it *IaggchainbaseeventsAggchainSignersHashUpdatedIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(IaggchainbaseeventsAggchainSignersHashUpdated)
+			it.Event = new(IaggchainbaseeventsDisableUseDefaultSignersFlag)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -625,7 +625,7 @@ func (it *IaggchainbaseeventsAggchainSignersHashUpdatedIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(IaggchainbaseeventsAggchainSignersHashUpdated)
+		it.Event = new(IaggchainbaseeventsDisableUseDefaultSignersFlag)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -641,41 +641,40 @@ func (it *IaggchainbaseeventsAggchainSignersHashUpdatedIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *IaggchainbaseeventsAggchainSignersHashUpdatedIterator) Error() error {
+func (it *IaggchainbaseeventsDisableUseDefaultSignersFlagIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *IaggchainbaseeventsAggchainSignersHashUpdatedIterator) Close() error {
+func (it *IaggchainbaseeventsDisableUseDefaultSignersFlagIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// IaggchainbaseeventsAggchainSignersHashUpdated represents a AggchainSignersHashUpdated event raised by the Iaggchainbaseevents contract.
-type IaggchainbaseeventsAggchainSignersHashUpdated struct {
-	NewAggchainSignersHash [32]byte
-	Raw                    types.Log // Blockchain specific contextual infos
+// IaggchainbaseeventsDisableUseDefaultSignersFlag represents a DisableUseDefaultSignersFlag event raised by the Iaggchainbaseevents contract.
+type IaggchainbaseeventsDisableUseDefaultSignersFlag struct {
+	Raw types.Log // Blockchain specific contextual infos
 }
 
-// FilterAggchainSignersHashUpdated is a free log retrieval operation binding the contract event 0x43a1dd43d2705e069faf1da3afc2772475650d6642c2d71bd620e0fd2f7c3ee8.
+// FilterDisableUseDefaultSignersFlag is a free log retrieval operation binding the contract event 0x4c75580a56c734245a7418eb07d8a311e1bff79f982fed747da3589630e414be.
 //
-// Solidity: event AggchainSignersHashUpdated(bytes32 newAggchainSignersHash)
-func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) FilterAggchainSignersHashUpdated(opts *bind.FilterOpts) (*IaggchainbaseeventsAggchainSignersHashUpdatedIterator, error) {
+// Solidity: event DisableUseDefaultSignersFlag()
+func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) FilterDisableUseDefaultSignersFlag(opts *bind.FilterOpts) (*IaggchainbaseeventsDisableUseDefaultSignersFlagIterator, error) {
 
-	logs, sub, err := _Iaggchainbaseevents.contract.FilterLogs(opts, "AggchainSignersHashUpdated")
+	logs, sub, err := _Iaggchainbaseevents.contract.FilterLogs(opts, "DisableUseDefaultSignersFlag")
 	if err != nil {
 		return nil, err
 	}
-	return &IaggchainbaseeventsAggchainSignersHashUpdatedIterator{contract: _Iaggchainbaseevents.contract, event: "AggchainSignersHashUpdated", logs: logs, sub: sub}, nil
+	return &IaggchainbaseeventsDisableUseDefaultSignersFlagIterator{contract: _Iaggchainbaseevents.contract, event: "DisableUseDefaultSignersFlag", logs: logs, sub: sub}, nil
 }
 
-// WatchAggchainSignersHashUpdated is a free log subscription operation binding the contract event 0x43a1dd43d2705e069faf1da3afc2772475650d6642c2d71bd620e0fd2f7c3ee8.
+// WatchDisableUseDefaultSignersFlag is a free log subscription operation binding the contract event 0x4c75580a56c734245a7418eb07d8a311e1bff79f982fed747da3589630e414be.
 //
-// Solidity: event AggchainSignersHashUpdated(bytes32 newAggchainSignersHash)
-func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) WatchAggchainSignersHashUpdated(opts *bind.WatchOpts, sink chan<- *IaggchainbaseeventsAggchainSignersHashUpdated) (event.Subscription, error) {
+// Solidity: event DisableUseDefaultSignersFlag()
+func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) WatchDisableUseDefaultSignersFlag(opts *bind.WatchOpts, sink chan<- *IaggchainbaseeventsDisableUseDefaultSignersFlag) (event.Subscription, error) {
 
-	logs, sub, err := _Iaggchainbaseevents.contract.WatchLogs(opts, "AggchainSignersHashUpdated")
+	logs, sub, err := _Iaggchainbaseevents.contract.WatchLogs(opts, "DisableUseDefaultSignersFlag")
 	if err != nil {
 		return nil, err
 	}
@@ -685,8 +684,8 @@ func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) WatchAggchainSignersHas
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(IaggchainbaseeventsAggchainSignersHashUpdated)
-				if err := _Iaggchainbaseevents.contract.UnpackLog(event, "AggchainSignersHashUpdated", log); err != nil {
+				event := new(IaggchainbaseeventsDisableUseDefaultSignersFlag)
+				if err := _Iaggchainbaseevents.contract.UnpackLog(event, "DisableUseDefaultSignersFlag", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -707,21 +706,21 @@ func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) WatchAggchainSignersHas
 	}), nil
 }
 
-// ParseAggchainSignersHashUpdated is a log parse operation binding the contract event 0x43a1dd43d2705e069faf1da3afc2772475650d6642c2d71bd620e0fd2f7c3ee8.
+// ParseDisableUseDefaultSignersFlag is a log parse operation binding the contract event 0x4c75580a56c734245a7418eb07d8a311e1bff79f982fed747da3589630e414be.
 //
-// Solidity: event AggchainSignersHashUpdated(bytes32 newAggchainSignersHash)
-func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) ParseAggchainSignersHashUpdated(log types.Log) (*IaggchainbaseeventsAggchainSignersHashUpdated, error) {
-	event := new(IaggchainbaseeventsAggchainSignersHashUpdated)
-	if err := _Iaggchainbaseevents.contract.UnpackLog(event, "AggchainSignersHashUpdated", log); err != nil {
+// Solidity: event DisableUseDefaultSignersFlag()
+func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) ParseDisableUseDefaultSignersFlag(log types.Log) (*IaggchainbaseeventsDisableUseDefaultSignersFlag, error) {
+	event := new(IaggchainbaseeventsDisableUseDefaultSignersFlag)
+	if err := _Iaggchainbaseevents.contract.UnpackLog(event, "DisableUseDefaultSignersFlag", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// IaggchainbaseeventsDisableUseDefaultGatewayFlagIterator is returned from FilterDisableUseDefaultGatewayFlag and is used to iterate over the raw logs and unpacked data for DisableUseDefaultGatewayFlag events raised by the Iaggchainbaseevents contract.
-type IaggchainbaseeventsDisableUseDefaultGatewayFlagIterator struct {
-	Event *IaggchainbaseeventsDisableUseDefaultGatewayFlag // Event containing the contract specifics and raw log
+// IaggchainbaseeventsDisableUseDefaultVkeysFlagIterator is returned from FilterDisableUseDefaultVkeysFlag and is used to iterate over the raw logs and unpacked data for DisableUseDefaultVkeysFlag events raised by the Iaggchainbaseevents contract.
+type IaggchainbaseeventsDisableUseDefaultVkeysFlagIterator struct {
+	Event *IaggchainbaseeventsDisableUseDefaultVkeysFlag // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -735,7 +734,7 @@ type IaggchainbaseeventsDisableUseDefaultGatewayFlagIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *IaggchainbaseeventsDisableUseDefaultGatewayFlagIterator) Next() bool {
+func (it *IaggchainbaseeventsDisableUseDefaultVkeysFlagIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -744,7 +743,7 @@ func (it *IaggchainbaseeventsDisableUseDefaultGatewayFlagIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(IaggchainbaseeventsDisableUseDefaultGatewayFlag)
+			it.Event = new(IaggchainbaseeventsDisableUseDefaultVkeysFlag)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -759,7 +758,7 @@ func (it *IaggchainbaseeventsDisableUseDefaultGatewayFlagIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(IaggchainbaseeventsDisableUseDefaultGatewayFlag)
+		it.Event = new(IaggchainbaseeventsDisableUseDefaultVkeysFlag)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -775,40 +774,40 @@ func (it *IaggchainbaseeventsDisableUseDefaultGatewayFlagIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *IaggchainbaseeventsDisableUseDefaultGatewayFlagIterator) Error() error {
+func (it *IaggchainbaseeventsDisableUseDefaultVkeysFlagIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *IaggchainbaseeventsDisableUseDefaultGatewayFlagIterator) Close() error {
+func (it *IaggchainbaseeventsDisableUseDefaultVkeysFlagIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// IaggchainbaseeventsDisableUseDefaultGatewayFlag represents a DisableUseDefaultGatewayFlag event raised by the Iaggchainbaseevents contract.
-type IaggchainbaseeventsDisableUseDefaultGatewayFlag struct {
+// IaggchainbaseeventsDisableUseDefaultVkeysFlag represents a DisableUseDefaultVkeysFlag event raised by the Iaggchainbaseevents contract.
+type IaggchainbaseeventsDisableUseDefaultVkeysFlag struct {
 	Raw types.Log // Blockchain specific contextual infos
 }
 
-// FilterDisableUseDefaultGatewayFlag is a free log retrieval operation binding the contract event 0x67dd1717a1952df380cb73eecb312e949df6d6a086bd7f88669005341972528e.
+// FilterDisableUseDefaultVkeysFlag is a free log retrieval operation binding the contract event 0x922aeecd3505b46415820aae489ed9dac9e250e74d497b14c33e8360b581ac07.
 //
-// Solidity: event DisableUseDefaultGatewayFlag()
-func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) FilterDisableUseDefaultGatewayFlag(opts *bind.FilterOpts) (*IaggchainbaseeventsDisableUseDefaultGatewayFlagIterator, error) {
+// Solidity: event DisableUseDefaultVkeysFlag()
+func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) FilterDisableUseDefaultVkeysFlag(opts *bind.FilterOpts) (*IaggchainbaseeventsDisableUseDefaultVkeysFlagIterator, error) {
 
-	logs, sub, err := _Iaggchainbaseevents.contract.FilterLogs(opts, "DisableUseDefaultGatewayFlag")
+	logs, sub, err := _Iaggchainbaseevents.contract.FilterLogs(opts, "DisableUseDefaultVkeysFlag")
 	if err != nil {
 		return nil, err
 	}
-	return &IaggchainbaseeventsDisableUseDefaultGatewayFlagIterator{contract: _Iaggchainbaseevents.contract, event: "DisableUseDefaultGatewayFlag", logs: logs, sub: sub}, nil
+	return &IaggchainbaseeventsDisableUseDefaultVkeysFlagIterator{contract: _Iaggchainbaseevents.contract, event: "DisableUseDefaultVkeysFlag", logs: logs, sub: sub}, nil
 }
 
-// WatchDisableUseDefaultGatewayFlag is a free log subscription operation binding the contract event 0x67dd1717a1952df380cb73eecb312e949df6d6a086bd7f88669005341972528e.
+// WatchDisableUseDefaultVkeysFlag is a free log subscription operation binding the contract event 0x922aeecd3505b46415820aae489ed9dac9e250e74d497b14c33e8360b581ac07.
 //
-// Solidity: event DisableUseDefaultGatewayFlag()
-func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) WatchDisableUseDefaultGatewayFlag(opts *bind.WatchOpts, sink chan<- *IaggchainbaseeventsDisableUseDefaultGatewayFlag) (event.Subscription, error) {
+// Solidity: event DisableUseDefaultVkeysFlag()
+func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) WatchDisableUseDefaultVkeysFlag(opts *bind.WatchOpts, sink chan<- *IaggchainbaseeventsDisableUseDefaultVkeysFlag) (event.Subscription, error) {
 
-	logs, sub, err := _Iaggchainbaseevents.contract.WatchLogs(opts, "DisableUseDefaultGatewayFlag")
+	logs, sub, err := _Iaggchainbaseevents.contract.WatchLogs(opts, "DisableUseDefaultVkeysFlag")
 	if err != nil {
 		return nil, err
 	}
@@ -818,8 +817,8 @@ func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) WatchDisableUseDefaultG
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(IaggchainbaseeventsDisableUseDefaultGatewayFlag)
-				if err := _Iaggchainbaseevents.contract.UnpackLog(event, "DisableUseDefaultGatewayFlag", log); err != nil {
+				event := new(IaggchainbaseeventsDisableUseDefaultVkeysFlag)
+				if err := _Iaggchainbaseevents.contract.UnpackLog(event, "DisableUseDefaultVkeysFlag", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -840,21 +839,21 @@ func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) WatchDisableUseDefaultG
 	}), nil
 }
 
-// ParseDisableUseDefaultGatewayFlag is a log parse operation binding the contract event 0x67dd1717a1952df380cb73eecb312e949df6d6a086bd7f88669005341972528e.
+// ParseDisableUseDefaultVkeysFlag is a log parse operation binding the contract event 0x922aeecd3505b46415820aae489ed9dac9e250e74d497b14c33e8360b581ac07.
 //
-// Solidity: event DisableUseDefaultGatewayFlag()
-func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) ParseDisableUseDefaultGatewayFlag(log types.Log) (*IaggchainbaseeventsDisableUseDefaultGatewayFlag, error) {
-	event := new(IaggchainbaseeventsDisableUseDefaultGatewayFlag)
-	if err := _Iaggchainbaseevents.contract.UnpackLog(event, "DisableUseDefaultGatewayFlag", log); err != nil {
+// Solidity: event DisableUseDefaultVkeysFlag()
+func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) ParseDisableUseDefaultVkeysFlag(log types.Log) (*IaggchainbaseeventsDisableUseDefaultVkeysFlag, error) {
+	event := new(IaggchainbaseeventsDisableUseDefaultVkeysFlag)
+	if err := _Iaggchainbaseevents.contract.UnpackLog(event, "DisableUseDefaultVkeysFlag", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// IaggchainbaseeventsEnableUseDefaultGatewayFlagIterator is returned from FilterEnableUseDefaultGatewayFlag and is used to iterate over the raw logs and unpacked data for EnableUseDefaultGatewayFlag events raised by the Iaggchainbaseevents contract.
-type IaggchainbaseeventsEnableUseDefaultGatewayFlagIterator struct {
-	Event *IaggchainbaseeventsEnableUseDefaultGatewayFlag // Event containing the contract specifics and raw log
+// IaggchainbaseeventsEnableUseDefaultSignersFlagIterator is returned from FilterEnableUseDefaultSignersFlag and is used to iterate over the raw logs and unpacked data for EnableUseDefaultSignersFlag events raised by the Iaggchainbaseevents contract.
+type IaggchainbaseeventsEnableUseDefaultSignersFlagIterator struct {
+	Event *IaggchainbaseeventsEnableUseDefaultSignersFlag // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -868,7 +867,7 @@ type IaggchainbaseeventsEnableUseDefaultGatewayFlagIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *IaggchainbaseeventsEnableUseDefaultGatewayFlagIterator) Next() bool {
+func (it *IaggchainbaseeventsEnableUseDefaultSignersFlagIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -877,7 +876,7 @@ func (it *IaggchainbaseeventsEnableUseDefaultGatewayFlagIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(IaggchainbaseeventsEnableUseDefaultGatewayFlag)
+			it.Event = new(IaggchainbaseeventsEnableUseDefaultSignersFlag)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -892,7 +891,7 @@ func (it *IaggchainbaseeventsEnableUseDefaultGatewayFlagIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(IaggchainbaseeventsEnableUseDefaultGatewayFlag)
+		it.Event = new(IaggchainbaseeventsEnableUseDefaultSignersFlag)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -908,40 +907,40 @@ func (it *IaggchainbaseeventsEnableUseDefaultGatewayFlagIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *IaggchainbaseeventsEnableUseDefaultGatewayFlagIterator) Error() error {
+func (it *IaggchainbaseeventsEnableUseDefaultSignersFlagIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *IaggchainbaseeventsEnableUseDefaultGatewayFlagIterator) Close() error {
+func (it *IaggchainbaseeventsEnableUseDefaultSignersFlagIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// IaggchainbaseeventsEnableUseDefaultGatewayFlag represents a EnableUseDefaultGatewayFlag event raised by the Iaggchainbaseevents contract.
-type IaggchainbaseeventsEnableUseDefaultGatewayFlag struct {
+// IaggchainbaseeventsEnableUseDefaultSignersFlag represents a EnableUseDefaultSignersFlag event raised by the Iaggchainbaseevents contract.
+type IaggchainbaseeventsEnableUseDefaultSignersFlag struct {
 	Raw types.Log // Blockchain specific contextual infos
 }
 
-// FilterEnableUseDefaultGatewayFlag is a free log retrieval operation binding the contract event 0xb6563aed80fde357e737eb0d19f246a58cb6bfd469933d05701ecbad0f2dca84.
+// FilterEnableUseDefaultSignersFlag is a free log retrieval operation binding the contract event 0x67ec953bdc8546ede08f8ee91e5205a1d1814e126cb8f5d00a918ddb1eaa292b.
 //
-// Solidity: event EnableUseDefaultGatewayFlag()
-func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) FilterEnableUseDefaultGatewayFlag(opts *bind.FilterOpts) (*IaggchainbaseeventsEnableUseDefaultGatewayFlagIterator, error) {
+// Solidity: event EnableUseDefaultSignersFlag()
+func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) FilterEnableUseDefaultSignersFlag(opts *bind.FilterOpts) (*IaggchainbaseeventsEnableUseDefaultSignersFlagIterator, error) {
 
-	logs, sub, err := _Iaggchainbaseevents.contract.FilterLogs(opts, "EnableUseDefaultGatewayFlag")
+	logs, sub, err := _Iaggchainbaseevents.contract.FilterLogs(opts, "EnableUseDefaultSignersFlag")
 	if err != nil {
 		return nil, err
 	}
-	return &IaggchainbaseeventsEnableUseDefaultGatewayFlagIterator{contract: _Iaggchainbaseevents.contract, event: "EnableUseDefaultGatewayFlag", logs: logs, sub: sub}, nil
+	return &IaggchainbaseeventsEnableUseDefaultSignersFlagIterator{contract: _Iaggchainbaseevents.contract, event: "EnableUseDefaultSignersFlag", logs: logs, sub: sub}, nil
 }
 
-// WatchEnableUseDefaultGatewayFlag is a free log subscription operation binding the contract event 0xb6563aed80fde357e737eb0d19f246a58cb6bfd469933d05701ecbad0f2dca84.
+// WatchEnableUseDefaultSignersFlag is a free log subscription operation binding the contract event 0x67ec953bdc8546ede08f8ee91e5205a1d1814e126cb8f5d00a918ddb1eaa292b.
 //
-// Solidity: event EnableUseDefaultGatewayFlag()
-func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) WatchEnableUseDefaultGatewayFlag(opts *bind.WatchOpts, sink chan<- *IaggchainbaseeventsEnableUseDefaultGatewayFlag) (event.Subscription, error) {
+// Solidity: event EnableUseDefaultSignersFlag()
+func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) WatchEnableUseDefaultSignersFlag(opts *bind.WatchOpts, sink chan<- *IaggchainbaseeventsEnableUseDefaultSignersFlag) (event.Subscription, error) {
 
-	logs, sub, err := _Iaggchainbaseevents.contract.WatchLogs(opts, "EnableUseDefaultGatewayFlag")
+	logs, sub, err := _Iaggchainbaseevents.contract.WatchLogs(opts, "EnableUseDefaultSignersFlag")
 	if err != nil {
 		return nil, err
 	}
@@ -951,8 +950,8 @@ func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) WatchEnableUseDefaultGa
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(IaggchainbaseeventsEnableUseDefaultGatewayFlag)
-				if err := _Iaggchainbaseevents.contract.UnpackLog(event, "EnableUseDefaultGatewayFlag", log); err != nil {
+				event := new(IaggchainbaseeventsEnableUseDefaultSignersFlag)
+				if err := _Iaggchainbaseevents.contract.UnpackLog(event, "EnableUseDefaultSignersFlag", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -973,12 +972,145 @@ func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) WatchEnableUseDefaultGa
 	}), nil
 }
 
-// ParseEnableUseDefaultGatewayFlag is a log parse operation binding the contract event 0xb6563aed80fde357e737eb0d19f246a58cb6bfd469933d05701ecbad0f2dca84.
+// ParseEnableUseDefaultSignersFlag is a log parse operation binding the contract event 0x67ec953bdc8546ede08f8ee91e5205a1d1814e126cb8f5d00a918ddb1eaa292b.
 //
-// Solidity: event EnableUseDefaultGatewayFlag()
-func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) ParseEnableUseDefaultGatewayFlag(log types.Log) (*IaggchainbaseeventsEnableUseDefaultGatewayFlag, error) {
-	event := new(IaggchainbaseeventsEnableUseDefaultGatewayFlag)
-	if err := _Iaggchainbaseevents.contract.UnpackLog(event, "EnableUseDefaultGatewayFlag", log); err != nil {
+// Solidity: event EnableUseDefaultSignersFlag()
+func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) ParseEnableUseDefaultSignersFlag(log types.Log) (*IaggchainbaseeventsEnableUseDefaultSignersFlag, error) {
+	event := new(IaggchainbaseeventsEnableUseDefaultSignersFlag)
+	if err := _Iaggchainbaseevents.contract.UnpackLog(event, "EnableUseDefaultSignersFlag", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// IaggchainbaseeventsEnableUseDefaultVkeysFlagIterator is returned from FilterEnableUseDefaultVkeysFlag and is used to iterate over the raw logs and unpacked data for EnableUseDefaultVkeysFlag events raised by the Iaggchainbaseevents contract.
+type IaggchainbaseeventsEnableUseDefaultVkeysFlagIterator struct {
+	Event *IaggchainbaseeventsEnableUseDefaultVkeysFlag // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *IaggchainbaseeventsEnableUseDefaultVkeysFlagIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(IaggchainbaseeventsEnableUseDefaultVkeysFlag)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(IaggchainbaseeventsEnableUseDefaultVkeysFlag)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *IaggchainbaseeventsEnableUseDefaultVkeysFlagIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *IaggchainbaseeventsEnableUseDefaultVkeysFlagIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// IaggchainbaseeventsEnableUseDefaultVkeysFlag represents a EnableUseDefaultVkeysFlag event raised by the Iaggchainbaseevents contract.
+type IaggchainbaseeventsEnableUseDefaultVkeysFlag struct {
+	Raw types.Log // Blockchain specific contextual infos
+}
+
+// FilterEnableUseDefaultVkeysFlag is a free log retrieval operation binding the contract event 0xaacf3fb6dd8daa3bebb71f5548f782413c3f3531625c6f9057c0f3d751b83829.
+//
+// Solidity: event EnableUseDefaultVkeysFlag()
+func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) FilterEnableUseDefaultVkeysFlag(opts *bind.FilterOpts) (*IaggchainbaseeventsEnableUseDefaultVkeysFlagIterator, error) {
+
+	logs, sub, err := _Iaggchainbaseevents.contract.FilterLogs(opts, "EnableUseDefaultVkeysFlag")
+	if err != nil {
+		return nil, err
+	}
+	return &IaggchainbaseeventsEnableUseDefaultVkeysFlagIterator{contract: _Iaggchainbaseevents.contract, event: "EnableUseDefaultVkeysFlag", logs: logs, sub: sub}, nil
+}
+
+// WatchEnableUseDefaultVkeysFlag is a free log subscription operation binding the contract event 0xaacf3fb6dd8daa3bebb71f5548f782413c3f3531625c6f9057c0f3d751b83829.
+//
+// Solidity: event EnableUseDefaultVkeysFlag()
+func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) WatchEnableUseDefaultVkeysFlag(opts *bind.WatchOpts, sink chan<- *IaggchainbaseeventsEnableUseDefaultVkeysFlag) (event.Subscription, error) {
+
+	logs, sub, err := _Iaggchainbaseevents.contract.WatchLogs(opts, "EnableUseDefaultVkeysFlag")
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(IaggchainbaseeventsEnableUseDefaultVkeysFlag)
+				if err := _Iaggchainbaseevents.contract.UnpackLog(event, "EnableUseDefaultVkeysFlag", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseEnableUseDefaultVkeysFlag is a log parse operation binding the contract event 0xaacf3fb6dd8daa3bebb71f5548f782413c3f3531625c6f9057c0f3d751b83829.
+//
+// Solidity: event EnableUseDefaultVkeysFlag()
+func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) ParseEnableUseDefaultVkeysFlag(log types.Log) (*IaggchainbaseeventsEnableUseDefaultVkeysFlag, error) {
+	event := new(IaggchainbaseeventsEnableUseDefaultVkeysFlag)
+	if err := _Iaggchainbaseevents.contract.UnpackLog(event, "EnableUseDefaultVkeysFlag", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
@@ -1055,14 +1187,14 @@ func (it *IaggchainbaseeventsSignersAndThresholdUpdatedIterator) Close() error {
 // IaggchainbaseeventsSignersAndThresholdUpdated represents a SignersAndThresholdUpdated event raised by the Iaggchainbaseevents contract.
 type IaggchainbaseeventsSignersAndThresholdUpdated struct {
 	AggchainSigners        []common.Address
-	NewThreshold           uint32
+	NewThreshold           *big.Int
 	NewAggchainSignersHash [32]byte
 	Raw                    types.Log // Blockchain specific contextual infos
 }
 
-// FilterSignersAndThresholdUpdated is a free log retrieval operation binding the contract event 0xa9031663ce9b6bcb10b14a169f269c3a2ab3685eba97d673e3af691473bf59f9.
+// FilterSignersAndThresholdUpdated is a free log retrieval operation binding the contract event 0x66d7b0647fdd512b69cbf4f8e1ce8068bfe0b236168e2704ba13b07425eaa743.
 //
-// Solidity: event SignersAndThresholdUpdated(address[] aggchainSigners, uint32 newThreshold, bytes32 newAggchainSignersHash)
+// Solidity: event SignersAndThresholdUpdated(address[] aggchainSigners, uint256 newThreshold, bytes32 newAggchainSignersHash)
 func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) FilterSignersAndThresholdUpdated(opts *bind.FilterOpts) (*IaggchainbaseeventsSignersAndThresholdUpdatedIterator, error) {
 
 	logs, sub, err := _Iaggchainbaseevents.contract.FilterLogs(opts, "SignersAndThresholdUpdated")
@@ -1072,9 +1204,9 @@ func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) FilterSignersAndThresho
 	return &IaggchainbaseeventsSignersAndThresholdUpdatedIterator{contract: _Iaggchainbaseevents.contract, event: "SignersAndThresholdUpdated", logs: logs, sub: sub}, nil
 }
 
-// WatchSignersAndThresholdUpdated is a free log subscription operation binding the contract event 0xa9031663ce9b6bcb10b14a169f269c3a2ab3685eba97d673e3af691473bf59f9.
+// WatchSignersAndThresholdUpdated is a free log subscription operation binding the contract event 0x66d7b0647fdd512b69cbf4f8e1ce8068bfe0b236168e2704ba13b07425eaa743.
 //
-// Solidity: event SignersAndThresholdUpdated(address[] aggchainSigners, uint32 newThreshold, bytes32 newAggchainSignersHash)
+// Solidity: event SignersAndThresholdUpdated(address[] aggchainSigners, uint256 newThreshold, bytes32 newAggchainSignersHash)
 func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) WatchSignersAndThresholdUpdated(opts *bind.WatchOpts, sink chan<- *IaggchainbaseeventsSignersAndThresholdUpdated) (event.Subscription, error) {
 
 	logs, sub, err := _Iaggchainbaseevents.contract.WatchLogs(opts, "SignersAndThresholdUpdated")
@@ -1109,9 +1241,9 @@ func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) WatchSignersAndThreshol
 	}), nil
 }
 
-// ParseSignersAndThresholdUpdated is a log parse operation binding the contract event 0xa9031663ce9b6bcb10b14a169f269c3a2ab3685eba97d673e3af691473bf59f9.
+// ParseSignersAndThresholdUpdated is a log parse operation binding the contract event 0x66d7b0647fdd512b69cbf4f8e1ce8068bfe0b236168e2704ba13b07425eaa743.
 //
-// Solidity: event SignersAndThresholdUpdated(address[] aggchainSigners, uint32 newThreshold, bytes32 newAggchainSignersHash)
+// Solidity: event SignersAndThresholdUpdated(address[] aggchainSigners, uint256 newThreshold, bytes32 newAggchainSignersHash)
 func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) ParseSignersAndThresholdUpdated(log types.Log) (*IaggchainbaseeventsSignersAndThresholdUpdated, error) {
 	event := new(IaggchainbaseeventsSignersAndThresholdUpdated)
 	if err := _Iaggchainbaseevents.contract.UnpackLog(event, "SignersAndThresholdUpdated", log); err != nil {
