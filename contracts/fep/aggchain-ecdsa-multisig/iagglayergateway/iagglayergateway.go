@@ -29,21 +29,21 @@ var (
 	_ = abi.ConvertType
 )
 
-// IAggLayerGatewayRemoveSignerInfo is an auto generated low-level Go binding around an user-defined struct.
-type IAggLayerGatewayRemoveSignerInfo struct {
+// IAggchainSignersRemoveSignerInfo is an auto generated low-level Go binding around an user-defined struct.
+type IAggchainSignersRemoveSignerInfo struct {
 	Addr  common.Address
 	Index *big.Int
 }
 
-// IAggLayerGatewaySignerInfo is an auto generated low-level Go binding around an user-defined struct.
-type IAggLayerGatewaySignerInfo struct {
+// IAggchainSignersSignerInfo is an auto generated low-level Go binding around an user-defined struct.
+type IAggchainSignersSignerInfo struct {
 	Addr common.Address
 	Url  string
 }
 
 // IagglayergatewayMetaData contains all meta data concerning the Iagglayergateway contract.
 var IagglayergatewayMetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[],\"name\":\"AggchainSignersHashNotInitialized\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"AggchainSignersTooHigh\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"AggchainVKeyAlreadyExists\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"AggchainVKeyNotFound\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"IndicesNotInDescendingOrder\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidInitializer\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidProofBytesLength\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidThreshold\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidZeroAddress\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyAggLayerAdmin\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyPendingAggLayerAdmin\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"PPSelectorCannotBeZero\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"internalType\":\"address\",\"name\":\"verifier\",\"type\":\"address\"}],\"name\":\"RouteAlreadyExists\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"}],\"name\":\"RouteIsAlreadyFrozen\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"}],\"name\":\"RouteIsFrozen\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"}],\"name\":\"RouteNotFound\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"SignerAlreadyExists\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"SignerCannotBeZero\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"SignerDoesNotExist\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"SignerURLCannotBeEmpty\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"VKeyCannotBeZero\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"newVKey\",\"type\":\"bytes32\"}],\"name\":\"AddDefaultAggchainVKey\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"verifier\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"pessimisticVKey\",\"type\":\"bytes32\"}],\"name\":\"RouteAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"verifier\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"pessimisticVKey\",\"type\":\"bytes32\"}],\"name\":\"RouteFrozen\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"signers\",\"type\":\"address[]\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"threshold\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"signersHash\",\"type\":\"bytes32\"}],\"name\":\"SignersAndThresholdUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"}],\"name\":\"UnsetDefaultAggchainVKey\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"previousVKey\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"newVKey\",\"type\":\"bytes32\"}],\"name\":\"UpdateDefaultAggchainVKey\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"pessimisticVKeySelector\",\"type\":\"bytes4\"},{\"internalType\":\"address\",\"name\":\"verifier\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"pessimisticVKey\",\"type\":\"bytes32\"}],\"name\":\"addPessimisticVKeyRoute\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"pessimisticVKeySelector\",\"type\":\"bytes4\"}],\"name\":\"freezePessimisticVKeyRoute\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getAggchainSigners\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getAggchainSignersCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getAggchainSignersHash\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"defaultAggchainSelector\",\"type\":\"bytes4\"}],\"name\":\"getDefaultAggchainVKey\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_signer\",\"type\":\"address\"}],\"name\":\"isSigner\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"internalType\":\"structIAggLayerGateway.RemoveSignerInfo[]\",\"name\":\"_signersToRemove\",\"type\":\"tuple[]\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"url\",\"type\":\"string\"}],\"internalType\":\"structIAggLayerGateway.SignerInfo[]\",\"name\":\"_signersToAdd\",\"type\":\"tuple[]\"},{\"internalType\":\"uint256\",\"name\":\"_newThreshold\",\"type\":\"uint256\"}],\"name\":\"updateSignersAndThreshold\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"publicValues\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"proofBytes\",\"type\":\"bytes\"}],\"name\":\"verifyPessimisticProof\",\"outputs\":[],\"stateMutability\":\"view\",\"type\":\"function\"}]",
+	ABI: "[{\"inputs\":[],\"name\":\"AggchainSignersHashNotInitialized\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"AggchainSignersTooHigh\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"AggchainVKeyAlreadyExists\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"AggchainVKeyNotFound\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"IndicesNotInDescendingOrder\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidInitializer\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidProofBytesLength\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidThreshold\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidZeroAddress\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyAggLayerAdmin\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyPendingAggLayerAdmin\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"PPSelectorCannotBeZero\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"internalType\":\"address\",\"name\":\"verifier\",\"type\":\"address\"}],\"name\":\"RouteAlreadyExists\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"}],\"name\":\"RouteIsAlreadyFrozen\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"}],\"name\":\"RouteIsFrozen\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"}],\"name\":\"RouteNotFound\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"SignerAlreadyExists\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"SignerCannotBeZero\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"SignerDoesNotExist\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"SignerURLCannotBeEmpty\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"VKeyCannotBeZero\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"newVKey\",\"type\":\"bytes32\"}],\"name\":\"AddDefaultAggchainVKey\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"verifier\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"pessimisticVKey\",\"type\":\"bytes32\"}],\"name\":\"RouteAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"verifier\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"pessimisticVKey\",\"type\":\"bytes32\"}],\"name\":\"RouteFrozen\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"aggchainSigners\",\"type\":\"address[]\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"newThreshold\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"newAggchainMultisigHash\",\"type\":\"bytes32\"}],\"name\":\"SignersAndThresholdUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"}],\"name\":\"UnsetDefaultAggchainVKey\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"previousVKey\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"newVKey\",\"type\":\"bytes32\"}],\"name\":\"UpdateDefaultAggchainVKey\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"pessimisticVKeySelector\",\"type\":\"bytes4\"},{\"internalType\":\"address\",\"name\":\"verifier\",\"type\":\"address\"},{\"internalType\":\"bytes32\",\"name\":\"pessimisticVKey\",\"type\":\"bytes32\"}],\"name\":\"addPessimisticVKeyRoute\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"pessimisticVKeySelector\",\"type\":\"bytes4\"}],\"name\":\"freezePessimisticVKeyRoute\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getAggchainMultisigHash\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getAggchainSignerInfos\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"url\",\"type\":\"string\"}],\"internalType\":\"structIAggchainSigners.SignerInfo[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getAggchainSigners\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getAggchainSignersCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes4\",\"name\":\"defaultAggchainSelector\",\"type\":\"bytes4\"}],\"name\":\"getDefaultAggchainVKey\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getThreshold\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_signer\",\"type\":\"address\"}],\"name\":\"isSigner\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"internalType\":\"structIAggchainSigners.RemoveSignerInfo[]\",\"name\":\"_signersToRemove\",\"type\":\"tuple[]\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"url\",\"type\":\"string\"}],\"internalType\":\"structIAggchainSigners.SignerInfo[]\",\"name\":\"_signersToAdd\",\"type\":\"tuple[]\"},{\"internalType\":\"uint256\",\"name\":\"_newThreshold\",\"type\":\"uint256\"}],\"name\":\"updateSignersAndThreshold\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"publicValues\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"proofBytes\",\"type\":\"bytes\"}],\"name\":\"verifyPessimisticProof\",\"outputs\":[],\"stateMutability\":\"view\",\"type\":\"function\"}]",
 }
 
 // IagglayergatewayABI is the input ABI used to generate the binding from.
@@ -192,6 +192,68 @@ func (_Iagglayergateway *IagglayergatewayTransactorRaw) Transact(opts *bind.Tran
 	return _Iagglayergateway.Contract.contract.Transact(opts, method, params...)
 }
 
+// GetAggchainMultisigHash is a free data retrieval call binding the contract method 0xcce7d0df.
+//
+// Solidity: function getAggchainMultisigHash() view returns(bytes32)
+func (_Iagglayergateway *IagglayergatewayCaller) GetAggchainMultisigHash(opts *bind.CallOpts) ([32]byte, error) {
+	var out []interface{}
+	err := _Iagglayergateway.contract.Call(opts, &out, "getAggchainMultisigHash")
+
+	if err != nil {
+		return *new([32]byte), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
+
+	return out0, err
+
+}
+
+// GetAggchainMultisigHash is a free data retrieval call binding the contract method 0xcce7d0df.
+//
+// Solidity: function getAggchainMultisigHash() view returns(bytes32)
+func (_Iagglayergateway *IagglayergatewaySession) GetAggchainMultisigHash() ([32]byte, error) {
+	return _Iagglayergateway.Contract.GetAggchainMultisigHash(&_Iagglayergateway.CallOpts)
+}
+
+// GetAggchainMultisigHash is a free data retrieval call binding the contract method 0xcce7d0df.
+//
+// Solidity: function getAggchainMultisigHash() view returns(bytes32)
+func (_Iagglayergateway *IagglayergatewayCallerSession) GetAggchainMultisigHash() ([32]byte, error) {
+	return _Iagglayergateway.Contract.GetAggchainMultisigHash(&_Iagglayergateway.CallOpts)
+}
+
+// GetAggchainSignerInfos is a free data retrieval call binding the contract method 0x349d4046.
+//
+// Solidity: function getAggchainSignerInfos() view returns((address,string)[])
+func (_Iagglayergateway *IagglayergatewayCaller) GetAggchainSignerInfos(opts *bind.CallOpts) ([]IAggchainSignersSignerInfo, error) {
+	var out []interface{}
+	err := _Iagglayergateway.contract.Call(opts, &out, "getAggchainSignerInfos")
+
+	if err != nil {
+		return *new([]IAggchainSignersSignerInfo), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new([]IAggchainSignersSignerInfo)).(*[]IAggchainSignersSignerInfo)
+
+	return out0, err
+
+}
+
+// GetAggchainSignerInfos is a free data retrieval call binding the contract method 0x349d4046.
+//
+// Solidity: function getAggchainSignerInfos() view returns((address,string)[])
+func (_Iagglayergateway *IagglayergatewaySession) GetAggchainSignerInfos() ([]IAggchainSignersSignerInfo, error) {
+	return _Iagglayergateway.Contract.GetAggchainSignerInfos(&_Iagglayergateway.CallOpts)
+}
+
+// GetAggchainSignerInfos is a free data retrieval call binding the contract method 0x349d4046.
+//
+// Solidity: function getAggchainSignerInfos() view returns((address,string)[])
+func (_Iagglayergateway *IagglayergatewayCallerSession) GetAggchainSignerInfos() ([]IAggchainSignersSignerInfo, error) {
+	return _Iagglayergateway.Contract.GetAggchainSignerInfos(&_Iagglayergateway.CallOpts)
+}
+
 // GetAggchainSigners is a free data retrieval call binding the contract method 0x3e1e0121.
 //
 // Solidity: function getAggchainSigners() view returns(address[])
@@ -254,37 +316,6 @@ func (_Iagglayergateway *IagglayergatewayCallerSession) GetAggchainSignersCount(
 	return _Iagglayergateway.Contract.GetAggchainSignersCount(&_Iagglayergateway.CallOpts)
 }
 
-// GetAggchainSignersHash is a free data retrieval call binding the contract method 0x12b941ca.
-//
-// Solidity: function getAggchainSignersHash() view returns(bytes32)
-func (_Iagglayergateway *IagglayergatewayCaller) GetAggchainSignersHash(opts *bind.CallOpts) ([32]byte, error) {
-	var out []interface{}
-	err := _Iagglayergateway.contract.Call(opts, &out, "getAggchainSignersHash")
-
-	if err != nil {
-		return *new([32]byte), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
-
-	return out0, err
-
-}
-
-// GetAggchainSignersHash is a free data retrieval call binding the contract method 0x12b941ca.
-//
-// Solidity: function getAggchainSignersHash() view returns(bytes32)
-func (_Iagglayergateway *IagglayergatewaySession) GetAggchainSignersHash() ([32]byte, error) {
-	return _Iagglayergateway.Contract.GetAggchainSignersHash(&_Iagglayergateway.CallOpts)
-}
-
-// GetAggchainSignersHash is a free data retrieval call binding the contract method 0x12b941ca.
-//
-// Solidity: function getAggchainSignersHash() view returns(bytes32)
-func (_Iagglayergateway *IagglayergatewayCallerSession) GetAggchainSignersHash() ([32]byte, error) {
-	return _Iagglayergateway.Contract.GetAggchainSignersHash(&_Iagglayergateway.CallOpts)
-}
-
 // GetDefaultAggchainVKey is a free data retrieval call binding the contract method 0x6cabfdab.
 //
 // Solidity: function getDefaultAggchainVKey(bytes4 defaultAggchainSelector) view returns(bytes32)
@@ -314,6 +345,37 @@ func (_Iagglayergateway *IagglayergatewaySession) GetDefaultAggchainVKey(default
 // Solidity: function getDefaultAggchainVKey(bytes4 defaultAggchainSelector) view returns(bytes32)
 func (_Iagglayergateway *IagglayergatewayCallerSession) GetDefaultAggchainVKey(defaultAggchainSelector [4]byte) ([32]byte, error) {
 	return _Iagglayergateway.Contract.GetDefaultAggchainVKey(&_Iagglayergateway.CallOpts, defaultAggchainSelector)
+}
+
+// GetThreshold is a free data retrieval call binding the contract method 0xe75235b8.
+//
+// Solidity: function getThreshold() view returns(uint256)
+func (_Iagglayergateway *IagglayergatewayCaller) GetThreshold(opts *bind.CallOpts) (*big.Int, error) {
+	var out []interface{}
+	err := _Iagglayergateway.contract.Call(opts, &out, "getThreshold")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
+}
+
+// GetThreshold is a free data retrieval call binding the contract method 0xe75235b8.
+//
+// Solidity: function getThreshold() view returns(uint256)
+func (_Iagglayergateway *IagglayergatewaySession) GetThreshold() (*big.Int, error) {
+	return _Iagglayergateway.Contract.GetThreshold(&_Iagglayergateway.CallOpts)
+}
+
+// GetThreshold is a free data retrieval call binding the contract method 0xe75235b8.
+//
+// Solidity: function getThreshold() view returns(uint256)
+func (_Iagglayergateway *IagglayergatewayCallerSession) GetThreshold() (*big.Int, error) {
+	return _Iagglayergateway.Contract.GetThreshold(&_Iagglayergateway.CallOpts)
 }
 
 // IsSigner is a free data retrieval call binding the contract method 0x7df73e27.
@@ -421,21 +483,21 @@ func (_Iagglayergateway *IagglayergatewayTransactorSession) FreezePessimisticVKe
 // UpdateSignersAndThreshold is a paid mutator transaction binding the contract method 0xf51f563a.
 //
 // Solidity: function updateSignersAndThreshold((address,uint256)[] _signersToRemove, (address,string)[] _signersToAdd, uint256 _newThreshold) returns()
-func (_Iagglayergateway *IagglayergatewayTransactor) UpdateSignersAndThreshold(opts *bind.TransactOpts, _signersToRemove []IAggLayerGatewayRemoveSignerInfo, _signersToAdd []IAggLayerGatewaySignerInfo, _newThreshold *big.Int) (*types.Transaction, error) {
+func (_Iagglayergateway *IagglayergatewayTransactor) UpdateSignersAndThreshold(opts *bind.TransactOpts, _signersToRemove []IAggchainSignersRemoveSignerInfo, _signersToAdd []IAggchainSignersSignerInfo, _newThreshold *big.Int) (*types.Transaction, error) {
 	return _Iagglayergateway.contract.Transact(opts, "updateSignersAndThreshold", _signersToRemove, _signersToAdd, _newThreshold)
 }
 
 // UpdateSignersAndThreshold is a paid mutator transaction binding the contract method 0xf51f563a.
 //
 // Solidity: function updateSignersAndThreshold((address,uint256)[] _signersToRemove, (address,string)[] _signersToAdd, uint256 _newThreshold) returns()
-func (_Iagglayergateway *IagglayergatewaySession) UpdateSignersAndThreshold(_signersToRemove []IAggLayerGatewayRemoveSignerInfo, _signersToAdd []IAggLayerGatewaySignerInfo, _newThreshold *big.Int) (*types.Transaction, error) {
+func (_Iagglayergateway *IagglayergatewaySession) UpdateSignersAndThreshold(_signersToRemove []IAggchainSignersRemoveSignerInfo, _signersToAdd []IAggchainSignersSignerInfo, _newThreshold *big.Int) (*types.Transaction, error) {
 	return _Iagglayergateway.Contract.UpdateSignersAndThreshold(&_Iagglayergateway.TransactOpts, _signersToRemove, _signersToAdd, _newThreshold)
 }
 
 // UpdateSignersAndThreshold is a paid mutator transaction binding the contract method 0xf51f563a.
 //
 // Solidity: function updateSignersAndThreshold((address,uint256)[] _signersToRemove, (address,string)[] _signersToAdd, uint256 _newThreshold) returns()
-func (_Iagglayergateway *IagglayergatewayTransactorSession) UpdateSignersAndThreshold(_signersToRemove []IAggLayerGatewayRemoveSignerInfo, _signersToAdd []IAggLayerGatewaySignerInfo, _newThreshold *big.Int) (*types.Transaction, error) {
+func (_Iagglayergateway *IagglayergatewayTransactorSession) UpdateSignersAndThreshold(_signersToRemove []IAggchainSignersRemoveSignerInfo, _signersToAdd []IAggchainSignersSignerInfo, _newThreshold *big.Int) (*types.Transaction, error) {
 	return _Iagglayergateway.Contract.UpdateSignersAndThreshold(&_Iagglayergateway.TransactOpts, _signersToRemove, _signersToAdd, _newThreshold)
 }
 
@@ -915,15 +977,15 @@ func (it *IagglayergatewaySignersAndThresholdUpdatedIterator) Close() error {
 
 // IagglayergatewaySignersAndThresholdUpdated represents a SignersAndThresholdUpdated event raised by the Iagglayergateway contract.
 type IagglayergatewaySignersAndThresholdUpdated struct {
-	Signers     []common.Address
-	Threshold   *big.Int
-	SignersHash [32]byte
-	Raw         types.Log // Blockchain specific contextual infos
+	AggchainSigners         []common.Address
+	NewThreshold            *big.Int
+	NewAggchainMultisigHash [32]byte
+	Raw                     types.Log // Blockchain specific contextual infos
 }
 
 // FilterSignersAndThresholdUpdated is a free log retrieval operation binding the contract event 0x66d7b0647fdd512b69cbf4f8e1ce8068bfe0b236168e2704ba13b07425eaa743.
 //
-// Solidity: event SignersAndThresholdUpdated(address[] signers, uint256 threshold, bytes32 signersHash)
+// Solidity: event SignersAndThresholdUpdated(address[] aggchainSigners, uint256 newThreshold, bytes32 newAggchainMultisigHash)
 func (_Iagglayergateway *IagglayergatewayFilterer) FilterSignersAndThresholdUpdated(opts *bind.FilterOpts) (*IagglayergatewaySignersAndThresholdUpdatedIterator, error) {
 
 	logs, sub, err := _Iagglayergateway.contract.FilterLogs(opts, "SignersAndThresholdUpdated")
@@ -935,7 +997,7 @@ func (_Iagglayergateway *IagglayergatewayFilterer) FilterSignersAndThresholdUpda
 
 // WatchSignersAndThresholdUpdated is a free log subscription operation binding the contract event 0x66d7b0647fdd512b69cbf4f8e1ce8068bfe0b236168e2704ba13b07425eaa743.
 //
-// Solidity: event SignersAndThresholdUpdated(address[] signers, uint256 threshold, bytes32 signersHash)
+// Solidity: event SignersAndThresholdUpdated(address[] aggchainSigners, uint256 newThreshold, bytes32 newAggchainMultisigHash)
 func (_Iagglayergateway *IagglayergatewayFilterer) WatchSignersAndThresholdUpdated(opts *bind.WatchOpts, sink chan<- *IagglayergatewaySignersAndThresholdUpdated) (event.Subscription, error) {
 
 	logs, sub, err := _Iagglayergateway.contract.WatchLogs(opts, "SignersAndThresholdUpdated")
@@ -972,7 +1034,7 @@ func (_Iagglayergateway *IagglayergatewayFilterer) WatchSignersAndThresholdUpdat
 
 // ParseSignersAndThresholdUpdated is a log parse operation binding the contract event 0x66d7b0647fdd512b69cbf4f8e1ce8068bfe0b236168e2704ba13b07425eaa743.
 //
-// Solidity: event SignersAndThresholdUpdated(address[] signers, uint256 threshold, bytes32 signersHash)
+// Solidity: event SignersAndThresholdUpdated(address[] aggchainSigners, uint256 newThreshold, bytes32 newAggchainMultisigHash)
 func (_Iagglayergateway *IagglayergatewayFilterer) ParseSignersAndThresholdUpdated(log types.Log) (*IagglayergatewaySignersAndThresholdUpdated, error) {
 	event := new(IagglayergatewaySignersAndThresholdUpdated)
 	if err := _Iagglayergateway.contract.UnpackLog(event, "SignersAndThresholdUpdated", log); err != nil {

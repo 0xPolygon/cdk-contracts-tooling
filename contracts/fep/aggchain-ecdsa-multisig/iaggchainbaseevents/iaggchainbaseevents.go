@@ -31,7 +31,7 @@ var (
 
 // IaggchainbaseeventsMetaData contains all meta data concerning the Iaggchainbaseevents contract.
 var IaggchainbaseeventsMetaData = &bind.MetaData{
-	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"oldAggchainManager\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newAggchainManager\",\"type\":\"address\"}],\"name\":\"AcceptAggchainManagerRole\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"oldVKeyManager\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newVKeyManager\",\"type\":\"address\"}],\"name\":\"AcceptVKeyManagerRole\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"newAggchainVKey\",\"type\":\"bytes32\"}],\"name\":\"AddAggchainVKey\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[],\"name\":\"DisableUseDefaultSignersFlag\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[],\"name\":\"DisableUseDefaultVkeysFlag\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[],\"name\":\"EnableUseDefaultSignersFlag\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[],\"name\":\"EnableUseDefaultVkeysFlag\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"aggchainSigners\",\"type\":\"address[]\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"newThreshold\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"newAggchainSignersHash\",\"type\":\"bytes32\"}],\"name\":\"SignersAndThresholdUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"currentAggchainManager\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newPendingAggchainManager\",\"type\":\"address\"}],\"name\":\"TransferAggchainManagerRole\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"currentVKeyManager\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newPendingVKeyManager\",\"type\":\"address\"}],\"name\":\"TransferVKeyManagerRole\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"previousAggchainVKey\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"newAggchainVKey\",\"type\":\"bytes32\"}],\"name\":\"UpdateAggchainVKey\",\"type\":\"event\"}]",
+	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"oldAggchainManager\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newAggchainManager\",\"type\":\"address\"}],\"name\":\"AcceptAggchainManagerRole\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"newAggchainVKey\",\"type\":\"bytes32\"}],\"name\":\"AddAggchainVKey\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"string\",\"name\":\"key\",\"type\":\"string\"},{\"indexed\":false,\"internalType\":\"string\",\"name\":\"value\",\"type\":\"string\"}],\"name\":\"AggchainMetadataSet\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[],\"name\":\"DisableUseDefaultSignersFlag\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[],\"name\":\"DisableUseDefaultVkeysFlag\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[],\"name\":\"EnableUseDefaultSignersFlag\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[],\"name\":\"EnableUseDefaultVkeysFlag\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"oldAggchainMetadataManager\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newAggchainMetadataManager\",\"type\":\"address\"}],\"name\":\"SetAggchainMetadataManager\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"currentAggchainManager\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newPendingAggchainManager\",\"type\":\"address\"}],\"name\":\"TransferAggchainManagerRole\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes4\",\"name\":\"selector\",\"type\":\"bytes4\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"previousAggchainVKey\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"newAggchainVKey\",\"type\":\"bytes32\"}],\"name\":\"UpdateAggchainVKey\",\"type\":\"event\"}]",
 }
 
 // IaggchainbaseeventsABI is the input ABI used to generate the binding from.
@@ -315,141 +315,6 @@ func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) ParseAcceptAggchainMana
 	return event, nil
 }
 
-// IaggchainbaseeventsAcceptVKeyManagerRoleIterator is returned from FilterAcceptVKeyManagerRole and is used to iterate over the raw logs and unpacked data for AcceptVKeyManagerRole events raised by the Iaggchainbaseevents contract.
-type IaggchainbaseeventsAcceptVKeyManagerRoleIterator struct {
-	Event *IaggchainbaseeventsAcceptVKeyManagerRole // Event containing the contract specifics and raw log
-
-	contract *bind.BoundContract // Generic contract to use for unpacking event data
-	event    string              // Event name to use for unpacking event data
-
-	logs chan types.Log        // Log channel receiving the found contract events
-	sub  ethereum.Subscription // Subscription for errors, completion and termination
-	done bool                  // Whether the subscription completed delivering logs
-	fail error                 // Occurred error to stop iteration
-}
-
-// Next advances the iterator to the subsequent event, returning whether there
-// are any more events found. In case of a retrieval or parsing error, false is
-// returned and Error() can be queried for the exact failure.
-func (it *IaggchainbaseeventsAcceptVKeyManagerRoleIterator) Next() bool {
-	// If the iterator failed, stop iterating
-	if it.fail != nil {
-		return false
-	}
-	// If the iterator completed, deliver directly whatever's available
-	if it.done {
-		select {
-		case log := <-it.logs:
-			it.Event = new(IaggchainbaseeventsAcceptVKeyManagerRole)
-			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
-				it.fail = err
-				return false
-			}
-			it.Event.Raw = log
-			return true
-
-		default:
-			return false
-		}
-	}
-	// Iterator still in progress, wait for either a data or an error event
-	select {
-	case log := <-it.logs:
-		it.Event = new(IaggchainbaseeventsAcceptVKeyManagerRole)
-		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
-			it.fail = err
-			return false
-		}
-		it.Event.Raw = log
-		return true
-
-	case err := <-it.sub.Err():
-		it.done = true
-		it.fail = err
-		return it.Next()
-	}
-}
-
-// Error returns any retrieval or parsing error occurred during filtering.
-func (it *IaggchainbaseeventsAcceptVKeyManagerRoleIterator) Error() error {
-	return it.fail
-}
-
-// Close terminates the iteration process, releasing any pending underlying
-// resources.
-func (it *IaggchainbaseeventsAcceptVKeyManagerRoleIterator) Close() error {
-	it.sub.Unsubscribe()
-	return nil
-}
-
-// IaggchainbaseeventsAcceptVKeyManagerRole represents a AcceptVKeyManagerRole event raised by the Iaggchainbaseevents contract.
-type IaggchainbaseeventsAcceptVKeyManagerRole struct {
-	OldVKeyManager common.Address
-	NewVKeyManager common.Address
-	Raw            types.Log // Blockchain specific contextual infos
-}
-
-// FilterAcceptVKeyManagerRole is a free log retrieval operation binding the contract event 0xbb3b066505f14a628f4ba4187a046abd4dd17e96591d7a9ed31c91c79322ffe2.
-//
-// Solidity: event AcceptVKeyManagerRole(address oldVKeyManager, address newVKeyManager)
-func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) FilterAcceptVKeyManagerRole(opts *bind.FilterOpts) (*IaggchainbaseeventsAcceptVKeyManagerRoleIterator, error) {
-
-	logs, sub, err := _Iaggchainbaseevents.contract.FilterLogs(opts, "AcceptVKeyManagerRole")
-	if err != nil {
-		return nil, err
-	}
-	return &IaggchainbaseeventsAcceptVKeyManagerRoleIterator{contract: _Iaggchainbaseevents.contract, event: "AcceptVKeyManagerRole", logs: logs, sub: sub}, nil
-}
-
-// WatchAcceptVKeyManagerRole is a free log subscription operation binding the contract event 0xbb3b066505f14a628f4ba4187a046abd4dd17e96591d7a9ed31c91c79322ffe2.
-//
-// Solidity: event AcceptVKeyManagerRole(address oldVKeyManager, address newVKeyManager)
-func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) WatchAcceptVKeyManagerRole(opts *bind.WatchOpts, sink chan<- *IaggchainbaseeventsAcceptVKeyManagerRole) (event.Subscription, error) {
-
-	logs, sub, err := _Iaggchainbaseevents.contract.WatchLogs(opts, "AcceptVKeyManagerRole")
-	if err != nil {
-		return nil, err
-	}
-	return event.NewSubscription(func(quit <-chan struct{}) error {
-		defer sub.Unsubscribe()
-		for {
-			select {
-			case log := <-logs:
-				// New log arrived, parse the event and forward to the user
-				event := new(IaggchainbaseeventsAcceptVKeyManagerRole)
-				if err := _Iaggchainbaseevents.contract.UnpackLog(event, "AcceptVKeyManagerRole", log); err != nil {
-					return err
-				}
-				event.Raw = log
-
-				select {
-				case sink <- event:
-				case err := <-sub.Err():
-					return err
-				case <-quit:
-					return nil
-				}
-			case err := <-sub.Err():
-				return err
-			case <-quit:
-				return nil
-			}
-		}
-	}), nil
-}
-
-// ParseAcceptVKeyManagerRole is a log parse operation binding the contract event 0xbb3b066505f14a628f4ba4187a046abd4dd17e96591d7a9ed31c91c79322ffe2.
-//
-// Solidity: event AcceptVKeyManagerRole(address oldVKeyManager, address newVKeyManager)
-func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) ParseAcceptVKeyManagerRole(log types.Log) (*IaggchainbaseeventsAcceptVKeyManagerRole, error) {
-	event := new(IaggchainbaseeventsAcceptVKeyManagerRole)
-	if err := _Iaggchainbaseevents.contract.UnpackLog(event, "AcceptVKeyManagerRole", log); err != nil {
-		return nil, err
-	}
-	event.Raw = log
-	return event, nil
-}
-
 // IaggchainbaseeventsAddAggchainVKeyIterator is returned from FilterAddAggchainVKey and is used to iterate over the raw logs and unpacked data for AddAggchainVKey events raised by the Iaggchainbaseevents contract.
 type IaggchainbaseeventsAddAggchainVKeyIterator struct {
 	Event *IaggchainbaseeventsAddAggchainVKey // Event containing the contract specifics and raw log
@@ -579,6 +444,151 @@ func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) WatchAddAggchainVKey(op
 func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) ParseAddAggchainVKey(log types.Log) (*IaggchainbaseeventsAddAggchainVKey, error) {
 	event := new(IaggchainbaseeventsAddAggchainVKey)
 	if err := _Iaggchainbaseevents.contract.UnpackLog(event, "AddAggchainVKey", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// IaggchainbaseeventsAggchainMetadataSetIterator is returned from FilterAggchainMetadataSet and is used to iterate over the raw logs and unpacked data for AggchainMetadataSet events raised by the Iaggchainbaseevents contract.
+type IaggchainbaseeventsAggchainMetadataSetIterator struct {
+	Event *IaggchainbaseeventsAggchainMetadataSet // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *IaggchainbaseeventsAggchainMetadataSetIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(IaggchainbaseeventsAggchainMetadataSet)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(IaggchainbaseeventsAggchainMetadataSet)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *IaggchainbaseeventsAggchainMetadataSetIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *IaggchainbaseeventsAggchainMetadataSetIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// IaggchainbaseeventsAggchainMetadataSet represents a AggchainMetadataSet event raised by the Iaggchainbaseevents contract.
+type IaggchainbaseeventsAggchainMetadataSet struct {
+	Key   common.Hash
+	Value string
+	Raw   types.Log // Blockchain specific contextual infos
+}
+
+// FilterAggchainMetadataSet is a free log retrieval operation binding the contract event 0x2779f9edd5ec4e0a99bffdea4008c8b979200959062a2bf00142acb939ca1b64.
+//
+// Solidity: event AggchainMetadataSet(string indexed key, string value)
+func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) FilterAggchainMetadataSet(opts *bind.FilterOpts, key []string) (*IaggchainbaseeventsAggchainMetadataSetIterator, error) {
+
+	var keyRule []interface{}
+	for _, keyItem := range key {
+		keyRule = append(keyRule, keyItem)
+	}
+
+	logs, sub, err := _Iaggchainbaseevents.contract.FilterLogs(opts, "AggchainMetadataSet", keyRule)
+	if err != nil {
+		return nil, err
+	}
+	return &IaggchainbaseeventsAggchainMetadataSetIterator{contract: _Iaggchainbaseevents.contract, event: "AggchainMetadataSet", logs: logs, sub: sub}, nil
+}
+
+// WatchAggchainMetadataSet is a free log subscription operation binding the contract event 0x2779f9edd5ec4e0a99bffdea4008c8b979200959062a2bf00142acb939ca1b64.
+//
+// Solidity: event AggchainMetadataSet(string indexed key, string value)
+func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) WatchAggchainMetadataSet(opts *bind.WatchOpts, sink chan<- *IaggchainbaseeventsAggchainMetadataSet, key []string) (event.Subscription, error) {
+
+	var keyRule []interface{}
+	for _, keyItem := range key {
+		keyRule = append(keyRule, keyItem)
+	}
+
+	logs, sub, err := _Iaggchainbaseevents.contract.WatchLogs(opts, "AggchainMetadataSet", keyRule)
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(IaggchainbaseeventsAggchainMetadataSet)
+				if err := _Iaggchainbaseevents.contract.UnpackLog(event, "AggchainMetadataSet", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseAggchainMetadataSet is a log parse operation binding the contract event 0x2779f9edd5ec4e0a99bffdea4008c8b979200959062a2bf00142acb939ca1b64.
+//
+// Solidity: event AggchainMetadataSet(string indexed key, string value)
+func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) ParseAggchainMetadataSet(log types.Log) (*IaggchainbaseeventsAggchainMetadataSet, error) {
+	event := new(IaggchainbaseeventsAggchainMetadataSet)
+	if err := _Iaggchainbaseevents.contract.UnpackLog(event, "AggchainMetadataSet", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
@@ -1117,9 +1127,9 @@ func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) ParseEnableUseDefaultVk
 	return event, nil
 }
 
-// IaggchainbaseeventsSignersAndThresholdUpdatedIterator is returned from FilterSignersAndThresholdUpdated and is used to iterate over the raw logs and unpacked data for SignersAndThresholdUpdated events raised by the Iaggchainbaseevents contract.
-type IaggchainbaseeventsSignersAndThresholdUpdatedIterator struct {
-	Event *IaggchainbaseeventsSignersAndThresholdUpdated // Event containing the contract specifics and raw log
+// IaggchainbaseeventsSetAggchainMetadataManagerIterator is returned from FilterSetAggchainMetadataManager and is used to iterate over the raw logs and unpacked data for SetAggchainMetadataManager events raised by the Iaggchainbaseevents contract.
+type IaggchainbaseeventsSetAggchainMetadataManagerIterator struct {
+	Event *IaggchainbaseeventsSetAggchainMetadataManager // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -1133,7 +1143,7 @@ type IaggchainbaseeventsSignersAndThresholdUpdatedIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *IaggchainbaseeventsSignersAndThresholdUpdatedIterator) Next() bool {
+func (it *IaggchainbaseeventsSetAggchainMetadataManagerIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1142,7 +1152,7 @@ func (it *IaggchainbaseeventsSignersAndThresholdUpdatedIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(IaggchainbaseeventsSignersAndThresholdUpdated)
+			it.Event = new(IaggchainbaseeventsSetAggchainMetadataManager)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1157,7 +1167,7 @@ func (it *IaggchainbaseeventsSignersAndThresholdUpdatedIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(IaggchainbaseeventsSignersAndThresholdUpdated)
+		it.Event = new(IaggchainbaseeventsSetAggchainMetadataManager)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1173,43 +1183,42 @@ func (it *IaggchainbaseeventsSignersAndThresholdUpdatedIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *IaggchainbaseeventsSignersAndThresholdUpdatedIterator) Error() error {
+func (it *IaggchainbaseeventsSetAggchainMetadataManagerIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *IaggchainbaseeventsSignersAndThresholdUpdatedIterator) Close() error {
+func (it *IaggchainbaseeventsSetAggchainMetadataManagerIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// IaggchainbaseeventsSignersAndThresholdUpdated represents a SignersAndThresholdUpdated event raised by the Iaggchainbaseevents contract.
-type IaggchainbaseeventsSignersAndThresholdUpdated struct {
-	AggchainSigners        []common.Address
-	NewThreshold           *big.Int
-	NewAggchainSignersHash [32]byte
-	Raw                    types.Log // Blockchain specific contextual infos
+// IaggchainbaseeventsSetAggchainMetadataManager represents a SetAggchainMetadataManager event raised by the Iaggchainbaseevents contract.
+type IaggchainbaseeventsSetAggchainMetadataManager struct {
+	OldAggchainMetadataManager common.Address
+	NewAggchainMetadataManager common.Address
+	Raw                        types.Log // Blockchain specific contextual infos
 }
 
-// FilterSignersAndThresholdUpdated is a free log retrieval operation binding the contract event 0x66d7b0647fdd512b69cbf4f8e1ce8068bfe0b236168e2704ba13b07425eaa743.
+// FilterSetAggchainMetadataManager is a free log retrieval operation binding the contract event 0x82ae2ec69f24a6de4517a5a45d4983651b578b3d8dc9262af5e352572fc64373.
 //
-// Solidity: event SignersAndThresholdUpdated(address[] aggchainSigners, uint256 newThreshold, bytes32 newAggchainSignersHash)
-func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) FilterSignersAndThresholdUpdated(opts *bind.FilterOpts) (*IaggchainbaseeventsSignersAndThresholdUpdatedIterator, error) {
+// Solidity: event SetAggchainMetadataManager(address oldAggchainMetadataManager, address newAggchainMetadataManager)
+func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) FilterSetAggchainMetadataManager(opts *bind.FilterOpts) (*IaggchainbaseeventsSetAggchainMetadataManagerIterator, error) {
 
-	logs, sub, err := _Iaggchainbaseevents.contract.FilterLogs(opts, "SignersAndThresholdUpdated")
+	logs, sub, err := _Iaggchainbaseevents.contract.FilterLogs(opts, "SetAggchainMetadataManager")
 	if err != nil {
 		return nil, err
 	}
-	return &IaggchainbaseeventsSignersAndThresholdUpdatedIterator{contract: _Iaggchainbaseevents.contract, event: "SignersAndThresholdUpdated", logs: logs, sub: sub}, nil
+	return &IaggchainbaseeventsSetAggchainMetadataManagerIterator{contract: _Iaggchainbaseevents.contract, event: "SetAggchainMetadataManager", logs: logs, sub: sub}, nil
 }
 
-// WatchSignersAndThresholdUpdated is a free log subscription operation binding the contract event 0x66d7b0647fdd512b69cbf4f8e1ce8068bfe0b236168e2704ba13b07425eaa743.
+// WatchSetAggchainMetadataManager is a free log subscription operation binding the contract event 0x82ae2ec69f24a6de4517a5a45d4983651b578b3d8dc9262af5e352572fc64373.
 //
-// Solidity: event SignersAndThresholdUpdated(address[] aggchainSigners, uint256 newThreshold, bytes32 newAggchainSignersHash)
-func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) WatchSignersAndThresholdUpdated(opts *bind.WatchOpts, sink chan<- *IaggchainbaseeventsSignersAndThresholdUpdated) (event.Subscription, error) {
+// Solidity: event SetAggchainMetadataManager(address oldAggchainMetadataManager, address newAggchainMetadataManager)
+func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) WatchSetAggchainMetadataManager(opts *bind.WatchOpts, sink chan<- *IaggchainbaseeventsSetAggchainMetadataManager) (event.Subscription, error) {
 
-	logs, sub, err := _Iaggchainbaseevents.contract.WatchLogs(opts, "SignersAndThresholdUpdated")
+	logs, sub, err := _Iaggchainbaseevents.contract.WatchLogs(opts, "SetAggchainMetadataManager")
 	if err != nil {
 		return nil, err
 	}
@@ -1219,8 +1228,8 @@ func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) WatchSignersAndThreshol
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(IaggchainbaseeventsSignersAndThresholdUpdated)
-				if err := _Iaggchainbaseevents.contract.UnpackLog(event, "SignersAndThresholdUpdated", log); err != nil {
+				event := new(IaggchainbaseeventsSetAggchainMetadataManager)
+				if err := _Iaggchainbaseevents.contract.UnpackLog(event, "SetAggchainMetadataManager", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -1241,12 +1250,12 @@ func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) WatchSignersAndThreshol
 	}), nil
 }
 
-// ParseSignersAndThresholdUpdated is a log parse operation binding the contract event 0x66d7b0647fdd512b69cbf4f8e1ce8068bfe0b236168e2704ba13b07425eaa743.
+// ParseSetAggchainMetadataManager is a log parse operation binding the contract event 0x82ae2ec69f24a6de4517a5a45d4983651b578b3d8dc9262af5e352572fc64373.
 //
-// Solidity: event SignersAndThresholdUpdated(address[] aggchainSigners, uint256 newThreshold, bytes32 newAggchainSignersHash)
-func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) ParseSignersAndThresholdUpdated(log types.Log) (*IaggchainbaseeventsSignersAndThresholdUpdated, error) {
-	event := new(IaggchainbaseeventsSignersAndThresholdUpdated)
-	if err := _Iaggchainbaseevents.contract.UnpackLog(event, "SignersAndThresholdUpdated", log); err != nil {
+// Solidity: event SetAggchainMetadataManager(address oldAggchainMetadataManager, address newAggchainMetadataManager)
+func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) ParseSetAggchainMetadataManager(log types.Log) (*IaggchainbaseeventsSetAggchainMetadataManager, error) {
+	event := new(IaggchainbaseeventsSetAggchainMetadataManager)
+	if err := _Iaggchainbaseevents.contract.UnpackLog(event, "SetAggchainMetadataManager", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
@@ -1382,141 +1391,6 @@ func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) WatchTransferAggchainMa
 func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) ParseTransferAggchainManagerRole(log types.Log) (*IaggchainbaseeventsTransferAggchainManagerRole, error) {
 	event := new(IaggchainbaseeventsTransferAggchainManagerRole)
 	if err := _Iaggchainbaseevents.contract.UnpackLog(event, "TransferAggchainManagerRole", log); err != nil {
-		return nil, err
-	}
-	event.Raw = log
-	return event, nil
-}
-
-// IaggchainbaseeventsTransferVKeyManagerRoleIterator is returned from FilterTransferVKeyManagerRole and is used to iterate over the raw logs and unpacked data for TransferVKeyManagerRole events raised by the Iaggchainbaseevents contract.
-type IaggchainbaseeventsTransferVKeyManagerRoleIterator struct {
-	Event *IaggchainbaseeventsTransferVKeyManagerRole // Event containing the contract specifics and raw log
-
-	contract *bind.BoundContract // Generic contract to use for unpacking event data
-	event    string              // Event name to use for unpacking event data
-
-	logs chan types.Log        // Log channel receiving the found contract events
-	sub  ethereum.Subscription // Subscription for errors, completion and termination
-	done bool                  // Whether the subscription completed delivering logs
-	fail error                 // Occurred error to stop iteration
-}
-
-// Next advances the iterator to the subsequent event, returning whether there
-// are any more events found. In case of a retrieval or parsing error, false is
-// returned and Error() can be queried for the exact failure.
-func (it *IaggchainbaseeventsTransferVKeyManagerRoleIterator) Next() bool {
-	// If the iterator failed, stop iterating
-	if it.fail != nil {
-		return false
-	}
-	// If the iterator completed, deliver directly whatever's available
-	if it.done {
-		select {
-		case log := <-it.logs:
-			it.Event = new(IaggchainbaseeventsTransferVKeyManagerRole)
-			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
-				it.fail = err
-				return false
-			}
-			it.Event.Raw = log
-			return true
-
-		default:
-			return false
-		}
-	}
-	// Iterator still in progress, wait for either a data or an error event
-	select {
-	case log := <-it.logs:
-		it.Event = new(IaggchainbaseeventsTransferVKeyManagerRole)
-		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
-			it.fail = err
-			return false
-		}
-		it.Event.Raw = log
-		return true
-
-	case err := <-it.sub.Err():
-		it.done = true
-		it.fail = err
-		return it.Next()
-	}
-}
-
-// Error returns any retrieval or parsing error occurred during filtering.
-func (it *IaggchainbaseeventsTransferVKeyManagerRoleIterator) Error() error {
-	return it.fail
-}
-
-// Close terminates the iteration process, releasing any pending underlying
-// resources.
-func (it *IaggchainbaseeventsTransferVKeyManagerRoleIterator) Close() error {
-	it.sub.Unsubscribe()
-	return nil
-}
-
-// IaggchainbaseeventsTransferVKeyManagerRole represents a TransferVKeyManagerRole event raised by the Iaggchainbaseevents contract.
-type IaggchainbaseeventsTransferVKeyManagerRole struct {
-	CurrentVKeyManager    common.Address
-	NewPendingVKeyManager common.Address
-	Raw                   types.Log // Blockchain specific contextual infos
-}
-
-// FilterTransferVKeyManagerRole is a free log retrieval operation binding the contract event 0xc54ae01017d0b80bd8af833f66387d6eb547dc16c8206faf13d0b72764aab8b2.
-//
-// Solidity: event TransferVKeyManagerRole(address currentVKeyManager, address newPendingVKeyManager)
-func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) FilterTransferVKeyManagerRole(opts *bind.FilterOpts) (*IaggchainbaseeventsTransferVKeyManagerRoleIterator, error) {
-
-	logs, sub, err := _Iaggchainbaseevents.contract.FilterLogs(opts, "TransferVKeyManagerRole")
-	if err != nil {
-		return nil, err
-	}
-	return &IaggchainbaseeventsTransferVKeyManagerRoleIterator{contract: _Iaggchainbaseevents.contract, event: "TransferVKeyManagerRole", logs: logs, sub: sub}, nil
-}
-
-// WatchTransferVKeyManagerRole is a free log subscription operation binding the contract event 0xc54ae01017d0b80bd8af833f66387d6eb547dc16c8206faf13d0b72764aab8b2.
-//
-// Solidity: event TransferVKeyManagerRole(address currentVKeyManager, address newPendingVKeyManager)
-func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) WatchTransferVKeyManagerRole(opts *bind.WatchOpts, sink chan<- *IaggchainbaseeventsTransferVKeyManagerRole) (event.Subscription, error) {
-
-	logs, sub, err := _Iaggchainbaseevents.contract.WatchLogs(opts, "TransferVKeyManagerRole")
-	if err != nil {
-		return nil, err
-	}
-	return event.NewSubscription(func(quit <-chan struct{}) error {
-		defer sub.Unsubscribe()
-		for {
-			select {
-			case log := <-logs:
-				// New log arrived, parse the event and forward to the user
-				event := new(IaggchainbaseeventsTransferVKeyManagerRole)
-				if err := _Iaggchainbaseevents.contract.UnpackLog(event, "TransferVKeyManagerRole", log); err != nil {
-					return err
-				}
-				event.Raw = log
-
-				select {
-				case sink <- event:
-				case err := <-sub.Err():
-					return err
-				case <-quit:
-					return nil
-				}
-			case err := <-sub.Err():
-				return err
-			case <-quit:
-				return nil
-			}
-		}
-	}), nil
-}
-
-// ParseTransferVKeyManagerRole is a log parse operation binding the contract event 0xc54ae01017d0b80bd8af833f66387d6eb547dc16c8206faf13d0b72764aab8b2.
-//
-// Solidity: event TransferVKeyManagerRole(address currentVKeyManager, address newPendingVKeyManager)
-func (_Iaggchainbaseevents *IaggchainbaseeventsFilterer) ParseTransferVKeyManagerRole(log types.Log) (*IaggchainbaseeventsTransferVKeyManagerRole, error) {
-	event := new(IaggchainbaseeventsTransferVKeyManagerRole)
-	if err := _Iaggchainbaseevents.contract.UnpackLog(event, "TransferVKeyManagerRole", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
