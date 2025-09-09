@@ -13,14 +13,6 @@ import (
 	"github.com/urfave/cli/v2"
 )
 
-type ProvingSchema string
-
-const (
-	Legacy              ProvingSchema = "legacy"
-	FullExecutionProofs ProvingSchema = "fep"
-	PessimisticProofs   ProvingSchema = "pp"
-)
-
 // extractContractsRepoName returns the name of the contracts directory based on the proving schema
 func extractContractsRepoName() (string, error) {
 	parts := strings.Split(strings.TrimSuffix(contractsRepoURL, ".git"), "/")
@@ -31,20 +23,13 @@ func extractContractsRepoName() (string, error) {
 	return parts[len(parts)-1], nil
 }
 
-var validProvingSchemas = map[ProvingSchema]struct{}{
-	Legacy:              {},
-	FullExecutionProofs: {},
-	PessimisticProofs:   {},
-}
-
 const (
 	// Flags
 	contractsVersionFlagName = "contracts-version"
 	contractsAliasFlagName   = "contracts-alias"
 	nodeVersionFlagName      = "node-version"
 	buildParisFlagName       = "build-paris"
-	provingSystemFlagName    = "proving-schema"
-
+	// Constants
 	contractsRepoURL = "https://github.com/agglayer/agglayer-contracts.git"
 	artifactsPath    = "artifacts/contracts"
 	readmeTemplate   = `# %s contracts
@@ -89,13 +74,6 @@ var (
 				Required: false,
 				Value:    false,
 			},
-			&cli.StringFlag{
-				Name:     provingSystemFlagName,
-				Aliases:  []string{"ps"},
-				Usage:    "Proving system: 'legacy' (pre-pessimistic proofs), 'fep' (full execution proofs) or 'pp' (pessimistic proofs)",
-				Required: false,
-				Value:    string(PessimisticProofs),
-			},
 		},
 	}
 )
@@ -103,11 +81,6 @@ var (
 func importContracts(cliCtx *cli.Context) error {
 	baseDir, err := checkWorkingDir()
 	if err != nil {
-		return err
-	}
-
-	provingSchemaRaw := cliCtx.String(provingSystemFlagName)
-	if err := validateProvingSchema(provingSchemaRaw); err != nil {
 		return err
 	}
 
@@ -184,7 +157,7 @@ func importContracts(cliCtx *cli.Context) error {
 
 	fmt.Println("creating target directory and abi and bin subdirectories")
 	alias := cliCtx.String(contractsAliasFlagName)
-	contractsPath := path.Join(baseDir, "contracts", provingSchemaRaw, alias)
+	contractsPath := path.Join(baseDir, "contracts", alias)
 	err = os.Mkdir(contractsPath, 0744)
 	if err != nil {
 		fmt.Println("error creating directory ", contractsPath)
@@ -253,14 +226,6 @@ func importContracts(cliCtx *cli.Context) error {
 		),
 		0644,
 	)
-}
-
-// validateProvingSchema ensures only valid values are used
-func validateProvingSchema(value string) error {
-	if _, exists := validProvingSchemas[ProvingSchema(value)]; !exists {
-		return fmt.Errorf("invalid proving-schema value provided: %s, must be either %s or %s", value, FullExecutionProofs, PessimisticProofs)
-	}
-	return nil
 }
 
 func prepareParisMode() error {
