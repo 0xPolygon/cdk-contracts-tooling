@@ -8,10 +8,10 @@ import (
 	"math/big"
 	"os"
 
-	"github.com/0xPolygon/cdk-contracts-tooling/contracts/legacy/etrog/polygonrollupmanager"
-	"github.com/0xPolygon/cdk-contracts-tooling/contracts/legacy/etrog/polygonrollupmanagernotupgraded"
-	"github.com/0xPolygon/cdk-contracts-tooling/contracts/legacy/etrog/polygonzkevm"
-	"github.com/0xPolygon/cdk-contracts-tooling/contracts/pp/l2-sovereign-chain/polygonconsensusbase"
+	"github.com/0xPolygon/cdk-contracts-tooling/contracts/aggchain-multisig/polygonconsensusbase"
+	"github.com/0xPolygon/cdk-contracts-tooling/contracts/aggchain-multisig/polygonrollupmanager"
+	"github.com/0xPolygon/cdk-contracts-tooling/contracts/aggchain-multisig/polygonrollupmanagernotupgraded"
+	"github.com/0xPolygon/cdk-contracts-tooling/contracts/aggchain-multisig/polygonzkevm"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
@@ -216,7 +216,7 @@ func (rm *RollupManager) GetRollupCreationInfo(ctx context.Context, rollupID uin
 				ChainID:         it.Event.ChainID,
 				RollupID:        rollupID,
 				GasToken:        it.Event.GasTokenAddress,
-				VerifierType:    VerifierType(rollupType.RollupCompatibilityID),
+				VerifierType:    VerifierType(rollupType.RollupVerifierType),
 			}, nil
 		}
 	}
