@@ -38,29 +38,47 @@ Let's assume that we have a pessimistic proofs rollup named `cdk-pp-1` running o
 
 The genesis file should be named as `allocs.json` and placed in the `./genesis/pp_default/sepolia/cardona/cdk-pp-1/`, so the full path is `./genesis/pp_default/sepolia/cardona/cdk-pp-1/allocs.json`.
 
-### Examples
+### Example flow
 
 #### Generate genesis file for a node (`cdk-validium-node` or `zkevm-node`) and the config for a Bridge service (`zkevm-bridge-service`)
 
-1. Import the rollup manager: `go run ./cmd import-rm -l1 sepolia -addr 0x32d33d5137a7cffb54c5bf8371172bcec5f310ff -alias cardona`. In this example:
+1. Import the rollup manager: 
+```go
+go run ./cmd import-rm -l1 sepolia -addr 0x32d33d5137a7cffb54c5bf8371172bcec5f310ff -alias cardona
+``` 
+In this example:
     - `-l1 sepolia` is the L1 network, make sure that your `rpcs.toml` file contains a valid RPC for the L1 network this CDK belongs to
     - `-addr 0x32d33d5137a7cffb54c5bf8371172bcec5f310ff` is the L1 address where the rollup manager is deployed
     - `-alias cardona` is an arbitrary name. You can really name this however you want, but this is going to be used later to reference this rollup manager deployment
-2. (OPTIONAL) After first step, all the attached rollups are imported using their name as alias, and defaulting to chainID for name if the name has the default value `networkName`. It's possible to manually import a rollup using a custom alias: `go run ./cmd import-r -l1 sepolia -rm cardona -r API3 -chainid 879490799`. In this example:
+
+2. (OPTIONAL) After first step, all the attached rollups are imported using their name as alias, and defaulting to chainID for name if the name has the default value `networkName`. It's possible to manually import a rollup using a custom alias: 
+```go
+go run ./cmd import-r -l1 sepolia -rm cardona -r 22-moonveil-testnet -chainid 1093502521
+``` 
+In this example:
     - `-rm cardona` rollup manager referenced by the alias used in the previous step
-    - `-chainid 879490799` is the chain ID of the rollup (L2 Chain ID)
-    - `-alias API3` is an arbitrary name. You can really name this however you want, but this is going to be used later to reference this rollup deployment
-3. Generate the genesis file for the node: `go run ./cmd genesis -l1 sepolia -rm cardona -r API3 -output API3.json`. In this example:
+    - `-chainid 1093502521` is the chain ID of the rollup (L2 Chain ID)
+    - `-alias 22-moonveil-testnet` is an arbitrary name. You can really name this however you want, but this is going to be used later to reference this rollup deployment
+
+3. Generate the genesis file for the node: 
+```go
+go run ./cmd genesis -l1 sepolia -rm cardona -r API3 -output 22-moonveil-testnet.json`. 
+```
+In this example:
     - `-l1 sepolia` is the L1 network
     - `-rm cardona` rollup manager referenced by the alias used in the step 1 (import rollup manager)
-    - `-r API3` rollup referenced by the alias used in the previous step
-    - `-output API3.json` file where the genesis will be stored
-4. Generate the network config section of the bridge service: `go run ./cmd bridge -l1 sepolia -rm cardona -r API3 -output API3Bridge.toml`
+    - `-r 22-moonveil-testnet` rollup referenced by the alias used in the previous step
+    - `-output 22-moonveil-testnet.json` file where the genesis will be stored
 
-Note that step 1 only needs to be done once, if there are multiple CDKs attached to the same rollup manager, with a single run it will be enough.
+4. Generate combined json for the specified rollup. It contains combined metadata related to the rollup, such as contract addresses, state root etc.
+```go
+go run ./cmd import-combined-json -l1 sepolia -rm cardona -r 22-moonveil-testnet
+```
+In this example:
+    - `-l1 sepolia` is the L1 network
+    - `-rm cardona` rollup manager referenced by the alias used in the step 1 (import rollup manager)
+    - `-r 22-moonveil-testnet` rollup referenced by the alias used in the previous step
 
-#### Combined json command example
+5. Generate the network config section of the zkevm bridge service: `go run ./cmd bridge -l1 sepolia -rm cardona -r 22-moonveil-testnet -output 22-moonveil-testnet.toml`
 
-Combined json command creates a combined json for specified rollup. To run this, rollup manager and rollup for given network have to be imported. 
-
-`go run ./cmd import-cj -l1 sepolia -rm cardona -r API3`
+Note that step 1 only needs to be done once, if there are multiple rollups attached to the same rollup manager, with a single run it will be enough.
