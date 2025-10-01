@@ -57,13 +57,13 @@ func LoadMetadataFromFile(filePath string) (*RollupMetadata, error) {
 }
 
 // LoadMetadataFromL1ByChainID reads the on-chain rollup metadata by the given chain id
-func LoadMetadataFromL1ByChainID(client *ethclient.Client, rm *rollupmanager.RollupManager, chainID uint64) (*RollupMetadata, error) {
+func LoadMetadataFromL1ByChainID(ctx context.Context, client *ethclient.Client, rm *rollupmanager.RollupManager, chainID uint64) (*RollupMetadata, error) {
 	rollupAddr, rollupID, err := rm.GetRollupIdentityData(chainID)
 	if err != nil {
 		return nil, err
 	}
 
-	info, err := rm.GetRollupCreationInfo(context.TODO(), rollupID)
+	info, err := rm.GetRollupCreationInfo(ctx, rollupID)
 	if err != nil {
 		return nil, err
 	}

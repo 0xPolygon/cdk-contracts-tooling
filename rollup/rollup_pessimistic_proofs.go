@@ -14,9 +14,9 @@ import (
 	"github.com/ethereum/go-ethereum/rlp"
 	"github.com/ethereum/go-ethereum/rpc"
 
+	"github.com/0xPolygon/cdk-contracts-tooling/contracts/aggchain-multisig/agglayerbridge"
+	"github.com/0xPolygon/cdk-contracts-tooling/contracts/aggchain-multisig/agglayerger"
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/aggchain-multisig/polygonpessimisticconsensus"
-	"github.com/0xPolygon/cdk-contracts-tooling/contracts/aggchain-multisig/polygonzkevmbridgev2"
-	"github.com/0xPolygon/cdk-contracts-tooling/contracts/aggchain-multisig/polygonzkevmglobalexitrootv2"
 	"github.com/0xPolygon/cdk-contracts-tooling/rollupmanager"
 )
 
@@ -58,7 +58,7 @@ func (r *RollupPessimisticProofs) GetBatchL2Data(client bind.ContractBackend) (s
 		return "", err
 	}
 
-	bridge, err := polygonzkevmbridgev2.NewPolygonzkevmbridgev2(bridgeAddr, client)
+	bridge, err := agglayerbridge.NewAgglayerbridge(bridgeAddr, client)
 	if err != nil {
 		return "", err
 	}
@@ -76,7 +76,7 @@ func (r *RollupPessimisticProofs) GetBatchL2Data(client bind.ContractBackend) (s
 		}
 	}
 
-	bridgeABI, err := polygonzkevmbridgev2.Polygonzkevmbridgev2MetaData.GetAbi()
+	bridgeABI, err := agglayerbridge.AgglayerbridgeMetaData.GetAbi()
 	if err != nil {
 		return "", err
 	}
@@ -124,7 +124,7 @@ func (r *RollupPessimisticProofs) GetBatchL2Data(client bind.ContractBackend) (s
 
 // GetRollupGlobalExitRoot retrieves the actual global exit root at the rollup creation time
 func (r *RollupPessimisticProofs) GetRollupGlobalExitRoot(rm *rollupmanager.RollupManager, client bind.ContractBackend) (common.Hash, error) {
-	gerContract, err := polygonzkevmglobalexitrootv2.NewPolygonzkevmglobalexitrootv2(rm.GERAddr, client)
+	gerContract, err := agglayerger.NewAgglayerger(rm.GERAddr, client)
 	if err != nil {
 		return common.Hash{}, err
 	}
@@ -160,7 +160,7 @@ func (r *RollupPessimisticProofs) GetRollupGlobalExitRoot(rm *rollupmanager.Roll
 			return common.Hash{}, err
 		}
 
-		var latestEvent *polygonzkevmglobalexitrootv2.Polygonzkevmglobalexitrootv2UpdateL1InfoTree
+		var latestEvent *agglayerger.AgglayergerUpdateL1InfoTree
 		for iter.Next() {
 			latestEvent = iter.Event
 		}

@@ -8,13 +8,14 @@ import (
 )
 
 const (
-	appName = "cdk-contracts"
-	version = "0.0.2"
+	appName = "agglayer-contracts-tooling"
+	version = "0.0.11"
 )
 
 func main() {
 	app := cli.NewApp()
 	app.Name = appName
+	app.Usage = "A CLI tool to generate Go bindings for Agglayer smart contracts, import rollup metadata and generate combined json files"
 	app.Version = version
 	app.Commands = []*cli.Command{
 		importContractsCommand,
