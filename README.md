@@ -14,13 +14,6 @@ Not all the commands have the same requirements, but here is the complete list o
 
 From the root of this repo run `go run ./cmd`. This will print a help message explaining how to use all the commands
 
-### Wallets
-
-Some commands require using private keys. There are multiple ways to import private keys, but all of them require to:
-
-1. Copy paste `wallets.example.toml` into `wallets.toml`
-2. Edit the new file to include your wallets (the file has comments to make the needed changes comprehensible)
-
 ### RPCs
 
 Some commands require using RPC endpoints. There are multiple ways to import these endpoints, but all of them require to:
@@ -32,18 +25,18 @@ Some commands require using RPC endpoints. There are multiple ways to import the
 
 Unfortunately the base genesis file cannot be retrieved from L1. Therefore they must be imported manually.
 
-#### Full execution proofs rollups
+#### Full execution proofs (aka state transition) rollups
 
-For the full execution proofs rollups, the location that should contain the genesis allocations is `./genesis/fep/<root>.json`
+For the full execution proofs rollups, the location that should contain the genesis allocations is `./genesis/legacy/<state_root_hex>.json`
 
 #### Pessimistic proofs rollups
 
-For the pessimistic proofs rollups (since they are initialized with an empty genesis root), the location that should contain the genesis allocations is constructed following the pattern `./genesis/pp/<l1_network_alias>/<rollup_manager_alias>/<rollup_alias>/allocs.json`.
+For the pessimistic proofs rollups (since they are initialized with an empty genesis root), the location that should contain the genesis allocations is constructed following the pattern `./genesis/pp_default/<l1_network_alias>/<rollup_manager_alias>/<rollup_alias>/allocs.json`.
 **Example**
 
 Let's assume that we have a pessimistic proofs rollup named `cdk-pp-1` running on the `cardona`, that is pointing to `sepolia` l1 network.
 
-The genesis file should be named as `allocs.json` and placed in the `./genesis/pp/sepolia/cardona/cdk-pp-1/`, so the full path is `./genesis/pp/sepolia/cardona/cdk-pp-1/allocs.json`.
+The genesis file should be named as `allocs.json` and placed in the `./genesis/pp_default/sepolia/cardona/cdk-pp-1/`, so the full path is `./genesis/pp_default/sepolia/cardona/cdk-pp-1/allocs.json`.
 
 ### Examples
 

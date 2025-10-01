@@ -69,7 +69,7 @@ func importRollup(cliCtx *cli.Context) error {
 
 	fmt.Println("fetching on-chain info for the rollup")
 	chainID := cliCtx.Uint64(chainIDFlagName)
-	r, err := rollup.LoadMetadataFromL1ByChainID(client, rm, chainID)
+	r, err := rollup.LoadMetadataFromL1ByChainID(cliCtx.Context, client, rm, chainID)
 	if err != nil {
 		return err
 	}
