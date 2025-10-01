@@ -8,9 +8,8 @@ import (
 	"math/big"
 	"os"
 
+	"github.com/0xPolygon/cdk-contracts-tooling/contracts/aggchain-multisig/agglayermanager"
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/aggchain-multisig/polygonconsensusbase"
-	"github.com/0xPolygon/cdk-contracts-tooling/contracts/aggchain-multisig/polygonrollupmanager"
-	"github.com/0xPolygon/cdk-contracts-tooling/contracts/aggchain-multisig/polygonrollupmanagernotupgraded"
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/aggchain-multisig/polygonzkevm"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
@@ -32,12 +31,12 @@ type RollupManager struct {
 	CreationBlock      uint64
 	UpdateToULxLyBlock uint64
 
-	Client   *ethclient.Client                          `json:"-"`
-	Contract *polygonrollupmanager.Polygonrollupmanager `json:"-"`
+	Client   *ethclient.Client                `json:"-"`
+	Contract *agglayermanager.Agglayermanager `json:"-"`
 }
 
 func LoadFromL1(ctx context.Context, client *ethclient.Client, address common.Address) (*RollupManager, error) {
-	contract, err := polygonrollupmanager.NewPolygonrollupmanager(address, client)
+	contract, err := agglayermanager.NewAgglayermanager(address, client)
 	if err != nil {
 		return nil, err
 	}
@@ -101,7 +100,7 @@ func LoadFromFile(client *ethclient.Client, filePath string) (*RollupManager, er
 	}
 
 	if client != nil {
-		contract, err := polygonrollupmanager.NewPolygonrollupmanager(rm.Address, client)
+		contract, err := agglayermanager.NewAgglayermanager(rm.Address, client)
 		if err != nil {
 			return nil, err
 		}
@@ -275,7 +274,7 @@ func (rm *RollupManager) InitContract(ctx context.Context, client bind.ContractB
 		return nil
 	}
 
-	contract, err := polygonrollupmanager.NewPolygonrollupmanager(rm.Address, client)
+	contract, err := agglayermanager.NewAgglayermanager(rm.Address, client)
 	if err != nil {
 		return err
 	}
@@ -325,7 +324,7 @@ func (rm *RollupManager) GetConsensusDescription(ctx context.Context, rollupID u
 
 // GetInitializedBlock returns the block in which the contract was initialized
 func (rm *RollupManager) GetInitializedBlock(ctx context.Context) (uint64, error) {
-	notUpgraded, err := polygonrollupmanagernotupgraded.NewPolygonrollupmanagernotupgraded(rm.Address, rm.Client)
+	notUpgraded, err := agglayermanager.NewAgglayermanager(rm.Address, rm.Client)
 	if err != nil {
 		return 0, err
 	}

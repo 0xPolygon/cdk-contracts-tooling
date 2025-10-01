@@ -32,7 +32,7 @@ var (
 // EmergencymanagerMetaData contains all meta data concerning the Emergencymanager contract.
 var EmergencymanagerMetaData = &bind.MetaData{
 	ABI: "[{\"inputs\":[],\"name\":\"OnlyEmergencyState\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyNotEmergencyState\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[],\"name\":\"EmergencyStateActivated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[],\"name\":\"EmergencyStateDeactivated\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"isEmergencyState\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
-	Bin: "0x6080604052348015600e575f5ffd5b50608080601a5f395ff3fe6080604052348015600e575f5ffd5b50600436106026575f3560e01c806315064c9614602a575b5f5ffd5b600a5460369060ff1681565b604051901515815260200160405180910390f3fea2646970667358221220e37b53a3b0e52520a8f2ef2bc0349a30d4713d9ff7f5b899b91f30d6aeacdd2f64736f6c634300081c0033",
+	Bin: "0x6080604052348015600e575f5ffd5b50608080601a5f395ff3fe6080604052348015600e575f5ffd5b50600436106026575f3560e01c806315064c9614602a575b5f5ffd5b600a5460369060ff1681565b604051901515815260200160405180910390f3fea2646970667358221220eb1793f803cb4480c7025fa571dc3bc7af6ca2e9e6ef9d6da3ec75575f9a6aab64736f6c634300081c0033",
 }
 
 // EmergencymanagerABI is the input ABI used to generate the binding from.
