@@ -21,6 +21,14 @@ type VerifierType int
 const (
 	StateTransition VerifierType = iota
 	Pessimistic
+	ALGateway
+)
+
+type AggchainType uint32
+
+const (
+	PP AggchainType = iota
+	FEP
 )
 
 type RollupManager struct {
@@ -195,19 +203,32 @@ func (rm *RollupManager) GetRollupCreationInfo(ctx context.Context, rollupID uin
 	if err != nil {
 		return CreateRollupInfo{}, err
 	}
+
 	for it.Next() {
-		rollupType, err := rm.Contract.RollupTypeMap(nil, it.Event.RollupTypeID)
-		if err != nil {
-			return CreateRollupInfo{}, err
-		}
+		// rollupType, err := rm.Contract.RollupTypeMap(nil, it.Event.RollupTypeID)
+		// if err != nil {
+		// 	return CreateRollupInfo{}, err
+		// }
 		b, err := rm.Client.BlockByNumber(ctx, new(big.Int).SetUint64(it.Event.Raw.BlockNumber))
 		if err != nil {
 			return CreateRollupInfo{}, err
 		}
 
 		if b != nil {
+			rd, err := rm.Contract.RollupIDToRollupDataV2(nil, rollupID)
+			if err != nil {
+				return CreateRollupInfo{}, fmt.Errorf("failed to fetch rollup data for rollup id %d: %w", rollupID, err)
+			}
+
+			updatedRollupType := rd.RollupTypeID
+			latestVerifierType := rd.RollupVerifierType
+			latestRollupType, err := rm.Contract.RollupTypeMap(nil, uint32(updatedRollupType))
+			if err != nil {
+				return CreateRollupInfo{}, fmt.Errorf("failed to fetch rollup type for rollup type id %d: %w", updatedRollupType, err)
+			}
+
 			return CreateRollupInfo{
-				Root:            common.Hash(rollupType.Genesis),
+				Root:            common.Hash(latestRollupType.Genesis),
 				Block:           it.Event.Raw.BlockNumber,
 				BlockHash:       b.Hash(),
 				ParentBlockHash: b.ParentHash(),
@@ -215,7 +236,7 @@ func (rm *RollupManager) GetRollupCreationInfo(ctx context.Context, rollupID uin
 				ChainID:         it.Event.ChainID,
 				RollupID:        rollupID,
 				GasToken:        it.Event.GasTokenAddress,
-				VerifierType:    VerifierType(rollupType.RollupVerifierType),
+				VerifierType:    VerifierType(latestVerifierType),
 			}, nil
 		}
 	}

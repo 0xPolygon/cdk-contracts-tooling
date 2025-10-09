@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"encoding/json"
 	"fmt"
 	"os"
@@ -9,6 +10,7 @@ import (
 	"github.com/0xPolygon/cdk-contracts-tooling/config"
 	"github.com/0xPolygon/cdk-contracts-tooling/rollup"
 	"github.com/0xPolygon/cdk-contracts-tooling/rollupmanager"
+	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/urfave/cli/v2"
 )
@@ -18,7 +20,7 @@ var (
 		Name:    "import-combined-json",
 		Aliases: []string{"import-cj"},
 		Usage:   "Imports the combined.json file to a specified rollup in network files",
-		Action:  importCombinedJson,
+		Action:  importCombinedJSON,
 		Flags: []cli.Flag{
 			l1Flag,
 			rollupManagerAliasFlag,
@@ -47,7 +49,7 @@ type CombinedJSON struct {
 	RollupGlobalExitRoot       common.Hash    `json:"globalExitRoot,omitempty"`
 }
 
-func importCombinedJson(cliCtx *cli.Context) error {
+func importCombinedJSON(cliCtx *cli.Context) error {
 	baseDir, err := checkWorkingDir()
 	if err != nil {
 		return err
@@ -83,23 +85,7 @@ func importCombinedJson(cliCtx *cli.Context) error {
 	)
 
 	switch rollupMetadata.VerifierType {
-	case rollupmanager.Pessimistic:
-		r := &rollup.RollupPessimisticProofs{RollupMetadata: rollupMetadata}
-		if err := r.InitContract(cliCtx.Context, client); err != nil {
-			return err
-		}
-
-		batchL2Data, err = r.GetBatchL2Data(client)
-		if err != nil {
-			return fmt.Errorf("failed to retrieve batch l2 data %w", err)
-		}
-
-		rollupGlobalExitRoot, err = r.GetRollupGlobalExitRoot(rollupManager, client)
-		if err != nil {
-			return fmt.Errorf("failed to retrieve the rollup global exit root %w", err)
-		}
-
-	default:
+	case rollupmanager.StateTransition:
 		r := &rollup.RollupValidium{RollupMetadata: rollupMetadata}
 		if err := r.InitContract(cliCtx.Context, client); err != nil {
 			return err
@@ -108,6 +94,20 @@ func importCombinedJson(cliCtx *cli.Context) error {
 		dacAddr, err = r.Contract.DataAvailabilityProtocol(nil)
 		if err != nil {
 			fmt.Println("failed to retrieve data availability protocol address", "reason:", err)
+		}
+
+	case rollupmanager.Pessimistic:
+		batchL2Data, rollupGlobalExitRoot, err = fetchPessimisticRollupData(cliCtx.Context, rollupMetadata, rollupManager, client)
+		if err != nil {
+			return err
+		}
+
+	case rollupmanager.ALGateway:
+		if rollupMetadata.IsPessimistic() {
+			batchL2Data, rollupGlobalExitRoot, err = fetchPessimisticRollupData(cliCtx.Context, rollupMetadata, rollupManager, client)
+			if err != nil {
+				return err
+			}
 		}
 	}
 
@@ -139,4 +139,28 @@ func importCombinedJson(cliCtx *cli.Context) error {
 	combinedJsonFullPath := path.Join(baseDir, "networks", l1Network, rmAlias, "rollups", rAlias+"-combined.json")
 
 	return os.WriteFile(combinedJsonFullPath, raw, 0644)
+}
+
+func fetchPessimisticRollupData(
+	ctx context.Context,
+	metadata *rollup.RollupMetadata,
+	rm *rollupmanager.RollupManager,
+	client bind.ContractBackend,
+) (batchL2Data string, rollupGlobalExitRoot common.Hash, err error) {
+	r := &rollup.RollupPessimisticProofs{RollupMetadata: metadata}
+	if err := r.InitContract(ctx, client); err != nil {
+		return "", common.Hash{}, fmt.Errorf("init contract: %w", err)
+	}
+
+	batchL2Data, err = r.GetBatchL2Data(client)
+	if err != nil {
+		return "", common.Hash{}, fmt.Errorf("failed to retrieve batch L2 data: %w", err)
+	}
+
+	rollupGlobalExitRoot, err = r.GetRollupGlobalExitRoot(rm, client)
+	if err != nil {
+		return "", common.Hash{}, fmt.Errorf("failed to retrieve rollup global exit root: %w", err)
+	}
+
+	return batchL2Data, rollupGlobalExitRoot, nil
 }

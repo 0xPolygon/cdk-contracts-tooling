@@ -14,9 +14,9 @@ import (
 	"github.com/ethereum/go-ethereum/rlp"
 	"github.com/ethereum/go-ethereum/rpc"
 
+	"github.com/0xPolygon/cdk-contracts-tooling/contracts/aggchain-multisig/aggchainecdsamultisig"
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/aggchain-multisig/agglayerbridge"
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/aggchain-multisig/agglayerger"
-	"github.com/0xPolygon/cdk-contracts-tooling/contracts/aggchain-multisig/polygonpessimisticconsensus"
 	"github.com/0xPolygon/cdk-contracts-tooling/rollupmanager"
 )
 
@@ -26,7 +26,7 @@ var L2GERManager = common.HexToAddress("0xa40d5f56745a118d0906a34e69aec8c0db1cb8
 type RollupPessimisticProofs struct {
 	*RollupMetadata
 
-	Contract *polygonpessimisticconsensus.Polygonpessimisticconsensus `json:"-"`
+	Contract *aggchainecdsamultisig.Aggchainecdsamultisig `json:"-"`
 }
 
 func (r *RollupPessimisticProofs) InitContract(ctx context.Context, client bind.ContractBackend) error {
@@ -34,7 +34,7 @@ func (r *RollupPessimisticProofs) InitContract(ctx context.Context, client bind.
 		return nil
 	}
 
-	contract, err := polygonpessimisticconsensus.NewPolygonpessimisticconsensus(r.Address, client)
+	contract, err := aggchainecdsamultisig.NewAggchainecdsamultisig(r.Address, client)
 	if err != nil {
 		return err
 	}

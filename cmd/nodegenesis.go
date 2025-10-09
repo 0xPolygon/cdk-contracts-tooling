@@ -7,15 +7,14 @@ import (
 	"path/filepath"
 
 	"github.com/0xPolygon/cdk-contracts-tooling/config"
-	"github.com/0xPolygon/cdk-contracts-tooling/rollupmanager"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/urfave/cli/v2"
 )
 
 const (
 	genesisAllocsFileName = "allocs.json"
-	legacyDirName         = "legacy"
-	ppDefaultDirName      = "pp_default"
+	fepDirName            = "fep"
+	ppDirName             = "pp"
 )
 
 var (
@@ -71,14 +70,13 @@ func createNodeGenesis(cliCtx *cli.Context) error {
 	}
 
 	var genesisPath string
-	switch r.VerifierType {
-	case rollupmanager.Pessimistic:
+	if r.IsPessimistic() {
 		// The genesis allocations file is uniquelly identified by: l1 network alias, rollup manager alias, and rollup alias.
 		// This is the case, because for pessimistic consensus, rollup's genesis state root is an empty hash.
-		genesisPath = filepath.Join("genesis", ppDefaultDirName, rmAlias, genesisAllocsFileName)
-	default:
+		genesisPath = filepath.Join("genesis", ppDirName, rmAlias, genesisAllocsFileName)
+	} else {
 		// The genesis allocations file is uniquelly identified by the genesis state root, written in the rollup
-		genesisPath = filepath.Join("genesis", legacyDirName, fmt.Sprintf("%s.json", r.GenesisRoot.Hex()))
+		genesisPath = filepath.Join("genesis", fepDirName, fmt.Sprintf("%s.json", r.GenesisRoot.Hex()))
 	}
 
 	genesis, err := config.LoadGenesisAllocs(baseDir, genesisPath)
