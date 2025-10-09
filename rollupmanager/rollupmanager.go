@@ -205,10 +205,6 @@ func (rm *RollupManager) GetRollupCreationInfo(ctx context.Context, rollupID uin
 	}
 
 	for it.Next() {
-		// rollupType, err := rm.Contract.RollupTypeMap(nil, it.Event.RollupTypeID)
-		// if err != nil {
-		// 	return CreateRollupInfo{}, err
-		// }
 		b, err := rm.Client.BlockByNumber(ctx, new(big.Int).SetUint64(it.Event.Raw.BlockNumber))
 		if err != nil {
 			return CreateRollupInfo{}, err

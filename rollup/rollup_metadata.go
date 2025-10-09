@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/binary"
 	"encoding/json"
+	"fmt"
 	"os"
 
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/aggchain-multisig/aggchainbase"
@@ -67,41 +68,57 @@ func LoadMetadataFromFile(filePath string) (*RollupMetadata, error) {
 }
 
 // LoadMetadataFromL1ByChainID reads the on-chain rollup metadata by the given chain id
-func LoadMetadataFromL1ByChainID(ctx context.Context, client *ethclient.Client, rm *rollupmanager.RollupManager, chainID uint64) (*RollupMetadata, error) {
+func LoadMetadataFromL1ByChainID(
+	ctx context.Context,
+	client *ethclient.Client,
+	rm *rollupmanager.RollupManager,
+	chainID uint64,
+) (*RollupMetadata, error) {
+	// --- Step 1: Retrieve rollup identity and creation info ---
 	rollupAddr, rollupID, err := rm.GetRollupIdentityData(chainID)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("get rollup identity: %w", err)
 	}
 
 	info, err := rm.GetRollupCreationInfo(ctx, rollupID)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("get rollup creation info: %w", err)
 	}
 
-	aggchainBaseSC, err := aggchainbase.NewAggchainbase(rollupAddr, client)
+	// --- Step 2: Initialize the AggchainBase smart contract ---
+	aggchainBase, err := aggchainbase.NewAggchainbase(rollupAddr, client)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("init aggchain base: %w", err)
 	}
 
-	rollupName, err := aggchainBaseSC.NetworkName(nil)
+	rollupName, err := aggchainBase.NetworkName(nil)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("get network name: %w", err)
 	}
 
-	if info.VerifierType != rollupmanager.ALGateway {
-		aggchainType := rollupmanager.PP
-		if info.VerifierType == rollupmanager.StateTransition {
-			aggchainType = rollupmanager.FEP
+	// --- Step 3: Determine aggchain type ---
+	switch info.VerifierType {
+	case rollupmanager.ALGateway:
+		// Fetch additional info specific to ALGateway
+		rawType, err := aggchainBase.AGGCHAINTYPE(nil)
+		if err != nil {
+			return nil, fmt.Errorf("fetch aggchain type (rollup %d): %w", rollupID, err)
 		}
+
+		gasToken, err := aggchainBase.GasTokenAddress(nil)
+		if err != nil {
+			return nil, fmt.Errorf("fetch gas token (rollup %d): %w", rollupID, err)
+		}
+
+		info.GasToken = gasToken
+		aggchainType := rollupmanager.AggchainType(binary.BigEndian.Uint16(rawType[:]))
+
 		return NewRollupMetadata(rollupName, chainID, rollupAddr, aggchainType, info), nil
-	}
 
-	aggchainTypeRaw, err := aggchainBaseSC.AGGCHAINTYPE(nil)
-	if err != nil {
-		return nil, err
-	}
+	case rollupmanager.StateTransition:
+		return NewRollupMetadata(rollupName, chainID, rollupAddr, rollupmanager.FEP, info), nil
 
-	aggchainType := binary.BigEndian.Uint16(aggchainTypeRaw[:])
-	return NewRollupMetadata(rollupName, chainID, rollupAddr,
-		rollupmanager.AggchainType(aggchainType), info), nil
+	default:
+		return NewRollupMetadata(rollupName, chainID, rollupAddr, rollupmanager.PP, info), nil
+	}
 }
