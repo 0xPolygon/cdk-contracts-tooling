@@ -70,7 +70,7 @@ func createNodeGenesis(cliCtx *cli.Context) error {
 	}
 
 	var genesisPath string
-	if r.IsPessimistic() {
+	if r.IsPessimistic() && r.GenesisRoot == (common.Hash{}) {
 		// The genesis allocations file is uniquelly identified by: l1 network alias, rollup manager alias, and rollup alias.
 		// This is the case, because for pessimistic consensus, rollup's genesis state root is an empty hash.
 		genesisPath = filepath.Join("genesis", ppDirName, rmAlias, genesisAllocsFileName)

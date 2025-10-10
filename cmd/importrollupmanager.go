@@ -117,7 +117,7 @@ func importRollupManager(cliCtx *cli.Context) error {
 			return err
 		}
 
-		if !r.IsPessimistic() {
+		if !r.IsPessimistic() && r.GenesisRoot != (common.Hash{}) {
 			// for pessimistic proof chains, the genesis root should be an empty hash
 			// (https://github.com/agglayer/agglayer-contracts/blob/c8659e6282340de7bdb8fdbf7924a9bd2996bc98/contracts/v2/PolygonRollupManager.sol#L443-L446)
 			if _, err := os.Stat(path.Join(baseDir, "genesis", fepDirName, r.GenesisRoot.Hex()+".json")); errors.Is(err, os.ErrNotExist) {
