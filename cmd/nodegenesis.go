@@ -41,12 +41,12 @@ type l1Config struct {
 }
 
 type nodeGenesis struct {
-	L1Config                                l1Config    `json:"l1Config"`
-	RollupCreationBlockNumberUsedByRollup   uint64      `json:"genesisBlockNumber"`
-	RollupCreationBlockNumberUsedByValidium uint64      `json:"rollupCreationBlockNumber"`
-	UpdateToULxLyBlockNumber                uint64      `json:"rollupManagerCreationBlockNumber"`
-	Genesis                                 interface{} `json:"genesis"`
-	Root                                    common.Hash `json:"root"`
+	L1Config                                l1Config                `json:"l1Config"`
+	RollupCreationBlockNumberUsedByRollup   uint64                  `json:"genesisBlockNumber"`
+	RollupCreationBlockNumberUsedByValidium uint64                  `json:"rollupCreationBlockNumber"`
+	UpdateToULxLyBlockNumber                uint64                  `json:"rollupManagerCreationBlockNumber"`
+	Genesis                                 []config.GenesisAccount `json:"genesis"`
+	Root                                    common.Hash             `json:"root"`
 }
 
 func createNodeGenesis(cliCtx *cli.Context) error {
@@ -86,6 +86,11 @@ func createNodeGenesis(cliCtx *cli.Context) error {
 
 	fmt.Println("creating genesis file")
 
+	stateRoot := r.GenesisRoot
+	if stateRoot == (common.Hash{}) {
+		fmt.Println("WARNING: the rollup genesis state root is an empty hash, fallbacking to the root from the genesis allocations file")
+		stateRoot = genesis.Root
+	}
 	ng := nodeGenesis{
 		L1Config: l1Config{
 			ChainId:       l1ChainID,
@@ -97,8 +102,8 @@ func createNodeGenesis(cliCtx *cli.Context) error {
 		RollupCreationBlockNumberUsedByRollup:   r.CreationBlock,
 		RollupCreationBlockNumberUsedByValidium: r.CreationBlock,
 		UpdateToULxLyBlockNumber:                rm.UpdateToULxLyBlock,
-		Genesis:                                 genesis,
-		Root:                                    r.GenesisRoot,
+		Genesis:                                 genesis.Genesis,
+		Root:                                    stateRoot,
 	}
 
 	data, err := json.MarshalIndent(&ng, "", "   ")
