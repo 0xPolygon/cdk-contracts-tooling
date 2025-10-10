@@ -211,16 +211,15 @@ func (rm *RollupManager) GetRollupCreationInfo(ctx context.Context, rollupID uin
 		}
 
 		if b != nil {
-			rd, err := rm.Contract.RollupIDToRollupDataV2(nil, rollupID)
+			// Update rollup info based on the latest rollup data (in case of rollup updates)
+			latestRollupData, err := rm.Contract.RollupIDToRollupDataV2(nil, rollupID)
 			if err != nil {
 				return CreateRollupInfo{}, fmt.Errorf("failed to fetch rollup data for rollup id %d: %w", rollupID, err)
 			}
 
-			updatedRollupType := rd.RollupTypeID
-			latestVerifierType := rd.RollupVerifierType
-			latestRollupType, err := rm.Contract.RollupTypeMap(nil, uint32(updatedRollupType))
+			latestRollupType, err := rm.Contract.RollupTypeMap(nil, uint32(latestRollupData.RollupTypeID))
 			if err != nil {
-				return CreateRollupInfo{}, fmt.Errorf("failed to fetch rollup type for rollup type id %d: %w", updatedRollupType, err)
+				return CreateRollupInfo{}, fmt.Errorf("failed to fetch rollup type for rollup type id %d: %w", latestRollupData.RollupTypeID, err)
 			}
 
 			return CreateRollupInfo{
@@ -232,7 +231,7 @@ func (rm *RollupManager) GetRollupCreationInfo(ctx context.Context, rollupID uin
 				ChainID:         it.Event.ChainID,
 				RollupID:        rollupID,
 				GasToken:        it.Event.GasTokenAddress,
-				VerifierType:    VerifierType(latestVerifierType),
+				VerifierType:    VerifierType(latestRollupData.RollupVerifierType),
 			}, nil
 		}
 	}
