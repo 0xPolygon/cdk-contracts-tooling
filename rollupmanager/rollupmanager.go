@@ -8,8 +8,8 @@ import (
 	"math/big"
 	"os"
 
+	"github.com/0xPolygon/cdk-contracts-tooling/contracts/aggchain-multisig/aggchainbase"
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/aggchain-multisig/agglayermanager"
-	"github.com/0xPolygon/cdk-contracts-tooling/contracts/aggchain-multisig/polygonconsensusbase"
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/aggchain-multisig/polygonzkevm"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
@@ -251,7 +251,7 @@ func (rm *RollupManager) GetAttachedRollups(ctx context.Context) (map[uint64]str
 		fmt.Println("rollup manager has no attached rollups")
 		return res, nil
 	}
-	rollup, err := polygonconsensusbase.NewPolygonconsensusbase(data.RollupContract, rm.Client)
+	rollup, err := aggchainbase.NewAggchainbase(data.RollupContract, rm.Client)
 	if err != nil {
 		return nil, err
 	}
@@ -271,7 +271,7 @@ func (rm *RollupManager) GetAttachedRollups(ctx context.Context) (map[uint64]str
 		return nil, err
 	}
 	for it.Next() {
-		rollup, err := polygonzkevm.NewPolygonzkevm(it.Event.RollupAddress, rm.Client)
+		rollup, err := aggchainbase.NewAggchainbase(it.Event.RollupAddress, rm.Client)
 		if err != nil {
 			return nil, err
 		}
