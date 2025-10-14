@@ -117,12 +117,12 @@ func importRollupManager(cliCtx *cli.Context) error {
 			return err
 		}
 
-		if r.VerifierType != rollupmanager.Pessimistic {
+		if !r.IsPessimistic() && r.GenesisRoot != (common.Hash{}) {
 			// for pessimistic proof chains, the genesis root should be an empty hash
 			// (https://github.com/agglayer/agglayer-contracts/blob/c8659e6282340de7bdb8fdbf7924a9bd2996bc98/contracts/v2/PolygonRollupManager.sol#L443-L446)
-			if _, err := os.Stat(path.Join(baseDir, "genesis", legacyDirName, r.GenesisRoot.Hex()+".json")); errors.Is(err, os.ErrNotExist) {
+			if _, err := os.Stat(path.Join(baseDir, "genesis", fepDirName, r.GenesisRoot.Hex()+".json")); errors.Is(err, os.ErrNotExist) {
 				fmt.Printf(
-					"WARNING: the rollup %s with chain id %d uses a genesis with root %s. But there is no such genesis file. Please manually import it into the ./genesis directory.\n",
+					"WARNING: the rollup '%s' with chain id %d uses a genesis with root %s. But there is no such genesis file. Please manually import it into the ./genesis directory.\n",
 					name, chainID, r.GenesisRoot.Hex(),
 				)
 			}

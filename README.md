@@ -27,16 +27,16 @@ Unfortunately the base genesis file cannot be retrieved from L1. Therefore they 
 
 #### Full execution proofs (aka state transition) rollups
 
-For the full execution proofs rollups, the location that should contain the genesis allocations is `./genesis/legacy/<state_root_hex>.json`
+For the full execution proofs rollups, the location that should contain the genesis allocations is `./genesis/fep/<state_root_hex>.json`
 
 #### Pessimistic proofs rollups
 
-For the pessimistic proofs rollups (since they are initialized with an empty genesis root), the location that should contain the genesis allocations is constructed following the pattern `./genesis/pp_default/<l1_network_alias>/<rollup_manager_alias>/<rollup_alias>/allocs.json`.
+For the pessimistic proofs rollups (since they are initialized with an empty genesis root), the location that should contain the genesis allocations is constructed following the pattern `./genesis/pp/<l1_network_alias>/<rollup_manager_alias>/<rollup_alias>/allocs.json`.
 **Example**
 
 Let's assume that we have a pessimistic proofs rollup named `cdk-pp-1` running on the `cardona`, that is pointing to `sepolia` l1 network.
 
-The genesis file should be named as `allocs.json` and placed in the `./genesis/pp_default/sepolia/cardona/cdk-pp-1/`, so the full path is `./genesis/pp_default/sepolia/cardona/cdk-pp-1/allocs.json`.
+The genesis file should be named as `allocs.json` and placed in the `./genesis/pp/sepolia/cardona/cdk-pp-1/`, so the full path is `./genesis/pp/sepolia/cardona/cdk-pp-1/allocs.json`.
 
 ### Example flow
 

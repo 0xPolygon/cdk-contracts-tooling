@@ -8,8 +8,8 @@ import (
 	"math/big"
 	"os"
 
+	"github.com/0xPolygon/cdk-contracts-tooling/contracts/aggchain-multisig/aggchainbase"
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/aggchain-multisig/agglayermanager"
-	"github.com/0xPolygon/cdk-contracts-tooling/contracts/aggchain-multisig/polygonconsensusbase"
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/aggchain-multisig/polygonzkevm"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/common"
@@ -21,6 +21,14 @@ type VerifierType int
 const (
 	StateTransition VerifierType = iota
 	Pessimistic
+	ALGateway
+)
+
+type AggchainType uint32
+
+const (
+	PP AggchainType = iota
+	FEP
 )
 
 type RollupManager struct {
@@ -195,19 +203,27 @@ func (rm *RollupManager) GetRollupCreationInfo(ctx context.Context, rollupID uin
 	if err != nil {
 		return CreateRollupInfo{}, err
 	}
+
 	for it.Next() {
-		rollupType, err := rm.Contract.RollupTypeMap(nil, it.Event.RollupTypeID)
-		if err != nil {
-			return CreateRollupInfo{}, err
-		}
 		b, err := rm.Client.BlockByNumber(ctx, new(big.Int).SetUint64(it.Event.Raw.BlockNumber))
 		if err != nil {
 			return CreateRollupInfo{}, err
 		}
 
 		if b != nil {
+			// Update rollup info based on the latest rollup data (in case of rollup updates)
+			latestRollupData, err := rm.Contract.RollupIDToRollupDataV2(nil, rollupID)
+			if err != nil {
+				return CreateRollupInfo{}, fmt.Errorf("failed to fetch rollup data for rollup id %d: %w", rollupID, err)
+			}
+
+			latestRollupType, err := rm.Contract.RollupTypeMap(nil, uint32(latestRollupData.RollupTypeID))
+			if err != nil {
+				return CreateRollupInfo{}, fmt.Errorf("failed to fetch rollup type for rollup type id %d: %w", latestRollupData.RollupTypeID, err)
+			}
+
 			return CreateRollupInfo{
-				Root:            common.Hash(rollupType.Genesis),
+				Root:            common.Hash(latestRollupType.Genesis),
 				Block:           it.Event.Raw.BlockNumber,
 				BlockHash:       b.Hash(),
 				ParentBlockHash: b.ParentHash(),
@@ -215,7 +231,7 @@ func (rm *RollupManager) GetRollupCreationInfo(ctx context.Context, rollupID uin
 				ChainID:         it.Event.ChainID,
 				RollupID:        rollupID,
 				GasToken:        it.Event.GasTokenAddress,
-				VerifierType:    VerifierType(rollupType.RollupVerifierType),
+				VerifierType:    VerifierType(latestRollupData.RollupVerifierType),
 			}, nil
 		}
 	}
@@ -235,7 +251,7 @@ func (rm *RollupManager) GetAttachedRollups(ctx context.Context) (map[uint64]str
 		fmt.Println("rollup manager has no attached rollups")
 		return res, nil
 	}
-	rollup, err := polygonconsensusbase.NewPolygonconsensusbase(data.RollupContract, rm.Client)
+	rollup, err := aggchainbase.NewAggchainbase(data.RollupContract, rm.Client)
 	if err != nil {
 		return nil, err
 	}
@@ -255,7 +271,7 @@ func (rm *RollupManager) GetAttachedRollups(ctx context.Context) (map[uint64]str
 		return nil, err
 	}
 	for it.Next() {
-		rollup, err := polygonzkevm.NewPolygonzkevm(it.Event.RollupAddress, rm.Client)
+		rollup, err := aggchainbase.NewAggchainbase(it.Event.RollupAddress, rm.Client)
 		if err != nil {
 			return nil, err
 		}
