@@ -61,10 +61,10 @@ type BigInt struct {
 }
 
 func (b *BigInt) UnmarshalJSON(data []byte) error {
-	// Try as a string first (e.g., "0" or "3402823...")
+	// Try as a string first, quoted value (e.g., "0" or "3402823...")
 	var s string
 	if err := json.Unmarshal(data, &s); err == nil {
-		i, ok := new(big.Int).SetString(s, 10)
+		i, ok := new(big.Int).SetString(s, 0)
 		if !ok {
 			return fmt.Errorf("invalid big.Int string: %q", s)
 		}
