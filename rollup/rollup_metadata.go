@@ -14,7 +14,7 @@ import (
 )
 
 const (
-	ppConsensusType = 1
+	multiECDSAFeatSP1 = 1
 )
 
 type RollupMetadata struct {
@@ -108,7 +108,7 @@ func LoadMetadataFromL1ByChainID(
 			return nil, fmt.Errorf("failed to fetch consensus type (rollup %d): %w", rollupID, err)
 		}
 
-		if consensusType != ppConsensusType {
+		if consensusType != multiECDSAFeatSP1 {
 			return nil, fmt.Errorf("unsupported consensus type %d (rollup %d)", consensusType, rollupID)
 		}
 
