@@ -1,0 +1,14 @@
+{
+   "Address": "0xfe797cb13f7884fb9f0ae26feb2a06ed8efccbe7",
+   "GenesisRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+   "CreationBlock": 21767345,
+   "CreationBlockHash": "0xf1a1ef56d61e69bfd0c51bd105fb80736973f8fdb612d86591390c22f68cc1a5",
+   "CreationParentBlockHash": "0x93147280af16e02bce761262f2a32e2c54deef18792102153682014f8c83deac",
+   "CreationTimestamp": 1738602167,
+   "ChainID": 9369,
+   "Name": "Z Chain",
+   "RollupID": 14,
+   "GasToken": "0xaae0a1ab5eda004d7884c0c081f490d5a77e8c32",
+   "VerifierType": 1,
+   "AggchainType": 0
+}

@@ -1,0 +1,14 @@
+{
+   "Address": "0xc427e3edc8ae4bd2698cbef251e06b83175f9dec",
+   "GenesisRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+   "CreationBlock": 22373167,
+   "CreationBlockHash": "0xc8844d6406199e681e090e4fc007a99c40c712dd114fe343097147ebab67f431",
+   "CreationParentBlockHash": "0x635b4f4a6e1873950fc48b6b293b798dda986bb8edbebc317a0c33d461caec19",
+   "CreationTimestamp": 1745911007,
+   "ChainID": 8088,
+   "Name": "Okto",
+   "RollupID": 19,
+   "GasToken": "0x0000000000000000000000000000000000000000",
+   "VerifierType": 1,
+   "AggchainType": 0
+}

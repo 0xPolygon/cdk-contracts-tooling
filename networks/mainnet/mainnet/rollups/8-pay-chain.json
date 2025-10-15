@@ -1,0 +1,14 @@
+{
+   "Address": "0x78253e2e6120164bd826668a4c96db20f78a94c9",
+   "GenesisRoot": "0xe3a7d8bae497945ba8ddc51c69564f60ad4c1a990b9c7bdbd27f7929bfa8f272",
+   "CreationBlock": 20232613,
+   "CreationBlockHash": "0xa95c48c4288ce36928df7bde8958777b063062395052c4c6b64eb476d92a6d90",
+   "CreationParentBlockHash": "0x5cf725ccea89aa942906e2f9c1237023ea4b3e83b7079ab227d9ef8f3ddd6143",
+   "CreationTimestamp": 1720089623,
+   "ChainID": 31415,
+   "Name": "pay-chain",
+   "RollupID": 8,
+   "GasToken": "0x0000000000000000000000000000000000000000",
+   "VerifierType": 0,
+   "AggchainType": 1
+}

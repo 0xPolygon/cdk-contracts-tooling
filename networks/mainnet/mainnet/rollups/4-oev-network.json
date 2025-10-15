@@ -1,0 +1,14 @@
+{
+   "Address": "0x88aab361f108c3c959f2928da3cd8e47298016b5",
+   "GenesisRoot": "0xe3a7d8bae497945ba8ddc51c69564f60ad4c1a990b9c7bdbd27f7929bfa8f272",
+   "CreationBlock": 19683851,
+   "CreationBlockHash": "0x5f8b301507549d6278a5cd390ffa43aa346a8ab00de401a5d10e23b57d4d86be",
+   "CreationParentBlockHash": "0xd454c4b31ac0cb18aa9cb48f09bee35972399a0c3caf1a413c0c1e2e3b24dba4",
+   "CreationTimestamp": 1713461567,
+   "ChainID": 4913,
+   "Name": "oev-network",
+   "RollupID": 4,
+   "GasToken": "0x0000000000000000000000000000000000000000",
+   "VerifierType": 0,
+   "AggchainType": 1
+}

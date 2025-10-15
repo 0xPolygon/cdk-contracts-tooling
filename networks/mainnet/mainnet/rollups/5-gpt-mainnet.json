@@ -1,0 +1,14 @@
+{
+   "Address": "0xc4e903d3af4c3d2e437492d602adcc9d9b536858",
+   "GenesisRoot": "0xe3a7d8bae497945ba8ddc51c69564f60ad4c1a990b9c7bdbd27f7929bfa8f272",
+   "CreationBlock": 19960801,
+   "CreationBlockHash": "0x39e8b1e5cf47c71cca91207a23371ed871fc56da463fc9a0348250980f654df6",
+   "CreationParentBlockHash": "0x8799e8a2a217ffdcb096d8b52d5daea7d4fe611a2f41278ae1ef6123df9d783f",
+   "CreationTimestamp": 1716807971,
+   "ChainID": 1511670449,
+   "Name": "gpt-mainnet",
+   "RollupID": 5,
+   "GasToken": "0xcdb4a8742ed7d0259b51e3454c46c9d6c48d5e88",
+   "VerifierType": 0,
+   "AggchainType": 1
+}

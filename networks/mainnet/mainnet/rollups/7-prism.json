@@ -1,0 +1,14 @@
+{
+   "Address": "0x92726f7de49300dbdb60930066bc1d0803c0740b",
+   "GenesisRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+   "CreationBlock": 20183666,
+   "CreationBlockHash": "0x171eec2c7698d8b31d86696f11c4a4f2578906253e8f3989ecc80b752fc232ed",
+   "CreationParentBlockHash": "0x17b280ac49ceb979862f25d1fcc2a1ac32add9b697ff4512a02a4341143c9095",
+   "CreationTimestamp": 1719499031,
+   "ChainID": 994873017,
+   "Name": "prism",
+   "RollupID": 7,
+   "GasToken": "0xd9343a049d5dbd89cd19dc6bca8c48fb3a0a42a7",
+   "VerifierType": 1,
+   "AggchainType": 0
+}

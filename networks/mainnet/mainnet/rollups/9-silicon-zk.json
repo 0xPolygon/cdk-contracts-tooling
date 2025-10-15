@@ -1,0 +1,14 @@
+{
+   "Address": "0xa87df42cd53e998b3a610b8bce3719871b0bb940",
+   "GenesisRoot": "0xe3a7d8bae497945ba8ddc51c69564f60ad4c1a990b9c7bdbd27f7929bfa8f272",
+   "CreationBlock": 20511455,
+   "CreationBlockHash": "0xaa9723e910e80c5faa6e65538df0b56503291338ace5983d971da416a43c1337",
+   "CreationParentBlockHash": "0x24675fae096616745a84adc4ed08bf5cc22c5b5aafcbddad16a467566522ee9a",
+   "CreationTimestamp": 1723452659,
+   "ChainID": 511252203,
+   "Name": "silicon-zk",
+   "RollupID": 9,
+   "GasToken": "0x0000000000000000000000000000000000000000",
+   "VerifierType": 0,
+   "AggchainType": 1
+}

@@ -1,0 +1,14 @@
+{
+   "Address": "0xb1714954bbc0162a36fb44934f3216ace81c40d7",
+   "GenesisRoot": "0xe3a7d8bae497945ba8ddc51c69564f60ad4c1a990b9c7bdbd27f7929bfa8f272",
+   "CreationBlock": 21944648,
+   "CreationBlockHash": "0x8c83f12e40dfb47da2a67f3806ce3a68154024846ef55d49f4e9e89cd0aee2b3",
+   "CreationParentBlockHash": "0x86c79d50d7341d73f331397f9262fc843fdba5a3cc22486b35d6a5f4bcb5cfba",
+   "CreationTimestamp": 1740743363,
+   "ChainID": 3344,
+   "Name": "Pentagon Games",
+   "RollupID": 16,
+   "GasToken": "0xa1aa371e450c5aee7fff259cbf5cca9384227272",
+   "VerifierType": 0,
+   "AggchainType": 1
+}

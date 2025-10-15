@@ -1,0 +1,14 @@
+{
+   "Address": "0x2f3d687e02dbe83b6cdae02aeb66c0e8e69cca4b",
+   "GenesisRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+   "CreationBlock": 23268580,
+   "CreationBlockHash": "0xb39221ecdd42b178220375e92c5e4f00ee25906e2b543b12ad16587a83e70f0e",
+   "CreationParentBlockHash": "0x0ab5a50fc4a425b3ac0f1f36099f8dac5c97b16c0dcb151d8916a21602816501",
+   "CreationTimestamp": 1756733255,
+   "ChainID": 8338,
+   "Name": "forknet",
+   "RollupID": 22,
+   "GasToken": "0x0000000000000000000000000000000000000000",
+   "VerifierType": 1,
+   "AggchainType": 0
+}

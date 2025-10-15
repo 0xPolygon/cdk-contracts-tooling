@@ -1,0 +1,14 @@
+{
+   "Address": "0xad83cd3e5a725546dadc5a25088c5c098d320ca8",
+   "GenesisRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+   "CreationBlock": 23274766,
+   "CreationBlockHash": "0xdcf790c5316565c296da04b0c97d0d794352ddac070e051ce95794072c02b2a2",
+   "CreationParentBlockHash": "0x0d606d5e23587cfa3c7206efbd24fdb47f916259face70ab58265765283c7f83",
+   "CreationTimestamp": 1756808195,
+   "ChainID": 3864,
+   "Name": "Haust Network",
+   "RollupID": 23,
+   "GasToken": "0xec3502a9f98f151af52ee6cb423a0afe7bbf5a19",
+   "VerifierType": 1,
+   "AggchainType": 0
+}

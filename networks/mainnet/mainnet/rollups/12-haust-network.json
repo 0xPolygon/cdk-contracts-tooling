@@ -1,0 +1,14 @@
+{
+   "Address": "0x505ce1246f7e2fd899dc5d3cfb17a47500eb58bc",
+   "GenesisRoot": "0xe3a7d8bae497945ba8ddc51c69564f60ad4c1a990b9c7bdbd27f7929bfa8f272",
+   "CreationBlock": 21020917,
+   "CreationBlockHash": "0x27ceb3b307efcbefaa839504ed277fe65a8628bfa2a4a55f231a4fd06f0fc637",
+   "CreationParentBlockHash": "0x772277f17a0ba550f3155e99627bcf0736634aa989427a5b2bad95958e8708e2",
+   "CreationTimestamp": 1729597679,
+   "ChainID": 938,
+   "Name": "haust-network",
+   "RollupID": 12,
+   "GasToken": "0xec3502a9f98f151af52ee6cb423a0afe7bbf5a19",
+   "VerifierType": 0,
+   "AggchainType": 1
+}
