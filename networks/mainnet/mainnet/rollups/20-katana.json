@@ -1,0 +1,14 @@
+{
+   "Address": "0x100d3ca4f97776a40a7d93db4abf0fea34230666",
+   "GenesisRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+   "CreationBlock": 22431675,
+   "CreationBlockHash": "0x53bd630ba6169b2998edcc83bf46d7d7dbb563ceeb1ac878964dbb435dd6d4bd",
+   "CreationParentBlockHash": "0x2972ba0618474103156e0468835b3094c0c1f81d1d2c1ccbac155924783663f0",
+   "CreationTimestamp": 1746619859,
+   "ChainID": 747474,
+   "Name": "katana",
+   "RollupID": 20,
+   "GasToken": "0x0000000000000000000000000000000000000000",
+   "VerifierType": 2,
+   "AggchainType": 1
+}

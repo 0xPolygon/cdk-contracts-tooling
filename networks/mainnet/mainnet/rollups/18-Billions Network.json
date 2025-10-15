@@ -1,0 +1,14 @@
+{
+   "Address": "0x88404dd30a96ad25a765d733429cf83138c7f8f4",
+   "GenesisRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+   "CreationBlock": 22346931,
+   "CreationBlockHash": "0x143b1e7610f8ae15bfe6f63ff0ba947e70598e0bcc329dfdf78b7d53db6e7b11",
+   "CreationParentBlockHash": "0x6b12c0cb2f27661f99077431426fba587964bddc8089f1edaf159a59f829e07c",
+   "CreationTimestamp": 1745594879,
+   "ChainID": 45056,
+   "Name": "Billions Network",
+   "RollupID": 18,
+   "GasToken": "0x0000000000000000000000000000000000000000",
+   "VerifierType": 1,
+   "AggchainType": 0
+}

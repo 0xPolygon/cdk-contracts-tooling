@@ -13,6 +13,10 @@ import (
 	"github.com/ethereum/go-ethereum/ethclient"
 )
 
+const (
+	multiECDSAFeatSP1 = 1
+)
+
 type RollupMetadata struct {
 	Address                 common.Address
 	GenesisRoot             common.Hash
@@ -99,15 +103,24 @@ func LoadMetadataFromL1ByChainID(
 	// --- Step 3: Determine aggchain type ---
 	switch info.VerifierType {
 	case rollupmanager.ALGateway:
+		consensusType, err := aggchainBase.CONSENSUSTYPE(nil)
+		if err != nil {
+			return nil, fmt.Errorf("failed to fetch consensus type (rollup %d): %w", rollupID, err)
+		}
+
+		if consensusType != multiECDSAFeatSP1 {
+			return nil, fmt.Errorf("unsupported consensus type %d (rollup %d)", consensusType, rollupID)
+		}
+
 		// Fetch additional info specific to ALGateway
 		rawType, err := aggchainBase.AGGCHAINTYPE(nil)
 		if err != nil {
-			return nil, fmt.Errorf("fetch aggchain type (rollup %d): %w", rollupID, err)
+			return nil, fmt.Errorf("failed to fetch aggchain type (rollup %d): %w", rollupID, err)
 		}
 
 		gasToken, err := aggchainBase.GasTokenAddress(nil)
 		if err != nil {
-			return nil, fmt.Errorf("fetch gas token (rollup %d): %w", rollupID, err)
+			return nil, fmt.Errorf("failed to fetch gas token (rollup %d): %w", rollupID, err)
 		}
 
 		info.GasToken = gasToken

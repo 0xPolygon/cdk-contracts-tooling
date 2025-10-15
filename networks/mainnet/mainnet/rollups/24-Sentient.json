@@ -1,0 +1,14 @@
+{
+   "Address": "0xeb7eeb10cc04447262715ddaf7c7b111141c2358",
+   "GenesisRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+   "CreationBlock": 23574526,
+   "CreationBlockHash": "0x46d05f38c3be6829f1a81a02ff210c649343d126453f4f862c76221cf96b0f9c",
+   "CreationParentBlockHash": "0x23ad3e1091083dba0d0179c926c66063dbd19f69262740e968ec520bed9900c9",
+   "CreationTimestamp": 1760427803,
+   "ChainID": 6767,
+   "Name": "Sentient",
+   "RollupID": 24,
+   "GasToken": "0x56a3ba04e95d34268a19b2a4474dc979babdaf76",
+   "VerifierType": 1,
+   "AggchainType": 0
+}

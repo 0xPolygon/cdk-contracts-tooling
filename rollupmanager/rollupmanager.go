@@ -31,6 +31,8 @@ const (
 	FEP
 )
 
+const blocksChunkSize = uint64(50000)
+
 type RollupManager struct {
 	Address            common.Address
 	BridgeAddress      common.Address
@@ -44,55 +46,53 @@ type RollupManager struct {
 }
 
 func LoadFromL1(ctx context.Context, client *ethclient.Client, address common.Address) (*RollupManager, error) {
-	contract, err := agglayermanager.NewAgglayermanager(address, client)
-	if err != nil {
-		return nil, err
-	}
-	rm := RollupManager{
-		Client:   client,
-		Address:  address,
-		Contract: contract,
+	rm := &RollupManager{
+		Client:  client,
+		Address: address,
 	}
 
-	bridgeAddr, err := contract.BridgeAddress(nil)
+	if err := rm.InitContract(ctx, client); err != nil {
+		return nil, fmt.Errorf("failed to bind AgglayerManager: %w", err)
+	}
+
+	bridgeAddr, err := rm.Contract.BridgeAddress(nil)
 	if err != nil {
 		return nil, err
 	}
 	rm.BridgeAddress = bridgeAddr
 
-	gerAddr, err := contract.GlobalExitRootManager(nil)
+	gerAddr, err := rm.Contract.GlobalExitRootManager(nil)
 	if err != nil {
 		return nil, err
 	}
 	rm.GERAddr = gerAddr
 
-	polAddr, err := contract.Pol(nil)
+	polAddr, err := rm.Contract.Pol(nil)
 	if err != nil {
 		return nil, err
 	}
 	rm.POLAddr = polAddr
 
-	ub, err := rm.GetUpgradeBlocks(ctx)
+	initializedBlocks, err := rm.GetInitializedBlocks(ctx)
 	if err != nil {
 		return nil, err
 	}
 
-	creationBlock, creationBlockFound := ub[1]
-	upgradeBlock, upgradeBlockFound := ub[2]
-	if creationBlockFound && upgradeBlockFound {
-		// Rollup Manager used to be a isolated LxLy and upgraded to uLxLy
+	creationBlock, creationBlockFound := initializedBlocks[1]
+	upgradeBlock, upgradeBlockFound := initializedBlocks[2]
+	if creationBlockFound {
 		rm.CreationBlock = creationBlock
-		rm.UpdateToULxLyBlock = upgradeBlock
-	} else {
-		// Rollup Manager deployed directly on uLxLy mode
-		initBlock, err := rm.GetInitializedBlock(ctx)
-		if err != nil {
-			return nil, err
+		if upgradeBlockFound {
+			// Rollup Manager used to be an isolated LxLy and upgraded to unified LxLy
+			rm.UpdateToULxLyBlock = upgradeBlock
+		} else {
+			rm.UpdateToULxLyBlock = creationBlock
 		}
-		rm.CreationBlock = initBlock
-		rm.UpdateToULxLyBlock = initBlock
+
+		return rm, nil
 	}
-	return &rm, nil
+
+	return nil, errors.New("couldn't find the creation block of the rollup manager")
 }
 
 func LoadFromFile(client *ethclient.Client, filePath string) (*RollupManager, error) {
@@ -119,20 +119,50 @@ func LoadFromFile(client *ethclient.Client, filePath string) (*RollupManager, er
 	return &rm, nil
 }
 
-// GetUpgradeBlocks returns a mapping of version => block number of the rollup manager
-func (rm *RollupManager) GetUpgradeBlocks(ctx context.Context) (map[uint8]uint64, error) {
-	it, err := rm.Contract.FilterInitialized(&bind.FilterOpts{
-		Start:   1,
-		Context: ctx,
-	})
+// GetInitializedBlocks returns a mapping of version => block number of the rollup manager
+func (rm *RollupManager) GetInitializedBlocks(ctx context.Context) (map[uint8]uint64, error) {
+	// Get the latest block to know where to stop
+	latestBlock, err := rm.Client.BlockNumber(ctx)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed to get latest block header: %w", err)
 	}
-	res := make(map[uint8]uint64)
-	for it.Next() {
-		res[it.Event.Version] = it.Event.Raw.BlockNumber
+
+	blocks := make(map[uint8]uint64)
+
+	for start := uint64(1); start <= latestBlock; start += blocksChunkSize {
+		end := min(start+blocksChunkSize-1, latestBlock)
+
+		it, err := rm.Contract.FilterInitialized(
+			&bind.FilterOpts{
+				Start:   start,
+				End:     &end,
+				Context: ctx,
+			})
+		if err != nil {
+			return nil, fmt.Errorf("failed to filter Initialized events (range %d-%d): %w", start, end, err)
+		}
+
+		for it.Next() {
+			blocks[it.Event.Version] = it.Event.Raw.BlockNumber
+		}
+
+		if err := it.Close(); err != nil {
+			return nil, fmt.Errorf("failed to close iterator: %w", err)
+		}
+
+		// Allow context cancellation between chunks
+		select {
+		case <-ctx.Done():
+			return nil, ctx.Err()
+		default:
+		}
 	}
-	return res, nil
+
+	if len(blocks) == 0 {
+		return nil, errors.New("no Initialized events found")
+	}
+
+	return blocks, nil
 }
 
 type CreateRollupInfo struct {
@@ -196,22 +226,38 @@ func (rm *RollupManager) GetRollupCreationInfo(ctx context.Context, rollupID uin
 			VerifierType:    StateTransition,
 		}, nil
 	}
-	it, err := rm.Contract.FilterCreateNewRollup(&bind.FilterOpts{
-		Start:   rm.UpdateToULxLyBlock,
-		Context: ctx,
-	}, []uint32{rollupID})
+
+	latestBlock, err := rm.Client.BlockNumber(ctx)
 	if err != nil {
-		return CreateRollupInfo{}, err
+		return CreateRollupInfo{}, fmt.Errorf("failed to get latest block: %w", err)
 	}
 
-	for it.Next() {
-		b, err := rm.Client.BlockByNumber(ctx, new(big.Int).SetUint64(it.Event.Raw.BlockNumber))
+	for from := rm.UpdateToULxLyBlock; from <= latestBlock; from += blocksChunkSize {
+		to := min(from+blocksChunkSize-1, latestBlock)
+
+		it, err := rm.Contract.FilterCreateNewRollup(
+			&bind.FilterOpts{
+				Start:   from,
+				End:     &to,
+				Context: ctx,
+			},
+			[]uint32{rollupID},
+		)
 		if err != nil {
-			return CreateRollupInfo{}, err
+			return CreateRollupInfo{}, fmt.Errorf("failed to filter CreateNewRollup events (%d–%d): %w", from, to, err)
 		}
 
-		if b != nil {
-			// Update rollup info based on the latest rollup data (in case of rollup updates)
+		for it.Next() {
+			event := it.Event
+
+			b, err := rm.Client.BlockByNumber(ctx, new(big.Int).SetUint64(event.Raw.BlockNumber))
+			if err != nil {
+				return CreateRollupInfo{}, fmt.Errorf("failed to fetch block %d: %w", event.Raw.BlockNumber, err)
+			}
+			if b == nil {
+				continue
+			}
+
 			latestRollupData, err := rm.Contract.RollupIDToRollupDataV2(nil, rollupID)
 			if err != nil {
 				return CreateRollupInfo{}, fmt.Errorf("failed to fetch rollup data for rollup id %d: %w", rollupID, err)
@@ -222,18 +268,22 @@ func (rm *RollupManager) GetRollupCreationInfo(ctx context.Context, rollupID uin
 				return CreateRollupInfo{}, fmt.Errorf("failed to fetch rollup type for rollup type id %d: %w", latestRollupData.RollupTypeID, err)
 			}
 
+			_ = it.Close()
+
 			return CreateRollupInfo{
 				Root:            common.Hash(latestRollupType.Genesis),
-				Block:           it.Event.Raw.BlockNumber,
+				Block:           event.Raw.BlockNumber,
 				BlockHash:       b.Hash(),
 				ParentBlockHash: b.ParentHash(),
 				Timestamp:       b.Time(),
-				ChainID:         it.Event.ChainID,
+				ChainID:         event.ChainID,
 				RollupID:        rollupID,
-				GasToken:        it.Event.GasTokenAddress,
+				GasToken:        event.GasTokenAddress,
 				VerifierType:    VerifierType(latestRollupData.RollupVerifierType),
 			}, nil
 		}
+
+		_ = it.Close()
 	}
 	return CreateRollupInfo{}, fmt.Errorf("no create new rollup event for ID %d", rollupID)
 }
@@ -262,24 +312,49 @@ func (rm *RollupManager) GetAttachedRollups(ctx context.Context) (map[uint64]str
 	res[data.ChainID] = name
 
 	// Attached rollups
-	it, err := rm.Contract.FilterCreateNewRollup(
-		&bind.FilterOpts{
-			Start:   rm.CreationBlock,
-			Context: ctx,
-		}, nil)
+	latestBlock, err := rm.Client.BlockNumber(ctx)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed to get latest block: %w", err)
 	}
-	for it.Next() {
-		rollup, err := aggchainbase.NewAggchainbase(it.Event.RollupAddress, rm.Client)
+
+	for from := rm.CreationBlock; from <= latestBlock; from += blocksChunkSize {
+		to := min(from+blocksChunkSize-1, latestBlock)
+
+		it, err := rm.Contract.FilterCreateNewRollup(
+			&bind.FilterOpts{
+				Start:   from,
+				End:     &to,
+				Context: ctx,
+			}, nil)
 		if err != nil {
-			return nil, err
+			return nil, fmt.Errorf("failed to filter CreateNewRollup events (%d–%d): %w", from, to, err)
 		}
-		name, err := rollup.NetworkName(nil)
-		if err != nil {
-			return nil, err
+
+		for it.Next() {
+			event := it.Event
+
+			rollup, err := aggchainbase.NewAggchainbase(event.RollupAddress, rm.Client)
+			if err != nil {
+				_ = it.Close()
+				return nil, fmt.Errorf("failed to bind rollup contract at %s: %w", event.RollupAddress.Hex(), err)
+			}
+
+			name, err := rollup.NetworkName(nil)
+			if err != nil {
+				_ = it.Close()
+				return nil, fmt.Errorf("failed to read NetworkName for rollup %s: %w", event.RollupAddress.Hex(), err)
+			}
+
+			res[event.ChainID] = name
 		}
-		res[it.Event.ChainID] = name
+
+		if err := it.Close(); err != nil {
+			return nil, fmt.Errorf("failed to close iterator: %w", err)
+		}
+	}
+
+	if len(res) == 0 {
+		return nil, errors.New("no CreateNewRollup events found")
 	}
 	return res, nil
 }
@@ -302,57 +377,69 @@ func (rm *RollupManager) InitContract(ctx context.Context, client bind.ContractB
 
 // GetConsensusDescription returns the description of the consensus for a given rollup ID
 func (rm *RollupManager) GetConsensusDescription(ctx context.Context, rollupID uint32) (string, error) {
-	createNewRollupIt, err := rm.Contract.FilterCreateNewRollup(&bind.FilterOpts{
-		Start:   rm.CreationBlock,
-		Context: ctx,
-	}, []uint32{rollupID})
+	startBlock := rm.CreationBlock
+	latestBlock, err := rm.Client.BlockNumber(ctx)
 	if err != nil {
-		return "", err
+		return "", fmt.Errorf("failed to get latest block: %w", err)
 	}
 
-	rollupTypeID := -1
-	for createNewRollupIt.Next() {
-		rollupTypeID = (int)(createNewRollupIt.Event.RollupTypeID)
-		break
+	// Find rollupTypeID by scanning CreateNewRollup events in chunks
+	var rollupTypeID uint32
+	found := false
+
+	for from := startBlock; from <= latestBlock && !found; from += blocksChunkSize {
+		to := min(from+blocksChunkSize-1, latestBlock)
+
+		it, err := rm.Contract.FilterCreateNewRollup(
+			&bind.FilterOpts{
+				Start:   from,
+				End:     &to,
+				Context: ctx,
+			},
+			[]uint32{rollupID},
+		)
+		if err != nil {
+			return "", fmt.Errorf("FilterCreateNewRollup failed (%d-%d): %w", from, to, err)
+		}
+
+		for it.Next() {
+			rollupTypeID = it.Event.RollupTypeID
+			found = true
+			break
+		}
+		_ = it.Close()
 	}
 
-	if rollupTypeID == -1 {
+	if !found {
 		return "", nil
 	}
 
-	rtID := uint32(rollupTypeID)
-	addNewRollupTypeIt, err := rm.Contract.FilterAddNewRollupType(&bind.FilterOpts{
-		Start:   rm.CreationBlock,
-		Context: ctx,
-	}, []uint32{rtID})
-	if err != nil {
-		return "", err
-	}
+	// Find AddNewRollupType event by scanning in chunks
+	for from := startBlock; from <= latestBlock; from += blocksChunkSize {
+		to := min(from+blocksChunkSize-1, latestBlock)
 
-	for addNewRollupTypeIt.Next() {
-		if createNewRollupIt.Event.RollupTypeID == rtID {
-			return addNewRollupTypeIt.Event.Description, nil
+		it, err := rm.Contract.FilterAddNewRollupType(
+			&bind.FilterOpts{
+				Start:   from,
+				End:     &to,
+				Context: ctx,
+			},
+			[]uint32{rollupTypeID},
+		)
+		if err != nil {
+			return "", fmt.Errorf("FilterAddNewRollupType failed (%d-%d): %w", from, to, err)
 		}
+
+		for it.Next() {
+			// sanity check: only match if IDs align
+			if it.Event.RollupTypeID == rollupTypeID {
+				desc := it.Event.Description
+				_ = it.Close()
+				return desc, nil
+			}
+		}
+		_ = it.Close()
 	}
 
 	return "", nil
-}
-
-// GetInitializedBlock returns the block in which the contract was initialized
-func (rm *RollupManager) GetInitializedBlock(ctx context.Context) (uint64, error) {
-	notUpgraded, err := agglayermanager.NewAgglayermanager(rm.Address, rm.Client)
-	if err != nil {
-		return 0, err
-	}
-	it, err := notUpgraded.FilterInitialized(&bind.FilterOpts{
-		Start:   1,
-		Context: ctx,
-	})
-	if err != nil {
-		return 0, err
-	}
-	for it.Next() {
-		return it.Event.Raw.BlockNumber, nil
-	}
-	return 0, errors.New("initialized event not found")
 }

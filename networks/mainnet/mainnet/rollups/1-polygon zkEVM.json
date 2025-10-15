@@ -1,0 +1,14 @@
+{
+   "Address": "0x519e42c24163192dca44cd3fbdcebf6be9130987",
+   "GenesisRoot": "0x3f86b09b43e3e49a41fc20a07579b79eba044253367817d5c241d23c0e2bc5c9",
+   "CreationBlock": 16896721,
+   "CreationBlockHash": "0x05cbf7577ea34b7268d14f506b6ca969cbcb83db085bf00cdfdbc734731d4524",
+   "CreationParentBlockHash": "0xfa05abe8dde19886c5a3fdfbfebfba70a43cba9e53e1dd1147f5be1c9fb3bbe1",
+   "CreationTimestamp": 1679653163,
+   "ChainID": 1101,
+   "Name": "polygon zkEVM",
+   "RollupID": 1,
+   "GasToken": "0x0000000000000000000000000000000000000000",
+   "VerifierType": 0,
+   "AggchainType": 1
+}

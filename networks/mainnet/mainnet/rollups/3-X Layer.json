@@ -1,0 +1,14 @@
+{
+   "Address": "0x2b0ee28d4d51bc9adde5e58e295873f61f4a0507",
+   "GenesisRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+   "CreationBlock": 19545462,
+   "CreationBlockHash": "0xe163a12aae2f5328cdecdc973e98ce662b4c8c5d36c0b2252ed580f4ccf9aa4e",
+   "CreationParentBlockHash": "0xecbd3e7f594c307947240c60107522823515992ffdf8aa183006336cfaee4ac3",
+   "CreationTimestamp": 1711785755,
+   "ChainID": 196,
+   "Name": "X Layer",
+   "RollupID": 3,
+   "GasToken": "0x75231f58b43240c9718dd58b4967c5114342a86c",
+   "VerifierType": 1,
+   "AggchainType": 0
+}

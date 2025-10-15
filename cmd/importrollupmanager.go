@@ -97,7 +97,7 @@ func importRollupManager(cliCtx *cli.Context) error {
 		return err
 	}
 	for chainID, name := range rollups {
-		fmt.Println("importing rollup", name, "with chainID", chainID)
+		fmt.Printf("importing rollup %q with chain id %d\n", name, chainID)
 		r, err := rollup.LoadMetadataFromL1ByChainID(cliCtx.Context, client, rm, chainID)
 		if err != nil {
 			return err

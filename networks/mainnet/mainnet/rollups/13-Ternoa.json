@@ -1,0 +1,14 @@
+{
+   "Address": "0x7ff0b5ff6eb8b789456639ac2a02487c338c1789",
+   "GenesisRoot": "0xe3a7d8bae497945ba8ddc51c69564f60ad4c1a990b9c7bdbd27f7929bfa8f272",
+   "CreationBlock": 21522690,
+   "CreationBlockHash": "0x1e5ef3b96c6aca2f6e235b79cf1ad22de14a4776cf5341798d5b8fff13c58f7e",
+   "CreationParentBlockHash": "0x31430102af33a595d562e1da303085dcb8696ddc59bca097404ba99ab0b00299",
+   "CreationTimestamp": 1735650935,
+   "ChainID": 752025,
+   "Name": "Ternoa",
+   "RollupID": 13,
+   "GasToken": "0x03be5c903c727ee2c8c4e9bc0acc860cca4715e2",
+   "VerifierType": 0,
+   "AggchainType": 1
+}
