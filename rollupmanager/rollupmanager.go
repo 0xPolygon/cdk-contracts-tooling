@@ -372,6 +372,10 @@ func (rm *RollupManager) InitContract(ctx context.Context, client bind.ContractB
 
 	rm.Contract = contract
 
+	if ethClient, ok := client.(*ethclient.Client); ok {
+		rm.Client = ethClient
+	}
+
 	return nil
 }
 
