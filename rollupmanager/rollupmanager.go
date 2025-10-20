@@ -360,7 +360,7 @@ func (rm *RollupManager) GetAttachedRollups(ctx context.Context) (map[uint64]str
 }
 
 // InitContract initializes the rollup manager contract if not already initialized
-func (rm *RollupManager) InitContract(ctx context.Context, client bind.ContractBackend) error {
+func (rm *RollupManager) InitContract(ctx context.Context, client *ethclient.Client) error {
 	if rm.Contract != nil {
 		return nil
 	}
@@ -371,6 +371,7 @@ func (rm *RollupManager) InitContract(ctx context.Context, client bind.ContractB
 	}
 
 	rm.Contract = contract
+	rm.Client = client
 
 	return nil
 }
