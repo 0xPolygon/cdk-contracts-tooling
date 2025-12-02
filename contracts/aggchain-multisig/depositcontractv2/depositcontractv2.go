@@ -31,8 +31,8 @@ var (
 
 // Depositcontractv2MetaData contains all meta data concerning the Depositcontractv2 contract.
 var Depositcontractv2MetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[],\"name\":\"MerkleTreeFull\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NewDepositCountExceedsMax\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NonZeroValueForUnusedFrontier\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"SubtreeFrontierMismatch\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"version\",\"type\":\"uint8\"}],\"name\":\"Initialized\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"leafHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32[32]\",\"name\":\"smtProof\",\"type\":\"bytes32[32]\"},{\"internalType\":\"uint32\",\"name\":\"index\",\"type\":\"uint32\"}],\"name\":\"calculateRoot\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"depositCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint8\",\"name\":\"leafType\",\"type\":\"uint8\"},{\"internalType\":\"uint32\",\"name\":\"originNetwork\",\"type\":\"uint32\"},{\"internalType\":\"address\",\"name\":\"originAddress\",\"type\":\"address\"},{\"internalType\":\"uint32\",\"name\":\"destinationNetwork\",\"type\":\"uint32\"},{\"internalType\":\"address\",\"name\":\"destinationAddress\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"bytes32\",\"name\":\"metadataHash\",\"type\":\"bytes32\"}],\"name\":\"getLeafValue\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getRoot\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"leafHash\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32[32]\",\"name\":\"smtProof\",\"type\":\"bytes32[32]\"},{\"internalType\":\"uint32\",\"name\":\"index\",\"type\":\"uint32\"},{\"internalType\":\"bytes32\",\"name\":\"root\",\"type\":\"bytes32\"}],\"name\":\"verifyMerkleProof\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"pure\",\"type\":\"function\"}]",
-	Bin: "0x6080604052348015600e575f5ffd5b506104788061001c5f395ff3fe608060405234801561000f575f5ffd5b5060043610610064575f3560e01c80635ca1e1651161004d5780635ca1e1651461016657806383f244031461016e578063fb57083414610181575f5ffd5b80632dfdf0b5146100685780633e19704314610084575b5f5ffd5b61007160535481565b6040519081526020015b60405180910390f35b610071610092366004610302565b6040517fff0000000000000000000000000000000000000000000000000000000000000060f889901b1660208201527fffffffff0000000000000000000000000000000000000000000000000000000060e088811b821660218401527fffffffffffffffffffffffffffffffffffffffff000000000000000000000000606089811b821660258601529188901b909216603984015285901b16603d82015260518101839052607181018290525f90609101604051602081830303815290604052805190602001209050979650505050505050565b6100716101a4565b61007161017c366004610394565b610223565b61019461018f3660046103d0565b6102b0565b604051901515815260200161007b565b6053545f90819081805b602081101561021a578083901c6001166001036101f3576101ec603382602081106101db576101db610415565b0154855f9182526020526040902090565b9350610203565b5f84815260208390526040902093505b5f82815260208390526040902091506001016101ae565b50919392505050565b5f83815b60208110156102a757600163ffffffff8516821c811690036102735761026c85826020811061025857610258610415565b6020020135835f9182526020526040902090565b915061029f565b61029c8286836020811061028957610289610415565b60200201355f9182526020526040902090565b91505b600101610227565b50949350505050565b5f816102bd868686610223565b1495945050505050565b803563ffffffff811681146102da575f5ffd5b919050565b803573ffffffffffffffffffffffffffffffffffffffff811681146102da575f5ffd5b5f5f5f5f5f5f5f60e0888a031215610318575f5ffd5b873560ff81168114610328575f5ffd5b9650610336602089016102c7565b9550610344604089016102df565b9450610352606089016102c7565b9350610360608089016102df565b9699959850939692959460a0840135945060c09093013592915050565b80610400810183101561038e575f5ffd5b92915050565b5f5f5f61044084860312156103a7575f5ffd5b833592506103b8856020860161037d565b91506103c761042085016102c7565b90509250925092565b5f5f5f5f61046085870312156103e4575f5ffd5b843593506103f5866020870161037d565b925061040461042086016102c7565b939692955092936104400135925050565b7f4e487b71000000000000000000000000000000000000000000000000000000005f52603260045260245ffdfea2646970667358221220f8f21357e6c740940923a1323626d6fc3e34d8b59339a392a7c0d98251d8d90264736f6c634300081c0033",
+	ABI: "[{\"inputs\":[],\"name\":\"MerkleTreeFull\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NewDepositCountExceedsMax\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NonZeroValueForUnusedFrontier\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"SubtreeFrontierMismatch\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"version\",\"type\":\"uint8\"}],\"name\":\"Initialized\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"depositCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getRoot\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
+	Bin: "0x6080604052348015600e575f5ffd5b5061012a8061001c5f395ff3fe6080604052348015600e575f5ffd5b50600436106030575f3560e01c80632dfdf0b51460345780635ca1e16514604e575b5f5ffd5b603c60535481565b60405190815260200160405180910390f35b603c6053545f90819081805b602081101560be578083901c600116600103609857609260338260208110608157608160c7565b0154855f9182526020526040902090565b935060a8565b5f84815260208390526040902093505b5f8281526020839052604090209150600101605a565b50919392505050565b7f4e487b71000000000000000000000000000000000000000000000000000000005f52603260045260245ffdfea264697066735822122044ddb562dfccbe39855ed5f72e5a00a169f5a28dca755556cc6efec88f9680f164736f6c634300081c0033",
 }
 
 // Depositcontractv2ABI is the input ABI used to generate the binding from.
@@ -202,37 +202,6 @@ func (_Depositcontractv2 *Depositcontractv2TransactorRaw) Transact(opts *bind.Tr
 	return _Depositcontractv2.Contract.contract.Transact(opts, method, params...)
 }
 
-// CalculateRoot is a free data retrieval call binding the contract method 0x83f24403.
-//
-// Solidity: function calculateRoot(bytes32 leafHash, bytes32[32] smtProof, uint32 index) pure returns(bytes32)
-func (_Depositcontractv2 *Depositcontractv2Caller) CalculateRoot(opts *bind.CallOpts, leafHash [32]byte, smtProof [32][32]byte, index uint32) ([32]byte, error) {
-	var out []interface{}
-	err := _Depositcontractv2.contract.Call(opts, &out, "calculateRoot", leafHash, smtProof, index)
-
-	if err != nil {
-		return *new([32]byte), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
-
-	return out0, err
-
-}
-
-// CalculateRoot is a free data retrieval call binding the contract method 0x83f24403.
-//
-// Solidity: function calculateRoot(bytes32 leafHash, bytes32[32] smtProof, uint32 index) pure returns(bytes32)
-func (_Depositcontractv2 *Depositcontractv2Session) CalculateRoot(leafHash [32]byte, smtProof [32][32]byte, index uint32) ([32]byte, error) {
-	return _Depositcontractv2.Contract.CalculateRoot(&_Depositcontractv2.CallOpts, leafHash, smtProof, index)
-}
-
-// CalculateRoot is a free data retrieval call binding the contract method 0x83f24403.
-//
-// Solidity: function calculateRoot(bytes32 leafHash, bytes32[32] smtProof, uint32 index) pure returns(bytes32)
-func (_Depositcontractv2 *Depositcontractv2CallerSession) CalculateRoot(leafHash [32]byte, smtProof [32][32]byte, index uint32) ([32]byte, error) {
-	return _Depositcontractv2.Contract.CalculateRoot(&_Depositcontractv2.CallOpts, leafHash, smtProof, index)
-}
-
 // DepositCount is a free data retrieval call binding the contract method 0x2dfdf0b5.
 //
 // Solidity: function depositCount() view returns(uint256)
@@ -264,37 +233,6 @@ func (_Depositcontractv2 *Depositcontractv2CallerSession) DepositCount() (*big.I
 	return _Depositcontractv2.Contract.DepositCount(&_Depositcontractv2.CallOpts)
 }
 
-// GetLeafValue is a free data retrieval call binding the contract method 0x3e197043.
-//
-// Solidity: function getLeafValue(uint8 leafType, uint32 originNetwork, address originAddress, uint32 destinationNetwork, address destinationAddress, uint256 amount, bytes32 metadataHash) pure returns(bytes32)
-func (_Depositcontractv2 *Depositcontractv2Caller) GetLeafValue(opts *bind.CallOpts, leafType uint8, originNetwork uint32, originAddress common.Address, destinationNetwork uint32, destinationAddress common.Address, amount *big.Int, metadataHash [32]byte) ([32]byte, error) {
-	var out []interface{}
-	err := _Depositcontractv2.contract.Call(opts, &out, "getLeafValue", leafType, originNetwork, originAddress, destinationNetwork, destinationAddress, amount, metadataHash)
-
-	if err != nil {
-		return *new([32]byte), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
-
-	return out0, err
-
-}
-
-// GetLeafValue is a free data retrieval call binding the contract method 0x3e197043.
-//
-// Solidity: function getLeafValue(uint8 leafType, uint32 originNetwork, address originAddress, uint32 destinationNetwork, address destinationAddress, uint256 amount, bytes32 metadataHash) pure returns(bytes32)
-func (_Depositcontractv2 *Depositcontractv2Session) GetLeafValue(leafType uint8, originNetwork uint32, originAddress common.Address, destinationNetwork uint32, destinationAddress common.Address, amount *big.Int, metadataHash [32]byte) ([32]byte, error) {
-	return _Depositcontractv2.Contract.GetLeafValue(&_Depositcontractv2.CallOpts, leafType, originNetwork, originAddress, destinationNetwork, destinationAddress, amount, metadataHash)
-}
-
-// GetLeafValue is a free data retrieval call binding the contract method 0x3e197043.
-//
-// Solidity: function getLeafValue(uint8 leafType, uint32 originNetwork, address originAddress, uint32 destinationNetwork, address destinationAddress, uint256 amount, bytes32 metadataHash) pure returns(bytes32)
-func (_Depositcontractv2 *Depositcontractv2CallerSession) GetLeafValue(leafType uint8, originNetwork uint32, originAddress common.Address, destinationNetwork uint32, destinationAddress common.Address, amount *big.Int, metadataHash [32]byte) ([32]byte, error) {
-	return _Depositcontractv2.Contract.GetLeafValue(&_Depositcontractv2.CallOpts, leafType, originNetwork, originAddress, destinationNetwork, destinationAddress, amount, metadataHash)
-}
-
 // GetRoot is a free data retrieval call binding the contract method 0x5ca1e165.
 //
 // Solidity: function getRoot() view returns(bytes32)
@@ -324,37 +262,6 @@ func (_Depositcontractv2 *Depositcontractv2Session) GetRoot() ([32]byte, error) 
 // Solidity: function getRoot() view returns(bytes32)
 func (_Depositcontractv2 *Depositcontractv2CallerSession) GetRoot() ([32]byte, error) {
 	return _Depositcontractv2.Contract.GetRoot(&_Depositcontractv2.CallOpts)
-}
-
-// VerifyMerkleProof is a free data retrieval call binding the contract method 0xfb570834.
-//
-// Solidity: function verifyMerkleProof(bytes32 leafHash, bytes32[32] smtProof, uint32 index, bytes32 root) pure returns(bool)
-func (_Depositcontractv2 *Depositcontractv2Caller) VerifyMerkleProof(opts *bind.CallOpts, leafHash [32]byte, smtProof [32][32]byte, index uint32, root [32]byte) (bool, error) {
-	var out []interface{}
-	err := _Depositcontractv2.contract.Call(opts, &out, "verifyMerkleProof", leafHash, smtProof, index, root)
-
-	if err != nil {
-		return *new(bool), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
-
-	return out0, err
-
-}
-
-// VerifyMerkleProof is a free data retrieval call binding the contract method 0xfb570834.
-//
-// Solidity: function verifyMerkleProof(bytes32 leafHash, bytes32[32] smtProof, uint32 index, bytes32 root) pure returns(bool)
-func (_Depositcontractv2 *Depositcontractv2Session) VerifyMerkleProof(leafHash [32]byte, smtProof [32][32]byte, index uint32, root [32]byte) (bool, error) {
-	return _Depositcontractv2.Contract.VerifyMerkleProof(&_Depositcontractv2.CallOpts, leafHash, smtProof, index, root)
-}
-
-// VerifyMerkleProof is a free data retrieval call binding the contract method 0xfb570834.
-//
-// Solidity: function verifyMerkleProof(bytes32 leafHash, bytes32[32] smtProof, uint32 index, bytes32 root) pure returns(bool)
-func (_Depositcontractv2 *Depositcontractv2CallerSession) VerifyMerkleProof(leafHash [32]byte, smtProof [32][32]byte, index uint32, root [32]byte) (bool, error) {
-	return _Depositcontractv2.Contract.VerifyMerkleProof(&_Depositcontractv2.CallOpts, leafHash, smtProof, index, root)
 }
 
 // Depositcontractv2InitializedIterator is returned from FilterInitialized and is used to iterate over the raw logs and unpacked data for Initialized events raised by the Depositcontractv2 contract.
