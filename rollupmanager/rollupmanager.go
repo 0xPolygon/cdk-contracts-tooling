@@ -78,6 +78,7 @@ func LoadFromL1(ctx context.Context, client *ethclient.Client, address common.Ad
 		return nil, err
 	}
 
+	// Try to find version 1 (preferred)
 	creationBlock, creationBlockFound := initializedBlocks[1]
 	upgradeBlock, upgradeBlockFound := initializedBlocks[2]
 	if creationBlockFound {
@@ -92,7 +93,24 @@ func LoadFromL1(ctx context.Context, client *ethclient.Client, address common.Ad
 		return rm, nil
 	}
 
-	return nil, errors.New("couldn't find the creation block of the rollup manager")
+	// Fallback: use the earliest version found if version 1 doesn't exist
+	if len(initializedBlocks) > 0 {
+		var earliestVersion uint8 = 255
+		var earliestBlock uint64
+		for version, block := range initializedBlocks {
+			if version < earliestVersion {
+				earliestVersion = version
+				earliestBlock = block
+			}
+		}
+
+		fmt.Printf("Warning: Could not find Initialized event with version 1, using version %d at block %d\n", earliestVersion, earliestBlock)
+		rm.CreationBlock = earliestBlock
+		rm.UpdateToULxLyBlock = earliestBlock
+		return rm, nil
+	}
+
+	return nil, fmt.Errorf("couldn't find any Initialized events for rollup manager at %s", rm.Address.Hex())
 }
 
 func LoadFromFile(client *ethclient.Client, filePath string) (*RollupManager, error) {
@@ -127,9 +145,15 @@ func (rm *RollupManager) GetInitializedBlocks(ctx context.Context) (map[uint8]ui
 		return nil, fmt.Errorf("failed to get latest block header: %w", err)
 	}
 
+	// First, get the contract creation block by checking the code
+	creationBlock, err := rm.findContractCreationBlock(ctx, latestBlock)
+	if err != nil {
+		return nil, fmt.Errorf("failed to find contract creation block: %w", err)
+	}
+
 	blocks := make(map[uint8]uint64)
 
-	for start := uint64(1); start <= latestBlock; start += blocksChunkSize {
+	for start := creationBlock; start <= latestBlock; start += blocksChunkSize {
 		end := min(start+blocksChunkSize-1, latestBlock)
 
 		it, err := rm.Contract.FilterInitialized(
@@ -159,10 +183,43 @@ func (rm *RollupManager) GetInitializedBlocks(ctx context.Context) (map[uint8]ui
 	}
 
 	if len(blocks) == 0 {
-		return nil, errors.New("no Initialized events found")
+		return nil, fmt.Errorf("no Initialized events found for contract %s (searched from block %d to %d)", rm.Address.Hex(), creationBlock, latestBlock)
 	}
 
 	return blocks, nil
+}
+
+// findContractCreationBlock finds the block where the contract was deployed by binary search
+func (rm *RollupManager) findContractCreationBlock(ctx context.Context, latestBlock uint64) (uint64, error) {
+	// Check if contract exists at latest block
+	code, err := rm.Client.CodeAt(ctx, rm.Address, new(big.Int).SetUint64(latestBlock))
+	if err != nil {
+		return 0, fmt.Errorf("failed to get contract code at latest block: %w", err)
+	}
+	if len(code) == 0 {
+		return 0, fmt.Errorf("contract %s does not exist at block %d", rm.Address.Hex(), latestBlock)
+	}
+
+	// Binary search to find creation block
+	low := uint64(1)
+	high := latestBlock
+
+	for low < high {
+		mid := (low + high) / 2
+
+		code, err := rm.Client.CodeAt(ctx, rm.Address, new(big.Int).SetUint64(mid))
+		if err != nil {
+			return 0, fmt.Errorf("failed to get contract code at block %d: %w", mid, err)
+		}
+
+		if len(code) == 0 {
+			low = mid + 1
+		} else {
+			high = mid
+		}
+	}
+
+	return low, nil
 }
 
 type CreateRollupInfo struct {
