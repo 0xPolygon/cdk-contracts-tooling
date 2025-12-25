@@ -31,12 +31,12 @@ For the full execution proofs rollups, the location that should contain the gene
 
 #### Pessimistic proofs rollups
 
-For the pessimistic proofs rollups (since they are initialized with an empty genesis root), the location that should contain the genesis allocations is constructed following the pattern `./genesis/pp/<l1_network_alias>/<rollup_manager_alias>/<rollup_alias>/allocs.json`.
+For the pessimistic proofs rollups (since they are initialized with an empty genesis root), the location that should contain the genesis allocations is constructed following the pattern `./genesis/pp_default/<rollup_manager_alias>/allocs.json`.
 **Example**
 
 Let's assume that we have a pessimistic proofs rollup named `cdk-pp-1` running on the `cardona`, that is pointing to `sepolia` l1 network.
 
-The genesis file should be named as `allocs.json` and placed in the `./genesis/pp/sepolia/cardona/cdk-pp-1/`, so the full path is `./genesis/pp/sepolia/cardona/cdk-pp-1/allocs.json`.
+The genesis file should be named as `allocs.json` and placed in the `./genesis/pp_default/cardona/cdk-pp-1/`, so the full path is `./genesis/pp_default/cardona/allocs.json`.
 
 ### Example flow
 
