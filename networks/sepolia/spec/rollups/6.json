@@ -1,0 +1,14 @@
+{
+   "Address": "0x2f37158e872d9074215d044ecb9ffeb23452b3ef",
+   "GenesisRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+   "CreationBlock": 9569003,
+   "CreationBlockHash": "0xd38d52e78b013fc870e59ec773c52aedd1475bbc2ea6a1e51027376b36c3b50d",
+   "CreationParentBlockHash": "0xc779a4d07d22dd2d64204aeb80a463543d82664c5f8d86573e840d0eb1c4357f",
+   "CreationTimestamp": 1762383840,
+   "ChainID": 666,
+   "Name": "",
+   "RollupID": 6,
+   "GasToken": "0x0000000000000000000000000000000000000000",
+   "VerifierType": 2,
+   "AggchainType": 1
+}

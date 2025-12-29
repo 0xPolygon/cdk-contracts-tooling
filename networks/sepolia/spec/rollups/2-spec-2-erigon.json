@@ -1,0 +1,14 @@
+{
+   "Address": "0x24bd5270ee8ffa6645629ea4bef7e109c0b64ac4",
+   "GenesisRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+   "CreationBlock": 9304896,
+   "CreationBlockHash": "0x29aba317eaf298418f388e10b5c6a690700dcdba0e948dc46db178148571a03c",
+   "CreationParentBlockHash": "0xc652e73ad391b168a45811fc8dd246904750faed33ee85a077f18c0252891847",
+   "CreationTimestamp": 1759143024,
+   "ChainID": 222,
+   "Name": "spec-2-erigon",
+   "RollupID": 2,
+   "GasToken": "0x0000000000000000000000000000000000000000",
+   "VerifierType": 1,
+   "AggchainType": 0
+}

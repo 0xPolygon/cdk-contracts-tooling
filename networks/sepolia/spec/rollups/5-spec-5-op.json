@@ -1,0 +1,14 @@
+{
+   "Address": "0xf07cb943e74bdf241d9bd2d9345641c16053c2f8",
+   "GenesisRoot": "0x0000000000000000000000000000000000000000000000000000000000000000",
+   "CreationBlock": 9566817,
+   "CreationBlockHash": "0xa03c4bc8ea1513974a709d8c1946b32841001b05bb5977a1d98e942199a4ee9c",
+   "CreationParentBlockHash": "0xda1dca26b8c662622a24580eef4c9cbb5141d65895e963f673554141a3e6608a",
+   "CreationTimestamp": 1762356288,
+   "ChainID": 555,
+   "Name": "spec-5-op",
+   "RollupID": 5,
+   "GasToken": "0x0000000000000000000000000000000000000000",
+   "VerifierType": 2,
+   "AggchainType": 1
+}
