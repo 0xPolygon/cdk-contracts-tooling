@@ -95,8 +95,8 @@ func LoadFromL1(ctx context.Context, client *ethclient.Client, address common.Ad
 
 	// Fallback: use the earliest version found if version 1 doesn't exist
 	if len(initializedBlocks) > 0 {
-		var earliestVersion uint8 = 255
-		var earliestBlock uint64
+		earliestVersion := uint8(255)
+		earliestBlock := uint64(0)
 		for version, block := range initializedBlocks {
 			if version < earliestVersion {
 				earliestVersion = version
@@ -104,7 +104,8 @@ func LoadFromL1(ctx context.Context, client *ethclient.Client, address common.Ad
 			}
 		}
 
-		fmt.Printf("Warning: Could not find Initialized event with version 1, using version %d at block %d\n", earliestVersion, earliestBlock)
+		fmt.Printf("WARNING: Could not find Initialized event with version 1, using version %d at block %d\n",
+			earliestVersion, earliestBlock)
 		rm.CreationBlock = earliestBlock
 		rm.UpdateToULxLyBlock = earliestBlock
 		return rm, nil
@@ -191,7 +192,7 @@ func (rm *RollupManager) GetInitializedBlocks(ctx context.Context) (map[uint8]ui
 
 // findContractCreationBlock finds the block where the contract was deployed by binary search
 func (rm *RollupManager) findContractCreationBlock(ctx context.Context, latestBlock uint64) (uint64, error) {
-	// Check if contract exists at latest block
+	// Check if the contract exists at latest block
 	code, err := rm.Client.CodeAt(ctx, rm.Address, new(big.Int).SetUint64(latestBlock))
 	if err != nil {
 		return 0, fmt.Errorf("failed to get contract code at latest block: %w", err)
@@ -200,18 +201,43 @@ func (rm *RollupManager) findContractCreationBlock(ctx context.Context, latestBl
 		return 0, fmt.Errorf("contract %s does not exist at block %d", rm.Address.Hex(), latestBlock)
 	}
 
-	// Binary search to find creation block
-	low := uint64(1)
+	low := uint64(0)
 	high := latestBlock
 
-	for low < high {
-		mid := (low + high) / 2
-
-		code, err := rm.Client.CodeAt(ctx, rm.Address, new(big.Int).SetUint64(mid))
-		if err != nil {
-			return 0, fmt.Errorf("failed to get contract code at block %d: %w", mid, err)
+	// Exponential search to narrow high bound
+	step := uint64(1)
+	for step < latestBlock {
+		select {
+		case <-ctx.Done():
+			return 0, ctx.Err()
+		default:
 		}
 
+		code, err := rm.Client.CodeAt(ctx, rm.Address, new(big.Int).SetUint64(step))
+		if err != nil {
+			return 0, err
+		}
+		if len(code) != 0 {
+			high = step
+			break
+		}
+		low = step + 1
+		step *= 2
+	}
+
+	// Binary search to find creation block
+	for low < high {
+		select {
+		case <-ctx.Done():
+			return 0, ctx.Err()
+		default:
+		}
+
+		mid := low + (high-low)/2
+		code, err := rm.Client.CodeAt(ctx, rm.Address, big.NewInt(int64(mid)))
+		if err != nil {
+			return 0, err
+		}
 		if len(code) == 0 {
 			low = mid + 1
 		} else {
