@@ -8,6 +8,7 @@ import (
 	"os"
 
 	"github.com/0xPolygon/cdk-contracts-tooling/contracts/aggchain-multisig/aggchainbase"
+	"github.com/0xPolygon/cdk-contracts-tooling/contracts/aggchain-multisig/aggchainfep"
 	"github.com/0xPolygon/cdk-contracts-tooling/rollupmanager"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/ethclient"
@@ -125,6 +126,25 @@ func LoadMetadataFromL1ByChainID(
 
 		info.GasToken = gasToken
 		aggchainType := rollupmanager.AggchainType(binary.BigEndian.Uint16(rawType[:]))
+		if aggchainType == rollupmanager.FEP {
+			aggchainFEP, err := aggchainfep.NewAggchainfep(rollupAddr, client)
+			if err != nil {
+				return nil, fmt.Errorf("failed to init aggchainFEP (rollup id %d): %w", rollupID, err)
+			}
+
+			outputIdx, err := aggchainFEP.LatestOutputIndex(nil)
+			if err != nil {
+				return nil, fmt.Errorf("failed to fetch latest output index (rollup id %d): %w", rollupID, err)
+			}
+
+			outputProposal, err := aggchainFEP.GetL2Output(nil, outputIdx)
+			if err != nil {
+				return nil, fmt.Errorf("failed to fetch latest L2 output proposal (rollup id %d, output index %d): %w",
+					rollupID, outputIdx, err)
+			}
+
+			info.Root = outputProposal.OutputRoot
+		}
 
 		return NewRollupMetadata(rollupName, chainID, rollupAddr, aggchainType, info), nil
 
