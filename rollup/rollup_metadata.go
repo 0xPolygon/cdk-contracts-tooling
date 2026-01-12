@@ -132,15 +132,10 @@ func LoadMetadataFromL1ByChainID(
 				return nil, fmt.Errorf("failed to init aggchainFEP (rollup id %d): %w", rollupID, err)
 			}
 
-			outputIdx, err := aggchainFEP.LatestOutputIndex(nil)
-			if err != nil {
-				return nil, fmt.Errorf("failed to fetch latest output index (rollup id %d): %w", rollupID, err)
-			}
-
-			outputProposal, err := aggchainFEP.GetL2Output(nil, outputIdx)
+			outputProposal, err := aggchainFEP.GetL2Output(nil, common.Big0)
 			if err != nil {
 				return nil, fmt.Errorf("failed to fetch latest L2 output proposal (rollup id %d, output index %d): %w",
-					rollupID, outputIdx, err)
+					rollupID, common.Big0, err)
 			}
 
 			info.Root = outputProposal.OutputRoot
