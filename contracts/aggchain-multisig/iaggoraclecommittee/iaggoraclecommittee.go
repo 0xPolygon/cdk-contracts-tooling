@@ -29,9 +29,21 @@ var (
 	_ = abi.ConvertType
 )
 
+// IAggOracleCommitteeRemoveValidatorInfo is an auto generated low-level Go binding around an user-defined struct.
+type IAggOracleCommitteeRemoveValidatorInfo struct {
+	Addr  common.Address
+	Index *big.Int
+}
+
+// IAggOracleCommitteeValidatorInfo is an auto generated low-level Go binding around an user-defined struct.
+type IAggOracleCommitteeValidatorInfo struct {
+	Addr common.Address
+	Url  string
+}
+
 // IaggoraclecommitteeMetaData contains all meta data concerning the Iaggoraclecommittee contract.
 var IaggoraclecommitteeMetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[],\"name\":\"AlreadyOracleMember\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"AlreadyVotedForThisGER\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"GlobalExitRootManagerCannotBeZero\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidProposedGER\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NotOracleMember\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OracleMemberCannotBeZero\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OracleMemberIndexMismatch\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OracleMemberIndexOutOfBounds\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OracleMemberNotFound\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"QuorumCannotBeGreaterThanAggOracleMembers\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"QuorumCannotBeZero\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"QuorumNotReached\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"WasNotOracleMember\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newOracleMember\",\"type\":\"address\"}],\"name\":\"AddAggOracleMember\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"consolidatedGlobalExitRoot\",\"type\":\"bytes32\"}],\"name\":\"ConsolidatedGlobalExitRoot\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"proposedGlobalExitRoot\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"proposer\",\"type\":\"address\"}],\"name\":\"ProposedGlobalExitRoot\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"oracleMemberRemoved\",\"type\":\"address\"}],\"name\":\"RemoveAggOracleMember\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint64\",\"name\":\"newQuorum\",\"type\":\"uint64\"}],\"name\":\"UpdateQuorum\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"INITIAL_PROPOSED_GER\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"acceptGlobalExitRootUpdater\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOracleMember\",\"type\":\"address\"}],\"name\":\"addOracleMember\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"oracleMember\",\"type\":\"address\"}],\"name\":\"addressToLastProposedGER\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"aggOracleMembers\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"globalExitRoot\",\"type\":\"bytes32\"}],\"name\":\"consolidateGlobalExitRoot\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"oracleMember\",\"type\":\"address\"}],\"name\":\"getAggOracleMemberIndex\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getAggOracleMembersCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getAllAggOracleMembers\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"globalExitRootManagerL2Sovereign\",\"outputs\":[{\"internalType\":\"contractIAgglayerGERL2\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_owner\",\"type\":\"address\"},{\"internalType\":\"address[]\",\"name\":\"_aggOracleMembers\",\"type\":\"address[]\"},{\"internalType\":\"uint64\",\"name\":\"_quorum\",\"type\":\"uint64\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"proposedGlobalExitRoot\",\"type\":\"bytes32\"}],\"name\":\"proposeGlobalExitRoot\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"quorum\",\"outputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"oracleMemberAddress\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"oracleMemberIndex\",\"type\":\"uint256\"}],\"name\":\"removeOracleMember\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_newGlobalExitRootUpdater\",\"type\":\"address\"}],\"name\":\"transferGlobalExitRootUpdater\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"newQuorum\",\"type\":\"uint64\"}],\"name\":\"updateQuorum\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
+	ABI: "[{\"inputs\":[],\"name\":\"AgglayerGERL2CannotBeZero\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"GERAlreadyInjected\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"GERCannotBeZero\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"IndicesNotInDescendingOrder\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidSignaturesLength\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyAggOracleProposerCanCall\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OwnerCannotBeZero\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ProposerCannotBeZero\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"RenounceOwnershipDisabled\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ThresholdCannotBeGreaterThanValidators\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ThresholdCannotBeZero\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"TooManyValidators\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ValidatorAlreadyExists\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ValidatorCannotBeThisContract\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ValidatorCannotBeZero\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ValidatorDoesNotExist\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ValidatorIndexMismatch\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ValidatorIndexOutOfBounds\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ValidatorNotFound\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ValidatorsNotOrdered\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"globalExitRoot\",\"type\":\"bytes32\"}],\"name\":\"GERInjected\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"globalExitRoot\",\"type\":\"bytes32\"}],\"name\":\"GERMarkedAsInjected\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newProposer\",\"type\":\"address\"}],\"name\":\"UpdateAggOracleProposer\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"validators\",\"type\":\"address[]\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"threshold\",\"type\":\"uint256\"}],\"name\":\"ValidatorsAndThresholdUpdated\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"acceptGlobalExitRootUpdater\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"agglayerGERL2\",\"outputs\":[{\"internalType\":\"contractIAgglayerGERL2\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_validator\",\"type\":\"address\"}],\"name\":\"getValidatorIndex\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getValidatorsCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getValidatorsInfo\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"url\",\"type\":\"string\"}],\"internalType\":\"structIAggOracleCommittee.ValidatorInfo[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_newProposer\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"url\",\"type\":\"string\"}],\"internalType\":\"structIAggOracleCommittee.ValidatorInfo[]\",\"name\":\"_newValidators\",\"type\":\"tuple[]\"},{\"internalType\":\"uint256\",\"name\":\"_newThreshold\",\"type\":\"uint256\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_globalExitRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"_signatures\",\"type\":\"bytes\"}],\"name\":\"injectGER\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"globalExitRoot\",\"type\":\"bytes32\"}],\"name\":\"injectedGERs\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_validator\",\"type\":\"address\"}],\"name\":\"isValidator\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"proposer\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"threshold\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_newGlobalExitRootUpdater\",\"type\":\"address\"}],\"name\":\"transferGlobalExitRootUpdater\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_newProposer\",\"type\":\"address\"}],\"name\":\"updateAggOracleProposer\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"internalType\":\"structIAggOracleCommittee.RemoveValidatorInfo[]\",\"name\":\"_validatorsToRemove\",\"type\":\"tuple[]\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"url\",\"type\":\"string\"}],\"internalType\":\"structIAggOracleCommittee.ValidatorInfo[]\",\"name\":\"_validatorsToAdd\",\"type\":\"tuple[]\"},{\"internalType\":\"uint256\",\"name\":\"_newThreshold\",\"type\":\"uint256\"}],\"name\":\"updateValidatorsAndThreshold\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"validator\",\"type\":\"address\"}],\"name\":\"validatorInfo\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"exists\",\"type\":\"bool\"},{\"internalType\":\"string\",\"name\":\"url\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"name\":\"validators\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_globalExitRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"_signatures\",\"type\":\"bytes\"}],\"name\":\"verifyGER\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"version\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"pure\",\"type\":\"function\"}]",
 }
 
 // IaggoraclecommitteeABI is the input ABI used to generate the binding from.
@@ -180,74 +192,12 @@ func (_Iaggoraclecommittee *IaggoraclecommitteeTransactorRaw) Transact(opts *bin
 	return _Iaggoraclecommittee.Contract.contract.Transact(opts, method, params...)
 }
 
-// INITIALPROPOSEDGER is a free data retrieval call binding the contract method 0x512bab0d.
+// AgglayerGERL2 is a free data retrieval call binding the contract method 0x56eb7637.
 //
-// Solidity: function INITIAL_PROPOSED_GER() view returns(bytes32)
-func (_Iaggoraclecommittee *IaggoraclecommitteeCaller) INITIALPROPOSEDGER(opts *bind.CallOpts) ([32]byte, error) {
+// Solidity: function agglayerGERL2() view returns(address)
+func (_Iaggoraclecommittee *IaggoraclecommitteeCaller) AgglayerGERL2(opts *bind.CallOpts) (common.Address, error) {
 	var out []interface{}
-	err := _Iaggoraclecommittee.contract.Call(opts, &out, "INITIAL_PROPOSED_GER")
-
-	if err != nil {
-		return *new([32]byte), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
-
-	return out0, err
-
-}
-
-// INITIALPROPOSEDGER is a free data retrieval call binding the contract method 0x512bab0d.
-//
-// Solidity: function INITIAL_PROPOSED_GER() view returns(bytes32)
-func (_Iaggoraclecommittee *IaggoraclecommitteeSession) INITIALPROPOSEDGER() ([32]byte, error) {
-	return _Iaggoraclecommittee.Contract.INITIALPROPOSEDGER(&_Iaggoraclecommittee.CallOpts)
-}
-
-// INITIALPROPOSEDGER is a free data retrieval call binding the contract method 0x512bab0d.
-//
-// Solidity: function INITIAL_PROPOSED_GER() view returns(bytes32)
-func (_Iaggoraclecommittee *IaggoraclecommitteeCallerSession) INITIALPROPOSEDGER() ([32]byte, error) {
-	return _Iaggoraclecommittee.Contract.INITIALPROPOSEDGER(&_Iaggoraclecommittee.CallOpts)
-}
-
-// AddressToLastProposedGER is a free data retrieval call binding the contract method 0x38fd8a03.
-//
-// Solidity: function addressToLastProposedGER(address oracleMember) view returns(bytes32)
-func (_Iaggoraclecommittee *IaggoraclecommitteeCaller) AddressToLastProposedGER(opts *bind.CallOpts, oracleMember common.Address) ([32]byte, error) {
-	var out []interface{}
-	err := _Iaggoraclecommittee.contract.Call(opts, &out, "addressToLastProposedGER", oracleMember)
-
-	if err != nil {
-		return *new([32]byte), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
-
-	return out0, err
-
-}
-
-// AddressToLastProposedGER is a free data retrieval call binding the contract method 0x38fd8a03.
-//
-// Solidity: function addressToLastProposedGER(address oracleMember) view returns(bytes32)
-func (_Iaggoraclecommittee *IaggoraclecommitteeSession) AddressToLastProposedGER(oracleMember common.Address) ([32]byte, error) {
-	return _Iaggoraclecommittee.Contract.AddressToLastProposedGER(&_Iaggoraclecommittee.CallOpts, oracleMember)
-}
-
-// AddressToLastProposedGER is a free data retrieval call binding the contract method 0x38fd8a03.
-//
-// Solidity: function addressToLastProposedGER(address oracleMember) view returns(bytes32)
-func (_Iaggoraclecommittee *IaggoraclecommitteeCallerSession) AddressToLastProposedGER(oracleMember common.Address) ([32]byte, error) {
-	return _Iaggoraclecommittee.Contract.AddressToLastProposedGER(&_Iaggoraclecommittee.CallOpts, oracleMember)
-}
-
-// AggOracleMembers is a free data retrieval call binding the contract method 0x1ffbaa74.
-//
-// Solidity: function aggOracleMembers(uint256 index) view returns(address)
-func (_Iaggoraclecommittee *IaggoraclecommitteeCaller) AggOracleMembers(opts *bind.CallOpts, index *big.Int) (common.Address, error) {
-	var out []interface{}
-	err := _Iaggoraclecommittee.contract.Call(opts, &out, "aggOracleMembers", index)
+	err := _Iaggoraclecommittee.contract.Call(opts, &out, "agglayerGERL2")
 
 	if err != nil {
 		return *new(common.Address), err
@@ -259,26 +209,26 @@ func (_Iaggoraclecommittee *IaggoraclecommitteeCaller) AggOracleMembers(opts *bi
 
 }
 
-// AggOracleMembers is a free data retrieval call binding the contract method 0x1ffbaa74.
+// AgglayerGERL2 is a free data retrieval call binding the contract method 0x56eb7637.
 //
-// Solidity: function aggOracleMembers(uint256 index) view returns(address)
-func (_Iaggoraclecommittee *IaggoraclecommitteeSession) AggOracleMembers(index *big.Int) (common.Address, error) {
-	return _Iaggoraclecommittee.Contract.AggOracleMembers(&_Iaggoraclecommittee.CallOpts, index)
+// Solidity: function agglayerGERL2() view returns(address)
+func (_Iaggoraclecommittee *IaggoraclecommitteeSession) AgglayerGERL2() (common.Address, error) {
+	return _Iaggoraclecommittee.Contract.AgglayerGERL2(&_Iaggoraclecommittee.CallOpts)
 }
 
-// AggOracleMembers is a free data retrieval call binding the contract method 0x1ffbaa74.
+// AgglayerGERL2 is a free data retrieval call binding the contract method 0x56eb7637.
 //
-// Solidity: function aggOracleMembers(uint256 index) view returns(address)
-func (_Iaggoraclecommittee *IaggoraclecommitteeCallerSession) AggOracleMembers(index *big.Int) (common.Address, error) {
-	return _Iaggoraclecommittee.Contract.AggOracleMembers(&_Iaggoraclecommittee.CallOpts, index)
+// Solidity: function agglayerGERL2() view returns(address)
+func (_Iaggoraclecommittee *IaggoraclecommitteeCallerSession) AgglayerGERL2() (common.Address, error) {
+	return _Iaggoraclecommittee.Contract.AgglayerGERL2(&_Iaggoraclecommittee.CallOpts)
 }
 
-// GetAggOracleMemberIndex is a free data retrieval call binding the contract method 0x72312af8.
+// GetValidatorIndex is a free data retrieval call binding the contract method 0x1fcc449e.
 //
-// Solidity: function getAggOracleMemberIndex(address oracleMember) view returns(uint256)
-func (_Iaggoraclecommittee *IaggoraclecommitteeCaller) GetAggOracleMemberIndex(opts *bind.CallOpts, oracleMember common.Address) (*big.Int, error) {
+// Solidity: function getValidatorIndex(address _validator) view returns(uint256)
+func (_Iaggoraclecommittee *IaggoraclecommitteeCaller) GetValidatorIndex(opts *bind.CallOpts, _validator common.Address) (*big.Int, error) {
 	var out []interface{}
-	err := _Iaggoraclecommittee.contract.Call(opts, &out, "getAggOracleMemberIndex", oracleMember)
+	err := _Iaggoraclecommittee.contract.Call(opts, &out, "getValidatorIndex", _validator)
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -290,26 +240,26 @@ func (_Iaggoraclecommittee *IaggoraclecommitteeCaller) GetAggOracleMemberIndex(o
 
 }
 
-// GetAggOracleMemberIndex is a free data retrieval call binding the contract method 0x72312af8.
+// GetValidatorIndex is a free data retrieval call binding the contract method 0x1fcc449e.
 //
-// Solidity: function getAggOracleMemberIndex(address oracleMember) view returns(uint256)
-func (_Iaggoraclecommittee *IaggoraclecommitteeSession) GetAggOracleMemberIndex(oracleMember common.Address) (*big.Int, error) {
-	return _Iaggoraclecommittee.Contract.GetAggOracleMemberIndex(&_Iaggoraclecommittee.CallOpts, oracleMember)
+// Solidity: function getValidatorIndex(address _validator) view returns(uint256)
+func (_Iaggoraclecommittee *IaggoraclecommitteeSession) GetValidatorIndex(_validator common.Address) (*big.Int, error) {
+	return _Iaggoraclecommittee.Contract.GetValidatorIndex(&_Iaggoraclecommittee.CallOpts, _validator)
 }
 
-// GetAggOracleMemberIndex is a free data retrieval call binding the contract method 0x72312af8.
+// GetValidatorIndex is a free data retrieval call binding the contract method 0x1fcc449e.
 //
-// Solidity: function getAggOracleMemberIndex(address oracleMember) view returns(uint256)
-func (_Iaggoraclecommittee *IaggoraclecommitteeCallerSession) GetAggOracleMemberIndex(oracleMember common.Address) (*big.Int, error) {
-	return _Iaggoraclecommittee.Contract.GetAggOracleMemberIndex(&_Iaggoraclecommittee.CallOpts, oracleMember)
+// Solidity: function getValidatorIndex(address _validator) view returns(uint256)
+func (_Iaggoraclecommittee *IaggoraclecommitteeCallerSession) GetValidatorIndex(_validator common.Address) (*big.Int, error) {
+	return _Iaggoraclecommittee.Contract.GetValidatorIndex(&_Iaggoraclecommittee.CallOpts, _validator)
 }
 
-// GetAggOracleMembersCount is a free data retrieval call binding the contract method 0x017e37d6.
+// GetValidatorsCount is a free data retrieval call binding the contract method 0x27498240.
 //
-// Solidity: function getAggOracleMembersCount() view returns(uint256)
-func (_Iaggoraclecommittee *IaggoraclecommitteeCaller) GetAggOracleMembersCount(opts *bind.CallOpts) (*big.Int, error) {
+// Solidity: function getValidatorsCount() view returns(uint256)
+func (_Iaggoraclecommittee *IaggoraclecommitteeCaller) GetValidatorsCount(opts *bind.CallOpts) (*big.Int, error) {
 	var out []interface{}
-	err := _Iaggoraclecommittee.contract.Call(opts, &out, "getAggOracleMembersCount")
+	err := _Iaggoraclecommittee.contract.Call(opts, &out, "getValidatorsCount")
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -321,57 +271,119 @@ func (_Iaggoraclecommittee *IaggoraclecommitteeCaller) GetAggOracleMembersCount(
 
 }
 
-// GetAggOracleMembersCount is a free data retrieval call binding the contract method 0x017e37d6.
+// GetValidatorsCount is a free data retrieval call binding the contract method 0x27498240.
 //
-// Solidity: function getAggOracleMembersCount() view returns(uint256)
-func (_Iaggoraclecommittee *IaggoraclecommitteeSession) GetAggOracleMembersCount() (*big.Int, error) {
-	return _Iaggoraclecommittee.Contract.GetAggOracleMembersCount(&_Iaggoraclecommittee.CallOpts)
+// Solidity: function getValidatorsCount() view returns(uint256)
+func (_Iaggoraclecommittee *IaggoraclecommitteeSession) GetValidatorsCount() (*big.Int, error) {
+	return _Iaggoraclecommittee.Contract.GetValidatorsCount(&_Iaggoraclecommittee.CallOpts)
 }
 
-// GetAggOracleMembersCount is a free data retrieval call binding the contract method 0x017e37d6.
+// GetValidatorsCount is a free data retrieval call binding the contract method 0x27498240.
 //
-// Solidity: function getAggOracleMembersCount() view returns(uint256)
-func (_Iaggoraclecommittee *IaggoraclecommitteeCallerSession) GetAggOracleMembersCount() (*big.Int, error) {
-	return _Iaggoraclecommittee.Contract.GetAggOracleMembersCount(&_Iaggoraclecommittee.CallOpts)
+// Solidity: function getValidatorsCount() view returns(uint256)
+func (_Iaggoraclecommittee *IaggoraclecommitteeCallerSession) GetValidatorsCount() (*big.Int, error) {
+	return _Iaggoraclecommittee.Contract.GetValidatorsCount(&_Iaggoraclecommittee.CallOpts)
 }
 
-// GetAllAggOracleMembers is a free data retrieval call binding the contract method 0x703d8d42.
+// GetValidatorsInfo is a free data retrieval call binding the contract method 0x8452230e.
 //
-// Solidity: function getAllAggOracleMembers() view returns(address[])
-func (_Iaggoraclecommittee *IaggoraclecommitteeCaller) GetAllAggOracleMembers(opts *bind.CallOpts) ([]common.Address, error) {
+// Solidity: function getValidatorsInfo() view returns((address,string)[])
+func (_Iaggoraclecommittee *IaggoraclecommitteeCaller) GetValidatorsInfo(opts *bind.CallOpts) ([]IAggOracleCommitteeValidatorInfo, error) {
 	var out []interface{}
-	err := _Iaggoraclecommittee.contract.Call(opts, &out, "getAllAggOracleMembers")
+	err := _Iaggoraclecommittee.contract.Call(opts, &out, "getValidatorsInfo")
 
 	if err != nil {
-		return *new([]common.Address), err
+		return *new([]IAggOracleCommitteeValidatorInfo), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new([]common.Address)).(*[]common.Address)
+	out0 := *abi.ConvertType(out[0], new([]IAggOracleCommitteeValidatorInfo)).(*[]IAggOracleCommitteeValidatorInfo)
 
 	return out0, err
 
 }
 
-// GetAllAggOracleMembers is a free data retrieval call binding the contract method 0x703d8d42.
+// GetValidatorsInfo is a free data retrieval call binding the contract method 0x8452230e.
 //
-// Solidity: function getAllAggOracleMembers() view returns(address[])
-func (_Iaggoraclecommittee *IaggoraclecommitteeSession) GetAllAggOracleMembers() ([]common.Address, error) {
-	return _Iaggoraclecommittee.Contract.GetAllAggOracleMembers(&_Iaggoraclecommittee.CallOpts)
+// Solidity: function getValidatorsInfo() view returns((address,string)[])
+func (_Iaggoraclecommittee *IaggoraclecommitteeSession) GetValidatorsInfo() ([]IAggOracleCommitteeValidatorInfo, error) {
+	return _Iaggoraclecommittee.Contract.GetValidatorsInfo(&_Iaggoraclecommittee.CallOpts)
 }
 
-// GetAllAggOracleMembers is a free data retrieval call binding the contract method 0x703d8d42.
+// GetValidatorsInfo is a free data retrieval call binding the contract method 0x8452230e.
 //
-// Solidity: function getAllAggOracleMembers() view returns(address[])
-func (_Iaggoraclecommittee *IaggoraclecommitteeCallerSession) GetAllAggOracleMembers() ([]common.Address, error) {
-	return _Iaggoraclecommittee.Contract.GetAllAggOracleMembers(&_Iaggoraclecommittee.CallOpts)
+// Solidity: function getValidatorsInfo() view returns((address,string)[])
+func (_Iaggoraclecommittee *IaggoraclecommitteeCallerSession) GetValidatorsInfo() ([]IAggOracleCommitteeValidatorInfo, error) {
+	return _Iaggoraclecommittee.Contract.GetValidatorsInfo(&_Iaggoraclecommittee.CallOpts)
 }
 
-// GlobalExitRootManagerL2Sovereign is a free data retrieval call binding the contract method 0xa7a90e2a.
+// InjectedGERs is a free data retrieval call binding the contract method 0xe905f142.
 //
-// Solidity: function globalExitRootManagerL2Sovereign() view returns(address)
-func (_Iaggoraclecommittee *IaggoraclecommitteeCaller) GlobalExitRootManagerL2Sovereign(opts *bind.CallOpts) (common.Address, error) {
+// Solidity: function injectedGERs(bytes32 globalExitRoot) view returns(bool)
+func (_Iaggoraclecommittee *IaggoraclecommitteeCaller) InjectedGERs(opts *bind.CallOpts, globalExitRoot [32]byte) (bool, error) {
 	var out []interface{}
-	err := _Iaggoraclecommittee.contract.Call(opts, &out, "globalExitRootManagerL2Sovereign")
+	err := _Iaggoraclecommittee.contract.Call(opts, &out, "injectedGERs", globalExitRoot)
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
+}
+
+// InjectedGERs is a free data retrieval call binding the contract method 0xe905f142.
+//
+// Solidity: function injectedGERs(bytes32 globalExitRoot) view returns(bool)
+func (_Iaggoraclecommittee *IaggoraclecommitteeSession) InjectedGERs(globalExitRoot [32]byte) (bool, error) {
+	return _Iaggoraclecommittee.Contract.InjectedGERs(&_Iaggoraclecommittee.CallOpts, globalExitRoot)
+}
+
+// InjectedGERs is a free data retrieval call binding the contract method 0xe905f142.
+//
+// Solidity: function injectedGERs(bytes32 globalExitRoot) view returns(bool)
+func (_Iaggoraclecommittee *IaggoraclecommitteeCallerSession) InjectedGERs(globalExitRoot [32]byte) (bool, error) {
+	return _Iaggoraclecommittee.Contract.InjectedGERs(&_Iaggoraclecommittee.CallOpts, globalExitRoot)
+}
+
+// IsValidator is a free data retrieval call binding the contract method 0xfacd743b.
+//
+// Solidity: function isValidator(address _validator) view returns(bool)
+func (_Iaggoraclecommittee *IaggoraclecommitteeCaller) IsValidator(opts *bind.CallOpts, _validator common.Address) (bool, error) {
+	var out []interface{}
+	err := _Iaggoraclecommittee.contract.Call(opts, &out, "isValidator", _validator)
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
+}
+
+// IsValidator is a free data retrieval call binding the contract method 0xfacd743b.
+//
+// Solidity: function isValidator(address _validator) view returns(bool)
+func (_Iaggoraclecommittee *IaggoraclecommitteeSession) IsValidator(_validator common.Address) (bool, error) {
+	return _Iaggoraclecommittee.Contract.IsValidator(&_Iaggoraclecommittee.CallOpts, _validator)
+}
+
+// IsValidator is a free data retrieval call binding the contract method 0xfacd743b.
+//
+// Solidity: function isValidator(address _validator) view returns(bool)
+func (_Iaggoraclecommittee *IaggoraclecommitteeCallerSession) IsValidator(_validator common.Address) (bool, error) {
+	return _Iaggoraclecommittee.Contract.IsValidator(&_Iaggoraclecommittee.CallOpts, _validator)
+}
+
+// Proposer is a free data retrieval call binding the contract method 0xa8e4fb90.
+//
+// Solidity: function proposer() view returns(address)
+func (_Iaggoraclecommittee *IaggoraclecommitteeCaller) Proposer(opts *bind.CallOpts) (common.Address, error) {
+	var out []interface{}
+	err := _Iaggoraclecommittee.contract.Call(opts, &out, "proposer")
 
 	if err != nil {
 		return *new(common.Address), err
@@ -383,49 +395,187 @@ func (_Iaggoraclecommittee *IaggoraclecommitteeCaller) GlobalExitRootManagerL2So
 
 }
 
-// GlobalExitRootManagerL2Sovereign is a free data retrieval call binding the contract method 0xa7a90e2a.
+// Proposer is a free data retrieval call binding the contract method 0xa8e4fb90.
 //
-// Solidity: function globalExitRootManagerL2Sovereign() view returns(address)
-func (_Iaggoraclecommittee *IaggoraclecommitteeSession) GlobalExitRootManagerL2Sovereign() (common.Address, error) {
-	return _Iaggoraclecommittee.Contract.GlobalExitRootManagerL2Sovereign(&_Iaggoraclecommittee.CallOpts)
+// Solidity: function proposer() view returns(address)
+func (_Iaggoraclecommittee *IaggoraclecommitteeSession) Proposer() (common.Address, error) {
+	return _Iaggoraclecommittee.Contract.Proposer(&_Iaggoraclecommittee.CallOpts)
 }
 
-// GlobalExitRootManagerL2Sovereign is a free data retrieval call binding the contract method 0xa7a90e2a.
+// Proposer is a free data retrieval call binding the contract method 0xa8e4fb90.
 //
-// Solidity: function globalExitRootManagerL2Sovereign() view returns(address)
-func (_Iaggoraclecommittee *IaggoraclecommitteeCallerSession) GlobalExitRootManagerL2Sovereign() (common.Address, error) {
-	return _Iaggoraclecommittee.Contract.GlobalExitRootManagerL2Sovereign(&_Iaggoraclecommittee.CallOpts)
+// Solidity: function proposer() view returns(address)
+func (_Iaggoraclecommittee *IaggoraclecommitteeCallerSession) Proposer() (common.Address, error) {
+	return _Iaggoraclecommittee.Contract.Proposer(&_Iaggoraclecommittee.CallOpts)
 }
 
-// Quorum is a free data retrieval call binding the contract method 0x1703a018.
+// Threshold is a free data retrieval call binding the contract method 0x42cde4e8.
 //
-// Solidity: function quorum() view returns(uint64)
-func (_Iaggoraclecommittee *IaggoraclecommitteeCaller) Quorum(opts *bind.CallOpts) (uint64, error) {
+// Solidity: function threshold() view returns(uint256)
+func (_Iaggoraclecommittee *IaggoraclecommitteeCaller) Threshold(opts *bind.CallOpts) (*big.Int, error) {
 	var out []interface{}
-	err := _Iaggoraclecommittee.contract.Call(opts, &out, "quorum")
+	err := _Iaggoraclecommittee.contract.Call(opts, &out, "threshold")
 
 	if err != nil {
-		return *new(uint64), err
+		return *new(*big.Int), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new(uint64)).(*uint64)
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
 
 	return out0, err
 
 }
 
-// Quorum is a free data retrieval call binding the contract method 0x1703a018.
+// Threshold is a free data retrieval call binding the contract method 0x42cde4e8.
 //
-// Solidity: function quorum() view returns(uint64)
-func (_Iaggoraclecommittee *IaggoraclecommitteeSession) Quorum() (uint64, error) {
-	return _Iaggoraclecommittee.Contract.Quorum(&_Iaggoraclecommittee.CallOpts)
+// Solidity: function threshold() view returns(uint256)
+func (_Iaggoraclecommittee *IaggoraclecommitteeSession) Threshold() (*big.Int, error) {
+	return _Iaggoraclecommittee.Contract.Threshold(&_Iaggoraclecommittee.CallOpts)
 }
 
-// Quorum is a free data retrieval call binding the contract method 0x1703a018.
+// Threshold is a free data retrieval call binding the contract method 0x42cde4e8.
 //
-// Solidity: function quorum() view returns(uint64)
-func (_Iaggoraclecommittee *IaggoraclecommitteeCallerSession) Quorum() (uint64, error) {
-	return _Iaggoraclecommittee.Contract.Quorum(&_Iaggoraclecommittee.CallOpts)
+// Solidity: function threshold() view returns(uint256)
+func (_Iaggoraclecommittee *IaggoraclecommitteeCallerSession) Threshold() (*big.Int, error) {
+	return _Iaggoraclecommittee.Contract.Threshold(&_Iaggoraclecommittee.CallOpts)
+}
+
+// ValidatorInfo is a free data retrieval call binding the contract method 0x4f1811dd.
+//
+// Solidity: function validatorInfo(address validator) view returns(bool exists, string url)
+func (_Iaggoraclecommittee *IaggoraclecommitteeCaller) ValidatorInfo(opts *bind.CallOpts, validator common.Address) (struct {
+	Exists bool
+	Url    string
+}, error) {
+	var out []interface{}
+	err := _Iaggoraclecommittee.contract.Call(opts, &out, "validatorInfo", validator)
+
+	outstruct := new(struct {
+		Exists bool
+		Url    string
+	})
+	if err != nil {
+		return *outstruct, err
+	}
+
+	outstruct.Exists = *abi.ConvertType(out[0], new(bool)).(*bool)
+	outstruct.Url = *abi.ConvertType(out[1], new(string)).(*string)
+
+	return *outstruct, err
+
+}
+
+// ValidatorInfo is a free data retrieval call binding the contract method 0x4f1811dd.
+//
+// Solidity: function validatorInfo(address validator) view returns(bool exists, string url)
+func (_Iaggoraclecommittee *IaggoraclecommitteeSession) ValidatorInfo(validator common.Address) (struct {
+	Exists bool
+	Url    string
+}, error) {
+	return _Iaggoraclecommittee.Contract.ValidatorInfo(&_Iaggoraclecommittee.CallOpts, validator)
+}
+
+// ValidatorInfo is a free data retrieval call binding the contract method 0x4f1811dd.
+//
+// Solidity: function validatorInfo(address validator) view returns(bool exists, string url)
+func (_Iaggoraclecommittee *IaggoraclecommitteeCallerSession) ValidatorInfo(validator common.Address) (struct {
+	Exists bool
+	Url    string
+}, error) {
+	return _Iaggoraclecommittee.Contract.ValidatorInfo(&_Iaggoraclecommittee.CallOpts, validator)
+}
+
+// Validators is a free data retrieval call binding the contract method 0x35aa2e44.
+//
+// Solidity: function validators(uint256 index) view returns(address)
+func (_Iaggoraclecommittee *IaggoraclecommitteeCaller) Validators(opts *bind.CallOpts, index *big.Int) (common.Address, error) {
+	var out []interface{}
+	err := _Iaggoraclecommittee.contract.Call(opts, &out, "validators", index)
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
+}
+
+// Validators is a free data retrieval call binding the contract method 0x35aa2e44.
+//
+// Solidity: function validators(uint256 index) view returns(address)
+func (_Iaggoraclecommittee *IaggoraclecommitteeSession) Validators(index *big.Int) (common.Address, error) {
+	return _Iaggoraclecommittee.Contract.Validators(&_Iaggoraclecommittee.CallOpts, index)
+}
+
+// Validators is a free data retrieval call binding the contract method 0x35aa2e44.
+//
+// Solidity: function validators(uint256 index) view returns(address)
+func (_Iaggoraclecommittee *IaggoraclecommitteeCallerSession) Validators(index *big.Int) (common.Address, error) {
+	return _Iaggoraclecommittee.Contract.Validators(&_Iaggoraclecommittee.CallOpts, index)
+}
+
+// VerifyGER is a free data retrieval call binding the contract method 0x677f3950.
+//
+// Solidity: function verifyGER(bytes32 _globalExitRoot, bytes _signatures) view returns(bool)
+func (_Iaggoraclecommittee *IaggoraclecommitteeCaller) VerifyGER(opts *bind.CallOpts, _globalExitRoot [32]byte, _signatures []byte) (bool, error) {
+	var out []interface{}
+	err := _Iaggoraclecommittee.contract.Call(opts, &out, "verifyGER", _globalExitRoot, _signatures)
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
+}
+
+// VerifyGER is a free data retrieval call binding the contract method 0x677f3950.
+//
+// Solidity: function verifyGER(bytes32 _globalExitRoot, bytes _signatures) view returns(bool)
+func (_Iaggoraclecommittee *IaggoraclecommitteeSession) VerifyGER(_globalExitRoot [32]byte, _signatures []byte) (bool, error) {
+	return _Iaggoraclecommittee.Contract.VerifyGER(&_Iaggoraclecommittee.CallOpts, _globalExitRoot, _signatures)
+}
+
+// VerifyGER is a free data retrieval call binding the contract method 0x677f3950.
+//
+// Solidity: function verifyGER(bytes32 _globalExitRoot, bytes _signatures) view returns(bool)
+func (_Iaggoraclecommittee *IaggoraclecommitteeCallerSession) VerifyGER(_globalExitRoot [32]byte, _signatures []byte) (bool, error) {
+	return _Iaggoraclecommittee.Contract.VerifyGER(&_Iaggoraclecommittee.CallOpts, _globalExitRoot, _signatures)
+}
+
+// Version is a free data retrieval call binding the contract method 0x54fd4d50.
+//
+// Solidity: function version() pure returns(string)
+func (_Iaggoraclecommittee *IaggoraclecommitteeCaller) Version(opts *bind.CallOpts) (string, error) {
+	var out []interface{}
+	err := _Iaggoraclecommittee.contract.Call(opts, &out, "version")
+
+	if err != nil {
+		return *new(string), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(string)).(*string)
+
+	return out0, err
+
+}
+
+// Version is a free data retrieval call binding the contract method 0x54fd4d50.
+//
+// Solidity: function version() pure returns(string)
+func (_Iaggoraclecommittee *IaggoraclecommitteeSession) Version() (string, error) {
+	return _Iaggoraclecommittee.Contract.Version(&_Iaggoraclecommittee.CallOpts)
+}
+
+// Version is a free data retrieval call binding the contract method 0x54fd4d50.
+//
+// Solidity: function version() pure returns(string)
+func (_Iaggoraclecommittee *IaggoraclecommitteeCallerSession) Version() (string, error) {
+	return _Iaggoraclecommittee.Contract.Version(&_Iaggoraclecommittee.CallOpts)
 }
 
 // AcceptGlobalExitRootUpdater is a paid mutator transaction binding the contract method 0xc053902a.
@@ -449,109 +599,46 @@ func (_Iaggoraclecommittee *IaggoraclecommitteeTransactorSession) AcceptGlobalEx
 	return _Iaggoraclecommittee.Contract.AcceptGlobalExitRootUpdater(&_Iaggoraclecommittee.TransactOpts)
 }
 
-// AddOracleMember is a paid mutator transaction binding the contract method 0xb164e437.
+// Initialize is a paid mutator transaction binding the contract method 0x98e04bf8.
 //
-// Solidity: function addOracleMember(address newOracleMember) returns()
-func (_Iaggoraclecommittee *IaggoraclecommitteeTransactor) AddOracleMember(opts *bind.TransactOpts, newOracleMember common.Address) (*types.Transaction, error) {
-	return _Iaggoraclecommittee.contract.Transact(opts, "addOracleMember", newOracleMember)
+// Solidity: function initialize(address _owner, address _newProposer, (address,string)[] _newValidators, uint256 _newThreshold) returns()
+func (_Iaggoraclecommittee *IaggoraclecommitteeTransactor) Initialize(opts *bind.TransactOpts, _owner common.Address, _newProposer common.Address, _newValidators []IAggOracleCommitteeValidatorInfo, _newThreshold *big.Int) (*types.Transaction, error) {
+	return _Iaggoraclecommittee.contract.Transact(opts, "initialize", _owner, _newProposer, _newValidators, _newThreshold)
 }
 
-// AddOracleMember is a paid mutator transaction binding the contract method 0xb164e437.
+// Initialize is a paid mutator transaction binding the contract method 0x98e04bf8.
 //
-// Solidity: function addOracleMember(address newOracleMember) returns()
-func (_Iaggoraclecommittee *IaggoraclecommitteeSession) AddOracleMember(newOracleMember common.Address) (*types.Transaction, error) {
-	return _Iaggoraclecommittee.Contract.AddOracleMember(&_Iaggoraclecommittee.TransactOpts, newOracleMember)
+// Solidity: function initialize(address _owner, address _newProposer, (address,string)[] _newValidators, uint256 _newThreshold) returns()
+func (_Iaggoraclecommittee *IaggoraclecommitteeSession) Initialize(_owner common.Address, _newProposer common.Address, _newValidators []IAggOracleCommitteeValidatorInfo, _newThreshold *big.Int) (*types.Transaction, error) {
+	return _Iaggoraclecommittee.Contract.Initialize(&_Iaggoraclecommittee.TransactOpts, _owner, _newProposer, _newValidators, _newThreshold)
 }
 
-// AddOracleMember is a paid mutator transaction binding the contract method 0xb164e437.
+// Initialize is a paid mutator transaction binding the contract method 0x98e04bf8.
 //
-// Solidity: function addOracleMember(address newOracleMember) returns()
-func (_Iaggoraclecommittee *IaggoraclecommitteeTransactorSession) AddOracleMember(newOracleMember common.Address) (*types.Transaction, error) {
-	return _Iaggoraclecommittee.Contract.AddOracleMember(&_Iaggoraclecommittee.TransactOpts, newOracleMember)
+// Solidity: function initialize(address _owner, address _newProposer, (address,string)[] _newValidators, uint256 _newThreshold) returns()
+func (_Iaggoraclecommittee *IaggoraclecommitteeTransactorSession) Initialize(_owner common.Address, _newProposer common.Address, _newValidators []IAggOracleCommitteeValidatorInfo, _newThreshold *big.Int) (*types.Transaction, error) {
+	return _Iaggoraclecommittee.Contract.Initialize(&_Iaggoraclecommittee.TransactOpts, _owner, _newProposer, _newValidators, _newThreshold)
 }
 
-// ConsolidateGlobalExitRoot is a paid mutator transaction binding the contract method 0x9915c0d2.
+// InjectGER is a paid mutator transaction binding the contract method 0xa31dee4a.
 //
-// Solidity: function consolidateGlobalExitRoot(bytes32 globalExitRoot) returns()
-func (_Iaggoraclecommittee *IaggoraclecommitteeTransactor) ConsolidateGlobalExitRoot(opts *bind.TransactOpts, globalExitRoot [32]byte) (*types.Transaction, error) {
-	return _Iaggoraclecommittee.contract.Transact(opts, "consolidateGlobalExitRoot", globalExitRoot)
+// Solidity: function injectGER(bytes32 _globalExitRoot, bytes _signatures) returns()
+func (_Iaggoraclecommittee *IaggoraclecommitteeTransactor) InjectGER(opts *bind.TransactOpts, _globalExitRoot [32]byte, _signatures []byte) (*types.Transaction, error) {
+	return _Iaggoraclecommittee.contract.Transact(opts, "injectGER", _globalExitRoot, _signatures)
 }
 
-// ConsolidateGlobalExitRoot is a paid mutator transaction binding the contract method 0x9915c0d2.
+// InjectGER is a paid mutator transaction binding the contract method 0xa31dee4a.
 //
-// Solidity: function consolidateGlobalExitRoot(bytes32 globalExitRoot) returns()
-func (_Iaggoraclecommittee *IaggoraclecommitteeSession) ConsolidateGlobalExitRoot(globalExitRoot [32]byte) (*types.Transaction, error) {
-	return _Iaggoraclecommittee.Contract.ConsolidateGlobalExitRoot(&_Iaggoraclecommittee.TransactOpts, globalExitRoot)
+// Solidity: function injectGER(bytes32 _globalExitRoot, bytes _signatures) returns()
+func (_Iaggoraclecommittee *IaggoraclecommitteeSession) InjectGER(_globalExitRoot [32]byte, _signatures []byte) (*types.Transaction, error) {
+	return _Iaggoraclecommittee.Contract.InjectGER(&_Iaggoraclecommittee.TransactOpts, _globalExitRoot, _signatures)
 }
 
-// ConsolidateGlobalExitRoot is a paid mutator transaction binding the contract method 0x9915c0d2.
+// InjectGER is a paid mutator transaction binding the contract method 0xa31dee4a.
 //
-// Solidity: function consolidateGlobalExitRoot(bytes32 globalExitRoot) returns()
-func (_Iaggoraclecommittee *IaggoraclecommitteeTransactorSession) ConsolidateGlobalExitRoot(globalExitRoot [32]byte) (*types.Transaction, error) {
-	return _Iaggoraclecommittee.Contract.ConsolidateGlobalExitRoot(&_Iaggoraclecommittee.TransactOpts, globalExitRoot)
-}
-
-// Initialize is a paid mutator transaction binding the contract method 0x145d1ed6.
-//
-// Solidity: function initialize(address _owner, address[] _aggOracleMembers, uint64 _quorum) returns()
-func (_Iaggoraclecommittee *IaggoraclecommitteeTransactor) Initialize(opts *bind.TransactOpts, _owner common.Address, _aggOracleMembers []common.Address, _quorum uint64) (*types.Transaction, error) {
-	return _Iaggoraclecommittee.contract.Transact(opts, "initialize", _owner, _aggOracleMembers, _quorum)
-}
-
-// Initialize is a paid mutator transaction binding the contract method 0x145d1ed6.
-//
-// Solidity: function initialize(address _owner, address[] _aggOracleMembers, uint64 _quorum) returns()
-func (_Iaggoraclecommittee *IaggoraclecommitteeSession) Initialize(_owner common.Address, _aggOracleMembers []common.Address, _quorum uint64) (*types.Transaction, error) {
-	return _Iaggoraclecommittee.Contract.Initialize(&_Iaggoraclecommittee.TransactOpts, _owner, _aggOracleMembers, _quorum)
-}
-
-// Initialize is a paid mutator transaction binding the contract method 0x145d1ed6.
-//
-// Solidity: function initialize(address _owner, address[] _aggOracleMembers, uint64 _quorum) returns()
-func (_Iaggoraclecommittee *IaggoraclecommitteeTransactorSession) Initialize(_owner common.Address, _aggOracleMembers []common.Address, _quorum uint64) (*types.Transaction, error) {
-	return _Iaggoraclecommittee.Contract.Initialize(&_Iaggoraclecommittee.TransactOpts, _owner, _aggOracleMembers, _quorum)
-}
-
-// ProposeGlobalExitRoot is a paid mutator transaction binding the contract method 0x542b56b3.
-//
-// Solidity: function proposeGlobalExitRoot(bytes32 proposedGlobalExitRoot) returns()
-func (_Iaggoraclecommittee *IaggoraclecommitteeTransactor) ProposeGlobalExitRoot(opts *bind.TransactOpts, proposedGlobalExitRoot [32]byte) (*types.Transaction, error) {
-	return _Iaggoraclecommittee.contract.Transact(opts, "proposeGlobalExitRoot", proposedGlobalExitRoot)
-}
-
-// ProposeGlobalExitRoot is a paid mutator transaction binding the contract method 0x542b56b3.
-//
-// Solidity: function proposeGlobalExitRoot(bytes32 proposedGlobalExitRoot) returns()
-func (_Iaggoraclecommittee *IaggoraclecommitteeSession) ProposeGlobalExitRoot(proposedGlobalExitRoot [32]byte) (*types.Transaction, error) {
-	return _Iaggoraclecommittee.Contract.ProposeGlobalExitRoot(&_Iaggoraclecommittee.TransactOpts, proposedGlobalExitRoot)
-}
-
-// ProposeGlobalExitRoot is a paid mutator transaction binding the contract method 0x542b56b3.
-//
-// Solidity: function proposeGlobalExitRoot(bytes32 proposedGlobalExitRoot) returns()
-func (_Iaggoraclecommittee *IaggoraclecommitteeTransactorSession) ProposeGlobalExitRoot(proposedGlobalExitRoot [32]byte) (*types.Transaction, error) {
-	return _Iaggoraclecommittee.Contract.ProposeGlobalExitRoot(&_Iaggoraclecommittee.TransactOpts, proposedGlobalExitRoot)
-}
-
-// RemoveOracleMember is a paid mutator transaction binding the contract method 0x53985e5a.
-//
-// Solidity: function removeOracleMember(address oracleMemberAddress, uint256 oracleMemberIndex) returns()
-func (_Iaggoraclecommittee *IaggoraclecommitteeTransactor) RemoveOracleMember(opts *bind.TransactOpts, oracleMemberAddress common.Address, oracleMemberIndex *big.Int) (*types.Transaction, error) {
-	return _Iaggoraclecommittee.contract.Transact(opts, "removeOracleMember", oracleMemberAddress, oracleMemberIndex)
-}
-
-// RemoveOracleMember is a paid mutator transaction binding the contract method 0x53985e5a.
-//
-// Solidity: function removeOracleMember(address oracleMemberAddress, uint256 oracleMemberIndex) returns()
-func (_Iaggoraclecommittee *IaggoraclecommitteeSession) RemoveOracleMember(oracleMemberAddress common.Address, oracleMemberIndex *big.Int) (*types.Transaction, error) {
-	return _Iaggoraclecommittee.Contract.RemoveOracleMember(&_Iaggoraclecommittee.TransactOpts, oracleMemberAddress, oracleMemberIndex)
-}
-
-// RemoveOracleMember is a paid mutator transaction binding the contract method 0x53985e5a.
-//
-// Solidity: function removeOracleMember(address oracleMemberAddress, uint256 oracleMemberIndex) returns()
-func (_Iaggoraclecommittee *IaggoraclecommitteeTransactorSession) RemoveOracleMember(oracleMemberAddress common.Address, oracleMemberIndex *big.Int) (*types.Transaction, error) {
-	return _Iaggoraclecommittee.Contract.RemoveOracleMember(&_Iaggoraclecommittee.TransactOpts, oracleMemberAddress, oracleMemberIndex)
+// Solidity: function injectGER(bytes32 _globalExitRoot, bytes _signatures) returns()
+func (_Iaggoraclecommittee *IaggoraclecommitteeTransactorSession) InjectGER(_globalExitRoot [32]byte, _signatures []byte) (*types.Transaction, error) {
+	return _Iaggoraclecommittee.Contract.InjectGER(&_Iaggoraclecommittee.TransactOpts, _globalExitRoot, _signatures)
 }
 
 // TransferGlobalExitRootUpdater is a paid mutator transaction binding the contract method 0x0e1bbf9f.
@@ -575,30 +662,51 @@ func (_Iaggoraclecommittee *IaggoraclecommitteeTransactorSession) TransferGlobal
 	return _Iaggoraclecommittee.Contract.TransferGlobalExitRootUpdater(&_Iaggoraclecommittee.TransactOpts, _newGlobalExitRootUpdater)
 }
 
-// UpdateQuorum is a paid mutator transaction binding the contract method 0x29218b61.
+// UpdateAggOracleProposer is a paid mutator transaction binding the contract method 0xd6ad3f8f.
 //
-// Solidity: function updateQuorum(uint64 newQuorum) returns()
-func (_Iaggoraclecommittee *IaggoraclecommitteeTransactor) UpdateQuorum(opts *bind.TransactOpts, newQuorum uint64) (*types.Transaction, error) {
-	return _Iaggoraclecommittee.contract.Transact(opts, "updateQuorum", newQuorum)
+// Solidity: function updateAggOracleProposer(address _newProposer) returns()
+func (_Iaggoraclecommittee *IaggoraclecommitteeTransactor) UpdateAggOracleProposer(opts *bind.TransactOpts, _newProposer common.Address) (*types.Transaction, error) {
+	return _Iaggoraclecommittee.contract.Transact(opts, "updateAggOracleProposer", _newProposer)
 }
 
-// UpdateQuorum is a paid mutator transaction binding the contract method 0x29218b61.
+// UpdateAggOracleProposer is a paid mutator transaction binding the contract method 0xd6ad3f8f.
 //
-// Solidity: function updateQuorum(uint64 newQuorum) returns()
-func (_Iaggoraclecommittee *IaggoraclecommitteeSession) UpdateQuorum(newQuorum uint64) (*types.Transaction, error) {
-	return _Iaggoraclecommittee.Contract.UpdateQuorum(&_Iaggoraclecommittee.TransactOpts, newQuorum)
+// Solidity: function updateAggOracleProposer(address _newProposer) returns()
+func (_Iaggoraclecommittee *IaggoraclecommitteeSession) UpdateAggOracleProposer(_newProposer common.Address) (*types.Transaction, error) {
+	return _Iaggoraclecommittee.Contract.UpdateAggOracleProposer(&_Iaggoraclecommittee.TransactOpts, _newProposer)
 }
 
-// UpdateQuorum is a paid mutator transaction binding the contract method 0x29218b61.
+// UpdateAggOracleProposer is a paid mutator transaction binding the contract method 0xd6ad3f8f.
 //
-// Solidity: function updateQuorum(uint64 newQuorum) returns()
-func (_Iaggoraclecommittee *IaggoraclecommitteeTransactorSession) UpdateQuorum(newQuorum uint64) (*types.Transaction, error) {
-	return _Iaggoraclecommittee.Contract.UpdateQuorum(&_Iaggoraclecommittee.TransactOpts, newQuorum)
+// Solidity: function updateAggOracleProposer(address _newProposer) returns()
+func (_Iaggoraclecommittee *IaggoraclecommitteeTransactorSession) UpdateAggOracleProposer(_newProposer common.Address) (*types.Transaction, error) {
+	return _Iaggoraclecommittee.Contract.UpdateAggOracleProposer(&_Iaggoraclecommittee.TransactOpts, _newProposer)
 }
 
-// IaggoraclecommitteeAddAggOracleMemberIterator is returned from FilterAddAggOracleMember and is used to iterate over the raw logs and unpacked data for AddAggOracleMember events raised by the Iaggoraclecommittee contract.
-type IaggoraclecommitteeAddAggOracleMemberIterator struct {
-	Event *IaggoraclecommitteeAddAggOracleMember // Event containing the contract specifics and raw log
+// UpdateValidatorsAndThreshold is a paid mutator transaction binding the contract method 0xfedaa2a7.
+//
+// Solidity: function updateValidatorsAndThreshold((address,uint256)[] _validatorsToRemove, (address,string)[] _validatorsToAdd, uint256 _newThreshold) returns()
+func (_Iaggoraclecommittee *IaggoraclecommitteeTransactor) UpdateValidatorsAndThreshold(opts *bind.TransactOpts, _validatorsToRemove []IAggOracleCommitteeRemoveValidatorInfo, _validatorsToAdd []IAggOracleCommitteeValidatorInfo, _newThreshold *big.Int) (*types.Transaction, error) {
+	return _Iaggoraclecommittee.contract.Transact(opts, "updateValidatorsAndThreshold", _validatorsToRemove, _validatorsToAdd, _newThreshold)
+}
+
+// UpdateValidatorsAndThreshold is a paid mutator transaction binding the contract method 0xfedaa2a7.
+//
+// Solidity: function updateValidatorsAndThreshold((address,uint256)[] _validatorsToRemove, (address,string)[] _validatorsToAdd, uint256 _newThreshold) returns()
+func (_Iaggoraclecommittee *IaggoraclecommitteeSession) UpdateValidatorsAndThreshold(_validatorsToRemove []IAggOracleCommitteeRemoveValidatorInfo, _validatorsToAdd []IAggOracleCommitteeValidatorInfo, _newThreshold *big.Int) (*types.Transaction, error) {
+	return _Iaggoraclecommittee.Contract.UpdateValidatorsAndThreshold(&_Iaggoraclecommittee.TransactOpts, _validatorsToRemove, _validatorsToAdd, _newThreshold)
+}
+
+// UpdateValidatorsAndThreshold is a paid mutator transaction binding the contract method 0xfedaa2a7.
+//
+// Solidity: function updateValidatorsAndThreshold((address,uint256)[] _validatorsToRemove, (address,string)[] _validatorsToAdd, uint256 _newThreshold) returns()
+func (_Iaggoraclecommittee *IaggoraclecommitteeTransactorSession) UpdateValidatorsAndThreshold(_validatorsToRemove []IAggOracleCommitteeRemoveValidatorInfo, _validatorsToAdd []IAggOracleCommitteeValidatorInfo, _newThreshold *big.Int) (*types.Transaction, error) {
+	return _Iaggoraclecommittee.Contract.UpdateValidatorsAndThreshold(&_Iaggoraclecommittee.TransactOpts, _validatorsToRemove, _validatorsToAdd, _newThreshold)
+}
+
+// IaggoraclecommitteeGERInjectedIterator is returned from FilterGERInjected and is used to iterate over the raw logs and unpacked data for GERInjected events raised by the Iaggoraclecommittee contract.
+type IaggoraclecommitteeGERInjectedIterator struct {
+	Event *IaggoraclecommitteeGERInjected // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -612,7 +720,7 @@ type IaggoraclecommitteeAddAggOracleMemberIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *IaggoraclecommitteeAddAggOracleMemberIterator) Next() bool {
+func (it *IaggoraclecommitteeGERInjectedIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -621,7 +729,7 @@ func (it *IaggoraclecommitteeAddAggOracleMemberIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(IaggoraclecommitteeAddAggOracleMember)
+			it.Event = new(IaggoraclecommitteeGERInjected)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -636,7 +744,7 @@ func (it *IaggoraclecommitteeAddAggOracleMemberIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(IaggoraclecommitteeAddAggOracleMember)
+		it.Event = new(IaggoraclecommitteeGERInjected)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -652,41 +760,51 @@ func (it *IaggoraclecommitteeAddAggOracleMemberIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *IaggoraclecommitteeAddAggOracleMemberIterator) Error() error {
+func (it *IaggoraclecommitteeGERInjectedIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *IaggoraclecommitteeAddAggOracleMemberIterator) Close() error {
+func (it *IaggoraclecommitteeGERInjectedIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// IaggoraclecommitteeAddAggOracleMember represents a AddAggOracleMember event raised by the Iaggoraclecommittee contract.
-type IaggoraclecommitteeAddAggOracleMember struct {
-	NewOracleMember common.Address
-	Raw             types.Log // Blockchain specific contextual infos
+// IaggoraclecommitteeGERInjected represents a GERInjected event raised by the Iaggoraclecommittee contract.
+type IaggoraclecommitteeGERInjected struct {
+	GlobalExitRoot [32]byte
+	Raw            types.Log // Blockchain specific contextual infos
 }
 
-// FilterAddAggOracleMember is a free log retrieval operation binding the contract event 0x59f8c2dd0bdc5787ef574566b9edcd7324a62b79ac952930f02679a1b25bbf6f.
+// FilterGERInjected is a free log retrieval operation binding the contract event 0x45b91a7a09575a05b9dd504dff707cdeb7eda5f9d514491caf5951551b020e1e.
 //
-// Solidity: event AddAggOracleMember(address newOracleMember)
-func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) FilterAddAggOracleMember(opts *bind.FilterOpts) (*IaggoraclecommitteeAddAggOracleMemberIterator, error) {
+// Solidity: event GERInjected(bytes32 indexed globalExitRoot)
+func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) FilterGERInjected(opts *bind.FilterOpts, globalExitRoot [][32]byte) (*IaggoraclecommitteeGERInjectedIterator, error) {
 
-	logs, sub, err := _Iaggoraclecommittee.contract.FilterLogs(opts, "AddAggOracleMember")
+	var globalExitRootRule []interface{}
+	for _, globalExitRootItem := range globalExitRoot {
+		globalExitRootRule = append(globalExitRootRule, globalExitRootItem)
+	}
+
+	logs, sub, err := _Iaggoraclecommittee.contract.FilterLogs(opts, "GERInjected", globalExitRootRule)
 	if err != nil {
 		return nil, err
 	}
-	return &IaggoraclecommitteeAddAggOracleMemberIterator{contract: _Iaggoraclecommittee.contract, event: "AddAggOracleMember", logs: logs, sub: sub}, nil
+	return &IaggoraclecommitteeGERInjectedIterator{contract: _Iaggoraclecommittee.contract, event: "GERInjected", logs: logs, sub: sub}, nil
 }
 
-// WatchAddAggOracleMember is a free log subscription operation binding the contract event 0x59f8c2dd0bdc5787ef574566b9edcd7324a62b79ac952930f02679a1b25bbf6f.
+// WatchGERInjected is a free log subscription operation binding the contract event 0x45b91a7a09575a05b9dd504dff707cdeb7eda5f9d514491caf5951551b020e1e.
 //
-// Solidity: event AddAggOracleMember(address newOracleMember)
-func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) WatchAddAggOracleMember(opts *bind.WatchOpts, sink chan<- *IaggoraclecommitteeAddAggOracleMember) (event.Subscription, error) {
+// Solidity: event GERInjected(bytes32 indexed globalExitRoot)
+func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) WatchGERInjected(opts *bind.WatchOpts, sink chan<- *IaggoraclecommitteeGERInjected, globalExitRoot [][32]byte) (event.Subscription, error) {
 
-	logs, sub, err := _Iaggoraclecommittee.contract.WatchLogs(opts, "AddAggOracleMember")
+	var globalExitRootRule []interface{}
+	for _, globalExitRootItem := range globalExitRoot {
+		globalExitRootRule = append(globalExitRootRule, globalExitRootItem)
+	}
+
+	logs, sub, err := _Iaggoraclecommittee.contract.WatchLogs(opts, "GERInjected", globalExitRootRule)
 	if err != nil {
 		return nil, err
 	}
@@ -696,8 +814,8 @@ func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) WatchAddAggOracleMember
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(IaggoraclecommitteeAddAggOracleMember)
-				if err := _Iaggoraclecommittee.contract.UnpackLog(event, "AddAggOracleMember", log); err != nil {
+				event := new(IaggoraclecommitteeGERInjected)
+				if err := _Iaggoraclecommittee.contract.UnpackLog(event, "GERInjected", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -718,21 +836,21 @@ func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) WatchAddAggOracleMember
 	}), nil
 }
 
-// ParseAddAggOracleMember is a log parse operation binding the contract event 0x59f8c2dd0bdc5787ef574566b9edcd7324a62b79ac952930f02679a1b25bbf6f.
+// ParseGERInjected is a log parse operation binding the contract event 0x45b91a7a09575a05b9dd504dff707cdeb7eda5f9d514491caf5951551b020e1e.
 //
-// Solidity: event AddAggOracleMember(address newOracleMember)
-func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) ParseAddAggOracleMember(log types.Log) (*IaggoraclecommitteeAddAggOracleMember, error) {
-	event := new(IaggoraclecommitteeAddAggOracleMember)
-	if err := _Iaggoraclecommittee.contract.UnpackLog(event, "AddAggOracleMember", log); err != nil {
+// Solidity: event GERInjected(bytes32 indexed globalExitRoot)
+func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) ParseGERInjected(log types.Log) (*IaggoraclecommitteeGERInjected, error) {
+	event := new(IaggoraclecommitteeGERInjected)
+	if err := _Iaggoraclecommittee.contract.UnpackLog(event, "GERInjected", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// IaggoraclecommitteeConsolidatedGlobalExitRootIterator is returned from FilterConsolidatedGlobalExitRoot and is used to iterate over the raw logs and unpacked data for ConsolidatedGlobalExitRoot events raised by the Iaggoraclecommittee contract.
-type IaggoraclecommitteeConsolidatedGlobalExitRootIterator struct {
-	Event *IaggoraclecommitteeConsolidatedGlobalExitRoot // Event containing the contract specifics and raw log
+// IaggoraclecommitteeGERMarkedAsInjectedIterator is returned from FilterGERMarkedAsInjected and is used to iterate over the raw logs and unpacked data for GERMarkedAsInjected events raised by the Iaggoraclecommittee contract.
+type IaggoraclecommitteeGERMarkedAsInjectedIterator struct {
+	Event *IaggoraclecommitteeGERMarkedAsInjected // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -746,7 +864,7 @@ type IaggoraclecommitteeConsolidatedGlobalExitRootIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *IaggoraclecommitteeConsolidatedGlobalExitRootIterator) Next() bool {
+func (it *IaggoraclecommitteeGERMarkedAsInjectedIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -755,7 +873,7 @@ func (it *IaggoraclecommitteeConsolidatedGlobalExitRootIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(IaggoraclecommitteeConsolidatedGlobalExitRoot)
+			it.Event = new(IaggoraclecommitteeGERMarkedAsInjected)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -770,7 +888,7 @@ func (it *IaggoraclecommitteeConsolidatedGlobalExitRootIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(IaggoraclecommitteeConsolidatedGlobalExitRoot)
+		it.Event = new(IaggoraclecommitteeGERMarkedAsInjected)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -786,41 +904,51 @@ func (it *IaggoraclecommitteeConsolidatedGlobalExitRootIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *IaggoraclecommitteeConsolidatedGlobalExitRootIterator) Error() error {
+func (it *IaggoraclecommitteeGERMarkedAsInjectedIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *IaggoraclecommitteeConsolidatedGlobalExitRootIterator) Close() error {
+func (it *IaggoraclecommitteeGERMarkedAsInjectedIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// IaggoraclecommitteeConsolidatedGlobalExitRoot represents a ConsolidatedGlobalExitRoot event raised by the Iaggoraclecommittee contract.
-type IaggoraclecommitteeConsolidatedGlobalExitRoot struct {
-	ConsolidatedGlobalExitRoot [32]byte
-	Raw                        types.Log // Blockchain specific contextual infos
+// IaggoraclecommitteeGERMarkedAsInjected represents a GERMarkedAsInjected event raised by the Iaggoraclecommittee contract.
+type IaggoraclecommitteeGERMarkedAsInjected struct {
+	GlobalExitRoot [32]byte
+	Raw            types.Log // Blockchain specific contextual infos
 }
 
-// FilterConsolidatedGlobalExitRoot is a free log retrieval operation binding the contract event 0x1676a1944900a9899dac554c2da10ba62637fe8d08375ffc3fb8494c92918d98.
+// FilterGERMarkedAsInjected is a free log retrieval operation binding the contract event 0xcafdbc8c7e71f2990afc9e787ff729a197666534c9a49959c1373c819b708a8f.
 //
-// Solidity: event ConsolidatedGlobalExitRoot(bytes32 consolidatedGlobalExitRoot)
-func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) FilterConsolidatedGlobalExitRoot(opts *bind.FilterOpts) (*IaggoraclecommitteeConsolidatedGlobalExitRootIterator, error) {
+// Solidity: event GERMarkedAsInjected(bytes32 indexed globalExitRoot)
+func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) FilterGERMarkedAsInjected(opts *bind.FilterOpts, globalExitRoot [][32]byte) (*IaggoraclecommitteeGERMarkedAsInjectedIterator, error) {
 
-	logs, sub, err := _Iaggoraclecommittee.contract.FilterLogs(opts, "ConsolidatedGlobalExitRoot")
+	var globalExitRootRule []interface{}
+	for _, globalExitRootItem := range globalExitRoot {
+		globalExitRootRule = append(globalExitRootRule, globalExitRootItem)
+	}
+
+	logs, sub, err := _Iaggoraclecommittee.contract.FilterLogs(opts, "GERMarkedAsInjected", globalExitRootRule)
 	if err != nil {
 		return nil, err
 	}
-	return &IaggoraclecommitteeConsolidatedGlobalExitRootIterator{contract: _Iaggoraclecommittee.contract, event: "ConsolidatedGlobalExitRoot", logs: logs, sub: sub}, nil
+	return &IaggoraclecommitteeGERMarkedAsInjectedIterator{contract: _Iaggoraclecommittee.contract, event: "GERMarkedAsInjected", logs: logs, sub: sub}, nil
 }
 
-// WatchConsolidatedGlobalExitRoot is a free log subscription operation binding the contract event 0x1676a1944900a9899dac554c2da10ba62637fe8d08375ffc3fb8494c92918d98.
+// WatchGERMarkedAsInjected is a free log subscription operation binding the contract event 0xcafdbc8c7e71f2990afc9e787ff729a197666534c9a49959c1373c819b708a8f.
 //
-// Solidity: event ConsolidatedGlobalExitRoot(bytes32 consolidatedGlobalExitRoot)
-func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) WatchConsolidatedGlobalExitRoot(opts *bind.WatchOpts, sink chan<- *IaggoraclecommitteeConsolidatedGlobalExitRoot) (event.Subscription, error) {
+// Solidity: event GERMarkedAsInjected(bytes32 indexed globalExitRoot)
+func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) WatchGERMarkedAsInjected(opts *bind.WatchOpts, sink chan<- *IaggoraclecommitteeGERMarkedAsInjected, globalExitRoot [][32]byte) (event.Subscription, error) {
 
-	logs, sub, err := _Iaggoraclecommittee.contract.WatchLogs(opts, "ConsolidatedGlobalExitRoot")
+	var globalExitRootRule []interface{}
+	for _, globalExitRootItem := range globalExitRoot {
+		globalExitRootRule = append(globalExitRootRule, globalExitRootItem)
+	}
+
+	logs, sub, err := _Iaggoraclecommittee.contract.WatchLogs(opts, "GERMarkedAsInjected", globalExitRootRule)
 	if err != nil {
 		return nil, err
 	}
@@ -830,8 +958,8 @@ func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) WatchConsolidatedGlobal
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(IaggoraclecommitteeConsolidatedGlobalExitRoot)
-				if err := _Iaggoraclecommittee.contract.UnpackLog(event, "ConsolidatedGlobalExitRoot", log); err != nil {
+				event := new(IaggoraclecommitteeGERMarkedAsInjected)
+				if err := _Iaggoraclecommittee.contract.UnpackLog(event, "GERMarkedAsInjected", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -852,21 +980,21 @@ func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) WatchConsolidatedGlobal
 	}), nil
 }
 
-// ParseConsolidatedGlobalExitRoot is a log parse operation binding the contract event 0x1676a1944900a9899dac554c2da10ba62637fe8d08375ffc3fb8494c92918d98.
+// ParseGERMarkedAsInjected is a log parse operation binding the contract event 0xcafdbc8c7e71f2990afc9e787ff729a197666534c9a49959c1373c819b708a8f.
 //
-// Solidity: event ConsolidatedGlobalExitRoot(bytes32 consolidatedGlobalExitRoot)
-func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) ParseConsolidatedGlobalExitRoot(log types.Log) (*IaggoraclecommitteeConsolidatedGlobalExitRoot, error) {
-	event := new(IaggoraclecommitteeConsolidatedGlobalExitRoot)
-	if err := _Iaggoraclecommittee.contract.UnpackLog(event, "ConsolidatedGlobalExitRoot", log); err != nil {
+// Solidity: event GERMarkedAsInjected(bytes32 indexed globalExitRoot)
+func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) ParseGERMarkedAsInjected(log types.Log) (*IaggoraclecommitteeGERMarkedAsInjected, error) {
+	event := new(IaggoraclecommitteeGERMarkedAsInjected)
+	if err := _Iaggoraclecommittee.contract.UnpackLog(event, "GERMarkedAsInjected", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// IaggoraclecommitteeProposedGlobalExitRootIterator is returned from FilterProposedGlobalExitRoot and is used to iterate over the raw logs and unpacked data for ProposedGlobalExitRoot events raised by the Iaggoraclecommittee contract.
-type IaggoraclecommitteeProposedGlobalExitRootIterator struct {
-	Event *IaggoraclecommitteeProposedGlobalExitRoot // Event containing the contract specifics and raw log
+// IaggoraclecommitteeUpdateAggOracleProposerIterator is returned from FilterUpdateAggOracleProposer and is used to iterate over the raw logs and unpacked data for UpdateAggOracleProposer events raised by the Iaggoraclecommittee contract.
+type IaggoraclecommitteeUpdateAggOracleProposerIterator struct {
+	Event *IaggoraclecommitteeUpdateAggOracleProposer // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -880,7 +1008,7 @@ type IaggoraclecommitteeProposedGlobalExitRootIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *IaggoraclecommitteeProposedGlobalExitRootIterator) Next() bool {
+func (it *IaggoraclecommitteeUpdateAggOracleProposerIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -889,7 +1017,7 @@ func (it *IaggoraclecommitteeProposedGlobalExitRootIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(IaggoraclecommitteeProposedGlobalExitRoot)
+			it.Event = new(IaggoraclecommitteeUpdateAggOracleProposer)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -904,7 +1032,7 @@ func (it *IaggoraclecommitteeProposedGlobalExitRootIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(IaggoraclecommitteeProposedGlobalExitRoot)
+		it.Event = new(IaggoraclecommitteeUpdateAggOracleProposer)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -920,42 +1048,51 @@ func (it *IaggoraclecommitteeProposedGlobalExitRootIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *IaggoraclecommitteeProposedGlobalExitRootIterator) Error() error {
+func (it *IaggoraclecommitteeUpdateAggOracleProposerIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *IaggoraclecommitteeProposedGlobalExitRootIterator) Close() error {
+func (it *IaggoraclecommitteeUpdateAggOracleProposerIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// IaggoraclecommitteeProposedGlobalExitRoot represents a ProposedGlobalExitRoot event raised by the Iaggoraclecommittee contract.
-type IaggoraclecommitteeProposedGlobalExitRoot struct {
-	ProposedGlobalExitRoot [32]byte
-	Proposer               common.Address
-	Raw                    types.Log // Blockchain specific contextual infos
+// IaggoraclecommitteeUpdateAggOracleProposer represents a UpdateAggOracleProposer event raised by the Iaggoraclecommittee contract.
+type IaggoraclecommitteeUpdateAggOracleProposer struct {
+	NewProposer common.Address
+	Raw         types.Log // Blockchain specific contextual infos
 }
 
-// FilterProposedGlobalExitRoot is a free log retrieval operation binding the contract event 0x9f298266555f7b22d45b8ea34a9c99cba101d1ccbc3ff6dc4c392b7c915dc3b5.
+// FilterUpdateAggOracleProposer is a free log retrieval operation binding the contract event 0x93c536fad4968838f70b6a5841cc12ffbd1a657048ef449f715f0d9ebdbeffca.
 //
-// Solidity: event ProposedGlobalExitRoot(bytes32 proposedGlobalExitRoot, address proposer)
-func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) FilterProposedGlobalExitRoot(opts *bind.FilterOpts) (*IaggoraclecommitteeProposedGlobalExitRootIterator, error) {
+// Solidity: event UpdateAggOracleProposer(address indexed newProposer)
+func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) FilterUpdateAggOracleProposer(opts *bind.FilterOpts, newProposer []common.Address) (*IaggoraclecommitteeUpdateAggOracleProposerIterator, error) {
 
-	logs, sub, err := _Iaggoraclecommittee.contract.FilterLogs(opts, "ProposedGlobalExitRoot")
+	var newProposerRule []interface{}
+	for _, newProposerItem := range newProposer {
+		newProposerRule = append(newProposerRule, newProposerItem)
+	}
+
+	logs, sub, err := _Iaggoraclecommittee.contract.FilterLogs(opts, "UpdateAggOracleProposer", newProposerRule)
 	if err != nil {
 		return nil, err
 	}
-	return &IaggoraclecommitteeProposedGlobalExitRootIterator{contract: _Iaggoraclecommittee.contract, event: "ProposedGlobalExitRoot", logs: logs, sub: sub}, nil
+	return &IaggoraclecommitteeUpdateAggOracleProposerIterator{contract: _Iaggoraclecommittee.contract, event: "UpdateAggOracleProposer", logs: logs, sub: sub}, nil
 }
 
-// WatchProposedGlobalExitRoot is a free log subscription operation binding the contract event 0x9f298266555f7b22d45b8ea34a9c99cba101d1ccbc3ff6dc4c392b7c915dc3b5.
+// WatchUpdateAggOracleProposer is a free log subscription operation binding the contract event 0x93c536fad4968838f70b6a5841cc12ffbd1a657048ef449f715f0d9ebdbeffca.
 //
-// Solidity: event ProposedGlobalExitRoot(bytes32 proposedGlobalExitRoot, address proposer)
-func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) WatchProposedGlobalExitRoot(opts *bind.WatchOpts, sink chan<- *IaggoraclecommitteeProposedGlobalExitRoot) (event.Subscription, error) {
+// Solidity: event UpdateAggOracleProposer(address indexed newProposer)
+func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) WatchUpdateAggOracleProposer(opts *bind.WatchOpts, sink chan<- *IaggoraclecommitteeUpdateAggOracleProposer, newProposer []common.Address) (event.Subscription, error) {
 
-	logs, sub, err := _Iaggoraclecommittee.contract.WatchLogs(opts, "ProposedGlobalExitRoot")
+	var newProposerRule []interface{}
+	for _, newProposerItem := range newProposer {
+		newProposerRule = append(newProposerRule, newProposerItem)
+	}
+
+	logs, sub, err := _Iaggoraclecommittee.contract.WatchLogs(opts, "UpdateAggOracleProposer", newProposerRule)
 	if err != nil {
 		return nil, err
 	}
@@ -965,8 +1102,8 @@ func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) WatchProposedGlobalExit
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(IaggoraclecommitteeProposedGlobalExitRoot)
-				if err := _Iaggoraclecommittee.contract.UnpackLog(event, "ProposedGlobalExitRoot", log); err != nil {
+				event := new(IaggoraclecommitteeUpdateAggOracleProposer)
+				if err := _Iaggoraclecommittee.contract.UnpackLog(event, "UpdateAggOracleProposer", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -987,21 +1124,21 @@ func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) WatchProposedGlobalExit
 	}), nil
 }
 
-// ParseProposedGlobalExitRoot is a log parse operation binding the contract event 0x9f298266555f7b22d45b8ea34a9c99cba101d1ccbc3ff6dc4c392b7c915dc3b5.
+// ParseUpdateAggOracleProposer is a log parse operation binding the contract event 0x93c536fad4968838f70b6a5841cc12ffbd1a657048ef449f715f0d9ebdbeffca.
 //
-// Solidity: event ProposedGlobalExitRoot(bytes32 proposedGlobalExitRoot, address proposer)
-func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) ParseProposedGlobalExitRoot(log types.Log) (*IaggoraclecommitteeProposedGlobalExitRoot, error) {
-	event := new(IaggoraclecommitteeProposedGlobalExitRoot)
-	if err := _Iaggoraclecommittee.contract.UnpackLog(event, "ProposedGlobalExitRoot", log); err != nil {
+// Solidity: event UpdateAggOracleProposer(address indexed newProposer)
+func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) ParseUpdateAggOracleProposer(log types.Log) (*IaggoraclecommitteeUpdateAggOracleProposer, error) {
+	event := new(IaggoraclecommitteeUpdateAggOracleProposer)
+	if err := _Iaggoraclecommittee.contract.UnpackLog(event, "UpdateAggOracleProposer", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// IaggoraclecommitteeRemoveAggOracleMemberIterator is returned from FilterRemoveAggOracleMember and is used to iterate over the raw logs and unpacked data for RemoveAggOracleMember events raised by the Iaggoraclecommittee contract.
-type IaggoraclecommitteeRemoveAggOracleMemberIterator struct {
-	Event *IaggoraclecommitteeRemoveAggOracleMember // Event containing the contract specifics and raw log
+// IaggoraclecommitteeValidatorsAndThresholdUpdatedIterator is returned from FilterValidatorsAndThresholdUpdated and is used to iterate over the raw logs and unpacked data for ValidatorsAndThresholdUpdated events raised by the Iaggoraclecommittee contract.
+type IaggoraclecommitteeValidatorsAndThresholdUpdatedIterator struct {
+	Event *IaggoraclecommitteeValidatorsAndThresholdUpdated // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -1015,7 +1152,7 @@ type IaggoraclecommitteeRemoveAggOracleMemberIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *IaggoraclecommitteeRemoveAggOracleMemberIterator) Next() bool {
+func (it *IaggoraclecommitteeValidatorsAndThresholdUpdatedIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1024,7 +1161,7 @@ func (it *IaggoraclecommitteeRemoveAggOracleMemberIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(IaggoraclecommitteeRemoveAggOracleMember)
+			it.Event = new(IaggoraclecommitteeValidatorsAndThresholdUpdated)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1039,7 +1176,7 @@ func (it *IaggoraclecommitteeRemoveAggOracleMemberIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(IaggoraclecommitteeRemoveAggOracleMember)
+		it.Event = new(IaggoraclecommitteeValidatorsAndThresholdUpdated)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1055,41 +1192,42 @@ func (it *IaggoraclecommitteeRemoveAggOracleMemberIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *IaggoraclecommitteeRemoveAggOracleMemberIterator) Error() error {
+func (it *IaggoraclecommitteeValidatorsAndThresholdUpdatedIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *IaggoraclecommitteeRemoveAggOracleMemberIterator) Close() error {
+func (it *IaggoraclecommitteeValidatorsAndThresholdUpdatedIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// IaggoraclecommitteeRemoveAggOracleMember represents a RemoveAggOracleMember event raised by the Iaggoraclecommittee contract.
-type IaggoraclecommitteeRemoveAggOracleMember struct {
-	OracleMemberRemoved common.Address
-	Raw                 types.Log // Blockchain specific contextual infos
+// IaggoraclecommitteeValidatorsAndThresholdUpdated represents a ValidatorsAndThresholdUpdated event raised by the Iaggoraclecommittee contract.
+type IaggoraclecommitteeValidatorsAndThresholdUpdated struct {
+	Validators []common.Address
+	Threshold  *big.Int
+	Raw        types.Log // Blockchain specific contextual infos
 }
 
-// FilterRemoveAggOracleMember is a free log retrieval operation binding the contract event 0x396186e0feff55f3e52260aee4ec024318786c7f5b8b01639b1d42c24b59eafc.
+// FilterValidatorsAndThresholdUpdated is a free log retrieval operation binding the contract event 0x50051c796f4289791fedb6e1f365497b6527df6f6f19527d566e3c9791af5460.
 //
-// Solidity: event RemoveAggOracleMember(address oracleMemberRemoved)
-func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) FilterRemoveAggOracleMember(opts *bind.FilterOpts) (*IaggoraclecommitteeRemoveAggOracleMemberIterator, error) {
+// Solidity: event ValidatorsAndThresholdUpdated(address[] validators, uint256 threshold)
+func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) FilterValidatorsAndThresholdUpdated(opts *bind.FilterOpts) (*IaggoraclecommitteeValidatorsAndThresholdUpdatedIterator, error) {
 
-	logs, sub, err := _Iaggoraclecommittee.contract.FilterLogs(opts, "RemoveAggOracleMember")
+	logs, sub, err := _Iaggoraclecommittee.contract.FilterLogs(opts, "ValidatorsAndThresholdUpdated")
 	if err != nil {
 		return nil, err
 	}
-	return &IaggoraclecommitteeRemoveAggOracleMemberIterator{contract: _Iaggoraclecommittee.contract, event: "RemoveAggOracleMember", logs: logs, sub: sub}, nil
+	return &IaggoraclecommitteeValidatorsAndThresholdUpdatedIterator{contract: _Iaggoraclecommittee.contract, event: "ValidatorsAndThresholdUpdated", logs: logs, sub: sub}, nil
 }
 
-// WatchRemoveAggOracleMember is a free log subscription operation binding the contract event 0x396186e0feff55f3e52260aee4ec024318786c7f5b8b01639b1d42c24b59eafc.
+// WatchValidatorsAndThresholdUpdated is a free log subscription operation binding the contract event 0x50051c796f4289791fedb6e1f365497b6527df6f6f19527d566e3c9791af5460.
 //
-// Solidity: event RemoveAggOracleMember(address oracleMemberRemoved)
-func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) WatchRemoveAggOracleMember(opts *bind.WatchOpts, sink chan<- *IaggoraclecommitteeRemoveAggOracleMember) (event.Subscription, error) {
+// Solidity: event ValidatorsAndThresholdUpdated(address[] validators, uint256 threshold)
+func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) WatchValidatorsAndThresholdUpdated(opts *bind.WatchOpts, sink chan<- *IaggoraclecommitteeValidatorsAndThresholdUpdated) (event.Subscription, error) {
 
-	logs, sub, err := _Iaggoraclecommittee.contract.WatchLogs(opts, "RemoveAggOracleMember")
+	logs, sub, err := _Iaggoraclecommittee.contract.WatchLogs(opts, "ValidatorsAndThresholdUpdated")
 	if err != nil {
 		return nil, err
 	}
@@ -1099,8 +1237,8 @@ func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) WatchRemoveAggOracleMem
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(IaggoraclecommitteeRemoveAggOracleMember)
-				if err := _Iaggoraclecommittee.contract.UnpackLog(event, "RemoveAggOracleMember", log); err != nil {
+				event := new(IaggoraclecommitteeValidatorsAndThresholdUpdated)
+				if err := _Iaggoraclecommittee.contract.UnpackLog(event, "ValidatorsAndThresholdUpdated", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -1121,146 +1259,12 @@ func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) WatchRemoveAggOracleMem
 	}), nil
 }
 
-// ParseRemoveAggOracleMember is a log parse operation binding the contract event 0x396186e0feff55f3e52260aee4ec024318786c7f5b8b01639b1d42c24b59eafc.
+// ParseValidatorsAndThresholdUpdated is a log parse operation binding the contract event 0x50051c796f4289791fedb6e1f365497b6527df6f6f19527d566e3c9791af5460.
 //
-// Solidity: event RemoveAggOracleMember(address oracleMemberRemoved)
-func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) ParseRemoveAggOracleMember(log types.Log) (*IaggoraclecommitteeRemoveAggOracleMember, error) {
-	event := new(IaggoraclecommitteeRemoveAggOracleMember)
-	if err := _Iaggoraclecommittee.contract.UnpackLog(event, "RemoveAggOracleMember", log); err != nil {
-		return nil, err
-	}
-	event.Raw = log
-	return event, nil
-}
-
-// IaggoraclecommitteeUpdateQuorumIterator is returned from FilterUpdateQuorum and is used to iterate over the raw logs and unpacked data for UpdateQuorum events raised by the Iaggoraclecommittee contract.
-type IaggoraclecommitteeUpdateQuorumIterator struct {
-	Event *IaggoraclecommitteeUpdateQuorum // Event containing the contract specifics and raw log
-
-	contract *bind.BoundContract // Generic contract to use for unpacking event data
-	event    string              // Event name to use for unpacking event data
-
-	logs chan types.Log        // Log channel receiving the found contract events
-	sub  ethereum.Subscription // Subscription for errors, completion and termination
-	done bool                  // Whether the subscription completed delivering logs
-	fail error                 // Occurred error to stop iteration
-}
-
-// Next advances the iterator to the subsequent event, returning whether there
-// are any more events found. In case of a retrieval or parsing error, false is
-// returned and Error() can be queried for the exact failure.
-func (it *IaggoraclecommitteeUpdateQuorumIterator) Next() bool {
-	// If the iterator failed, stop iterating
-	if it.fail != nil {
-		return false
-	}
-	// If the iterator completed, deliver directly whatever's available
-	if it.done {
-		select {
-		case log := <-it.logs:
-			it.Event = new(IaggoraclecommitteeUpdateQuorum)
-			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
-				it.fail = err
-				return false
-			}
-			it.Event.Raw = log
-			return true
-
-		default:
-			return false
-		}
-	}
-	// Iterator still in progress, wait for either a data or an error event
-	select {
-	case log := <-it.logs:
-		it.Event = new(IaggoraclecommitteeUpdateQuorum)
-		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
-			it.fail = err
-			return false
-		}
-		it.Event.Raw = log
-		return true
-
-	case err := <-it.sub.Err():
-		it.done = true
-		it.fail = err
-		return it.Next()
-	}
-}
-
-// Error returns any retrieval or parsing error occurred during filtering.
-func (it *IaggoraclecommitteeUpdateQuorumIterator) Error() error {
-	return it.fail
-}
-
-// Close terminates the iteration process, releasing any pending underlying
-// resources.
-func (it *IaggoraclecommitteeUpdateQuorumIterator) Close() error {
-	it.sub.Unsubscribe()
-	return nil
-}
-
-// IaggoraclecommitteeUpdateQuorum represents a UpdateQuorum event raised by the Iaggoraclecommittee contract.
-type IaggoraclecommitteeUpdateQuorum struct {
-	NewQuorum uint64
-	Raw       types.Log // Blockchain specific contextual infos
-}
-
-// FilterUpdateQuorum is a free log retrieval operation binding the contract event 0xb600f3cf7f38a4b49bb0c75f722ef69f7e3e39ef3bb4aa8207fd86e724a23249.
-//
-// Solidity: event UpdateQuorum(uint64 newQuorum)
-func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) FilterUpdateQuorum(opts *bind.FilterOpts) (*IaggoraclecommitteeUpdateQuorumIterator, error) {
-
-	logs, sub, err := _Iaggoraclecommittee.contract.FilterLogs(opts, "UpdateQuorum")
-	if err != nil {
-		return nil, err
-	}
-	return &IaggoraclecommitteeUpdateQuorumIterator{contract: _Iaggoraclecommittee.contract, event: "UpdateQuorum", logs: logs, sub: sub}, nil
-}
-
-// WatchUpdateQuorum is a free log subscription operation binding the contract event 0xb600f3cf7f38a4b49bb0c75f722ef69f7e3e39ef3bb4aa8207fd86e724a23249.
-//
-// Solidity: event UpdateQuorum(uint64 newQuorum)
-func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) WatchUpdateQuorum(opts *bind.WatchOpts, sink chan<- *IaggoraclecommitteeUpdateQuorum) (event.Subscription, error) {
-
-	logs, sub, err := _Iaggoraclecommittee.contract.WatchLogs(opts, "UpdateQuorum")
-	if err != nil {
-		return nil, err
-	}
-	return event.NewSubscription(func(quit <-chan struct{}) error {
-		defer sub.Unsubscribe()
-		for {
-			select {
-			case log := <-logs:
-				// New log arrived, parse the event and forward to the user
-				event := new(IaggoraclecommitteeUpdateQuorum)
-				if err := _Iaggoraclecommittee.contract.UnpackLog(event, "UpdateQuorum", log); err != nil {
-					return err
-				}
-				event.Raw = log
-
-				select {
-				case sink <- event:
-				case err := <-sub.Err():
-					return err
-				case <-quit:
-					return nil
-				}
-			case err := <-sub.Err():
-				return err
-			case <-quit:
-				return nil
-			}
-		}
-	}), nil
-}
-
-// ParseUpdateQuorum is a log parse operation binding the contract event 0xb600f3cf7f38a4b49bb0c75f722ef69f7e3e39ef3bb4aa8207fd86e724a23249.
-//
-// Solidity: event UpdateQuorum(uint64 newQuorum)
-func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) ParseUpdateQuorum(log types.Log) (*IaggoraclecommitteeUpdateQuorum, error) {
-	event := new(IaggoraclecommitteeUpdateQuorum)
-	if err := _Iaggoraclecommittee.contract.UnpackLog(event, "UpdateQuorum", log); err != nil {
+// Solidity: event ValidatorsAndThresholdUpdated(address[] validators, uint256 threshold)
+func (_Iaggoraclecommittee *IaggoraclecommitteeFilterer) ParseValidatorsAndThresholdUpdated(log types.Log) (*IaggoraclecommitteeValidatorsAndThresholdUpdated, error) {
+	event := new(IaggoraclecommitteeValidatorsAndThresholdUpdated)
+	if err := _Iaggoraclecommittee.contract.UnpackLog(event, "ValidatorsAndThresholdUpdated", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
