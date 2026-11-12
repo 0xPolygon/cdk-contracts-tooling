@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"io/fs"
 	"os"
@@ -29,6 +30,7 @@ const (
 	contractsAliasFlagName   = "contracts-alias"
 	nodeVersionFlagName      = "node-version"
 	buildParisFlagName       = "build-paris"
+	replaceFlagName          = "replace"
 	// Constants
 	contractsRepoURL = "https://github.com/agglayer/agglayer-contracts.git"
 	artifactsPath    = "artifacts/contracts"
@@ -74,11 +76,89 @@ var (
 				Required: false,
 				Value:    false,
 			},
+			&cli.BoolFlag{
+				Name: replaceFlagName,
+				Usage: "Replace the alias directory if it already exists. The previous one is kept aside " +
+					"while the new one is generated, and it is restored if the import fails",
+				Required: false,
+				Value:    false,
+			},
 		},
 	}
 )
 
-func importContracts(cliCtx *cli.Context) error {
+// aliasSwap puts the directory of an alias aside while it is regenerated, so it can be restored if the import fails.
+//
+// The alias can't be removed before running the command: the packages of the rest of this repository (rollup,
+// rollupmanager...) import the generated bindings, so without the alias the command doesn't compile. It is moved
+// once the command is running instead.
+type aliasSwap struct {
+	// path is the directory of the alias: contracts/<alias>
+	path string
+	// backup is where the previous directory is kept. It starts with a dot, so Go tooling ignores it, and it is in
+	// the same file system as the alias, so renaming it is atomic
+	backup string
+	moved  bool
+}
+
+func newAliasSwap(aliasPath string) *aliasSwap {
+	return &aliasSwap{
+		path:   aliasPath,
+		backup: filepath.Join(filepath.Dir(aliasPath), "."+filepath.Base(aliasPath)+".replaced"),
+	}
+}
+
+// moveAside renames the directory of the alias to the backup. It does nothing if the alias doesn't exist
+func (s *aliasSwap) moveAside() error {
+	// A backup that is already there is the previous alias of an import that was interrupted (Ctrl-C, a crash): it is
+	// never overwritten, and it is checked first so it is not ignored when the alias is gone
+	if _, err := os.Stat(s.backup); err == nil {
+		return fmt.Errorf("%s already exists: it is the previous alias of an import that was interrupted. "+
+			"Remove %s (what that import left), rename %s to it, and run the command again; "+
+			"or remove %s if the previous alias is not needed", s.backup, s.path, s.backup, s.backup)
+	} else if !errors.Is(err, fs.ErrNotExist) {
+		return err
+	}
+	if _, err := os.Stat(s.path); errors.Is(err, fs.ErrNotExist) {
+		return nil
+	} else if err != nil {
+		return err
+	}
+	if err := os.Rename(s.path, s.backup); err != nil {
+		return fmt.Errorf("failed to move %s aside: %w", s.path, err)
+	}
+	s.moved = true
+	return nil
+}
+
+// restore removes whatever was generated and puts the previous directory back. It does nothing if there was none
+func (s *aliasSwap) restore() error {
+	if !s.moved {
+		return nil
+	}
+	if err := os.RemoveAll(s.path); err != nil {
+		return fmt.Errorf("failed to remove %s: %w", s.path, err)
+	}
+	if err := os.Rename(s.backup, s.path); err != nil {
+		return fmt.Errorf("failed to restore %s from %s: %w", s.path, s.backup, err)
+	}
+	s.moved = false
+	return nil
+}
+
+// discard removes the previous directory, once the new one is complete
+func (s *aliasSwap) discard() error {
+	if !s.moved {
+		return nil
+	}
+	if err := os.RemoveAll(s.backup); err != nil {
+		return fmt.Errorf("failed to remove %s: %w", s.backup, err)
+	}
+	s.moved = false
+	return nil
+}
+
+func importContracts(cliCtx *cli.Context) (err error) {
 	baseDir, err := checkWorkingDir()
 	if err != nil {
 		return err
@@ -87,6 +167,18 @@ func importContracts(cliCtx *cli.Context) error {
 	contractsRepoName, err := extractContractsRepoName()
 	if err != nil {
 		return err
+	}
+
+	alias := cliCtx.String(contractsAliasFlagName)
+	contractsPath := path.Join(baseDir, "contracts", alias)
+	replace := cliCtx.Bool(replaceFlagName)
+
+	// Fail now, not after cloning and compiling the contracts (it takes minutes), if the alias can't be written
+	if _, statErr := os.Stat(contractsPath); statErr == nil && !replace {
+		return fmt.Errorf("%s already exists: remove it, use another alias, or use the flag -%s to replace it",
+			contractsPath, replaceFlagName)
+	} else if statErr != nil && !errors.Is(statErr, fs.ErrNotExist) {
+		return statErr
 	}
 
 	// clone repo in tmp
@@ -155,13 +247,39 @@ func importContracts(cliCtx *cli.Context) error {
 		return err
 	}
 
+	if replace {
+		// The command is already compiled and running, so it can move the alias that the rest of the repository
+		// imports. If anything fails from here on, the previous alias is put back
+		swap := newAliasSwap(contractsPath)
+		if err := swap.moveAside(); err != nil {
+			return err
+		}
+		defer func() {
+			// The generation changes the working directory to the alias, which is about to be removed or kept
+			if chdirErr := os.Chdir(baseDir); chdirErr != nil {
+				fmt.Printf("warning: failed to go back to %s: %v\n", baseDir, chdirErr)
+			}
+			if err != nil {
+				if swap.moved {
+					fmt.Printf("the import failed: restoring the previous %s\n", contractsPath)
+				}
+				if restoreErr := swap.restore(); restoreErr != nil {
+					err = fmt.Errorf("%w. The previous alias could not be restored, it is in %s: %v",
+						err, swap.backup, restoreErr)
+				}
+				return
+			}
+			if discardErr := swap.discard(); discardErr != nil {
+				fmt.Printf("warning: %v\n", discardErr)
+			}
+		}()
+	}
+
 	fmt.Println("creating target directory and abi and bin subdirectories")
-	alias := cliCtx.String(contractsAliasFlagName)
-	contractsPath := path.Join(baseDir, "contracts", alias)
 	err = os.Mkdir(contractsPath, 0744)
 	if err != nil {
 		fmt.Println("error creating directory ", contractsPath)
-		fmt.Println("remove the directory or use another alias for this contracts")
+		fmt.Printf("remove the directory, use another alias or use the flag -%s\n", replaceFlagName)
 		return err
 	}
 	err = os.Mkdir(path.Join(contractsPath, "/bin"), 0744)
@@ -196,6 +314,11 @@ func importContracts(cliCtx *cli.Context) error {
 		}
 	}
 	fmt.Printf("%d / %d contracts compiled successfuly\n", contractsFound-compilationFailures, contractsFound)
+	if replace && compilationFailures > 0 {
+		// Without -replace the failures are only warnings. Here an incomplete alias would replace a complete one
+		return fmt.Errorf("%d of %d contracts failed to import: the previous alias is kept, run the command without -%s "+
+			"if an incomplete alias is acceptable", compilationFailures, contractsFound, replaceFlagName)
+	}
 
 	fmt.Println("cleaning up abi and bin transient folders...")
 	if err := os.RemoveAll(baseAbiPath); err != nil {

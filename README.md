@@ -14,6 +14,20 @@ Not all the commands have the same requirements, but here is the complete list o
 
 From the root of this repo run `go run ./cmd`. This will print a help message explaining how to use all the commands
 
+### Smart contract bindings
+
+The Go bindings of the smart contracts are in `contracts/<alias>` (today `contracts/aggchain-multisig`). They are generated with the `import-contracts` command from a version (a tag, a branch or a commit) of [agglayer-contracts](https://github.com/agglayer/agglayer-contracts):
+
+```
+go run ./cmd import-contracts -cv <tag, branch or commit> -alias aggchain-multisig -node 24 -replace
+```
+
+- `-cv`: the version of agglayer-contracts. `-alias`: the directory under `contracts/`. `-node`: the version of Node used to compile (the default is 16, and agglayer-contracts needs 24). `-paris`: build for Paris, to avoid `PUSH0`.
+- `abigen` must be in the `PATH` of a login shell, because the command runs `bash -l -c abigen`. Use the version of go-ethereum of `go.mod`: `go install github.com/ethereum/go-ethereum/cmd/abigen@<version>`.
+- `-replace` regenerates an alias that already exists. **Don't remove the alias before running the command**: the rest of this repository (`rollup`, `rollupmanager`) imports the bindings, so without them the command doesn't compile. With `-replace` the command moves the previous alias to `contracts/.<alias>.replaced` once it is running, and puts it back if the import fails, also if any of the contracts fails to import. Without `-replace` the command stops at once if the alias exists.
+- A new version of the contracts can change the API of the bindings: run `go build ./...` afterwards, and update `rollup` and `rollupmanager` if needed.
+- The `README.md` that the command writes in the alias records the version, the commit and the command that was used.
+
 ### RPCs
 
 Some commands require using RPC endpoints. There are multiple ways to import these endpoints, but all of them require to:
