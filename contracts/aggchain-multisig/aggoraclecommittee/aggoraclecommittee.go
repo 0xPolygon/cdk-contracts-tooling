@@ -29,10 +29,22 @@ var (
 	_ = abi.ConvertType
 )
 
+// IAggOracleCommitteeRemoveValidatorInfo is an auto generated low-level Go binding around an user-defined struct.
+type IAggOracleCommitteeRemoveValidatorInfo struct {
+	Addr  common.Address
+	Index *big.Int
+}
+
+// IAggOracleCommitteeValidatorInfo is an auto generated low-level Go binding around an user-defined struct.
+type IAggOracleCommitteeValidatorInfo struct {
+	Addr common.Address
+	Url  string
+}
+
 // AggoraclecommitteeMetaData contains all meta data concerning the Aggoraclecommittee contract.
 var AggoraclecommitteeMetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[{\"internalType\":\"contractIAgglayerGERL2\",\"name\":\"globalExitRootManager\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"AlreadyOracleMember\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"AlreadyVotedForThisGER\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"GlobalExitRootManagerCannotBeZero\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidInitialization\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidProposedGER\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NotInitializing\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NotOracleMember\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OracleMemberCannotBeZero\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OracleMemberIndexMismatch\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OracleMemberIndexOutOfBounds\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OracleMemberNotFound\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"OwnableInvalidOwner\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"OwnableUnauthorizedAccount\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"QuorumCannotBeGreaterThanAggOracleMembers\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"QuorumCannotBeZero\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"QuorumNotReached\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"WasNotOracleMember\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"newOracleMember\",\"type\":\"address\"}],\"name\":\"AddAggOracleMember\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"consolidatedGlobalExitRoot\",\"type\":\"bytes32\"}],\"name\":\"ConsolidatedGlobalExitRoot\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint64\",\"name\":\"version\",\"type\":\"uint64\"}],\"name\":\"Initialized\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"proposedGlobalExitRoot\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"proposer\",\"type\":\"address\"}],\"name\":\"ProposedGlobalExitRoot\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"oracleMemberRemoved\",\"type\":\"address\"}],\"name\":\"RemoveAggOracleMember\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint64\",\"name\":\"newQuorum\",\"type\":\"uint64\"}],\"name\":\"UpdateQuorum\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"INITIAL_PROPOSED_GER\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"VERSION\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"acceptGlobalExitRootUpdater\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOracleMember\",\"type\":\"address\"}],\"name\":\"addOracleMember\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"addressToLastProposedGER\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"aggOracleMembers\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"globalExitRoot\",\"type\":\"bytes32\"}],\"name\":\"consolidateGlobalExitRoot\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"oracleMember\",\"type\":\"address\"}],\"name\":\"getAggOracleMemberIndex\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getAggOracleMembersCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getAllAggOracleMembers\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"globalExitRootManagerL2Sovereign\",\"outputs\":[{\"internalType\":\"contractIAgglayerGERL2\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_owner\",\"type\":\"address\"},{\"internalType\":\"address[]\",\"name\":\"_aggOracleMembers\",\"type\":\"address[]\"},{\"internalType\":\"uint64\",\"name\":\"_quorum\",\"type\":\"uint64\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"proposedGlobalExitRoot\",\"type\":\"bytes32\"}],\"name\":\"proposeGlobalExitRoot\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"proposedGERToReport\",\"outputs\":[{\"internalType\":\"uint64\",\"name\":\"votes\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"timestamp\",\"type\":\"uint64\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"quorum\",\"outputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"oracleMemberAddress\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"oracleMemberIndex\",\"type\":\"uint256\"}],\"name\":\"removeOracleMember\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_newGlobalExitRootUpdater\",\"type\":\"address\"}],\"name\":\"transferGlobalExitRootUpdater\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"newQuorum\",\"type\":\"uint64\"}],\"name\":\"updateQuorum\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
-	Bin: "0x60a060405234801561000f575f5ffd5b506040516118f33803806118f383398101604081905261002e91610122565b6001600160a01b0381166100555760405163c06cad7760e01b815260040160405180910390fd5b6001600160a01b03811660805261006a610070565b5061014f565b7ff0c57e16840df040f15088dc2f81fe391c3923bec73e23a9662efc9c229c6a00805468010000000000000000900460ff16156100c05760405163f92ee8a960e01b815260040160405180910390fd5b80546001600160401b039081161461011f5780546001600160401b0319166001600160401b0390811782556040519081527fc7f505b2f371ae2175ee4913f4499e1f2633a7b5936321eed1cdaeb6115181d29060200160405180910390a15b50565b5f60208284031215610132575f5ffd5b81516001600160a01b0381168114610148575f5ffd5b9392505050565b60805161177761017c5f395f81816103540152818161043a01528181610fa601526112e001526117775ff3fe608060405234801561000f575f5ffd5b506004361061016e575f3560e01c8063542b56b3116100d25780639915c0d211610088578063c053902a11610063578063c053902a14610389578063f2fde38b14610391578063ffa1ad74146103a4575f5ffd5b80639915c0d21461033c578063a7a90e2a1461034f578063b164e43714610376575f5ffd5b8063715018a6116100b8578063715018a6146102e457806372312af8146102ec5780638da5cb5b146102ff575f5ffd5b8063542b56b3146102bc578063703d8d42146102cf575f5ffd5b806329218b611161012757806351146e101161010d57806351146e1014610247578063512bab0d146102a157806353985e5a146102a9575f5ffd5b806329218b611461021557806338fd8a0314610228575f5ffd5b8063145d1ed611610157578063145d1ed61461019d5780631703a018146101b05780631ffbaa74146101dd575f5ffd5b8063017e37d6146101725780630e1bbf9f14610188575b5f5ffd5b5f545b6040519081526020015b60405180910390f35b61019b6101963660046114a9565b6103ed565b005b61019b6101ab3660046114e0565b610494565b6001546101c49067ffffffffffffffff1681565b60405167ffffffffffffffff909116815260200161017f565b6101f06101eb366004611572565b61074f565b60405173ffffffffffffffffffffffffffffffffffffffff909116815260200161017f565b61019b610223366004611589565b610783565b6101756102363660046114a9565b60026020525f908152604090205481565b610280610255366004611572565b60036020525f908152604090205467ffffffffffffffff808216916801000000000000000090041682565b6040805167ffffffffffffffff93841681529290911660208301520161017f565b610175600181565b61019b6102b73660046115a2565b61083c565b61019b6102ca366004611572565b610b5c565b6102d7610de3565b60405161017f91906115ca565b61019b610e4f565b6101756102fa3660046114a9565b610e62565b7f9016d09d72d40fdae2fd8ceac6b6234c7706214fd39c1cd1e609a0528c1993005473ffffffffffffffffffffffffffffffffffffffff166101f0565b61019b61034a366004611572565b610efe565b6101f07f000000000000000000000000000000000000000000000000000000000000000081565b61019b6103843660046114a9565b610f88565b61019b610f9c565b61019b61039f3660046114a9565b611021565b6103e06040518060400160405280600681526020017f76312e302e30000000000000000000000000000000000000000000000000000081525081565b60405161017f9190611622565b6103f5611086565b6040517f0e1bbf9f00000000000000000000000000000000000000000000000000000000815273ffffffffffffffffffffffffffffffffffffffff82811660048301527f00000000000000000000000000000000000000000000000000000000000000001690630e1bbf9f906024015f604051808303815f87803b15801561047b575f5ffd5b505af115801561048d573d5f5f3e3d5ffd5b5050505050565b7ff0c57e16840df040f15088dc2f81fe391c3923bec73e23a9662efc9c229c6a00805468010000000000000000810460ff16159067ffffffffffffffff165f811580156104de5750825b90505f8267ffffffffffffffff1660011480156104fa5750303b155b905081158015610508575080155b1561053f576040517ff92ee8a900000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b84547fffffffffffffffffffffffffffffffffffffffffffffffff000000000000000016600117855583156105a05784547fffffffffffffffffffffffffffffffffffffffffffffff00ffffffffffffffff16680100000000000000001785555b8567ffffffffffffffff165f036105e3576040517fb7c8d1cb00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b67ffffffffffffffff8616871015610627576040517ffeca976200000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b600180547fffffffffffffffffffffffffffffffffffffffffffffffff00000000000000001667ffffffffffffffff88161790555f5b8781101561069c5761069489898381811061067a5761067a611675565b905060200201602081019061068f91906114a9565b611114565b60010161065d565b506106a68961126d565b60405167ffffffffffffffff871681527fb600f3cf7f38a4b49bb0c75f722ef69f7e3e39ef3bb4aa8207fd86e724a232499060200160405180910390a183156107445784547fffffffffffffffffffffffffffffffffffffffffffffff00ffffffffffffffff168555604051600181527fc7f505b2f371ae2175ee4913f4499e1f2633a7b5936321eed1cdaeb6115181d29060200160405180910390a15b505050505050505050565b5f818154811061075d575f80fd5b5f9182526020909120015473ffffffffffffffffffffffffffffffffffffffff16905081565b61078b611086565b8067ffffffffffffffff165f036107ce576040517fb7c8d1cb00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b600180547fffffffffffffffffffffffffffffffffffffffffffffffff00000000000000001667ffffffffffffffff83169081179091556040519081527fb600f3cf7f38a4b49bb0c75f722ef69f7e3e39ef3bb4aa8207fd86e724a23249906020015b60405180910390a150565b610844611086565b5f54811061087e576040517f61c81b6200000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b73ffffffffffffffffffffffffffffffffffffffff82165f90815260026020526040902054806108da576040517f9463fb0000000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b8273ffffffffffffffffffffffffffffffffffffffff165f838154811061090357610903611675565b5f9182526020909120015473ffffffffffffffffffffffffffffffffffffffff161461095b576040517f9ddd5e0300000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b600181146109dd575f818152600360205260409020805467ffffffffffffffff16156109db5780547fffffffffffffffffffffffffffffffffffffffffffffffff0000000000000000811667ffffffffffffffff9182167fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff019091161781555b505b73ffffffffffffffffffffffffffffffffffffffff83165f9081526002602052604081208190558054610a12906001906116cf565b81548110610a2257610a22611675565b5f918252602082200154815473ffffffffffffffffffffffffffffffffffffffff909116919084908110610a5857610a58611675565b5f918252602082200180547fffffffffffffffffffffffff00000000000000000000000000000000000000001673ffffffffffffffffffffffffffffffffffffffff9390931692909217909155805480610ab457610ab46116e8565b5f8281526020908190207fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff908301810180547fffffffffffffffffffffffff000000000000000000000000000000000000000016905590910190915560405173ffffffffffffffffffffffffffffffffffffffff851681527f396186e0feff55f3e52260aee4ec024318786c7f5b8b01639b1d42c24b59eafc910160405180910390a1505050565b60018114801590610b6c57508015155b610ba2576040517fa3c967af00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b335f9081526002602052604090205480610be8576040517f9cf1889e00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b818103610c21576040517f5dc4100700000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b60018114610ca3575f818152600360205260409020805467ffffffffffffffff1615610ca15780547fffffffffffffffffffffffffffffffffffffffffffffffff0000000000000000811667ffffffffffffffff9182167fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff019091161781555b505b5f82815260036020908152604080832081518083019092525467ffffffffffffffff808216835268010000000000000000909104169181018290529103610cfd5767ffffffffffffffff4216602082015260018152610d17565b805181610d0982611715565b67ffffffffffffffff169052505b604080518481523360208201527f9f298266555f7b22d45b8ea34a9c99cba101d1ccbc3ff6dc4c392b7c915dc3b5910160405180910390a1600154815167ffffffffffffffff918216911610610d7557610d708361127e565b505050565b5f838152600360209081526040808320845181548487015167ffffffffffffffff90811668010000000000000000027fffffffffffffffffffffffffffffffff0000000000000000000000000000000090921692169190911717905533835260029091529020839055505050565b60605f805480602002602001604051908101604052809291908181526020018280548015610e4557602002820191905f5260205f20905b815473ffffffffffffffffffffffffffffffffffffffff168152600190910190602001808311610e1a575b5050505050905090565b610e57611086565b610e605f61137d565b565b5f805b5f54811015610ecb578273ffffffffffffffffffffffffffffffffffffffff165f8281548110610e9757610e97611675565b5f9182526020909120015473ffffffffffffffffffffffffffffffffffffffff1603610ec35792915050565b600101610e65565b506040517f1cec48b600000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b5f8181526003602090815260409182902082518084019093525467ffffffffffffffff808216808552680100000000000000009092048116928401929092526001549091161115610f7b576040517faa26a69300000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b610f848261127e565b5050565b610f90611086565b610f9981611114565b50565b610fa4611086565b7f000000000000000000000000000000000000000000000000000000000000000073ffffffffffffffffffffffffffffffffffffffff1663c053902a6040518163ffffffff1660e01b81526004015f604051808303815f87803b158015611009575f5ffd5b505af115801561101b573d5f5f3e3d5ffd5b50505050565b611029611086565b73ffffffffffffffffffffffffffffffffffffffff811661107d576040517f1e4fbdf70000000000000000000000000000000000000000000000000000000081525f60048201526024015b60405180910390fd5b610f998161137d565b336110c57f9016d09d72d40fdae2fd8ceac6b6234c7706214fd39c1cd1e609a0528c1993005473ffffffffffffffffffffffffffffffffffffffff1690565b73ffffffffffffffffffffffffffffffffffffffff1614610e60576040517f118cdaa7000000000000000000000000000000000000000000000000000000008152336004820152602401611074565b73ffffffffffffffffffffffffffffffffffffffff8116611161576040517f3846812a00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b73ffffffffffffffffffffffffffffffffffffffff81165f90815260026020526040902054156111bd576040517fb078ca8800000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b73ffffffffffffffffffffffffffffffffffffffff81165f818152600260209081526040808320600190819055835490810184559280527f290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e56390920180547fffffffffffffffffffffffff0000000000000000000000000000000000000000168417905590519182527f59f8c2dd0bdc5787ef574566b9edcd7324a62b79ac952930f02679a1b25bbf6f9101610831565b611275611412565b610f9981611479565b5f818152600360205260409081902080547fffffffffffffffffffffffffffffffff00000000000000000000000000000000169055517f12da06b2000000000000000000000000000000000000000000000000000000008152600481018290527f000000000000000000000000000000000000000000000000000000000000000073ffffffffffffffffffffffffffffffffffffffff16906312da06b2906024015f604051808303815f87803b158015611336575f5ffd5b505af1158015611348573d5f5f3e3d5ffd5b505050507f1676a1944900a9899dac554c2da10ba62637fe8d08375ffc3fb8494c92918d988160405161083191815260200190565b7f9016d09d72d40fdae2fd8ceac6b6234c7706214fd39c1cd1e609a0528c19930080547fffffffffffffffffffffffff0000000000000000000000000000000000000000811673ffffffffffffffffffffffffffffffffffffffff848116918217845560405192169182907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0905f90a3505050565b7ff0c57e16840df040f15088dc2f81fe391c3923bec73e23a9662efc9c229c6a005468010000000000000000900460ff16610e60576040517fd7e6bcf800000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b611029611412565b803573ffffffffffffffffffffffffffffffffffffffff811681146114a4575f5ffd5b919050565b5f602082840312156114b9575f5ffd5b6114c282611481565b9392505050565b803567ffffffffffffffff811681146114a4575f5ffd5b5f5f5f5f606085870312156114f3575f5ffd5b6114fc85611481565b9350602085013567ffffffffffffffff811115611517575f5ffd5b8501601f81018713611527575f5ffd5b803567ffffffffffffffff81111561153d575f5ffd5b8760208260051b8401011115611551575f5ffd5b60209190910193509150611567604086016114c9565b905092959194509250565b5f60208284031215611582575f5ffd5b5035919050565b5f60208284031215611599575f5ffd5b6114c2826114c9565b5f5f604083850312156115b3575f5ffd5b6115bc83611481565b946020939093013593505050565b602080825282518282018190525f918401906040840190835b8181101561161757835173ffffffffffffffffffffffffffffffffffffffff168352602093840193909201916001016115e3565b509095945050505050565b602081525f82518060208401528060208501604085015e5f6040828501015260407fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe0601f83011684010191505092915050565b7f4e487b71000000000000000000000000000000000000000000000000000000005f52603260045260245ffd5b7f4e487b71000000000000000000000000000000000000000000000000000000005f52601160045260245ffd5b818103818111156116e2576116e26116a2565b92915050565b7f4e487b71000000000000000000000000000000000000000000000000000000005f52603160045260245ffd5b5f67ffffffffffffffff821667ffffffffffffffff8103611738576117386116a2565b6001019291505056fea2646970667358221220755cae7b65709c3b604a48873231e6a94b8024b37bfa334ad93cff2f54eb053264736f6c634300081c0033",
+	ABI: "[{\"inputs\":[{\"internalType\":\"contractIAgglayerGERL2\",\"name\":\"_agglayerGERL2\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[],\"name\":\"AgglayerGERL2CannotBeZero\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ECDSAInvalidSignature\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"length\",\"type\":\"uint256\"}],\"name\":\"ECDSAInvalidSignatureLength\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"s\",\"type\":\"bytes32\"}],\"name\":\"ECDSAInvalidSignatureS\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"GERAlreadyInjected\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"GERCannotBeZero\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"IndicesNotInDescendingOrder\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidInitialization\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"InvalidSignaturesLength\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"NotInitializing\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OnlyAggOracleProposerCanCall\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"owner\",\"type\":\"address\"}],\"name\":\"OwnableInvalidOwner\",\"type\":\"error\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"OwnableUnauthorizedAccount\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"OwnerCannotBeZero\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ProposerCannotBeZero\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"RenounceOwnershipDisabled\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ThresholdCannotBeGreaterThanValidators\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ThresholdCannotBeZero\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"TooManyValidators\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ValidatorAlreadyExists\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ValidatorCannotBeThisContract\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ValidatorCannotBeZero\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ValidatorDoesNotExist\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ValidatorIndexMismatch\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ValidatorIndexOutOfBounds\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ValidatorNotFound\",\"type\":\"error\"},{\"inputs\":[],\"name\":\"ValidatorsNotOrdered\",\"type\":\"error\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"globalExitRoot\",\"type\":\"bytes32\"}],\"name\":\"GERInjected\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"bytes32\",\"name\":\"globalExitRoot\",\"type\":\"bytes32\"}],\"name\":\"GERMarkedAsInjected\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"uint64\",\"name\":\"version\",\"type\":\"uint64\"}],\"name\":\"Initialized\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferStarted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newProposer\",\"type\":\"address\"}],\"name\":\"UpdateAggOracleProposer\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address[]\",\"name\":\"validators\",\"type\":\"address[]\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"threshold\",\"type\":\"uint256\"}],\"name\":\"ValidatorsAndThresholdUpdated\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"MAX_VALIDATORS\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"VERSION_AGG_ORACLE_COMMITTEE\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"acceptGlobalExitRootUpdater\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"acceptOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"agglayerGERL2\",\"outputs\":[{\"internalType\":\"contractIAgglayerGERL2\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_validator\",\"type\":\"address\"}],\"name\":\"getValidatorIndex\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getValidatorsCount\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getValidatorsInfo\",\"outputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"url\",\"type\":\"string\"}],\"internalType\":\"structIAggOracleCommittee.ValidatorInfo[]\",\"name\":\"\",\"type\":\"tuple[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_owner\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_newProposer\",\"type\":\"address\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"url\",\"type\":\"string\"}],\"internalType\":\"structIAggOracleCommittee.ValidatorInfo[]\",\"name\":\"_newValidators\",\"type\":\"tuple[]\"},{\"internalType\":\"uint256\",\"name\":\"_newThreshold\",\"type\":\"uint256\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_globalExitRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"_signatures\",\"type\":\"bytes\"}],\"name\":\"injectGER\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"name\":\"injectedGERs\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_validator\",\"type\":\"address\"}],\"name\":\"isValidator\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"pendingOwner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"proposer\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"pure\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"threshold\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_newGlobalExitRootUpdater\",\"type\":\"address\"}],\"name\":\"transferGlobalExitRootUpdater\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_newProposer\",\"type\":\"address\"}],\"name\":\"updateAggOracleProposer\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"components\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"index\",\"type\":\"uint256\"}],\"internalType\":\"structIAggOracleCommittee.RemoveValidatorInfo[]\",\"name\":\"_validatorsToRemove\",\"type\":\"tuple[]\"},{\"components\":[{\"internalType\":\"address\",\"name\":\"addr\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"url\",\"type\":\"string\"}],\"internalType\":\"structIAggOracleCommittee.ValidatorInfo[]\",\"name\":\"_validatorsToAdd\",\"type\":\"tuple[]\"},{\"internalType\":\"uint256\",\"name\":\"_newThreshold\",\"type\":\"uint256\"}],\"name\":\"updateValidatorsAndThreshold\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"validatorInfo\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"isValidator\",\"type\":\"bool\"},{\"internalType\":\"string\",\"name\":\"url\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"validators\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_globalExitRoot\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"_signatures\",\"type\":\"bytes\"}],\"name\":\"verifyGER\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"version\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"pure\",\"type\":\"function\"}]",
+	Bin: "0x60a060405234801561000f575f5ffd5b506040516127a73803806127a783398101604081905261002e91610122565b6001600160a01b03811661005557604051632fc46f4360e01b815260040160405180910390fd5b6001600160a01b03811660805261006a610070565b5061014f565b7ff0c57e16840df040f15088dc2f81fe391c3923bec73e23a9662efc9c229c6a00805468010000000000000000900460ff16156100c05760405163f92ee8a960e01b815260040160405180910390fd5b80546001600160401b039081161461011f5780546001600160401b0319166001600160401b0390811782556040519081527fc7f505b2f371ae2175ee4913f4499e1f2633a7b5936321eed1cdaeb6115181d29060200160405180910390a15b50565b5f60208284031215610132575f5ffd5b81516001600160a01b0381168114610148575f5ffd5b9392505050565b6080516126246101835f395f81816102890152818161047501528181610bfe01528181610d020152610d7e01526126245ff3fe608060405234801561000f575f5ffd5b506004361061019a575f3560e01c80638452230e116100e8578063c380353111610093578063e905f1421161006e578063e905f142146103a8578063f2fde38b146103ca578063facd743b146103dd578063fedaa2a714610415575f5ffd5b8063c380353114610351578063d6ad3f8f1461038d578063e30c3978146103a0575f5ffd5b8063a31dee4a116100c3578063a31dee4a14610316578063a8e4fb9014610329578063c053902a14610349575f5ffd5b80638452230e146102e65780638da5cb5b146102fb57806398e04bf814610303575f5ffd5b806354fd4d5011610148578063714897df11610123578063714897df146102ce578063715018a6146102d657806379ba5097146102de575f5ffd5b806354fd4d501461024257806356eb763714610284578063677f3950146102ab575f5ffd5b806335aa2e441161017857806335aa2e44146101e057806342cde4e8146102185780634f1811dd14610221575f5ffd5b80630e1bbf9f1461019e5780631fcc449e146101b357806327498240146101d9575b5f5ffd5b6101b16101ac366004611d3f565b610428565b005b6101c66101c1366004611d3f565b6104cf565b6040519081526020015b60405180910390f35b5f546101c6565b6101f36101ee366004611d5f565b61056d565b60405173ffffffffffffffffffffffffffffffffffffffff90911681526020016101d0565b6101c660015481565b61023461022f366004611d3f565b6105a1565b6040516101d0929190611dc2565b60408051808201909152600681527f76322e302e30000000000000000000000000000000000000000000000000000060208201525b6040516101d09190611de4565b6101f37f000000000000000000000000000000000000000000000000000000000000000081565b6102be6102b9366004611df6565b610647565b60405190151581526020016101d0565b6101c660ff81565b6101b161065d565b6101b161068f565b6102ee61070f565b6040516101d09190611e6d565b6101f36108c6565b6101b161031136600461215b565b610907565b6101b1610324366004611df6565b610b2c565b6003546101f39073ffffffffffffffffffffffffffffffffffffffff1681565b6101b1610d74565b6102776040518060400160405280600681526020017f76322e302e30000000000000000000000000000000000000000000000000000081525081565b6101b161039b366004611d3f565b610df9565b6101f3610e0a565b6102be6103b6366004611d5f565b60046020525f908152604090205460ff1681565b6101b16103d8366004611d3f565b610e32565b6102be6103eb366004611d3f565b73ffffffffffffffffffffffffffffffffffffffff165f9081526002602052604090205460ff1690565b6101b16104233660046121bd565b610ee9565b610430610efc565b6040517f0e1bbf9f00000000000000000000000000000000000000000000000000000000815273ffffffffffffffffffffffffffffffffffffffff82811660048301527f00000000000000000000000000000000000000000000000000000000000000001690630e1bbf9f906024015f604051808303815f87803b1580156104b6575f5ffd5b505af11580156104c8573d5f5f3e3d5ffd5b5050505050565b5f8054815b8181101561053a578373ffffffffffffffffffffffffffffffffffffffff165f8281548110610505576105056122ae565b5f9182526020909120015473ffffffffffffffffffffffffffffffffffffffff1603610532579392505050565b6001016104d4565b506040517f580e542f00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b5f818154811061057b575f80fd5b5f9182526020909120015473ffffffffffffffffffffffffffffffffffffffff16905081565b60026020525f90815260409020805460018201805460ff90921692916105c6906122db565b80601f01602080910402602001604051908101604052809291908181526020018280546105f2906122db565b801561063d5780601f106106145761010080835404028352916020019161063d565b820191905f5260205f20905b81548152906001019060200180831161062057829003601f168201915b5050505050905082565b5f610653848484610f56565b5060019392505050565b6040517fffc0fd9300000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b3380610699610e0a565b73ffffffffffffffffffffffffffffffffffffffff1614610703576040517f118cdaa700000000000000000000000000000000000000000000000000000000815273ffffffffffffffffffffffffffffffffffffffff821660048201526024015b60405180910390fd5b61070c81610fec565b50565b5f80546060918167ffffffffffffffff81111561072e5761072e611f1b565b60405190808252806020026020018201604052801561077357816020015b604080518082019091525f81526060602082015281526020019060019003908161074c5790505b5090505f5b828110156108bf5760405180604001604052805f838154811061079d5761079d6122ae565b5f91825260208083209091015473ffffffffffffffffffffffffffffffffffffffff1683528154920191600291908190869081106107dd576107dd6122ae565b5f91825260208083209091015473ffffffffffffffffffffffffffffffffffffffff1683528201929092526040019020600101805461081b906122db565b80601f0160208091040260200160405190810160405280929190818152602001828054610847906122db565b80156108925780601f1061086957610100808354040283529160200191610892565b820191905f5260205f20905b81548152906001019060200180831161087557829003601f168201915b50505050508152508282815181106108ac576108ac6122ae565b6020908102919091010152600101610778565b5092915050565b5f807f9016d09d72d40fdae2fd8ceac6b6234c7706214fd39c1cd1e609a0528c1993005b5473ffffffffffffffffffffffffffffffffffffffff1692915050565b7ff0c57e16840df040f15088dc2f81fe391c3923bec73e23a9662efc9c229c6a00805468010000000000000000810460ff16159067ffffffffffffffff165f811580156109515750825b90505f8267ffffffffffffffff16600114801561096d5750303b155b90508115801561097b575080155b156109b2576040517ff92ee8a900000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b84547fffffffffffffffffffffffffffffffffffffffffffffffff00000000000000001660011785558315610a135784547fffffffffffffffffffffffffffffffffffffffffffffff00ffffffffffffffff16680100000000000000001785555b73ffffffffffffffffffffffffffffffffffffffff8916610a60576040517f9b15e16f00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b610a6989611040565b610a71611051565b610a7a88611059565b604080515f80825260208201909252610ac091610ab8565b604080518082019091525f8082526020820152815260200190600190039081610a925790505b508888611114565b8315610b215784547fffffffffffffffffffffffffffffffffffffffffffffff00ffffffffffffffff168555604051600181527fc7f505b2f371ae2175ee4913f4499e1f2633a7b5936321eed1cdaeb6115181d29060200160405180910390a15b505050505050505050565b60035473ffffffffffffffffffffffffffffffffffffffff163314610b7d576040517f85d8f64f00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b610b88838383610f56565b5f8381526004602081905260409182902080547fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0016600117905590517f257b363200000000000000000000000000000000000000000000000000000000815273ffffffffffffffffffffffffffffffffffffffff7f0000000000000000000000000000000000000000000000000000000000000000169163257b363291610c359187910190815260200190565b6020604051808303815f875af1158015610c51573d5f5f3e3d5ffd5b505050506040513d601f19601f82011682018060405250810190610c75919061232c565b15610ca95760405183907fcafdbc8c7e71f2990afc9e787ff729a197666534c9a49959c1373c819b708a8f905f90a2505050565b60405183907f45b91a7a09575a05b9dd504dff707cdeb7eda5f9d514491caf5951551b020e1e905f90a26040517f12da06b2000000000000000000000000000000000000000000000000000000008152600481018490527f000000000000000000000000000000000000000000000000000000000000000073ffffffffffffffffffffffffffffffffffffffff16906312da06b2906024015f604051808303815f87803b158015610d58575f5ffd5b505af1158015610d6a573d5f5f3e3d5ffd5b505050505b505050565b610d7c610efc565b7f000000000000000000000000000000000000000000000000000000000000000073ffffffffffffffffffffffffffffffffffffffff1663c053902a6040518163ffffffff1660e01b81526004015f604051808303815f87803b158015610de1575f5ffd5b505af1158015610df3573d5f5f3e3d5ffd5b50505050565b610e01610efc565b61070c81611059565b5f807f237e158222e3e6968b72b9db0d8043aacf074ad9f650f0d1606b4d82ee432c006108ea565b610e3a610efc565b7f237e158222e3e6968b72b9db0d8043aacf074ad9f650f0d1606b4d82ee432c0080547fffffffffffffffffffffffff00000000000000000000000000000000000000001673ffffffffffffffffffffffffffffffffffffffff83169081178255610ea36108c6565b73ffffffffffffffffffffffffffffffffffffffff167f38d16b8cac22d99fc7c124b9cd0de2d3fa1faef420bfe791d8c362d765e2270060405160405180910390a35050565b610ef1610efc565b610d6f838383611114565b33610f056108c6565b73ffffffffffffffffffffffffffffffffffffffff1614610f54576040517f118cdaa70000000000000000000000000000000000000000000000000000000081523360048201526024016106fa565b565b82610f8d576040517fa3e6df8400000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b5f8381526004602052604090205460ff1615610fd5576040517f7bde264700000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b5f610fdf846112ef565b9050610df3818484611320565b7f237e158222e3e6968b72b9db0d8043aacf074ad9f650f0d1606b4d82ee432c0080547fffffffffffffffffffffffff000000000000000000000000000000000000000016815561103c826114b3565b5050565b611048611548565b61070c816115af565b610f54611548565b73ffffffffffffffffffffffffffffffffffffffff81166110a6576040517f18cba8a700000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b600380547fffffffffffffffffffffffff00000000000000000000000000000000000000001673ffffffffffffffffffffffffffffffffffffffff83169081179091556040517f93c536fad4968838f70b6a5841cc12ffbd1a657048ef449f715f0d9ebdbeffca905f90a250565b6001835111156111bc575f5b6001845161112e9190612370565b8110156111ba5783611141826001612383565b81518110611151576111516122ae565b60200260200101516020015184828151811061116f5761116f6122ae565b602002602001015160200151116111b2576040517fb9a11d3100000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b600101611120565b505b5f5b83518110156112125761120a8482815181106111dc576111dc6122ae565b60200260200101515f01518583815181106111f9576111f96122ae565b602002602001015160200151611606565b6001016111be565b505f5b825181101561126957611261838281518110611233576112336122ae565b60200260200101515f0151848381518110611250576112506122ae565b602002602001015160200151611827565b600101611215565b505f5460ff10156112a6576040517f2bb8575c00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b6112af816119eb565b7f50051c796f4289791fedb6e1f365497b6527df6f6f19527d566e3c9791af54605f6001546040516112e2929190612396565b60405180910390a1505050565b5f8160405160200161130391815260200190565b604051602081830303815290604052805190602001209050919050565b60015461132e8160416123fb565b8214611366576040517ffb6c730400000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b5f80805b83811015610d6a576113e08787876113838560416123fb565b9061138f866001612383565b61139a9060416123fb565b926113a793929190612412565b8080601f0160208091040260200160405190810160405280939291908181526020018383808284375f92019190915250611a6492505050565b73ffffffffffffffffffffffffffffffffffffffff81165f9081526002602052604090205490925060ff16611441576040517fe51315d200000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b8273ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff16116114a6576040517fe211dd1e00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b909150819060010161136a565b7f9016d09d72d40fdae2fd8ceac6b6234c7706214fd39c1cd1e609a0528c19930080547fffffffffffffffffffffffff0000000000000000000000000000000000000000811673ffffffffffffffffffffffffffffffffffffffff848116918217845560405192169182907f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0905f90a3505050565b7ff0c57e16840df040f15088dc2f81fe391c3923bec73e23a9662efc9c229c6a005468010000000000000000900460ff16610f54576040517fd7e6bcf800000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b6115b7611548565b73ffffffffffffffffffffffffffffffffffffffff8116610703576040517f1e4fbdf70000000000000000000000000000000000000000000000000000000081525f60048201526024016106fa565b5f54808210611641576040517f99e56ef700000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b8273ffffffffffffffffffffffffffffffffffffffff165f838154811061166a5761166a6122ae565b5f9182526020909120015473ffffffffffffffffffffffffffffffffffffffff16146116c2576040517fd29e638b00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b73ffffffffffffffffffffffffffffffffffffffff83165f90815260026020526040812080547fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff001681559061171a6001830182611ccd565b505f9050611729600183612370565b81548110611739576117396122ae565b5f918252602082200154815473ffffffffffffffffffffffffffffffffffffffff90911691908490811061176f5761176f6122ae565b5f918252602082200180547fffffffffffffffffffffffff00000000000000000000000000000000000000001673ffffffffffffffffffffffffffffffffffffffff93909316929092179091558054806117cb576117cb612439565b5f8281526020902081017fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff90810180547fffffffffffffffffffffffff0000000000000000000000000000000000000000169055019055505050565b73ffffffffffffffffffffffffffffffffffffffff8216611874576040517f5c074f7000000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b3073ffffffffffffffffffffffffffffffffffffffff8316036118c3576040517f7f32165400000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b73ffffffffffffffffffffffffffffffffffffffff82165f9081526002602052604090205460ff1615611922576040517f8d09a73e00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b5f8054600180820183557f290decd9548b62a8d60345a988386fc84ba6bc95484008f6362f93160ef3e56390910180547fffffffffffffffffffffffff00000000000000000000000000000000000000001673ffffffffffffffffffffffffffffffffffffffff86169081179091556040805180820182528381526020808201878152938652600290529320835181547fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff0016901515178155905190918201906104c890826124aa565b805f03611a24576040517ff412416600000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b5f54811115611a5f576040517f270e262e00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b600155565b5f5f5f5f611a728686611a8e565b925092509250611a828282611ad7565b50909150505b92915050565b5f5f5f8351604103611ac5576020840151604085015160608601515f1a611ab788828585611bda565b955095509550505050611ad0565b505081515f91506002905b9250925092565b5f826003811115611aea57611aea6125c1565b03611af3575050565b6001826003811115611b0757611b076125c1565b03611b3e576040517ff645eedf00000000000000000000000000000000000000000000000000000000815260040160405180910390fd5b6002826003811115611b5257611b526125c1565b03611b8c576040517ffce698f7000000000000000000000000000000000000000000000000000000008152600481018290526024016106fa565b6003826003811115611ba057611ba06125c1565b0361103c576040517fd78bce0c000000000000000000000000000000000000000000000000000000008152600481018290526024016106fa565b5f80807f7fffffffffffffffffffffffffffffff5d576e7357a4501ddfe92f46681b20a0841115611c1357505f91506003905082611cc3565b604080515f808252602082018084528a905260ff891692820192909252606081018790526080810186905260019060a0016020604051602081039080840390855afa158015611c64573d5f5f3e3d5ffd5b50506040517fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe0015191505073ffffffffffffffffffffffffffffffffffffffff8116611cba57505f925060019150829050611cc3565b92505f91508190505b9450945094915050565b508054611cd9906122db565b5f825580601f10611ce8575050565b601f0160209004905f5260205f209081019061070c91905b80821115611d13575f8155600101611d00565b5090565b803573ffffffffffffffffffffffffffffffffffffffff81168114611d3a575f5ffd5b919050565b5f60208284031215611d4f575f5ffd5b611d5882611d17565b9392505050565b5f60208284031215611d6f575f5ffd5b5035919050565b5f81518084528060208401602086015e5f6020828601015260207fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe0601f83011685010191505092915050565b8215158152604060208201525f611ddc6040830184611d76565b949350505050565b602081525f611d586020830184611d76565b5f5f5f60408486031215611e08575f5ffd5b83359250602084013567ffffffffffffffff811115611e25575f5ffd5b8401601f81018613611e35575f5ffd5b803567ffffffffffffffff811115611e4b575f5ffd5b866020828401011115611e5c575f5ffd5b939660209190910195509293505050565b5f602082016020835280845180835260408501915060408160051b8601019250602086015f5b82811015611f0f577fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc0878603018452815173ffffffffffffffffffffffffffffffffffffffff81511686526020810151905060406020870152611ef96040870182611d76565b9550506020938401939190910190600101611e93565b50929695505050505050565b7f4e487b71000000000000000000000000000000000000000000000000000000005f52604160045260245ffd5b6040805190810167ffffffffffffffff81118282101715611f6b57611f6b611f1b565b60405290565b604051601f82017fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe016810167ffffffffffffffff81118282101715611fb857611fb8611f1b565b604052919050565b5f67ffffffffffffffff821115611fd957611fd9611f1b565b5060051b60200190565b5f82601f830112611ff2575f5ffd5b813561200561200082611fc0565b611f71565b8082825260208201915060208360051b860101925085831115612026575f5ffd5b602085015b8381101561215157803567ffffffffffffffff811115612049575f5ffd5b860160408189037fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe001121561207c575f5ffd5b612084611f48565b61209060208301611d17565b8152604082013567ffffffffffffffff8111156120ab575f5ffd5b60208184010192505088601f8301126120c2575f5ffd5b813567ffffffffffffffff8111156120dc576120dc611f1b565b61210d60207fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe0601f84011601611f71565b8181528a6020838601011115612121575f5ffd5b816020850160208301375f602083830101528060208401525050808552505060208301925060208101905061202b565b5095945050505050565b5f5f5f5f6080858703121561216e575f5ffd5b61217785611d17565b935061218560208601611d17565b9250604085013567ffffffffffffffff8111156121a0575f5ffd5b6121ac87828801611fe3565b949793965093946060013593505050565b5f5f5f606084860312156121cf575f5ffd5b833567ffffffffffffffff8111156121e5575f5ffd5b8401601f810186136121f5575f5ffd5b803561220361200082611fc0565b8082825260208201915060208360061b850101925088831115612224575f5ffd5b6020840193505b82841015612272576040848a031215612242575f5ffd5b61224a611f48565b61225385611d17565b815260208581013581830152908352604090940193919091019061222b565b9550505050602084013567ffffffffffffffff811115612290575f5ffd5b61229c86828701611fe3565b93969395505050506040919091013590565b7f4e487b71000000000000000000000000000000000000000000000000000000005f52603260045260245ffd5b600181811c908216806122ef57607f821691505b602082108103612326577f4e487b71000000000000000000000000000000000000000000000000000000005f52602260045260245ffd5b50919050565b5f6020828403121561233c575f5ffd5b5051919050565b7f4e487b71000000000000000000000000000000000000000000000000000000005f52601160045260245ffd5b81810381811115611a8857611a88612343565b80820180821115611a8857611a88612343565b604080825283549082018190525f8481526020812090916060840190835b818110156123e857835473ffffffffffffffffffffffffffffffffffffffff168352600193840193602090930192016123b4565b5050602093909301939093525092915050565b8082028115828204841417611a8857611a88612343565b5f5f85851115612420575f5ffd5b8386111561242c575f5ffd5b5050820193919092039150565b7f4e487b71000000000000000000000000000000000000000000000000000000005f52603160045260245ffd5b601f821115610d6f57805f5260205f20601f840160051c8101602085101561248b5750805b601f840160051c820191505b818110156104c8575f8155600101612497565b815167ffffffffffffffff8111156124c4576124c4611f1b565b6124d8816124d284546122db565b84612466565b6020601f821160018114612529575f83156124f35750848201515b7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff600385901b1c1916600184901b1784556104c8565b5f848152602081207fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffe08516915b828110156125765787850151825560209485019460019092019101612556565b50848210156125b257868401517fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff600387901b60f8161c191681555b50505050600190811b01905550565b7f4e487b71000000000000000000000000000000000000000000000000000000005f52602160045260245ffdfea2646970667358221220d0e57f7961ae323ccc8cadafcf2253c81a11824b093d4ba4f4bc71b42024942164736f6c634300081c0033",
 }
 
 // AggoraclecommitteeABI is the input ABI used to generate the binding from.
@@ -44,7 +56,7 @@ var AggoraclecommitteeABI = AggoraclecommitteeMetaData.ABI
 var AggoraclecommitteeBin = AggoraclecommitteeMetaData.Bin
 
 // DeployAggoraclecommittee deploys a new Ethereum contract, binding an instance of Aggoraclecommittee to it.
-func DeployAggoraclecommittee(auth *bind.TransactOpts, backend bind.ContractBackend, globalExitRootManager common.Address) (common.Address, *types.Transaction, *Aggoraclecommittee, error) {
+func DeployAggoraclecommittee(auth *bind.TransactOpts, backend bind.ContractBackend, _agglayerGERL2 common.Address) (common.Address, *types.Transaction, *Aggoraclecommittee, error) {
 	parsed, err := AggoraclecommitteeMetaData.GetAbi()
 	if err != nil {
 		return common.Address{}, nil, nil, err
@@ -53,7 +65,7 @@ func DeployAggoraclecommittee(auth *bind.TransactOpts, backend bind.ContractBack
 		return common.Address{}, nil, nil, errors.New("GetABI returned nil")
 	}
 
-	address, tx, contract, err := bind.DeployContract(auth, *parsed, common.FromHex(AggoraclecommitteeBin), backend, globalExitRootManager)
+	address, tx, contract, err := bind.DeployContract(auth, *parsed, common.FromHex(AggoraclecommitteeBin), backend, _agglayerGERL2)
 	if err != nil {
 		return common.Address{}, nil, nil, err
 	}
@@ -202,43 +214,43 @@ func (_Aggoraclecommittee *AggoraclecommitteeTransactorRaw) Transact(opts *bind.
 	return _Aggoraclecommittee.Contract.contract.Transact(opts, method, params...)
 }
 
-// INITIALPROPOSEDGER is a free data retrieval call binding the contract method 0x512bab0d.
+// MAXVALIDATORS is a free data retrieval call binding the contract method 0x714897df.
 //
-// Solidity: function INITIAL_PROPOSED_GER() view returns(bytes32)
-func (_Aggoraclecommittee *AggoraclecommitteeCaller) INITIALPROPOSEDGER(opts *bind.CallOpts) ([32]byte, error) {
+// Solidity: function MAX_VALIDATORS() view returns(uint256)
+func (_Aggoraclecommittee *AggoraclecommitteeCaller) MAXVALIDATORS(opts *bind.CallOpts) (*big.Int, error) {
 	var out []interface{}
-	err := _Aggoraclecommittee.contract.Call(opts, &out, "INITIAL_PROPOSED_GER")
+	err := _Aggoraclecommittee.contract.Call(opts, &out, "MAX_VALIDATORS")
 
 	if err != nil {
-		return *new([32]byte), err
+		return *new(*big.Int), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
 
 	return out0, err
 
 }
 
-// INITIALPROPOSEDGER is a free data retrieval call binding the contract method 0x512bab0d.
+// MAXVALIDATORS is a free data retrieval call binding the contract method 0x714897df.
 //
-// Solidity: function INITIAL_PROPOSED_GER() view returns(bytes32)
-func (_Aggoraclecommittee *AggoraclecommitteeSession) INITIALPROPOSEDGER() ([32]byte, error) {
-	return _Aggoraclecommittee.Contract.INITIALPROPOSEDGER(&_Aggoraclecommittee.CallOpts)
+// Solidity: function MAX_VALIDATORS() view returns(uint256)
+func (_Aggoraclecommittee *AggoraclecommitteeSession) MAXVALIDATORS() (*big.Int, error) {
+	return _Aggoraclecommittee.Contract.MAXVALIDATORS(&_Aggoraclecommittee.CallOpts)
 }
 
-// INITIALPROPOSEDGER is a free data retrieval call binding the contract method 0x512bab0d.
+// MAXVALIDATORS is a free data retrieval call binding the contract method 0x714897df.
 //
-// Solidity: function INITIAL_PROPOSED_GER() view returns(bytes32)
-func (_Aggoraclecommittee *AggoraclecommitteeCallerSession) INITIALPROPOSEDGER() ([32]byte, error) {
-	return _Aggoraclecommittee.Contract.INITIALPROPOSEDGER(&_Aggoraclecommittee.CallOpts)
+// Solidity: function MAX_VALIDATORS() view returns(uint256)
+func (_Aggoraclecommittee *AggoraclecommitteeCallerSession) MAXVALIDATORS() (*big.Int, error) {
+	return _Aggoraclecommittee.Contract.MAXVALIDATORS(&_Aggoraclecommittee.CallOpts)
 }
 
-// VERSION is a free data retrieval call binding the contract method 0xffa1ad74.
+// VERSIONAGGORACLECOMMITTEE is a free data retrieval call binding the contract method 0xc3803531.
 //
-// Solidity: function VERSION() view returns(string)
-func (_Aggoraclecommittee *AggoraclecommitteeCaller) VERSION(opts *bind.CallOpts) (string, error) {
+// Solidity: function VERSION_AGG_ORACLE_COMMITTEE() view returns(string)
+func (_Aggoraclecommittee *AggoraclecommitteeCaller) VERSIONAGGORACLECOMMITTEE(opts *bind.CallOpts) (string, error) {
 	var out []interface{}
-	err := _Aggoraclecommittee.contract.Call(opts, &out, "VERSION")
+	err := _Aggoraclecommittee.contract.Call(opts, &out, "VERSION_AGG_ORACLE_COMMITTEE")
 
 	if err != nil {
 		return *new(string), err
@@ -250,57 +262,26 @@ func (_Aggoraclecommittee *AggoraclecommitteeCaller) VERSION(opts *bind.CallOpts
 
 }
 
-// VERSION is a free data retrieval call binding the contract method 0xffa1ad74.
+// VERSIONAGGORACLECOMMITTEE is a free data retrieval call binding the contract method 0xc3803531.
 //
-// Solidity: function VERSION() view returns(string)
-func (_Aggoraclecommittee *AggoraclecommitteeSession) VERSION() (string, error) {
-	return _Aggoraclecommittee.Contract.VERSION(&_Aggoraclecommittee.CallOpts)
+// Solidity: function VERSION_AGG_ORACLE_COMMITTEE() view returns(string)
+func (_Aggoraclecommittee *AggoraclecommitteeSession) VERSIONAGGORACLECOMMITTEE() (string, error) {
+	return _Aggoraclecommittee.Contract.VERSIONAGGORACLECOMMITTEE(&_Aggoraclecommittee.CallOpts)
 }
 
-// VERSION is a free data retrieval call binding the contract method 0xffa1ad74.
+// VERSIONAGGORACLECOMMITTEE is a free data retrieval call binding the contract method 0xc3803531.
 //
-// Solidity: function VERSION() view returns(string)
-func (_Aggoraclecommittee *AggoraclecommitteeCallerSession) VERSION() (string, error) {
-	return _Aggoraclecommittee.Contract.VERSION(&_Aggoraclecommittee.CallOpts)
+// Solidity: function VERSION_AGG_ORACLE_COMMITTEE() view returns(string)
+func (_Aggoraclecommittee *AggoraclecommitteeCallerSession) VERSIONAGGORACLECOMMITTEE() (string, error) {
+	return _Aggoraclecommittee.Contract.VERSIONAGGORACLECOMMITTEE(&_Aggoraclecommittee.CallOpts)
 }
 
-// AddressToLastProposedGER is a free data retrieval call binding the contract method 0x38fd8a03.
+// AgglayerGERL2 is a free data retrieval call binding the contract method 0x56eb7637.
 //
-// Solidity: function addressToLastProposedGER(address ) view returns(bytes32)
-func (_Aggoraclecommittee *AggoraclecommitteeCaller) AddressToLastProposedGER(opts *bind.CallOpts, arg0 common.Address) ([32]byte, error) {
+// Solidity: function agglayerGERL2() view returns(address)
+func (_Aggoraclecommittee *AggoraclecommitteeCaller) AgglayerGERL2(opts *bind.CallOpts) (common.Address, error) {
 	var out []interface{}
-	err := _Aggoraclecommittee.contract.Call(opts, &out, "addressToLastProposedGER", arg0)
-
-	if err != nil {
-		return *new([32]byte), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new([32]byte)).(*[32]byte)
-
-	return out0, err
-
-}
-
-// AddressToLastProposedGER is a free data retrieval call binding the contract method 0x38fd8a03.
-//
-// Solidity: function addressToLastProposedGER(address ) view returns(bytes32)
-func (_Aggoraclecommittee *AggoraclecommitteeSession) AddressToLastProposedGER(arg0 common.Address) ([32]byte, error) {
-	return _Aggoraclecommittee.Contract.AddressToLastProposedGER(&_Aggoraclecommittee.CallOpts, arg0)
-}
-
-// AddressToLastProposedGER is a free data retrieval call binding the contract method 0x38fd8a03.
-//
-// Solidity: function addressToLastProposedGER(address ) view returns(bytes32)
-func (_Aggoraclecommittee *AggoraclecommitteeCallerSession) AddressToLastProposedGER(arg0 common.Address) ([32]byte, error) {
-	return _Aggoraclecommittee.Contract.AddressToLastProposedGER(&_Aggoraclecommittee.CallOpts, arg0)
-}
-
-// AggOracleMembers is a free data retrieval call binding the contract method 0x1ffbaa74.
-//
-// Solidity: function aggOracleMembers(uint256 ) view returns(address)
-func (_Aggoraclecommittee *AggoraclecommitteeCaller) AggOracleMembers(opts *bind.CallOpts, arg0 *big.Int) (common.Address, error) {
-	var out []interface{}
-	err := _Aggoraclecommittee.contract.Call(opts, &out, "aggOracleMembers", arg0)
+	err := _Aggoraclecommittee.contract.Call(opts, &out, "agglayerGERL2")
 
 	if err != nil {
 		return *new(common.Address), err
@@ -312,26 +293,26 @@ func (_Aggoraclecommittee *AggoraclecommitteeCaller) AggOracleMembers(opts *bind
 
 }
 
-// AggOracleMembers is a free data retrieval call binding the contract method 0x1ffbaa74.
+// AgglayerGERL2 is a free data retrieval call binding the contract method 0x56eb7637.
 //
-// Solidity: function aggOracleMembers(uint256 ) view returns(address)
-func (_Aggoraclecommittee *AggoraclecommitteeSession) AggOracleMembers(arg0 *big.Int) (common.Address, error) {
-	return _Aggoraclecommittee.Contract.AggOracleMembers(&_Aggoraclecommittee.CallOpts, arg0)
+// Solidity: function agglayerGERL2() view returns(address)
+func (_Aggoraclecommittee *AggoraclecommitteeSession) AgglayerGERL2() (common.Address, error) {
+	return _Aggoraclecommittee.Contract.AgglayerGERL2(&_Aggoraclecommittee.CallOpts)
 }
 
-// AggOracleMembers is a free data retrieval call binding the contract method 0x1ffbaa74.
+// AgglayerGERL2 is a free data retrieval call binding the contract method 0x56eb7637.
 //
-// Solidity: function aggOracleMembers(uint256 ) view returns(address)
-func (_Aggoraclecommittee *AggoraclecommitteeCallerSession) AggOracleMembers(arg0 *big.Int) (common.Address, error) {
-	return _Aggoraclecommittee.Contract.AggOracleMembers(&_Aggoraclecommittee.CallOpts, arg0)
+// Solidity: function agglayerGERL2() view returns(address)
+func (_Aggoraclecommittee *AggoraclecommitteeCallerSession) AgglayerGERL2() (common.Address, error) {
+	return _Aggoraclecommittee.Contract.AgglayerGERL2(&_Aggoraclecommittee.CallOpts)
 }
 
-// GetAggOracleMemberIndex is a free data retrieval call binding the contract method 0x72312af8.
+// GetValidatorIndex is a free data retrieval call binding the contract method 0x1fcc449e.
 //
-// Solidity: function getAggOracleMemberIndex(address oracleMember) view returns(uint256)
-func (_Aggoraclecommittee *AggoraclecommitteeCaller) GetAggOracleMemberIndex(opts *bind.CallOpts, oracleMember common.Address) (*big.Int, error) {
+// Solidity: function getValidatorIndex(address _validator) view returns(uint256)
+func (_Aggoraclecommittee *AggoraclecommitteeCaller) GetValidatorIndex(opts *bind.CallOpts, _validator common.Address) (*big.Int, error) {
 	var out []interface{}
-	err := _Aggoraclecommittee.contract.Call(opts, &out, "getAggOracleMemberIndex", oracleMember)
+	err := _Aggoraclecommittee.contract.Call(opts, &out, "getValidatorIndex", _validator)
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -343,26 +324,26 @@ func (_Aggoraclecommittee *AggoraclecommitteeCaller) GetAggOracleMemberIndex(opt
 
 }
 
-// GetAggOracleMemberIndex is a free data retrieval call binding the contract method 0x72312af8.
+// GetValidatorIndex is a free data retrieval call binding the contract method 0x1fcc449e.
 //
-// Solidity: function getAggOracleMemberIndex(address oracleMember) view returns(uint256)
-func (_Aggoraclecommittee *AggoraclecommitteeSession) GetAggOracleMemberIndex(oracleMember common.Address) (*big.Int, error) {
-	return _Aggoraclecommittee.Contract.GetAggOracleMemberIndex(&_Aggoraclecommittee.CallOpts, oracleMember)
+// Solidity: function getValidatorIndex(address _validator) view returns(uint256)
+func (_Aggoraclecommittee *AggoraclecommitteeSession) GetValidatorIndex(_validator common.Address) (*big.Int, error) {
+	return _Aggoraclecommittee.Contract.GetValidatorIndex(&_Aggoraclecommittee.CallOpts, _validator)
 }
 
-// GetAggOracleMemberIndex is a free data retrieval call binding the contract method 0x72312af8.
+// GetValidatorIndex is a free data retrieval call binding the contract method 0x1fcc449e.
 //
-// Solidity: function getAggOracleMemberIndex(address oracleMember) view returns(uint256)
-func (_Aggoraclecommittee *AggoraclecommitteeCallerSession) GetAggOracleMemberIndex(oracleMember common.Address) (*big.Int, error) {
-	return _Aggoraclecommittee.Contract.GetAggOracleMemberIndex(&_Aggoraclecommittee.CallOpts, oracleMember)
+// Solidity: function getValidatorIndex(address _validator) view returns(uint256)
+func (_Aggoraclecommittee *AggoraclecommitteeCallerSession) GetValidatorIndex(_validator common.Address) (*big.Int, error) {
+	return _Aggoraclecommittee.Contract.GetValidatorIndex(&_Aggoraclecommittee.CallOpts, _validator)
 }
 
-// GetAggOracleMembersCount is a free data retrieval call binding the contract method 0x017e37d6.
+// GetValidatorsCount is a free data retrieval call binding the contract method 0x27498240.
 //
-// Solidity: function getAggOracleMembersCount() view returns(uint256)
-func (_Aggoraclecommittee *AggoraclecommitteeCaller) GetAggOracleMembersCount(opts *bind.CallOpts) (*big.Int, error) {
+// Solidity: function getValidatorsCount() view returns(uint256)
+func (_Aggoraclecommittee *AggoraclecommitteeCaller) GetValidatorsCount(opts *bind.CallOpts) (*big.Int, error) {
 	var out []interface{}
-	err := _Aggoraclecommittee.contract.Call(opts, &out, "getAggOracleMembersCount")
+	err := _Aggoraclecommittee.contract.Call(opts, &out, "getValidatorsCount")
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -374,80 +355,111 @@ func (_Aggoraclecommittee *AggoraclecommitteeCaller) GetAggOracleMembersCount(op
 
 }
 
-// GetAggOracleMembersCount is a free data retrieval call binding the contract method 0x017e37d6.
+// GetValidatorsCount is a free data retrieval call binding the contract method 0x27498240.
 //
-// Solidity: function getAggOracleMembersCount() view returns(uint256)
-func (_Aggoraclecommittee *AggoraclecommitteeSession) GetAggOracleMembersCount() (*big.Int, error) {
-	return _Aggoraclecommittee.Contract.GetAggOracleMembersCount(&_Aggoraclecommittee.CallOpts)
+// Solidity: function getValidatorsCount() view returns(uint256)
+func (_Aggoraclecommittee *AggoraclecommitteeSession) GetValidatorsCount() (*big.Int, error) {
+	return _Aggoraclecommittee.Contract.GetValidatorsCount(&_Aggoraclecommittee.CallOpts)
 }
 
-// GetAggOracleMembersCount is a free data retrieval call binding the contract method 0x017e37d6.
+// GetValidatorsCount is a free data retrieval call binding the contract method 0x27498240.
 //
-// Solidity: function getAggOracleMembersCount() view returns(uint256)
-func (_Aggoraclecommittee *AggoraclecommitteeCallerSession) GetAggOracleMembersCount() (*big.Int, error) {
-	return _Aggoraclecommittee.Contract.GetAggOracleMembersCount(&_Aggoraclecommittee.CallOpts)
+// Solidity: function getValidatorsCount() view returns(uint256)
+func (_Aggoraclecommittee *AggoraclecommitteeCallerSession) GetValidatorsCount() (*big.Int, error) {
+	return _Aggoraclecommittee.Contract.GetValidatorsCount(&_Aggoraclecommittee.CallOpts)
 }
 
-// GetAllAggOracleMembers is a free data retrieval call binding the contract method 0x703d8d42.
+// GetValidatorsInfo is a free data retrieval call binding the contract method 0x8452230e.
 //
-// Solidity: function getAllAggOracleMembers() view returns(address[])
-func (_Aggoraclecommittee *AggoraclecommitteeCaller) GetAllAggOracleMembers(opts *bind.CallOpts) ([]common.Address, error) {
+// Solidity: function getValidatorsInfo() view returns((address,string)[])
+func (_Aggoraclecommittee *AggoraclecommitteeCaller) GetValidatorsInfo(opts *bind.CallOpts) ([]IAggOracleCommitteeValidatorInfo, error) {
 	var out []interface{}
-	err := _Aggoraclecommittee.contract.Call(opts, &out, "getAllAggOracleMembers")
+	err := _Aggoraclecommittee.contract.Call(opts, &out, "getValidatorsInfo")
 
 	if err != nil {
-		return *new([]common.Address), err
+		return *new([]IAggOracleCommitteeValidatorInfo), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new([]common.Address)).(*[]common.Address)
+	out0 := *abi.ConvertType(out[0], new([]IAggOracleCommitteeValidatorInfo)).(*[]IAggOracleCommitteeValidatorInfo)
 
 	return out0, err
 
 }
 
-// GetAllAggOracleMembers is a free data retrieval call binding the contract method 0x703d8d42.
+// GetValidatorsInfo is a free data retrieval call binding the contract method 0x8452230e.
 //
-// Solidity: function getAllAggOracleMembers() view returns(address[])
-func (_Aggoraclecommittee *AggoraclecommitteeSession) GetAllAggOracleMembers() ([]common.Address, error) {
-	return _Aggoraclecommittee.Contract.GetAllAggOracleMembers(&_Aggoraclecommittee.CallOpts)
+// Solidity: function getValidatorsInfo() view returns((address,string)[])
+func (_Aggoraclecommittee *AggoraclecommitteeSession) GetValidatorsInfo() ([]IAggOracleCommitteeValidatorInfo, error) {
+	return _Aggoraclecommittee.Contract.GetValidatorsInfo(&_Aggoraclecommittee.CallOpts)
 }
 
-// GetAllAggOracleMembers is a free data retrieval call binding the contract method 0x703d8d42.
+// GetValidatorsInfo is a free data retrieval call binding the contract method 0x8452230e.
 //
-// Solidity: function getAllAggOracleMembers() view returns(address[])
-func (_Aggoraclecommittee *AggoraclecommitteeCallerSession) GetAllAggOracleMembers() ([]common.Address, error) {
-	return _Aggoraclecommittee.Contract.GetAllAggOracleMembers(&_Aggoraclecommittee.CallOpts)
+// Solidity: function getValidatorsInfo() view returns((address,string)[])
+func (_Aggoraclecommittee *AggoraclecommitteeCallerSession) GetValidatorsInfo() ([]IAggOracleCommitteeValidatorInfo, error) {
+	return _Aggoraclecommittee.Contract.GetValidatorsInfo(&_Aggoraclecommittee.CallOpts)
 }
 
-// GlobalExitRootManagerL2Sovereign is a free data retrieval call binding the contract method 0xa7a90e2a.
+// InjectedGERs is a free data retrieval call binding the contract method 0xe905f142.
 //
-// Solidity: function globalExitRootManagerL2Sovereign() view returns(address)
-func (_Aggoraclecommittee *AggoraclecommitteeCaller) GlobalExitRootManagerL2Sovereign(opts *bind.CallOpts) (common.Address, error) {
+// Solidity: function injectedGERs(bytes32 ) view returns(bool)
+func (_Aggoraclecommittee *AggoraclecommitteeCaller) InjectedGERs(opts *bind.CallOpts, arg0 [32]byte) (bool, error) {
 	var out []interface{}
-	err := _Aggoraclecommittee.contract.Call(opts, &out, "globalExitRootManagerL2Sovereign")
+	err := _Aggoraclecommittee.contract.Call(opts, &out, "injectedGERs", arg0)
 
 	if err != nil {
-		return *new(common.Address), err
+		return *new(bool), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
 
 	return out0, err
 
 }
 
-// GlobalExitRootManagerL2Sovereign is a free data retrieval call binding the contract method 0xa7a90e2a.
+// InjectedGERs is a free data retrieval call binding the contract method 0xe905f142.
 //
-// Solidity: function globalExitRootManagerL2Sovereign() view returns(address)
-func (_Aggoraclecommittee *AggoraclecommitteeSession) GlobalExitRootManagerL2Sovereign() (common.Address, error) {
-	return _Aggoraclecommittee.Contract.GlobalExitRootManagerL2Sovereign(&_Aggoraclecommittee.CallOpts)
+// Solidity: function injectedGERs(bytes32 ) view returns(bool)
+func (_Aggoraclecommittee *AggoraclecommitteeSession) InjectedGERs(arg0 [32]byte) (bool, error) {
+	return _Aggoraclecommittee.Contract.InjectedGERs(&_Aggoraclecommittee.CallOpts, arg0)
 }
 
-// GlobalExitRootManagerL2Sovereign is a free data retrieval call binding the contract method 0xa7a90e2a.
+// InjectedGERs is a free data retrieval call binding the contract method 0xe905f142.
 //
-// Solidity: function globalExitRootManagerL2Sovereign() view returns(address)
-func (_Aggoraclecommittee *AggoraclecommitteeCallerSession) GlobalExitRootManagerL2Sovereign() (common.Address, error) {
-	return _Aggoraclecommittee.Contract.GlobalExitRootManagerL2Sovereign(&_Aggoraclecommittee.CallOpts)
+// Solidity: function injectedGERs(bytes32 ) view returns(bool)
+func (_Aggoraclecommittee *AggoraclecommitteeCallerSession) InjectedGERs(arg0 [32]byte) (bool, error) {
+	return _Aggoraclecommittee.Contract.InjectedGERs(&_Aggoraclecommittee.CallOpts, arg0)
+}
+
+// IsValidator is a free data retrieval call binding the contract method 0xfacd743b.
+//
+// Solidity: function isValidator(address _validator) view returns(bool)
+func (_Aggoraclecommittee *AggoraclecommitteeCaller) IsValidator(opts *bind.CallOpts, _validator common.Address) (bool, error) {
+	var out []interface{}
+	err := _Aggoraclecommittee.contract.Call(opts, &out, "isValidator", _validator)
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
+}
+
+// IsValidator is a free data retrieval call binding the contract method 0xfacd743b.
+//
+// Solidity: function isValidator(address _validator) view returns(bool)
+func (_Aggoraclecommittee *AggoraclecommitteeSession) IsValidator(_validator common.Address) (bool, error) {
+	return _Aggoraclecommittee.Contract.IsValidator(&_Aggoraclecommittee.CallOpts, _validator)
+}
+
+// IsValidator is a free data retrieval call binding the contract method 0xfacd743b.
+//
+// Solidity: function isValidator(address _validator) view returns(bool)
+func (_Aggoraclecommittee *AggoraclecommitteeCallerSession) IsValidator(_validator common.Address) (bool, error) {
+	return _Aggoraclecommittee.Contract.IsValidator(&_Aggoraclecommittee.CallOpts, _validator)
 }
 
 // Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
@@ -481,80 +493,264 @@ func (_Aggoraclecommittee *AggoraclecommitteeCallerSession) Owner() (common.Addr
 	return _Aggoraclecommittee.Contract.Owner(&_Aggoraclecommittee.CallOpts)
 }
 
-// ProposedGERToReport is a free data retrieval call binding the contract method 0x51146e10.
+// PendingOwner is a free data retrieval call binding the contract method 0xe30c3978.
 //
-// Solidity: function proposedGERToReport(bytes32 ) view returns(uint64 votes, uint64 timestamp)
-func (_Aggoraclecommittee *AggoraclecommitteeCaller) ProposedGERToReport(opts *bind.CallOpts, arg0 [32]byte) (struct {
-	Votes     uint64
-	Timestamp uint64
-}, error) {
+// Solidity: function pendingOwner() view returns(address)
+func (_Aggoraclecommittee *AggoraclecommitteeCaller) PendingOwner(opts *bind.CallOpts) (common.Address, error) {
 	var out []interface{}
-	err := _Aggoraclecommittee.contract.Call(opts, &out, "proposedGERToReport", arg0)
-
-	outstruct := new(struct {
-		Votes     uint64
-		Timestamp uint64
-	})
-	if err != nil {
-		return *outstruct, err
-	}
-
-	outstruct.Votes = *abi.ConvertType(out[0], new(uint64)).(*uint64)
-	outstruct.Timestamp = *abi.ConvertType(out[1], new(uint64)).(*uint64)
-
-	return *outstruct, err
-
-}
-
-// ProposedGERToReport is a free data retrieval call binding the contract method 0x51146e10.
-//
-// Solidity: function proposedGERToReport(bytes32 ) view returns(uint64 votes, uint64 timestamp)
-func (_Aggoraclecommittee *AggoraclecommitteeSession) ProposedGERToReport(arg0 [32]byte) (struct {
-	Votes     uint64
-	Timestamp uint64
-}, error) {
-	return _Aggoraclecommittee.Contract.ProposedGERToReport(&_Aggoraclecommittee.CallOpts, arg0)
-}
-
-// ProposedGERToReport is a free data retrieval call binding the contract method 0x51146e10.
-//
-// Solidity: function proposedGERToReport(bytes32 ) view returns(uint64 votes, uint64 timestamp)
-func (_Aggoraclecommittee *AggoraclecommitteeCallerSession) ProposedGERToReport(arg0 [32]byte) (struct {
-	Votes     uint64
-	Timestamp uint64
-}, error) {
-	return _Aggoraclecommittee.Contract.ProposedGERToReport(&_Aggoraclecommittee.CallOpts, arg0)
-}
-
-// Quorum is a free data retrieval call binding the contract method 0x1703a018.
-//
-// Solidity: function quorum() view returns(uint64)
-func (_Aggoraclecommittee *AggoraclecommitteeCaller) Quorum(opts *bind.CallOpts) (uint64, error) {
-	var out []interface{}
-	err := _Aggoraclecommittee.contract.Call(opts, &out, "quorum")
+	err := _Aggoraclecommittee.contract.Call(opts, &out, "pendingOwner")
 
 	if err != nil {
-		return *new(uint64), err
+		return *new(common.Address), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new(uint64)).(*uint64)
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
 
 	return out0, err
 
 }
 
-// Quorum is a free data retrieval call binding the contract method 0x1703a018.
+// PendingOwner is a free data retrieval call binding the contract method 0xe30c3978.
 //
-// Solidity: function quorum() view returns(uint64)
-func (_Aggoraclecommittee *AggoraclecommitteeSession) Quorum() (uint64, error) {
-	return _Aggoraclecommittee.Contract.Quorum(&_Aggoraclecommittee.CallOpts)
+// Solidity: function pendingOwner() view returns(address)
+func (_Aggoraclecommittee *AggoraclecommitteeSession) PendingOwner() (common.Address, error) {
+	return _Aggoraclecommittee.Contract.PendingOwner(&_Aggoraclecommittee.CallOpts)
 }
 
-// Quorum is a free data retrieval call binding the contract method 0x1703a018.
+// PendingOwner is a free data retrieval call binding the contract method 0xe30c3978.
 //
-// Solidity: function quorum() view returns(uint64)
-func (_Aggoraclecommittee *AggoraclecommitteeCallerSession) Quorum() (uint64, error) {
-	return _Aggoraclecommittee.Contract.Quorum(&_Aggoraclecommittee.CallOpts)
+// Solidity: function pendingOwner() view returns(address)
+func (_Aggoraclecommittee *AggoraclecommitteeCallerSession) PendingOwner() (common.Address, error) {
+	return _Aggoraclecommittee.Contract.PendingOwner(&_Aggoraclecommittee.CallOpts)
+}
+
+// Proposer is a free data retrieval call binding the contract method 0xa8e4fb90.
+//
+// Solidity: function proposer() view returns(address)
+func (_Aggoraclecommittee *AggoraclecommitteeCaller) Proposer(opts *bind.CallOpts) (common.Address, error) {
+	var out []interface{}
+	err := _Aggoraclecommittee.contract.Call(opts, &out, "proposer")
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
+}
+
+// Proposer is a free data retrieval call binding the contract method 0xa8e4fb90.
+//
+// Solidity: function proposer() view returns(address)
+func (_Aggoraclecommittee *AggoraclecommitteeSession) Proposer() (common.Address, error) {
+	return _Aggoraclecommittee.Contract.Proposer(&_Aggoraclecommittee.CallOpts)
+}
+
+// Proposer is a free data retrieval call binding the contract method 0xa8e4fb90.
+//
+// Solidity: function proposer() view returns(address)
+func (_Aggoraclecommittee *AggoraclecommitteeCallerSession) Proposer() (common.Address, error) {
+	return _Aggoraclecommittee.Contract.Proposer(&_Aggoraclecommittee.CallOpts)
+}
+
+// RenounceOwnership is a free data retrieval call binding the contract method 0x715018a6.
+//
+// Solidity: function renounceOwnership() pure returns()
+func (_Aggoraclecommittee *AggoraclecommitteeCaller) RenounceOwnership(opts *bind.CallOpts) error {
+	var out []interface{}
+	err := _Aggoraclecommittee.contract.Call(opts, &out, "renounceOwnership")
+
+	if err != nil {
+		return err
+	}
+
+	return err
+
+}
+
+// RenounceOwnership is a free data retrieval call binding the contract method 0x715018a6.
+//
+// Solidity: function renounceOwnership() pure returns()
+func (_Aggoraclecommittee *AggoraclecommitteeSession) RenounceOwnership() error {
+	return _Aggoraclecommittee.Contract.RenounceOwnership(&_Aggoraclecommittee.CallOpts)
+}
+
+// RenounceOwnership is a free data retrieval call binding the contract method 0x715018a6.
+//
+// Solidity: function renounceOwnership() pure returns()
+func (_Aggoraclecommittee *AggoraclecommitteeCallerSession) RenounceOwnership() error {
+	return _Aggoraclecommittee.Contract.RenounceOwnership(&_Aggoraclecommittee.CallOpts)
+}
+
+// Threshold is a free data retrieval call binding the contract method 0x42cde4e8.
+//
+// Solidity: function threshold() view returns(uint256)
+func (_Aggoraclecommittee *AggoraclecommitteeCaller) Threshold(opts *bind.CallOpts) (*big.Int, error) {
+	var out []interface{}
+	err := _Aggoraclecommittee.contract.Call(opts, &out, "threshold")
+
+	if err != nil {
+		return *new(*big.Int), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
+
+	return out0, err
+
+}
+
+// Threshold is a free data retrieval call binding the contract method 0x42cde4e8.
+//
+// Solidity: function threshold() view returns(uint256)
+func (_Aggoraclecommittee *AggoraclecommitteeSession) Threshold() (*big.Int, error) {
+	return _Aggoraclecommittee.Contract.Threshold(&_Aggoraclecommittee.CallOpts)
+}
+
+// Threshold is a free data retrieval call binding the contract method 0x42cde4e8.
+//
+// Solidity: function threshold() view returns(uint256)
+func (_Aggoraclecommittee *AggoraclecommitteeCallerSession) Threshold() (*big.Int, error) {
+	return _Aggoraclecommittee.Contract.Threshold(&_Aggoraclecommittee.CallOpts)
+}
+
+// ValidatorInfo is a free data retrieval call binding the contract method 0x4f1811dd.
+//
+// Solidity: function validatorInfo(address ) view returns(bool isValidator, string url)
+func (_Aggoraclecommittee *AggoraclecommitteeCaller) ValidatorInfo(opts *bind.CallOpts, arg0 common.Address) (struct {
+	IsValidator bool
+	Url         string
+}, error) {
+	var out []interface{}
+	err := _Aggoraclecommittee.contract.Call(opts, &out, "validatorInfo", arg0)
+
+	outstruct := new(struct {
+		IsValidator bool
+		Url         string
+	})
+	if err != nil {
+		return *outstruct, err
+	}
+
+	outstruct.IsValidator = *abi.ConvertType(out[0], new(bool)).(*bool)
+	outstruct.Url = *abi.ConvertType(out[1], new(string)).(*string)
+
+	return *outstruct, err
+
+}
+
+// ValidatorInfo is a free data retrieval call binding the contract method 0x4f1811dd.
+//
+// Solidity: function validatorInfo(address ) view returns(bool isValidator, string url)
+func (_Aggoraclecommittee *AggoraclecommitteeSession) ValidatorInfo(arg0 common.Address) (struct {
+	IsValidator bool
+	Url         string
+}, error) {
+	return _Aggoraclecommittee.Contract.ValidatorInfo(&_Aggoraclecommittee.CallOpts, arg0)
+}
+
+// ValidatorInfo is a free data retrieval call binding the contract method 0x4f1811dd.
+//
+// Solidity: function validatorInfo(address ) view returns(bool isValidator, string url)
+func (_Aggoraclecommittee *AggoraclecommitteeCallerSession) ValidatorInfo(arg0 common.Address) (struct {
+	IsValidator bool
+	Url         string
+}, error) {
+	return _Aggoraclecommittee.Contract.ValidatorInfo(&_Aggoraclecommittee.CallOpts, arg0)
+}
+
+// Validators is a free data retrieval call binding the contract method 0x35aa2e44.
+//
+// Solidity: function validators(uint256 ) view returns(address)
+func (_Aggoraclecommittee *AggoraclecommitteeCaller) Validators(opts *bind.CallOpts, arg0 *big.Int) (common.Address, error) {
+	var out []interface{}
+	err := _Aggoraclecommittee.contract.Call(opts, &out, "validators", arg0)
+
+	if err != nil {
+		return *new(common.Address), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
+
+	return out0, err
+
+}
+
+// Validators is a free data retrieval call binding the contract method 0x35aa2e44.
+//
+// Solidity: function validators(uint256 ) view returns(address)
+func (_Aggoraclecommittee *AggoraclecommitteeSession) Validators(arg0 *big.Int) (common.Address, error) {
+	return _Aggoraclecommittee.Contract.Validators(&_Aggoraclecommittee.CallOpts, arg0)
+}
+
+// Validators is a free data retrieval call binding the contract method 0x35aa2e44.
+//
+// Solidity: function validators(uint256 ) view returns(address)
+func (_Aggoraclecommittee *AggoraclecommitteeCallerSession) Validators(arg0 *big.Int) (common.Address, error) {
+	return _Aggoraclecommittee.Contract.Validators(&_Aggoraclecommittee.CallOpts, arg0)
+}
+
+// VerifyGER is a free data retrieval call binding the contract method 0x677f3950.
+//
+// Solidity: function verifyGER(bytes32 _globalExitRoot, bytes _signatures) view returns(bool)
+func (_Aggoraclecommittee *AggoraclecommitteeCaller) VerifyGER(opts *bind.CallOpts, _globalExitRoot [32]byte, _signatures []byte) (bool, error) {
+	var out []interface{}
+	err := _Aggoraclecommittee.contract.Call(opts, &out, "verifyGER", _globalExitRoot, _signatures)
+
+	if err != nil {
+		return *new(bool), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(bool)).(*bool)
+
+	return out0, err
+
+}
+
+// VerifyGER is a free data retrieval call binding the contract method 0x677f3950.
+//
+// Solidity: function verifyGER(bytes32 _globalExitRoot, bytes _signatures) view returns(bool)
+func (_Aggoraclecommittee *AggoraclecommitteeSession) VerifyGER(_globalExitRoot [32]byte, _signatures []byte) (bool, error) {
+	return _Aggoraclecommittee.Contract.VerifyGER(&_Aggoraclecommittee.CallOpts, _globalExitRoot, _signatures)
+}
+
+// VerifyGER is a free data retrieval call binding the contract method 0x677f3950.
+//
+// Solidity: function verifyGER(bytes32 _globalExitRoot, bytes _signatures) view returns(bool)
+func (_Aggoraclecommittee *AggoraclecommitteeCallerSession) VerifyGER(_globalExitRoot [32]byte, _signatures []byte) (bool, error) {
+	return _Aggoraclecommittee.Contract.VerifyGER(&_Aggoraclecommittee.CallOpts, _globalExitRoot, _signatures)
+}
+
+// Version is a free data retrieval call binding the contract method 0x54fd4d50.
+//
+// Solidity: function version() pure returns(string)
+func (_Aggoraclecommittee *AggoraclecommitteeCaller) Version(opts *bind.CallOpts) (string, error) {
+	var out []interface{}
+	err := _Aggoraclecommittee.contract.Call(opts, &out, "version")
+
+	if err != nil {
+		return *new(string), err
+	}
+
+	out0 := *abi.ConvertType(out[0], new(string)).(*string)
+
+	return out0, err
+
+}
+
+// Version is a free data retrieval call binding the contract method 0x54fd4d50.
+//
+// Solidity: function version() pure returns(string)
+func (_Aggoraclecommittee *AggoraclecommitteeSession) Version() (string, error) {
+	return _Aggoraclecommittee.Contract.Version(&_Aggoraclecommittee.CallOpts)
+}
+
+// Version is a free data retrieval call binding the contract method 0x54fd4d50.
+//
+// Solidity: function version() pure returns(string)
+func (_Aggoraclecommittee *AggoraclecommitteeCallerSession) Version() (string, error) {
+	return _Aggoraclecommittee.Contract.Version(&_Aggoraclecommittee.CallOpts)
 }
 
 // AcceptGlobalExitRootUpdater is a paid mutator transaction binding the contract method 0xc053902a.
@@ -578,130 +774,67 @@ func (_Aggoraclecommittee *AggoraclecommitteeTransactorSession) AcceptGlobalExit
 	return _Aggoraclecommittee.Contract.AcceptGlobalExitRootUpdater(&_Aggoraclecommittee.TransactOpts)
 }
 
-// AddOracleMember is a paid mutator transaction binding the contract method 0xb164e437.
+// AcceptOwnership is a paid mutator transaction binding the contract method 0x79ba5097.
 //
-// Solidity: function addOracleMember(address newOracleMember) returns()
-func (_Aggoraclecommittee *AggoraclecommitteeTransactor) AddOracleMember(opts *bind.TransactOpts, newOracleMember common.Address) (*types.Transaction, error) {
-	return _Aggoraclecommittee.contract.Transact(opts, "addOracleMember", newOracleMember)
+// Solidity: function acceptOwnership() returns()
+func (_Aggoraclecommittee *AggoraclecommitteeTransactor) AcceptOwnership(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _Aggoraclecommittee.contract.Transact(opts, "acceptOwnership")
 }
 
-// AddOracleMember is a paid mutator transaction binding the contract method 0xb164e437.
+// AcceptOwnership is a paid mutator transaction binding the contract method 0x79ba5097.
 //
-// Solidity: function addOracleMember(address newOracleMember) returns()
-func (_Aggoraclecommittee *AggoraclecommitteeSession) AddOracleMember(newOracleMember common.Address) (*types.Transaction, error) {
-	return _Aggoraclecommittee.Contract.AddOracleMember(&_Aggoraclecommittee.TransactOpts, newOracleMember)
+// Solidity: function acceptOwnership() returns()
+func (_Aggoraclecommittee *AggoraclecommitteeSession) AcceptOwnership() (*types.Transaction, error) {
+	return _Aggoraclecommittee.Contract.AcceptOwnership(&_Aggoraclecommittee.TransactOpts)
 }
 
-// AddOracleMember is a paid mutator transaction binding the contract method 0xb164e437.
+// AcceptOwnership is a paid mutator transaction binding the contract method 0x79ba5097.
 //
-// Solidity: function addOracleMember(address newOracleMember) returns()
-func (_Aggoraclecommittee *AggoraclecommitteeTransactorSession) AddOracleMember(newOracleMember common.Address) (*types.Transaction, error) {
-	return _Aggoraclecommittee.Contract.AddOracleMember(&_Aggoraclecommittee.TransactOpts, newOracleMember)
+// Solidity: function acceptOwnership() returns()
+func (_Aggoraclecommittee *AggoraclecommitteeTransactorSession) AcceptOwnership() (*types.Transaction, error) {
+	return _Aggoraclecommittee.Contract.AcceptOwnership(&_Aggoraclecommittee.TransactOpts)
 }
 
-// ConsolidateGlobalExitRoot is a paid mutator transaction binding the contract method 0x9915c0d2.
+// Initialize is a paid mutator transaction binding the contract method 0x98e04bf8.
 //
-// Solidity: function consolidateGlobalExitRoot(bytes32 globalExitRoot) returns()
-func (_Aggoraclecommittee *AggoraclecommitteeTransactor) ConsolidateGlobalExitRoot(opts *bind.TransactOpts, globalExitRoot [32]byte) (*types.Transaction, error) {
-	return _Aggoraclecommittee.contract.Transact(opts, "consolidateGlobalExitRoot", globalExitRoot)
+// Solidity: function initialize(address _owner, address _newProposer, (address,string)[] _newValidators, uint256 _newThreshold) returns()
+func (_Aggoraclecommittee *AggoraclecommitteeTransactor) Initialize(opts *bind.TransactOpts, _owner common.Address, _newProposer common.Address, _newValidators []IAggOracleCommitteeValidatorInfo, _newThreshold *big.Int) (*types.Transaction, error) {
+	return _Aggoraclecommittee.contract.Transact(opts, "initialize", _owner, _newProposer, _newValidators, _newThreshold)
 }
 
-// ConsolidateGlobalExitRoot is a paid mutator transaction binding the contract method 0x9915c0d2.
+// Initialize is a paid mutator transaction binding the contract method 0x98e04bf8.
 //
-// Solidity: function consolidateGlobalExitRoot(bytes32 globalExitRoot) returns()
-func (_Aggoraclecommittee *AggoraclecommitteeSession) ConsolidateGlobalExitRoot(globalExitRoot [32]byte) (*types.Transaction, error) {
-	return _Aggoraclecommittee.Contract.ConsolidateGlobalExitRoot(&_Aggoraclecommittee.TransactOpts, globalExitRoot)
+// Solidity: function initialize(address _owner, address _newProposer, (address,string)[] _newValidators, uint256 _newThreshold) returns()
+func (_Aggoraclecommittee *AggoraclecommitteeSession) Initialize(_owner common.Address, _newProposer common.Address, _newValidators []IAggOracleCommitteeValidatorInfo, _newThreshold *big.Int) (*types.Transaction, error) {
+	return _Aggoraclecommittee.Contract.Initialize(&_Aggoraclecommittee.TransactOpts, _owner, _newProposer, _newValidators, _newThreshold)
 }
 
-// ConsolidateGlobalExitRoot is a paid mutator transaction binding the contract method 0x9915c0d2.
+// Initialize is a paid mutator transaction binding the contract method 0x98e04bf8.
 //
-// Solidity: function consolidateGlobalExitRoot(bytes32 globalExitRoot) returns()
-func (_Aggoraclecommittee *AggoraclecommitteeTransactorSession) ConsolidateGlobalExitRoot(globalExitRoot [32]byte) (*types.Transaction, error) {
-	return _Aggoraclecommittee.Contract.ConsolidateGlobalExitRoot(&_Aggoraclecommittee.TransactOpts, globalExitRoot)
+// Solidity: function initialize(address _owner, address _newProposer, (address,string)[] _newValidators, uint256 _newThreshold) returns()
+func (_Aggoraclecommittee *AggoraclecommitteeTransactorSession) Initialize(_owner common.Address, _newProposer common.Address, _newValidators []IAggOracleCommitteeValidatorInfo, _newThreshold *big.Int) (*types.Transaction, error) {
+	return _Aggoraclecommittee.Contract.Initialize(&_Aggoraclecommittee.TransactOpts, _owner, _newProposer, _newValidators, _newThreshold)
 }
 
-// Initialize is a paid mutator transaction binding the contract method 0x145d1ed6.
+// InjectGER is a paid mutator transaction binding the contract method 0xa31dee4a.
 //
-// Solidity: function initialize(address _owner, address[] _aggOracleMembers, uint64 _quorum) returns()
-func (_Aggoraclecommittee *AggoraclecommitteeTransactor) Initialize(opts *bind.TransactOpts, _owner common.Address, _aggOracleMembers []common.Address, _quorum uint64) (*types.Transaction, error) {
-	return _Aggoraclecommittee.contract.Transact(opts, "initialize", _owner, _aggOracleMembers, _quorum)
+// Solidity: function injectGER(bytes32 _globalExitRoot, bytes _signatures) returns()
+func (_Aggoraclecommittee *AggoraclecommitteeTransactor) InjectGER(opts *bind.TransactOpts, _globalExitRoot [32]byte, _signatures []byte) (*types.Transaction, error) {
+	return _Aggoraclecommittee.contract.Transact(opts, "injectGER", _globalExitRoot, _signatures)
 }
 
-// Initialize is a paid mutator transaction binding the contract method 0x145d1ed6.
+// InjectGER is a paid mutator transaction binding the contract method 0xa31dee4a.
 //
-// Solidity: function initialize(address _owner, address[] _aggOracleMembers, uint64 _quorum) returns()
-func (_Aggoraclecommittee *AggoraclecommitteeSession) Initialize(_owner common.Address, _aggOracleMembers []common.Address, _quorum uint64) (*types.Transaction, error) {
-	return _Aggoraclecommittee.Contract.Initialize(&_Aggoraclecommittee.TransactOpts, _owner, _aggOracleMembers, _quorum)
+// Solidity: function injectGER(bytes32 _globalExitRoot, bytes _signatures) returns()
+func (_Aggoraclecommittee *AggoraclecommitteeSession) InjectGER(_globalExitRoot [32]byte, _signatures []byte) (*types.Transaction, error) {
+	return _Aggoraclecommittee.Contract.InjectGER(&_Aggoraclecommittee.TransactOpts, _globalExitRoot, _signatures)
 }
 
-// Initialize is a paid mutator transaction binding the contract method 0x145d1ed6.
+// InjectGER is a paid mutator transaction binding the contract method 0xa31dee4a.
 //
-// Solidity: function initialize(address _owner, address[] _aggOracleMembers, uint64 _quorum) returns()
-func (_Aggoraclecommittee *AggoraclecommitteeTransactorSession) Initialize(_owner common.Address, _aggOracleMembers []common.Address, _quorum uint64) (*types.Transaction, error) {
-	return _Aggoraclecommittee.Contract.Initialize(&_Aggoraclecommittee.TransactOpts, _owner, _aggOracleMembers, _quorum)
-}
-
-// ProposeGlobalExitRoot is a paid mutator transaction binding the contract method 0x542b56b3.
-//
-// Solidity: function proposeGlobalExitRoot(bytes32 proposedGlobalExitRoot) returns()
-func (_Aggoraclecommittee *AggoraclecommitteeTransactor) ProposeGlobalExitRoot(opts *bind.TransactOpts, proposedGlobalExitRoot [32]byte) (*types.Transaction, error) {
-	return _Aggoraclecommittee.contract.Transact(opts, "proposeGlobalExitRoot", proposedGlobalExitRoot)
-}
-
-// ProposeGlobalExitRoot is a paid mutator transaction binding the contract method 0x542b56b3.
-//
-// Solidity: function proposeGlobalExitRoot(bytes32 proposedGlobalExitRoot) returns()
-func (_Aggoraclecommittee *AggoraclecommitteeSession) ProposeGlobalExitRoot(proposedGlobalExitRoot [32]byte) (*types.Transaction, error) {
-	return _Aggoraclecommittee.Contract.ProposeGlobalExitRoot(&_Aggoraclecommittee.TransactOpts, proposedGlobalExitRoot)
-}
-
-// ProposeGlobalExitRoot is a paid mutator transaction binding the contract method 0x542b56b3.
-//
-// Solidity: function proposeGlobalExitRoot(bytes32 proposedGlobalExitRoot) returns()
-func (_Aggoraclecommittee *AggoraclecommitteeTransactorSession) ProposeGlobalExitRoot(proposedGlobalExitRoot [32]byte) (*types.Transaction, error) {
-	return _Aggoraclecommittee.Contract.ProposeGlobalExitRoot(&_Aggoraclecommittee.TransactOpts, proposedGlobalExitRoot)
-}
-
-// RemoveOracleMember is a paid mutator transaction binding the contract method 0x53985e5a.
-//
-// Solidity: function removeOracleMember(address oracleMemberAddress, uint256 oracleMemberIndex) returns()
-func (_Aggoraclecommittee *AggoraclecommitteeTransactor) RemoveOracleMember(opts *bind.TransactOpts, oracleMemberAddress common.Address, oracleMemberIndex *big.Int) (*types.Transaction, error) {
-	return _Aggoraclecommittee.contract.Transact(opts, "removeOracleMember", oracleMemberAddress, oracleMemberIndex)
-}
-
-// RemoveOracleMember is a paid mutator transaction binding the contract method 0x53985e5a.
-//
-// Solidity: function removeOracleMember(address oracleMemberAddress, uint256 oracleMemberIndex) returns()
-func (_Aggoraclecommittee *AggoraclecommitteeSession) RemoveOracleMember(oracleMemberAddress common.Address, oracleMemberIndex *big.Int) (*types.Transaction, error) {
-	return _Aggoraclecommittee.Contract.RemoveOracleMember(&_Aggoraclecommittee.TransactOpts, oracleMemberAddress, oracleMemberIndex)
-}
-
-// RemoveOracleMember is a paid mutator transaction binding the contract method 0x53985e5a.
-//
-// Solidity: function removeOracleMember(address oracleMemberAddress, uint256 oracleMemberIndex) returns()
-func (_Aggoraclecommittee *AggoraclecommitteeTransactorSession) RemoveOracleMember(oracleMemberAddress common.Address, oracleMemberIndex *big.Int) (*types.Transaction, error) {
-	return _Aggoraclecommittee.Contract.RemoveOracleMember(&_Aggoraclecommittee.TransactOpts, oracleMemberAddress, oracleMemberIndex)
-}
-
-// RenounceOwnership is a paid mutator transaction binding the contract method 0x715018a6.
-//
-// Solidity: function renounceOwnership() returns()
-func (_Aggoraclecommittee *AggoraclecommitteeTransactor) RenounceOwnership(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _Aggoraclecommittee.contract.Transact(opts, "renounceOwnership")
-}
-
-// RenounceOwnership is a paid mutator transaction binding the contract method 0x715018a6.
-//
-// Solidity: function renounceOwnership() returns()
-func (_Aggoraclecommittee *AggoraclecommitteeSession) RenounceOwnership() (*types.Transaction, error) {
-	return _Aggoraclecommittee.Contract.RenounceOwnership(&_Aggoraclecommittee.TransactOpts)
-}
-
-// RenounceOwnership is a paid mutator transaction binding the contract method 0x715018a6.
-//
-// Solidity: function renounceOwnership() returns()
-func (_Aggoraclecommittee *AggoraclecommitteeTransactorSession) RenounceOwnership() (*types.Transaction, error) {
-	return _Aggoraclecommittee.Contract.RenounceOwnership(&_Aggoraclecommittee.TransactOpts)
+// Solidity: function injectGER(bytes32 _globalExitRoot, bytes _signatures) returns()
+func (_Aggoraclecommittee *AggoraclecommitteeTransactorSession) InjectGER(_globalExitRoot [32]byte, _signatures []byte) (*types.Transaction, error) {
+	return _Aggoraclecommittee.Contract.InjectGER(&_Aggoraclecommittee.TransactOpts, _globalExitRoot, _signatures)
 }
 
 // TransferGlobalExitRootUpdater is a paid mutator transaction binding the contract method 0x0e1bbf9f.
@@ -746,30 +879,51 @@ func (_Aggoraclecommittee *AggoraclecommitteeTransactorSession) TransferOwnershi
 	return _Aggoraclecommittee.Contract.TransferOwnership(&_Aggoraclecommittee.TransactOpts, newOwner)
 }
 
-// UpdateQuorum is a paid mutator transaction binding the contract method 0x29218b61.
+// UpdateAggOracleProposer is a paid mutator transaction binding the contract method 0xd6ad3f8f.
 //
-// Solidity: function updateQuorum(uint64 newQuorum) returns()
-func (_Aggoraclecommittee *AggoraclecommitteeTransactor) UpdateQuorum(opts *bind.TransactOpts, newQuorum uint64) (*types.Transaction, error) {
-	return _Aggoraclecommittee.contract.Transact(opts, "updateQuorum", newQuorum)
+// Solidity: function updateAggOracleProposer(address _newProposer) returns()
+func (_Aggoraclecommittee *AggoraclecommitteeTransactor) UpdateAggOracleProposer(opts *bind.TransactOpts, _newProposer common.Address) (*types.Transaction, error) {
+	return _Aggoraclecommittee.contract.Transact(opts, "updateAggOracleProposer", _newProposer)
 }
 
-// UpdateQuorum is a paid mutator transaction binding the contract method 0x29218b61.
+// UpdateAggOracleProposer is a paid mutator transaction binding the contract method 0xd6ad3f8f.
 //
-// Solidity: function updateQuorum(uint64 newQuorum) returns()
-func (_Aggoraclecommittee *AggoraclecommitteeSession) UpdateQuorum(newQuorum uint64) (*types.Transaction, error) {
-	return _Aggoraclecommittee.Contract.UpdateQuorum(&_Aggoraclecommittee.TransactOpts, newQuorum)
+// Solidity: function updateAggOracleProposer(address _newProposer) returns()
+func (_Aggoraclecommittee *AggoraclecommitteeSession) UpdateAggOracleProposer(_newProposer common.Address) (*types.Transaction, error) {
+	return _Aggoraclecommittee.Contract.UpdateAggOracleProposer(&_Aggoraclecommittee.TransactOpts, _newProposer)
 }
 
-// UpdateQuorum is a paid mutator transaction binding the contract method 0x29218b61.
+// UpdateAggOracleProposer is a paid mutator transaction binding the contract method 0xd6ad3f8f.
 //
-// Solidity: function updateQuorum(uint64 newQuorum) returns()
-func (_Aggoraclecommittee *AggoraclecommitteeTransactorSession) UpdateQuorum(newQuorum uint64) (*types.Transaction, error) {
-	return _Aggoraclecommittee.Contract.UpdateQuorum(&_Aggoraclecommittee.TransactOpts, newQuorum)
+// Solidity: function updateAggOracleProposer(address _newProposer) returns()
+func (_Aggoraclecommittee *AggoraclecommitteeTransactorSession) UpdateAggOracleProposer(_newProposer common.Address) (*types.Transaction, error) {
+	return _Aggoraclecommittee.Contract.UpdateAggOracleProposer(&_Aggoraclecommittee.TransactOpts, _newProposer)
 }
 
-// AggoraclecommitteeAddAggOracleMemberIterator is returned from FilterAddAggOracleMember and is used to iterate over the raw logs and unpacked data for AddAggOracleMember events raised by the Aggoraclecommittee contract.
-type AggoraclecommitteeAddAggOracleMemberIterator struct {
-	Event *AggoraclecommitteeAddAggOracleMember // Event containing the contract specifics and raw log
+// UpdateValidatorsAndThreshold is a paid mutator transaction binding the contract method 0xfedaa2a7.
+//
+// Solidity: function updateValidatorsAndThreshold((address,uint256)[] _validatorsToRemove, (address,string)[] _validatorsToAdd, uint256 _newThreshold) returns()
+func (_Aggoraclecommittee *AggoraclecommitteeTransactor) UpdateValidatorsAndThreshold(opts *bind.TransactOpts, _validatorsToRemove []IAggOracleCommitteeRemoveValidatorInfo, _validatorsToAdd []IAggOracleCommitteeValidatorInfo, _newThreshold *big.Int) (*types.Transaction, error) {
+	return _Aggoraclecommittee.contract.Transact(opts, "updateValidatorsAndThreshold", _validatorsToRemove, _validatorsToAdd, _newThreshold)
+}
+
+// UpdateValidatorsAndThreshold is a paid mutator transaction binding the contract method 0xfedaa2a7.
+//
+// Solidity: function updateValidatorsAndThreshold((address,uint256)[] _validatorsToRemove, (address,string)[] _validatorsToAdd, uint256 _newThreshold) returns()
+func (_Aggoraclecommittee *AggoraclecommitteeSession) UpdateValidatorsAndThreshold(_validatorsToRemove []IAggOracleCommitteeRemoveValidatorInfo, _validatorsToAdd []IAggOracleCommitteeValidatorInfo, _newThreshold *big.Int) (*types.Transaction, error) {
+	return _Aggoraclecommittee.Contract.UpdateValidatorsAndThreshold(&_Aggoraclecommittee.TransactOpts, _validatorsToRemove, _validatorsToAdd, _newThreshold)
+}
+
+// UpdateValidatorsAndThreshold is a paid mutator transaction binding the contract method 0xfedaa2a7.
+//
+// Solidity: function updateValidatorsAndThreshold((address,uint256)[] _validatorsToRemove, (address,string)[] _validatorsToAdd, uint256 _newThreshold) returns()
+func (_Aggoraclecommittee *AggoraclecommitteeTransactorSession) UpdateValidatorsAndThreshold(_validatorsToRemove []IAggOracleCommitteeRemoveValidatorInfo, _validatorsToAdd []IAggOracleCommitteeValidatorInfo, _newThreshold *big.Int) (*types.Transaction, error) {
+	return _Aggoraclecommittee.Contract.UpdateValidatorsAndThreshold(&_Aggoraclecommittee.TransactOpts, _validatorsToRemove, _validatorsToAdd, _newThreshold)
+}
+
+// AggoraclecommitteeGERInjectedIterator is returned from FilterGERInjected and is used to iterate over the raw logs and unpacked data for GERInjected events raised by the Aggoraclecommittee contract.
+type AggoraclecommitteeGERInjectedIterator struct {
+	Event *AggoraclecommitteeGERInjected // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -783,7 +937,7 @@ type AggoraclecommitteeAddAggOracleMemberIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *AggoraclecommitteeAddAggOracleMemberIterator) Next() bool {
+func (it *AggoraclecommitteeGERInjectedIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -792,7 +946,7 @@ func (it *AggoraclecommitteeAddAggOracleMemberIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(AggoraclecommitteeAddAggOracleMember)
+			it.Event = new(AggoraclecommitteeGERInjected)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -807,7 +961,7 @@ func (it *AggoraclecommitteeAddAggOracleMemberIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(AggoraclecommitteeAddAggOracleMember)
+		it.Event = new(AggoraclecommitteeGERInjected)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -823,41 +977,51 @@ func (it *AggoraclecommitteeAddAggOracleMemberIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *AggoraclecommitteeAddAggOracleMemberIterator) Error() error {
+func (it *AggoraclecommitteeGERInjectedIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *AggoraclecommitteeAddAggOracleMemberIterator) Close() error {
+func (it *AggoraclecommitteeGERInjectedIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// AggoraclecommitteeAddAggOracleMember represents a AddAggOracleMember event raised by the Aggoraclecommittee contract.
-type AggoraclecommitteeAddAggOracleMember struct {
-	NewOracleMember common.Address
-	Raw             types.Log // Blockchain specific contextual infos
+// AggoraclecommitteeGERInjected represents a GERInjected event raised by the Aggoraclecommittee contract.
+type AggoraclecommitteeGERInjected struct {
+	GlobalExitRoot [32]byte
+	Raw            types.Log // Blockchain specific contextual infos
 }
 
-// FilterAddAggOracleMember is a free log retrieval operation binding the contract event 0x59f8c2dd0bdc5787ef574566b9edcd7324a62b79ac952930f02679a1b25bbf6f.
+// FilterGERInjected is a free log retrieval operation binding the contract event 0x45b91a7a09575a05b9dd504dff707cdeb7eda5f9d514491caf5951551b020e1e.
 //
-// Solidity: event AddAggOracleMember(address newOracleMember)
-func (_Aggoraclecommittee *AggoraclecommitteeFilterer) FilterAddAggOracleMember(opts *bind.FilterOpts) (*AggoraclecommitteeAddAggOracleMemberIterator, error) {
+// Solidity: event GERInjected(bytes32 indexed globalExitRoot)
+func (_Aggoraclecommittee *AggoraclecommitteeFilterer) FilterGERInjected(opts *bind.FilterOpts, globalExitRoot [][32]byte) (*AggoraclecommitteeGERInjectedIterator, error) {
 
-	logs, sub, err := _Aggoraclecommittee.contract.FilterLogs(opts, "AddAggOracleMember")
+	var globalExitRootRule []interface{}
+	for _, globalExitRootItem := range globalExitRoot {
+		globalExitRootRule = append(globalExitRootRule, globalExitRootItem)
+	}
+
+	logs, sub, err := _Aggoraclecommittee.contract.FilterLogs(opts, "GERInjected", globalExitRootRule)
 	if err != nil {
 		return nil, err
 	}
-	return &AggoraclecommitteeAddAggOracleMemberIterator{contract: _Aggoraclecommittee.contract, event: "AddAggOracleMember", logs: logs, sub: sub}, nil
+	return &AggoraclecommitteeGERInjectedIterator{contract: _Aggoraclecommittee.contract, event: "GERInjected", logs: logs, sub: sub}, nil
 }
 
-// WatchAddAggOracleMember is a free log subscription operation binding the contract event 0x59f8c2dd0bdc5787ef574566b9edcd7324a62b79ac952930f02679a1b25bbf6f.
+// WatchGERInjected is a free log subscription operation binding the contract event 0x45b91a7a09575a05b9dd504dff707cdeb7eda5f9d514491caf5951551b020e1e.
 //
-// Solidity: event AddAggOracleMember(address newOracleMember)
-func (_Aggoraclecommittee *AggoraclecommitteeFilterer) WatchAddAggOracleMember(opts *bind.WatchOpts, sink chan<- *AggoraclecommitteeAddAggOracleMember) (event.Subscription, error) {
+// Solidity: event GERInjected(bytes32 indexed globalExitRoot)
+func (_Aggoraclecommittee *AggoraclecommitteeFilterer) WatchGERInjected(opts *bind.WatchOpts, sink chan<- *AggoraclecommitteeGERInjected, globalExitRoot [][32]byte) (event.Subscription, error) {
 
-	logs, sub, err := _Aggoraclecommittee.contract.WatchLogs(opts, "AddAggOracleMember")
+	var globalExitRootRule []interface{}
+	for _, globalExitRootItem := range globalExitRoot {
+		globalExitRootRule = append(globalExitRootRule, globalExitRootItem)
+	}
+
+	logs, sub, err := _Aggoraclecommittee.contract.WatchLogs(opts, "GERInjected", globalExitRootRule)
 	if err != nil {
 		return nil, err
 	}
@@ -867,8 +1031,8 @@ func (_Aggoraclecommittee *AggoraclecommitteeFilterer) WatchAddAggOracleMember(o
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(AggoraclecommitteeAddAggOracleMember)
-				if err := _Aggoraclecommittee.contract.UnpackLog(event, "AddAggOracleMember", log); err != nil {
+				event := new(AggoraclecommitteeGERInjected)
+				if err := _Aggoraclecommittee.contract.UnpackLog(event, "GERInjected", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -889,21 +1053,21 @@ func (_Aggoraclecommittee *AggoraclecommitteeFilterer) WatchAddAggOracleMember(o
 	}), nil
 }
 
-// ParseAddAggOracleMember is a log parse operation binding the contract event 0x59f8c2dd0bdc5787ef574566b9edcd7324a62b79ac952930f02679a1b25bbf6f.
+// ParseGERInjected is a log parse operation binding the contract event 0x45b91a7a09575a05b9dd504dff707cdeb7eda5f9d514491caf5951551b020e1e.
 //
-// Solidity: event AddAggOracleMember(address newOracleMember)
-func (_Aggoraclecommittee *AggoraclecommitteeFilterer) ParseAddAggOracleMember(log types.Log) (*AggoraclecommitteeAddAggOracleMember, error) {
-	event := new(AggoraclecommitteeAddAggOracleMember)
-	if err := _Aggoraclecommittee.contract.UnpackLog(event, "AddAggOracleMember", log); err != nil {
+// Solidity: event GERInjected(bytes32 indexed globalExitRoot)
+func (_Aggoraclecommittee *AggoraclecommitteeFilterer) ParseGERInjected(log types.Log) (*AggoraclecommitteeGERInjected, error) {
+	event := new(AggoraclecommitteeGERInjected)
+	if err := _Aggoraclecommittee.contract.UnpackLog(event, "GERInjected", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// AggoraclecommitteeConsolidatedGlobalExitRootIterator is returned from FilterConsolidatedGlobalExitRoot and is used to iterate over the raw logs and unpacked data for ConsolidatedGlobalExitRoot events raised by the Aggoraclecommittee contract.
-type AggoraclecommitteeConsolidatedGlobalExitRootIterator struct {
-	Event *AggoraclecommitteeConsolidatedGlobalExitRoot // Event containing the contract specifics and raw log
+// AggoraclecommitteeGERMarkedAsInjectedIterator is returned from FilterGERMarkedAsInjected and is used to iterate over the raw logs and unpacked data for GERMarkedAsInjected events raised by the Aggoraclecommittee contract.
+type AggoraclecommitteeGERMarkedAsInjectedIterator struct {
+	Event *AggoraclecommitteeGERMarkedAsInjected // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -917,7 +1081,7 @@ type AggoraclecommitteeConsolidatedGlobalExitRootIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *AggoraclecommitteeConsolidatedGlobalExitRootIterator) Next() bool {
+func (it *AggoraclecommitteeGERMarkedAsInjectedIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -926,7 +1090,7 @@ func (it *AggoraclecommitteeConsolidatedGlobalExitRootIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(AggoraclecommitteeConsolidatedGlobalExitRoot)
+			it.Event = new(AggoraclecommitteeGERMarkedAsInjected)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -941,7 +1105,7 @@ func (it *AggoraclecommitteeConsolidatedGlobalExitRootIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(AggoraclecommitteeConsolidatedGlobalExitRoot)
+		it.Event = new(AggoraclecommitteeGERMarkedAsInjected)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -957,41 +1121,51 @@ func (it *AggoraclecommitteeConsolidatedGlobalExitRootIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *AggoraclecommitteeConsolidatedGlobalExitRootIterator) Error() error {
+func (it *AggoraclecommitteeGERMarkedAsInjectedIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *AggoraclecommitteeConsolidatedGlobalExitRootIterator) Close() error {
+func (it *AggoraclecommitteeGERMarkedAsInjectedIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// AggoraclecommitteeConsolidatedGlobalExitRoot represents a ConsolidatedGlobalExitRoot event raised by the Aggoraclecommittee contract.
-type AggoraclecommitteeConsolidatedGlobalExitRoot struct {
-	ConsolidatedGlobalExitRoot [32]byte
-	Raw                        types.Log // Blockchain specific contextual infos
+// AggoraclecommitteeGERMarkedAsInjected represents a GERMarkedAsInjected event raised by the Aggoraclecommittee contract.
+type AggoraclecommitteeGERMarkedAsInjected struct {
+	GlobalExitRoot [32]byte
+	Raw            types.Log // Blockchain specific contextual infos
 }
 
-// FilterConsolidatedGlobalExitRoot is a free log retrieval operation binding the contract event 0x1676a1944900a9899dac554c2da10ba62637fe8d08375ffc3fb8494c92918d98.
+// FilterGERMarkedAsInjected is a free log retrieval operation binding the contract event 0xcafdbc8c7e71f2990afc9e787ff729a197666534c9a49959c1373c819b708a8f.
 //
-// Solidity: event ConsolidatedGlobalExitRoot(bytes32 consolidatedGlobalExitRoot)
-func (_Aggoraclecommittee *AggoraclecommitteeFilterer) FilterConsolidatedGlobalExitRoot(opts *bind.FilterOpts) (*AggoraclecommitteeConsolidatedGlobalExitRootIterator, error) {
+// Solidity: event GERMarkedAsInjected(bytes32 indexed globalExitRoot)
+func (_Aggoraclecommittee *AggoraclecommitteeFilterer) FilterGERMarkedAsInjected(opts *bind.FilterOpts, globalExitRoot [][32]byte) (*AggoraclecommitteeGERMarkedAsInjectedIterator, error) {
 
-	logs, sub, err := _Aggoraclecommittee.contract.FilterLogs(opts, "ConsolidatedGlobalExitRoot")
+	var globalExitRootRule []interface{}
+	for _, globalExitRootItem := range globalExitRoot {
+		globalExitRootRule = append(globalExitRootRule, globalExitRootItem)
+	}
+
+	logs, sub, err := _Aggoraclecommittee.contract.FilterLogs(opts, "GERMarkedAsInjected", globalExitRootRule)
 	if err != nil {
 		return nil, err
 	}
-	return &AggoraclecommitteeConsolidatedGlobalExitRootIterator{contract: _Aggoraclecommittee.contract, event: "ConsolidatedGlobalExitRoot", logs: logs, sub: sub}, nil
+	return &AggoraclecommitteeGERMarkedAsInjectedIterator{contract: _Aggoraclecommittee.contract, event: "GERMarkedAsInjected", logs: logs, sub: sub}, nil
 }
 
-// WatchConsolidatedGlobalExitRoot is a free log subscription operation binding the contract event 0x1676a1944900a9899dac554c2da10ba62637fe8d08375ffc3fb8494c92918d98.
+// WatchGERMarkedAsInjected is a free log subscription operation binding the contract event 0xcafdbc8c7e71f2990afc9e787ff729a197666534c9a49959c1373c819b708a8f.
 //
-// Solidity: event ConsolidatedGlobalExitRoot(bytes32 consolidatedGlobalExitRoot)
-func (_Aggoraclecommittee *AggoraclecommitteeFilterer) WatchConsolidatedGlobalExitRoot(opts *bind.WatchOpts, sink chan<- *AggoraclecommitteeConsolidatedGlobalExitRoot) (event.Subscription, error) {
+// Solidity: event GERMarkedAsInjected(bytes32 indexed globalExitRoot)
+func (_Aggoraclecommittee *AggoraclecommitteeFilterer) WatchGERMarkedAsInjected(opts *bind.WatchOpts, sink chan<- *AggoraclecommitteeGERMarkedAsInjected, globalExitRoot [][32]byte) (event.Subscription, error) {
 
-	logs, sub, err := _Aggoraclecommittee.contract.WatchLogs(opts, "ConsolidatedGlobalExitRoot")
+	var globalExitRootRule []interface{}
+	for _, globalExitRootItem := range globalExitRoot {
+		globalExitRootRule = append(globalExitRootRule, globalExitRootItem)
+	}
+
+	logs, sub, err := _Aggoraclecommittee.contract.WatchLogs(opts, "GERMarkedAsInjected", globalExitRootRule)
 	if err != nil {
 		return nil, err
 	}
@@ -1001,8 +1175,8 @@ func (_Aggoraclecommittee *AggoraclecommitteeFilterer) WatchConsolidatedGlobalEx
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(AggoraclecommitteeConsolidatedGlobalExitRoot)
-				if err := _Aggoraclecommittee.contract.UnpackLog(event, "ConsolidatedGlobalExitRoot", log); err != nil {
+				event := new(AggoraclecommitteeGERMarkedAsInjected)
+				if err := _Aggoraclecommittee.contract.UnpackLog(event, "GERMarkedAsInjected", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -1023,12 +1197,12 @@ func (_Aggoraclecommittee *AggoraclecommitteeFilterer) WatchConsolidatedGlobalEx
 	}), nil
 }
 
-// ParseConsolidatedGlobalExitRoot is a log parse operation binding the contract event 0x1676a1944900a9899dac554c2da10ba62637fe8d08375ffc3fb8494c92918d98.
+// ParseGERMarkedAsInjected is a log parse operation binding the contract event 0xcafdbc8c7e71f2990afc9e787ff729a197666534c9a49959c1373c819b708a8f.
 //
-// Solidity: event ConsolidatedGlobalExitRoot(bytes32 consolidatedGlobalExitRoot)
-func (_Aggoraclecommittee *AggoraclecommitteeFilterer) ParseConsolidatedGlobalExitRoot(log types.Log) (*AggoraclecommitteeConsolidatedGlobalExitRoot, error) {
-	event := new(AggoraclecommitteeConsolidatedGlobalExitRoot)
-	if err := _Aggoraclecommittee.contract.UnpackLog(event, "ConsolidatedGlobalExitRoot", log); err != nil {
+// Solidity: event GERMarkedAsInjected(bytes32 indexed globalExitRoot)
+func (_Aggoraclecommittee *AggoraclecommitteeFilterer) ParseGERMarkedAsInjected(log types.Log) (*AggoraclecommitteeGERMarkedAsInjected, error) {
+	event := new(AggoraclecommitteeGERMarkedAsInjected)
+	if err := _Aggoraclecommittee.contract.UnpackLog(event, "GERMarkedAsInjected", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
@@ -1163,6 +1337,159 @@ func (_Aggoraclecommittee *AggoraclecommitteeFilterer) WatchInitialized(opts *bi
 func (_Aggoraclecommittee *AggoraclecommitteeFilterer) ParseInitialized(log types.Log) (*AggoraclecommitteeInitialized, error) {
 	event := new(AggoraclecommitteeInitialized)
 	if err := _Aggoraclecommittee.contract.UnpackLog(event, "Initialized", log); err != nil {
+		return nil, err
+	}
+	event.Raw = log
+	return event, nil
+}
+
+// AggoraclecommitteeOwnershipTransferStartedIterator is returned from FilterOwnershipTransferStarted and is used to iterate over the raw logs and unpacked data for OwnershipTransferStarted events raised by the Aggoraclecommittee contract.
+type AggoraclecommitteeOwnershipTransferStartedIterator struct {
+	Event *AggoraclecommitteeOwnershipTransferStarted // Event containing the contract specifics and raw log
+
+	contract *bind.BoundContract // Generic contract to use for unpacking event data
+	event    string              // Event name to use for unpacking event data
+
+	logs chan types.Log        // Log channel receiving the found contract events
+	sub  ethereum.Subscription // Subscription for errors, completion and termination
+	done bool                  // Whether the subscription completed delivering logs
+	fail error                 // Occurred error to stop iteration
+}
+
+// Next advances the iterator to the subsequent event, returning whether there
+// are any more events found. In case of a retrieval or parsing error, false is
+// returned and Error() can be queried for the exact failure.
+func (it *AggoraclecommitteeOwnershipTransferStartedIterator) Next() bool {
+	// If the iterator failed, stop iterating
+	if it.fail != nil {
+		return false
+	}
+	// If the iterator completed, deliver directly whatever's available
+	if it.done {
+		select {
+		case log := <-it.logs:
+			it.Event = new(AggoraclecommitteeOwnershipTransferStarted)
+			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+				it.fail = err
+				return false
+			}
+			it.Event.Raw = log
+			return true
+
+		default:
+			return false
+		}
+	}
+	// Iterator still in progress, wait for either a data or an error event
+	select {
+	case log := <-it.logs:
+		it.Event = new(AggoraclecommitteeOwnershipTransferStarted)
+		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
+			it.fail = err
+			return false
+		}
+		it.Event.Raw = log
+		return true
+
+	case err := <-it.sub.Err():
+		it.done = true
+		it.fail = err
+		return it.Next()
+	}
+}
+
+// Error returns any retrieval or parsing error occurred during filtering.
+func (it *AggoraclecommitteeOwnershipTransferStartedIterator) Error() error {
+	return it.fail
+}
+
+// Close terminates the iteration process, releasing any pending underlying
+// resources.
+func (it *AggoraclecommitteeOwnershipTransferStartedIterator) Close() error {
+	it.sub.Unsubscribe()
+	return nil
+}
+
+// AggoraclecommitteeOwnershipTransferStarted represents a OwnershipTransferStarted event raised by the Aggoraclecommittee contract.
+type AggoraclecommitteeOwnershipTransferStarted struct {
+	PreviousOwner common.Address
+	NewOwner      common.Address
+	Raw           types.Log // Blockchain specific contextual infos
+}
+
+// FilterOwnershipTransferStarted is a free log retrieval operation binding the contract event 0x38d16b8cac22d99fc7c124b9cd0de2d3fa1faef420bfe791d8c362d765e22700.
+//
+// Solidity: event OwnershipTransferStarted(address indexed previousOwner, address indexed newOwner)
+func (_Aggoraclecommittee *AggoraclecommitteeFilterer) FilterOwnershipTransferStarted(opts *bind.FilterOpts, previousOwner []common.Address, newOwner []common.Address) (*AggoraclecommitteeOwnershipTransferStartedIterator, error) {
+
+	var previousOwnerRule []interface{}
+	for _, previousOwnerItem := range previousOwner {
+		previousOwnerRule = append(previousOwnerRule, previousOwnerItem)
+	}
+	var newOwnerRule []interface{}
+	for _, newOwnerItem := range newOwner {
+		newOwnerRule = append(newOwnerRule, newOwnerItem)
+	}
+
+	logs, sub, err := _Aggoraclecommittee.contract.FilterLogs(opts, "OwnershipTransferStarted", previousOwnerRule, newOwnerRule)
+	if err != nil {
+		return nil, err
+	}
+	return &AggoraclecommitteeOwnershipTransferStartedIterator{contract: _Aggoraclecommittee.contract, event: "OwnershipTransferStarted", logs: logs, sub: sub}, nil
+}
+
+// WatchOwnershipTransferStarted is a free log subscription operation binding the contract event 0x38d16b8cac22d99fc7c124b9cd0de2d3fa1faef420bfe791d8c362d765e22700.
+//
+// Solidity: event OwnershipTransferStarted(address indexed previousOwner, address indexed newOwner)
+func (_Aggoraclecommittee *AggoraclecommitteeFilterer) WatchOwnershipTransferStarted(opts *bind.WatchOpts, sink chan<- *AggoraclecommitteeOwnershipTransferStarted, previousOwner []common.Address, newOwner []common.Address) (event.Subscription, error) {
+
+	var previousOwnerRule []interface{}
+	for _, previousOwnerItem := range previousOwner {
+		previousOwnerRule = append(previousOwnerRule, previousOwnerItem)
+	}
+	var newOwnerRule []interface{}
+	for _, newOwnerItem := range newOwner {
+		newOwnerRule = append(newOwnerRule, newOwnerItem)
+	}
+
+	logs, sub, err := _Aggoraclecommittee.contract.WatchLogs(opts, "OwnershipTransferStarted", previousOwnerRule, newOwnerRule)
+	if err != nil {
+		return nil, err
+	}
+	return event.NewSubscription(func(quit <-chan struct{}) error {
+		defer sub.Unsubscribe()
+		for {
+			select {
+			case log := <-logs:
+				// New log arrived, parse the event and forward to the user
+				event := new(AggoraclecommitteeOwnershipTransferStarted)
+				if err := _Aggoraclecommittee.contract.UnpackLog(event, "OwnershipTransferStarted", log); err != nil {
+					return err
+				}
+				event.Raw = log
+
+				select {
+				case sink <- event:
+				case err := <-sub.Err():
+					return err
+				case <-quit:
+					return nil
+				}
+			case err := <-sub.Err():
+				return err
+			case <-quit:
+				return nil
+			}
+		}
+	}), nil
+}
+
+// ParseOwnershipTransferStarted is a log parse operation binding the contract event 0x38d16b8cac22d99fc7c124b9cd0de2d3fa1faef420bfe791d8c362d765e22700.
+//
+// Solidity: event OwnershipTransferStarted(address indexed previousOwner, address indexed newOwner)
+func (_Aggoraclecommittee *AggoraclecommitteeFilterer) ParseOwnershipTransferStarted(log types.Log) (*AggoraclecommitteeOwnershipTransferStarted, error) {
+	event := new(AggoraclecommitteeOwnershipTransferStarted)
+	if err := _Aggoraclecommittee.contract.UnpackLog(event, "OwnershipTransferStarted", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
@@ -1322,9 +1649,9 @@ func (_Aggoraclecommittee *AggoraclecommitteeFilterer) ParseOwnershipTransferred
 	return event, nil
 }
 
-// AggoraclecommitteeProposedGlobalExitRootIterator is returned from FilterProposedGlobalExitRoot and is used to iterate over the raw logs and unpacked data for ProposedGlobalExitRoot events raised by the Aggoraclecommittee contract.
-type AggoraclecommitteeProposedGlobalExitRootIterator struct {
-	Event *AggoraclecommitteeProposedGlobalExitRoot // Event containing the contract specifics and raw log
+// AggoraclecommitteeUpdateAggOracleProposerIterator is returned from FilterUpdateAggOracleProposer and is used to iterate over the raw logs and unpacked data for UpdateAggOracleProposer events raised by the Aggoraclecommittee contract.
+type AggoraclecommitteeUpdateAggOracleProposerIterator struct {
+	Event *AggoraclecommitteeUpdateAggOracleProposer // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -1338,7 +1665,7 @@ type AggoraclecommitteeProposedGlobalExitRootIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *AggoraclecommitteeProposedGlobalExitRootIterator) Next() bool {
+func (it *AggoraclecommitteeUpdateAggOracleProposerIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1347,7 +1674,7 @@ func (it *AggoraclecommitteeProposedGlobalExitRootIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(AggoraclecommitteeProposedGlobalExitRoot)
+			it.Event = new(AggoraclecommitteeUpdateAggOracleProposer)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1362,7 +1689,7 @@ func (it *AggoraclecommitteeProposedGlobalExitRootIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(AggoraclecommitteeProposedGlobalExitRoot)
+		it.Event = new(AggoraclecommitteeUpdateAggOracleProposer)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1378,42 +1705,51 @@ func (it *AggoraclecommitteeProposedGlobalExitRootIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *AggoraclecommitteeProposedGlobalExitRootIterator) Error() error {
+func (it *AggoraclecommitteeUpdateAggOracleProposerIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *AggoraclecommitteeProposedGlobalExitRootIterator) Close() error {
+func (it *AggoraclecommitteeUpdateAggOracleProposerIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// AggoraclecommitteeProposedGlobalExitRoot represents a ProposedGlobalExitRoot event raised by the Aggoraclecommittee contract.
-type AggoraclecommitteeProposedGlobalExitRoot struct {
-	ProposedGlobalExitRoot [32]byte
-	Proposer               common.Address
-	Raw                    types.Log // Blockchain specific contextual infos
+// AggoraclecommitteeUpdateAggOracleProposer represents a UpdateAggOracleProposer event raised by the Aggoraclecommittee contract.
+type AggoraclecommitteeUpdateAggOracleProposer struct {
+	NewProposer common.Address
+	Raw         types.Log // Blockchain specific contextual infos
 }
 
-// FilterProposedGlobalExitRoot is a free log retrieval operation binding the contract event 0x9f298266555f7b22d45b8ea34a9c99cba101d1ccbc3ff6dc4c392b7c915dc3b5.
+// FilterUpdateAggOracleProposer is a free log retrieval operation binding the contract event 0x93c536fad4968838f70b6a5841cc12ffbd1a657048ef449f715f0d9ebdbeffca.
 //
-// Solidity: event ProposedGlobalExitRoot(bytes32 proposedGlobalExitRoot, address proposer)
-func (_Aggoraclecommittee *AggoraclecommitteeFilterer) FilterProposedGlobalExitRoot(opts *bind.FilterOpts) (*AggoraclecommitteeProposedGlobalExitRootIterator, error) {
+// Solidity: event UpdateAggOracleProposer(address indexed newProposer)
+func (_Aggoraclecommittee *AggoraclecommitteeFilterer) FilterUpdateAggOracleProposer(opts *bind.FilterOpts, newProposer []common.Address) (*AggoraclecommitteeUpdateAggOracleProposerIterator, error) {
 
-	logs, sub, err := _Aggoraclecommittee.contract.FilterLogs(opts, "ProposedGlobalExitRoot")
+	var newProposerRule []interface{}
+	for _, newProposerItem := range newProposer {
+		newProposerRule = append(newProposerRule, newProposerItem)
+	}
+
+	logs, sub, err := _Aggoraclecommittee.contract.FilterLogs(opts, "UpdateAggOracleProposer", newProposerRule)
 	if err != nil {
 		return nil, err
 	}
-	return &AggoraclecommitteeProposedGlobalExitRootIterator{contract: _Aggoraclecommittee.contract, event: "ProposedGlobalExitRoot", logs: logs, sub: sub}, nil
+	return &AggoraclecommitteeUpdateAggOracleProposerIterator{contract: _Aggoraclecommittee.contract, event: "UpdateAggOracleProposer", logs: logs, sub: sub}, nil
 }
 
-// WatchProposedGlobalExitRoot is a free log subscription operation binding the contract event 0x9f298266555f7b22d45b8ea34a9c99cba101d1ccbc3ff6dc4c392b7c915dc3b5.
+// WatchUpdateAggOracleProposer is a free log subscription operation binding the contract event 0x93c536fad4968838f70b6a5841cc12ffbd1a657048ef449f715f0d9ebdbeffca.
 //
-// Solidity: event ProposedGlobalExitRoot(bytes32 proposedGlobalExitRoot, address proposer)
-func (_Aggoraclecommittee *AggoraclecommitteeFilterer) WatchProposedGlobalExitRoot(opts *bind.WatchOpts, sink chan<- *AggoraclecommitteeProposedGlobalExitRoot) (event.Subscription, error) {
+// Solidity: event UpdateAggOracleProposer(address indexed newProposer)
+func (_Aggoraclecommittee *AggoraclecommitteeFilterer) WatchUpdateAggOracleProposer(opts *bind.WatchOpts, sink chan<- *AggoraclecommitteeUpdateAggOracleProposer, newProposer []common.Address) (event.Subscription, error) {
 
-	logs, sub, err := _Aggoraclecommittee.contract.WatchLogs(opts, "ProposedGlobalExitRoot")
+	var newProposerRule []interface{}
+	for _, newProposerItem := range newProposer {
+		newProposerRule = append(newProposerRule, newProposerItem)
+	}
+
+	logs, sub, err := _Aggoraclecommittee.contract.WatchLogs(opts, "UpdateAggOracleProposer", newProposerRule)
 	if err != nil {
 		return nil, err
 	}
@@ -1423,8 +1759,8 @@ func (_Aggoraclecommittee *AggoraclecommitteeFilterer) WatchProposedGlobalExitRo
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(AggoraclecommitteeProposedGlobalExitRoot)
-				if err := _Aggoraclecommittee.contract.UnpackLog(event, "ProposedGlobalExitRoot", log); err != nil {
+				event := new(AggoraclecommitteeUpdateAggOracleProposer)
+				if err := _Aggoraclecommittee.contract.UnpackLog(event, "UpdateAggOracleProposer", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -1445,21 +1781,21 @@ func (_Aggoraclecommittee *AggoraclecommitteeFilterer) WatchProposedGlobalExitRo
 	}), nil
 }
 
-// ParseProposedGlobalExitRoot is a log parse operation binding the contract event 0x9f298266555f7b22d45b8ea34a9c99cba101d1ccbc3ff6dc4c392b7c915dc3b5.
+// ParseUpdateAggOracleProposer is a log parse operation binding the contract event 0x93c536fad4968838f70b6a5841cc12ffbd1a657048ef449f715f0d9ebdbeffca.
 //
-// Solidity: event ProposedGlobalExitRoot(bytes32 proposedGlobalExitRoot, address proposer)
-func (_Aggoraclecommittee *AggoraclecommitteeFilterer) ParseProposedGlobalExitRoot(log types.Log) (*AggoraclecommitteeProposedGlobalExitRoot, error) {
-	event := new(AggoraclecommitteeProposedGlobalExitRoot)
-	if err := _Aggoraclecommittee.contract.UnpackLog(event, "ProposedGlobalExitRoot", log); err != nil {
+// Solidity: event UpdateAggOracleProposer(address indexed newProposer)
+func (_Aggoraclecommittee *AggoraclecommitteeFilterer) ParseUpdateAggOracleProposer(log types.Log) (*AggoraclecommitteeUpdateAggOracleProposer, error) {
+	event := new(AggoraclecommitteeUpdateAggOracleProposer)
+	if err := _Aggoraclecommittee.contract.UnpackLog(event, "UpdateAggOracleProposer", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// AggoraclecommitteeRemoveAggOracleMemberIterator is returned from FilterRemoveAggOracleMember and is used to iterate over the raw logs and unpacked data for RemoveAggOracleMember events raised by the Aggoraclecommittee contract.
-type AggoraclecommitteeRemoveAggOracleMemberIterator struct {
-	Event *AggoraclecommitteeRemoveAggOracleMember // Event containing the contract specifics and raw log
+// AggoraclecommitteeValidatorsAndThresholdUpdatedIterator is returned from FilterValidatorsAndThresholdUpdated and is used to iterate over the raw logs and unpacked data for ValidatorsAndThresholdUpdated events raised by the Aggoraclecommittee contract.
+type AggoraclecommitteeValidatorsAndThresholdUpdatedIterator struct {
+	Event *AggoraclecommitteeValidatorsAndThresholdUpdated // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -1473,7 +1809,7 @@ type AggoraclecommitteeRemoveAggOracleMemberIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *AggoraclecommitteeRemoveAggOracleMemberIterator) Next() bool {
+func (it *AggoraclecommitteeValidatorsAndThresholdUpdatedIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1482,7 +1818,7 @@ func (it *AggoraclecommitteeRemoveAggOracleMemberIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(AggoraclecommitteeRemoveAggOracleMember)
+			it.Event = new(AggoraclecommitteeValidatorsAndThresholdUpdated)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1497,7 +1833,7 @@ func (it *AggoraclecommitteeRemoveAggOracleMemberIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(AggoraclecommitteeRemoveAggOracleMember)
+		it.Event = new(AggoraclecommitteeValidatorsAndThresholdUpdated)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1513,41 +1849,42 @@ func (it *AggoraclecommitteeRemoveAggOracleMemberIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *AggoraclecommitteeRemoveAggOracleMemberIterator) Error() error {
+func (it *AggoraclecommitteeValidatorsAndThresholdUpdatedIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *AggoraclecommitteeRemoveAggOracleMemberIterator) Close() error {
+func (it *AggoraclecommitteeValidatorsAndThresholdUpdatedIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// AggoraclecommitteeRemoveAggOracleMember represents a RemoveAggOracleMember event raised by the Aggoraclecommittee contract.
-type AggoraclecommitteeRemoveAggOracleMember struct {
-	OracleMemberRemoved common.Address
-	Raw                 types.Log // Blockchain specific contextual infos
+// AggoraclecommitteeValidatorsAndThresholdUpdated represents a ValidatorsAndThresholdUpdated event raised by the Aggoraclecommittee contract.
+type AggoraclecommitteeValidatorsAndThresholdUpdated struct {
+	Validators []common.Address
+	Threshold  *big.Int
+	Raw        types.Log // Blockchain specific contextual infos
 }
 
-// FilterRemoveAggOracleMember is a free log retrieval operation binding the contract event 0x396186e0feff55f3e52260aee4ec024318786c7f5b8b01639b1d42c24b59eafc.
+// FilterValidatorsAndThresholdUpdated is a free log retrieval operation binding the contract event 0x50051c796f4289791fedb6e1f365497b6527df6f6f19527d566e3c9791af5460.
 //
-// Solidity: event RemoveAggOracleMember(address oracleMemberRemoved)
-func (_Aggoraclecommittee *AggoraclecommitteeFilterer) FilterRemoveAggOracleMember(opts *bind.FilterOpts) (*AggoraclecommitteeRemoveAggOracleMemberIterator, error) {
+// Solidity: event ValidatorsAndThresholdUpdated(address[] validators, uint256 threshold)
+func (_Aggoraclecommittee *AggoraclecommitteeFilterer) FilterValidatorsAndThresholdUpdated(opts *bind.FilterOpts) (*AggoraclecommitteeValidatorsAndThresholdUpdatedIterator, error) {
 
-	logs, sub, err := _Aggoraclecommittee.contract.FilterLogs(opts, "RemoveAggOracleMember")
+	logs, sub, err := _Aggoraclecommittee.contract.FilterLogs(opts, "ValidatorsAndThresholdUpdated")
 	if err != nil {
 		return nil, err
 	}
-	return &AggoraclecommitteeRemoveAggOracleMemberIterator{contract: _Aggoraclecommittee.contract, event: "RemoveAggOracleMember", logs: logs, sub: sub}, nil
+	return &AggoraclecommitteeValidatorsAndThresholdUpdatedIterator{contract: _Aggoraclecommittee.contract, event: "ValidatorsAndThresholdUpdated", logs: logs, sub: sub}, nil
 }
 
-// WatchRemoveAggOracleMember is a free log subscription operation binding the contract event 0x396186e0feff55f3e52260aee4ec024318786c7f5b8b01639b1d42c24b59eafc.
+// WatchValidatorsAndThresholdUpdated is a free log subscription operation binding the contract event 0x50051c796f4289791fedb6e1f365497b6527df6f6f19527d566e3c9791af5460.
 //
-// Solidity: event RemoveAggOracleMember(address oracleMemberRemoved)
-func (_Aggoraclecommittee *AggoraclecommitteeFilterer) WatchRemoveAggOracleMember(opts *bind.WatchOpts, sink chan<- *AggoraclecommitteeRemoveAggOracleMember) (event.Subscription, error) {
+// Solidity: event ValidatorsAndThresholdUpdated(address[] validators, uint256 threshold)
+func (_Aggoraclecommittee *AggoraclecommitteeFilterer) WatchValidatorsAndThresholdUpdated(opts *bind.WatchOpts, sink chan<- *AggoraclecommitteeValidatorsAndThresholdUpdated) (event.Subscription, error) {
 
-	logs, sub, err := _Aggoraclecommittee.contract.WatchLogs(opts, "RemoveAggOracleMember")
+	logs, sub, err := _Aggoraclecommittee.contract.WatchLogs(opts, "ValidatorsAndThresholdUpdated")
 	if err != nil {
 		return nil, err
 	}
@@ -1557,8 +1894,8 @@ func (_Aggoraclecommittee *AggoraclecommitteeFilterer) WatchRemoveAggOracleMembe
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(AggoraclecommitteeRemoveAggOracleMember)
-				if err := _Aggoraclecommittee.contract.UnpackLog(event, "RemoveAggOracleMember", log); err != nil {
+				event := new(AggoraclecommitteeValidatorsAndThresholdUpdated)
+				if err := _Aggoraclecommittee.contract.UnpackLog(event, "ValidatorsAndThresholdUpdated", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -1579,146 +1916,12 @@ func (_Aggoraclecommittee *AggoraclecommitteeFilterer) WatchRemoveAggOracleMembe
 	}), nil
 }
 
-// ParseRemoveAggOracleMember is a log parse operation binding the contract event 0x396186e0feff55f3e52260aee4ec024318786c7f5b8b01639b1d42c24b59eafc.
+// ParseValidatorsAndThresholdUpdated is a log parse operation binding the contract event 0x50051c796f4289791fedb6e1f365497b6527df6f6f19527d566e3c9791af5460.
 //
-// Solidity: event RemoveAggOracleMember(address oracleMemberRemoved)
-func (_Aggoraclecommittee *AggoraclecommitteeFilterer) ParseRemoveAggOracleMember(log types.Log) (*AggoraclecommitteeRemoveAggOracleMember, error) {
-	event := new(AggoraclecommitteeRemoveAggOracleMember)
-	if err := _Aggoraclecommittee.contract.UnpackLog(event, "RemoveAggOracleMember", log); err != nil {
-		return nil, err
-	}
-	event.Raw = log
-	return event, nil
-}
-
-// AggoraclecommitteeUpdateQuorumIterator is returned from FilterUpdateQuorum and is used to iterate over the raw logs and unpacked data for UpdateQuorum events raised by the Aggoraclecommittee contract.
-type AggoraclecommitteeUpdateQuorumIterator struct {
-	Event *AggoraclecommitteeUpdateQuorum // Event containing the contract specifics and raw log
-
-	contract *bind.BoundContract // Generic contract to use for unpacking event data
-	event    string              // Event name to use for unpacking event data
-
-	logs chan types.Log        // Log channel receiving the found contract events
-	sub  ethereum.Subscription // Subscription for errors, completion and termination
-	done bool                  // Whether the subscription completed delivering logs
-	fail error                 // Occurred error to stop iteration
-}
-
-// Next advances the iterator to the subsequent event, returning whether there
-// are any more events found. In case of a retrieval or parsing error, false is
-// returned and Error() can be queried for the exact failure.
-func (it *AggoraclecommitteeUpdateQuorumIterator) Next() bool {
-	// If the iterator failed, stop iterating
-	if it.fail != nil {
-		return false
-	}
-	// If the iterator completed, deliver directly whatever's available
-	if it.done {
-		select {
-		case log := <-it.logs:
-			it.Event = new(AggoraclecommitteeUpdateQuorum)
-			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
-				it.fail = err
-				return false
-			}
-			it.Event.Raw = log
-			return true
-
-		default:
-			return false
-		}
-	}
-	// Iterator still in progress, wait for either a data or an error event
-	select {
-	case log := <-it.logs:
-		it.Event = new(AggoraclecommitteeUpdateQuorum)
-		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
-			it.fail = err
-			return false
-		}
-		it.Event.Raw = log
-		return true
-
-	case err := <-it.sub.Err():
-		it.done = true
-		it.fail = err
-		return it.Next()
-	}
-}
-
-// Error returns any retrieval or parsing error occurred during filtering.
-func (it *AggoraclecommitteeUpdateQuorumIterator) Error() error {
-	return it.fail
-}
-
-// Close terminates the iteration process, releasing any pending underlying
-// resources.
-func (it *AggoraclecommitteeUpdateQuorumIterator) Close() error {
-	it.sub.Unsubscribe()
-	return nil
-}
-
-// AggoraclecommitteeUpdateQuorum represents a UpdateQuorum event raised by the Aggoraclecommittee contract.
-type AggoraclecommitteeUpdateQuorum struct {
-	NewQuorum uint64
-	Raw       types.Log // Blockchain specific contextual infos
-}
-
-// FilterUpdateQuorum is a free log retrieval operation binding the contract event 0xb600f3cf7f38a4b49bb0c75f722ef69f7e3e39ef3bb4aa8207fd86e724a23249.
-//
-// Solidity: event UpdateQuorum(uint64 newQuorum)
-func (_Aggoraclecommittee *AggoraclecommitteeFilterer) FilterUpdateQuorum(opts *bind.FilterOpts) (*AggoraclecommitteeUpdateQuorumIterator, error) {
-
-	logs, sub, err := _Aggoraclecommittee.contract.FilterLogs(opts, "UpdateQuorum")
-	if err != nil {
-		return nil, err
-	}
-	return &AggoraclecommitteeUpdateQuorumIterator{contract: _Aggoraclecommittee.contract, event: "UpdateQuorum", logs: logs, sub: sub}, nil
-}
-
-// WatchUpdateQuorum is a free log subscription operation binding the contract event 0xb600f3cf7f38a4b49bb0c75f722ef69f7e3e39ef3bb4aa8207fd86e724a23249.
-//
-// Solidity: event UpdateQuorum(uint64 newQuorum)
-func (_Aggoraclecommittee *AggoraclecommitteeFilterer) WatchUpdateQuorum(opts *bind.WatchOpts, sink chan<- *AggoraclecommitteeUpdateQuorum) (event.Subscription, error) {
-
-	logs, sub, err := _Aggoraclecommittee.contract.WatchLogs(opts, "UpdateQuorum")
-	if err != nil {
-		return nil, err
-	}
-	return event.NewSubscription(func(quit <-chan struct{}) error {
-		defer sub.Unsubscribe()
-		for {
-			select {
-			case log := <-logs:
-				// New log arrived, parse the event and forward to the user
-				event := new(AggoraclecommitteeUpdateQuorum)
-				if err := _Aggoraclecommittee.contract.UnpackLog(event, "UpdateQuorum", log); err != nil {
-					return err
-				}
-				event.Raw = log
-
-				select {
-				case sink <- event:
-				case err := <-sub.Err():
-					return err
-				case <-quit:
-					return nil
-				}
-			case err := <-sub.Err():
-				return err
-			case <-quit:
-				return nil
-			}
-		}
-	}), nil
-}
-
-// ParseUpdateQuorum is a log parse operation binding the contract event 0xb600f3cf7f38a4b49bb0c75f722ef69f7e3e39ef3bb4aa8207fd86e724a23249.
-//
-// Solidity: event UpdateQuorum(uint64 newQuorum)
-func (_Aggoraclecommittee *AggoraclecommitteeFilterer) ParseUpdateQuorum(log types.Log) (*AggoraclecommitteeUpdateQuorum, error) {
-	event := new(AggoraclecommitteeUpdateQuorum)
-	if err := _Aggoraclecommittee.contract.UnpackLog(event, "UpdateQuorum", log); err != nil {
+// Solidity: event ValidatorsAndThresholdUpdated(address[] validators, uint256 threshold)
+func (_Aggoraclecommittee *AggoraclecommitteeFilterer) ParseValidatorsAndThresholdUpdated(log types.Log) (*AggoraclecommitteeValidatorsAndThresholdUpdated, error) {
+	event := new(AggoraclecommitteeValidatorsAndThresholdUpdated)
+	if err := _Aggoraclecommittee.contract.UnpackLog(event, "ValidatorsAndThresholdUpdated", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
